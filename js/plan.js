@@ -208,7 +208,9 @@ export function cardValue(card, state, nights) {
 }
 
 export function staysFrom(itin, places) {
+  const ci = itin.steps.findIndex(s => s.svc && s.svc.startsWith('cruise:'));
   return itin.steps.filter(s => s.night && s.night.kind === 'stay').map(s => ({
+    dir: ci < 0 || itin.steps.indexOf(s) < ci ? 'out' : 'ret',
     id: s.night.id, place: s.night.place, name: places[s.night.place].name,
     why: s.title, rates: places[s.night.place].stay
   }));

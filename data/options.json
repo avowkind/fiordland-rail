@@ -70,7 +70,8 @@
    ],
    "def": 0,
    "st": "est",
-   "b": "Placeholder per night for two. Book close to Strand station or Britomart."
+   "b": "Placeholder per night for two. Book close to Strand station or Britomart.",
+   "dir": "out"
   },
   {
    "id": "kennel",
@@ -105,7 +106,8 @@
      "l": "Brookby Lodge prices",
      "u": "https://www.brookbylodge.com/pricing/"
     }
-   ]
+   ],
+   "dir": "both"
   },
   {
    "id": "ne",
@@ -164,7 +166,8 @@
      "l": "Seat61: Northern Explorer guide",
      "u": "https://www.seat61.com/auckland-to-wellington-by-train.htm"
     }
-   ]
+   ],
+   "dir": "out"
   },
   {
    "id": "isl",
@@ -213,7 +216,8 @@
      "l": "Seat61: New Zealand trains and ferry",
      "u": "https://www.seat61.com/NewZealand.htm"
     }
-   ]
+   ],
+   "dir": "out"
   },
   {
    "id": "cp",
@@ -271,7 +275,8 @@
      "l": "Seat61: New Zealand trains and ferry",
      "u": "https://www.seat61.com/NewZealand.htm"
     }
-   ]
+   ],
+   "dir": "out"
   },
   {
    "id": "jet",
@@ -307,7 +312,8 @@
      "l": "Air New Zealand: Christchurch–Queenstown",
      "u": "https://www.airnewzealand.co.nz/flights/en-nz/flights-from-christchurch-to-queenstown"
     }
-   ]
+   ],
+   "dir": "out"
   },
   {
    "id": "drive",
@@ -338,7 +344,8 @@
    ],
    "v": 3000,
    "st": "est",
-   "b": "Rough estimate for a private driver over two days. Get quotes. The overnight lodge is extra."
+   "b": "Rough estimate for a private driver over two days. Get quotes. The overnight lodge is extra.",
+   "dir": "out"
   },
   {
    "id": "self",
@@ -389,7 +396,8 @@
      "l": "Manapouri overnight parking",
      "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
     }
-   ]
+   ],
+   "dir": "out"
   },
   {
    "id": "xfer",
@@ -412,7 +420,8 @@
    ],
    "v": 1200,
    "st": "est",
-   "b": "Rough estimate for a private return transfer for two. Get quotes."
+   "b": "Rough estimate for a private return transfer for two. Get quotes.",
+   "dir": "both"
   },
   {
    "id": "rnw",
@@ -461,7 +470,8 @@
      "l": "Manapouri departure and parking",
      "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
     }
-   ]
+   ],
+   "dir": "mid"
   },
   {
    "id": "rnn",
@@ -505,7 +515,8 @@
      "l": "Manapouri departure and parking",
      "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
     }
-   ]
+   ],
+   "dir": "mid"
   },
   {
    "id": "fj1",
@@ -546,7 +557,8 @@
      "l": "Fiordland Discovery: Milford overnight",
      "u": "https://www.fiordlanddiscovery.co.nz/fiordland-cruises/milford-sound-overnight-cruise/"
     }
-   ]
+   ],
+   "dir": "mid"
   },
   {
    "id": "he4",
@@ -590,7 +602,8 @@
      "l": "Heritage: Undiscovered Dusky",
      "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/undiscovered-dusky-cruise/"
     }
-   ]
+   ],
+   "dir": "mid"
   },
   {
    "id": "he6",
@@ -630,7 +643,8 @@
      "l": "Heritage: Southern Fiords Discovery",
      "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/southern-fiords-discovery-cruise/"
     }
-   ]
+   ],
+   "dir": "mid"
   },
   {
    "id": "fly",
@@ -665,7 +679,8 @@
      "l": "Air New Zealand",
      "u": "https://www.airnewzealand.co.nz/"
     }
-   ]
+   ],
+   "dir": "ret"
   },
   {
    "id": "railh",
@@ -712,7 +727,8 @@
      "l": "Interislander",
      "u": "https://www.interislander.co.nz/"
     }
-   ]
+   ],
+   "dir": "ret"
   }
  ],
  "defaultSelection": {

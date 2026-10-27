@@ -128,3 +128,9 @@ test('card links are https and every rail and cruise card has one', () => {
   });
   data.cards.flatMap(c => c.links || []).forEach(l => assert.match(l.u, /^https:\/\//));
 });
+
+test('every card has a direction, and stays split outward/return around the cruise', () => {
+  data.cards.forEach(c => assert.ok(['out', 'ret', 'mid', 'both'].includes(c.dir), c.id));
+  const dirs = staysFrom(buildItinerary(DEF), places).map(s => s.dir);
+  assert.deepEqual(dirs, ['out', 'out', 'out', 'out', 'ret', 'ret', 'ret', 'ret', 'ret']);
+});

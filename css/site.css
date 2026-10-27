@@ -62,10 +62,10 @@ text{font-family:var(--body)}
 .group-h span{font-size:13px;color:var(--muted)}
 .cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;min-width:0;position:relative;overflow:hidden}
-.card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--c)}
+.cband{background:var(--c);color:var(--on);font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:3px 14px}
 .card.on{border-color:var(--c);box-shadow:0 0 0 1px var(--c)}
 .card.warn .ctitle::after{content:" ⚠";color:var(--window)}
-.chead{display:flex;gap:10px;align-items:flex-start;padding:16px 14px 8px;cursor:pointer}
+.chead{display:flex;gap:10px;align-items:flex-start;padding:12px 14px 8px;cursor:pointer}
 .chead input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--c);flex:none;cursor:pointer}
 .chead input:focus-visible{outline:2px solid var(--c);outline-offset:2px}
 .ctitle{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.15;margin:0}

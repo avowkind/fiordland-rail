@@ -4,6 +4,8 @@ import { cardValue, KENNEL_RATE, DOGS, SELF_RAIL_COST } from './plan.js';
 export const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 export const nz = n => 'NZD ' + Math.round(n).toLocaleString('en-NZ');
 const ROOM = ['Comfortable twin', 'Two rooms', 'Luxury lodge'];
+const DIR = { out: '» Outward', ret: '« Return', mid: '◆ Fiordland', both: '» Outward and return «' };
+const band = dir => dir ? `<div class="cband" aria-label="${DIR[dir].replace(/[»«◆]/g, '').trim()}">${DIR[dir]}</div>` : '';
 
 function basis(c, state, nights) {
   if (c.dyn === 'kennel') return `$${KENNEL_RATE} per small dog per day (Brookby Lodge price list), × ${DOGS} dogs × ${nights + 1} days. The first day and an afternoon pick-up each count as a full day.`;
@@ -23,7 +25,7 @@ export function renderDiscovery(root, data, state, result) {
     data.cards.filter(c => c.g === g.id).forEach(c => {
       const on = !!state.sel[c.id];
       const oi = state.opt[c.id] ?? c.def;
-      h += `<article class="card${on ? ' on' : ''}" style="--c:var(--${c.c})" data-id="${c.id}">
+      h += `<article class="card${on ? ' on' : ''}" style="--c:var(--${c.c})" data-id="${c.id}">${band(c.dir)}
         <label class="chead" for="cb-${c.id}"><input type="checkbox" id="cb-${c.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">${esc(c.t)}</h4><p class="cop">${esc(c.op)}</p></div></label>
         <div class="cbody"><h4>What feels special</h4><ul class="special">${c.sp.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
         <h4>What could swing it</h4><ul class="swing">${c.sw.map(s => `<li class="${s[0]}">${esc(s[1])}</li>`).join('')}</ul></div>
@@ -42,7 +44,7 @@ export function renderDiscovery(root, data, state, result) {
     const on = !(state.stayOff || {})[st.id];
     const oi = state.opt[st.id] ?? 0;
     const p = data._places[st.place];
-    h += `<article class="card${on ? ' on' : ''}" style="--c:var(--muted)" data-id="${st.id}" data-stay="1">
+    h += `<article class="card${on ? ' on' : ''}" style="--c:var(--muted)" data-id="${st.id}" data-stay="1">${band(st.dir)}
       <label class="chead" for="cb-${st.id}"><input type="checkbox" id="cb-${st.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">${esc(st.name)}</h4><p class="cop">Night after: ${esc(st.why)}</p></div></label>
       <div class="cbody"><ul class="special"><li>${esc(p.staySpecial || '')}</li></ul></div>
       <div class="cfoot"><div class="opts" role="group" aria-label="Room">${ROOM.map((l, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${l}</button>`).join('')}</div>
