@@ -1,0 +1,620 @@
+{
+ "groups": [
+  {
+   "id": "home",
+   "t": "Leaving home",
+   "n": "Kennels, the Auckland night and getting the dogs to Brookby."
+  },
+  {
+   "id": "south",
+   "t": "Rail and ferry south",
+   "n": "Auckland to Christchurch. Tick each leg you want."
+  },
+  {
+   "id": "getsouth",
+   "t": "Christchurch to Fiordland",
+   "n": "Choose one way south, and add a Queenstown transfer if the cruise needs one."
+  },
+  {
+   "id": "cruise",
+   "t": "Fiordland cruise",
+   "n": "Choose one.",
+   "excl": true
+  },
+  {
+   "id": "ret",
+   "t": "Getting home",
+   "n": "Choose one.",
+   "excl": true
+  }
+ ],
+ "cards": [
+  {
+   "id": "akl",
+   "g": "home",
+   "c": "window",
+   "n": 1,
+   "t": "Auckland night on the way out",
+   "op": "Hotel near Strand station · night before the Northern Explorer",
+   "sp": [
+    "Drop the dogs at Brookby in daylight, then a relaxed evening in the city",
+    "Walk to the 07:45 train next morning with no ferry rush"
+   ],
+   "sw": [
+    [
+     "p",
+     "Removes the only really early start on the way out"
+    ],
+    [
+     "m",
+     "Adds a night and a hotel bill"
+    ],
+    [
+     "m",
+     "The car still has to be parked somewhere (see Things to think about)"
+    ]
+   ],
+   "opts": [
+    {
+     "l": "Comfortable twin",
+     "v": 300
+    },
+    {
+     "l": "Two rooms",
+     "v": 600
+    },
+    {
+     "l": "Luxury",
+     "v": 650
+    }
+   ],
+   "def": 0,
+   "st": "est",
+   "b": "Placeholder per night for two. Book close to Strand station or Britomart."
+  },
+  {
+   "id": "kennel",
+   "g": "home",
+   "c": "context",
+   "t": "Poppy and Rua at Brookby Lodge",
+   "op": "Manurewa · 2 small dogs · cost scales with trip length",
+   "dyn": "kennel",
+   "sp": [
+    "Kennels you already know, which have had Poppy and Rua before",
+    "Food and bedding supplied"
+   ],
+   "sw": [
+    [
+     "p",
+     "Open 7 days, 7:00 or 7:30am to 6pm, so late-afternoon drop-off and pick-up are fine"
+    ],
+    [
+     "m",
+     "Up-to-date vaccination booklets needed, including kennel cough"
+    ],
+    [
+     "m",
+     "Public holidays add $16 per dog per day; peak surcharge 20 Dec to 15 Jan and at Easter"
+    ]
+   ],
+   "v": 0,
+   "st": "pub",
+   "b": ""
+  },
+  {
+   "id": "taxi",
+   "g": "home",
+   "c": "context",
+   "t": "Dog taxi instead of driving",
+   "op": "Not yet found for Waiheke to Brookby · would need a quote",
+   "sp": [
+    "The dogs are collected from home or the ferry the day before, and the car stays on Waiheke",
+    "With dogs gone the day before, you could take the 06:00 weekday ferry (about 40 min) to the 07:45 train and skip the Auckland night"
+   ],
+   "sw": [
+    [
+     "p",
+     "Could save the Auckland hotel and the parking problem"
+    ],
+    [
+     "m",
+     "The 06:00 ferry is a very early start. It works only for Monday or Thursday trains: the first Saturday ferry is 07:00, too late"
+    ],
+    [
+     "m",
+     "No service confirmed. Brookby lists none; Franklin-based Elite Pet Services covers Franklin only. Ask Brookby who they recommend"
+    ]
+   ],
+   "v": 400,
+   "st": "est",
+   "b": "Placeholder for a return dog taxi. No provider or price confirmed yet."
+  },
+  {
+   "id": "ne",
+   "g": "south",
+   "c": "rail",
+   "n": 1,
+   "t": "Northern Explorer",
+   "op": "Great Journeys · Auckland Strand → Wellington · about 10.5–11 h",
+   "sp": [
+    "A full cross-section of the North Island in one day: farmland, the King Country, the volcanic plateau and the Kāpiti Coast",
+    "The Raurimu Spiral, a 1908 loop-and-tunnel climb, and the high viaducts over the plateau",
+    "Ruapehu, Tongariro and Ngauruhoe close by on a clear day",
+    "Open-air viewing carriage"
+   ],
+   "sw": [
+    [
+     "p",
+     "Scenic Plus brings a chef-cooked meal and wine to your seat: the closest thing to VIP rail in NZ"
+    ],
+    [
+     "p",
+     "A few tables of four. Ask for one for games (not guaranteed)"
+    ],
+    [
+     "m",
+     "07:45 departure: an early start, softened by an Auckland hotel the night before"
+    ],
+    [
+     "m",
+     "Long day. Runs southbound Mon, Thu and Sat only"
+    ]
+   ],
+   "opts": [
+    {
+     "l": "Scenic",
+     "v": 500
+    },
+    {
+     "l": "Scenic Plus",
+     "v": 1000
+    }
+   ],
+   "def": 1,
+   "st": "est",
+   "b": "About NZD 250 / 500 per person (seat61, may be dated). Gold Card 10% off is listed for Great Journeys fares; confirm it applies here."
+  },
+  {
+   "id": "isl",
+   "g": "south",
+   "c": "ferry",
+   "t": "Interislander + Plus lounge",
+   "op": "Wellington → Picton · about 3.5 h",
+   "sp": [
+    "The approach through Tory Channel into Queen Charlotte Sound, the best scenery of the crossing",
+    "Kaitaki Plus lounge: quieter, with food and drinks included",
+    "Bags check through to Christchurch, so nothing to handle at Picton"
+   ],
+   "sw": [
+    [
+     "p",
+     "The 08:45 sailing meets the 13:40 Coastal Pacific, so the same-day connection is easy"
+    ],
+    [
+     "m",
+     "Cook Strait can be rough"
+    ],
+    [
+     "m",
+     "Same-day Wellington to Christchurch means an early start. A night in Wellington or Picton avoids it"
+    ]
+   ],
+   "opts": [
+    {
+     "l": "Standard",
+     "v": 140
+    },
+    {
+     "l": "With Plus lounge",
+     "v": 300
+    }
+   ],
+   "def": 1,
+   "st": "est",
+   "b": "Fare from about NZD 60–80 per person, Plus lounge about NZD 80 per person extra (seat61)."
+  },
+  {
+   "id": "cp",
+   "g": "south",
+   "c": "rail",
+   "n": 1,
+   "t": "Coastal Pacific",
+   "op": "Great Journeys · Picton → Christchurch · about 5 h 20",
+   "sp": [
+    "Through Marlborough wine country, then right along the Kaikōura coast where the mountains meet the sea",
+    "Seals on the rocks and the chance of seeing whales offshore",
+    "Open-air viewing carriage"
+   ],
+   "sw": [
+    [
+     "p",
+     "Leaves Picton at 13:40: a gentle afternoon train"
+    ],
+    [
+     "p",
+     "Gold Card 10% off Scenic and Scenic Plus (published)"
+    ],
+    [
+     "m",
+     "Runs Thu–Sun in spring and not at all May–August"
+    ],
+    [
+     "m",
+     "Arrives Christchurch 19:30"
+    ]
+   ],
+   "opts": [
+    {
+     "l": "Scenic",
+     "v": 440
+    },
+    {
+     "l": "Scenic Plus",
+     "v": 1000
+    }
+   ],
+   "def": 1,
+   "st": "pub",
+   "b": "From NZD 219 per person (Great Journeys); Scenic Plus about NZD 499 per person (seat61)."
+  },
+  {
+   "id": "jet",
+   "g": "getsouth",
+   "c": "ferry",
+   "n": 1,
+   "t": "Jet, Christchurch → Queenstown",
+   "op": "Air New Zealand · direct, about 1 h",
+   "excl": "south2",
+   "sp": [
+    "A short flight over the Southern Alps",
+    "Saves a full day compared with driving"
+   ],
+   "sw": [
+    [
+     "p",
+     "The quick and simple option, and you said it appealed"
+    ],
+    [
+     "m",
+     "Airport time and baggage limits"
+    ],
+    [
+     "m",
+     "You miss the Mackenzie Basin and Aoraki/Mt Cook"
+    ]
+   ],
+   "v": 500,
+   "st": "est",
+   "b": "Fares advertised from NZD 79; budget about NZD 250 per person including a checked bag."
+  },
+  {
+   "id": "drive",
+   "g": "getsouth",
+   "c": "context",
+   "n": 2,
+   "t": "Two-day chauffeured drive",
+   "op": "Private driver · via Tekapo or Aoraki/Mt Cook · about 4 h a day",
+   "excl": "south2",
+   "sp": [
+    "Turquoise Lakes Tekapo and Pukaki, with Aoraki/Mt Cook views",
+    "Aoraki Mackenzie Dark Sky Reserve: a lodge night under the stars",
+    "The Central Otago wine route on day two"
+   ],
+   "sw": [
+    [
+     "p",
+     "A road journey with nobody driving but the chauffeur"
+    ],
+    [
+     "m",
+     "Adds a night and a day"
+    ],
+    [
+     "m",
+     "Two days in a vehicle"
+    ]
+   ],
+   "v": 3000,
+   "st": "est",
+   "b": "Rough estimate for a private driver over two days. Get quotes. The overnight lodge is extra."
+  },
+  {
+   "id": "self",
+   "g": "getsouth",
+   "c": "window",
+   "n": 2,
+   "t": "Drive ourselves",
+   "op": "One-way rental car · Christchurch → Queenstown via Tekapo · about 480 km, 6–6.5 h of driving",
+   "excl": "south2",
+   "sp": [
+    "Stop wherever you like: Lake Tekapo, Lake Pukaki with Aoraki/Mt Cook behind it, the Lindis Pass, Central Otago orchards and wineries",
+    "Split over two easy days of about 3 hours each, with a night at Tekapo or Mt Cook under the Dark Sky Reserve",
+    "Keep the car through to Manapouri for RealNZ. There is overnight parking about 950 m from the visitor centre, and limited luggage storage. Te Anau is 30 minutes away for a pre-cruise night"
+   ],
+   "sw": [
+    [
+     "p",
+     "Total freedom of pace, and you know the area is lovely"
+    ],
+    [
+     "p",
+     "The cheapest way south, and it can replace the Queenstown transfer"
+    ],
+    [
+     "m",
+     "You do the driving, against the original no-driving vision"
+    ],
+    [
+     "m",
+     "One-way drop-off fees vary; compare rental companies"
+    ]
+   ],
+   "v": 700,
+   "st": "est",
+   "b": "Rough estimate: 3 days of rental with a one-way fee (about NZD 550) plus fuel (about NZD 150). The overnight lodge is extra."
+  },
+  {
+   "id": "xfer",
+   "g": "getsouth",
+   "c": "context",
+   "t": "Queenstown ⇄ Te Anau/Manapouri transfer",
+   "op": "Private car · Queenstown–Manapouri about 2 h 45 each way",
+   "sp": [
+    "A door-to-door transfer into Fiordland via Lake Wakatipu and the Southland plains"
+   ],
+   "sw": [
+    [
+     "p",
+     "Needed for RealNZ and Heritage cruises"
+    ],
+    [
+     "m",
+     "Not needed for Jewel cruises, which include or sell a NZD 300–350 per person van"
+    ]
+   ],
+   "v": 1200,
+   "st": "est",
+   "b": "Rough estimate for a private return transfer for two. Get quotes."
+  },
+  {
+   "id": "rnw",
+   "g": "cruise",
+   "c": "realnz",
+   "n": 2,
+   "t": "RealNZ Doubtful Sound, 2 nights · Wanderer",
+   "op": "From Manapouri · up to 36 guests · Oct and Apr (projected)",
+   "sp": [
+    "Doubtful Sound: far bigger and much quieter than Milford, with no day-trip crowds overnight",
+    "Lake Manapouri crossing and the Wilmot Pass road in, with no aircraft at all",
+    "A full middle day exploring remote arms, kayaking or the tender, with a nature guide",
+    "Bottlenose dolphins, fur seals and Fiordland crested penguins are all possible. Spring is penguin nesting season (verify)"
+   ],
+   "sw": [
+    [
+     "p",
+     "Fits October 2027 and April 2028 with every train running"
+    ],
+    [
+     "p",
+     "Best value by far, leaving budget for better lodges"
+    ],
+    [
+     "m",
+     "Twin cabins with shared bathrooms"
+    ],
+    [
+     "m",
+     "Comfortable rather than luxury"
+    ]
+   ],
+   "v": 2100,
+   "st": "pub",
+   "b": "About NZD 1,049 per person twin share (Aug 2026–Apr 2027 rate). 2027/28 dates not yet published."
+  },
+  {
+   "id": "rnn",
+   "g": "cruise",
+   "c": "realnz",
+   "n": 2,
+   "t": "RealNZ Doubtful Sound, 2 nights · Navigator",
+   "op": "From Manapouri · up to 52 guests · May and Aug",
+   "sp": [
+    "Same route as the Wanderer on a larger boat",
+    "Private twin cabins with ensuites",
+    "Winter: snow on the tops, no sandflies, few other visitors"
+   ],
+   "sw": [
+    [
+     "p",
+     "Ensuite twins"
+    ],
+    [
+     "m",
+     "Only runs when the Coastal Pacific is closed"
+    ],
+    [
+     "m",
+     "Cold, short days"
+    ]
+   ],
+   "v": 2280,
+   "st": "pub",
+   "b": "About NZD 1,099 per person twin share (May–Aug 2027), plus an optional NZD 41 picnic lunch each."
+  },
+  {
+   "id": "fj1",
+   "g": "cruise",
+   "c": "jewel",
+   "n": 1,
+   "t": "Fiordland Jewel, Milford overnight",
+   "op": "Fiordland Discovery · 1 night · about 20 guests · late Oct–Apr",
+   "sp": [
+    "Milford Sound after the day boats have gone: sunset and sunrise under Mitre Peak",
+    "Top-deck hot tub after dinner, with stars if it clears",
+    "Three-course dinner with Mt Difficulty wines",
+    "Kayaks, tender trips and a seabed camera (ROV)"
+   ],
+   "sw": [
+    [
+     "p",
+     "The most luxurious feel, and the Endeavour cabin has twin king singles"
+    ],
+    [
+     "p",
+     "No helicopter needed. The van from Queenstown or Te Anau is NZD 350 per person"
+    ],
+    [
+     "m",
+     "Only one night"
+    ],
+    [
+     "m",
+     "Milford is busy by day"
+    ]
+   ],
+   "v": 4760,
+   "st": "pub",
+   "b": "From NZD 2,380 per person twin share (Oct–Dec 2026 and Apr 2027 rate). Van transfer extra."
+  },
+  {
+   "id": "he4",
+   "g": "cruise",
+   "c": "heritage",
+   "n": 4,
+   "t": "Heritage Explorer, 4 nights",
+   "op": "Heritage Expeditions · 18 guests · Jan–Apr and Aug",
+   "sp": [
+    "Expert naturalist guides on a true expedition yacht",
+    "Dusky Sound: Cook's 1773 Astronomer's Point, Anchor Island, Breaksea Sound",
+    "House drinks included, ensuite cabins"
+   ],
+   "sw": [
+    [
+     "p",
+     "The most intimate, expedition-style trip"
+    ],
+    [
+     "m",
+     "One or two helicopter legs"
+    ],
+    [
+     "m",
+     "2028 dates not yet published; 2027 dates miss your windows"
+    ],
+    [
+     "m",
+     "About six times the cost of RealNZ"
+    ]
+   ],
+   "v": 12478,
+   "st": "pub",
+   "b": "Salvin's Twin USD 3,670 per person (Fiordland Explored), converted at 1.70."
+  },
+  {
+   "id": "he6",
+   "g": "cruise",
+   "c": "heritage",
+   "n": 6,
+   "t": "Heritage Explorer, 6 nights",
+   "op": "Southern Fiords Discovery · 18 guests · 19 Sep and 25 Sep 2027",
+   "sp": [
+    "The far south: Preservation and Chalky Inlets, gold-rush and whaling history, Puysegur Point lighthouse",
+    "Dusky, Breaksea and Doubtful Sounds in one voyage",
+    "Naturalist guides, house drinks"
+   ],
+   "sw": [
+    [
+     "p",
+     "The 19 Sep sailing fits late September"
+    ],
+    [
+     "p",
+     "20% off if booked before 30 Oct 2026"
+    ],
+    [
+     "m",
+     "Depends on the Coastal Pacific running by mid-September"
+    ],
+    [
+     "m",
+     "Helicopter in; 6 nights stretches the rail-home option"
+    ]
+   ],
+   "v": 17374,
+   "st": "pub",
+   "b": "Salvin's Twin USD 5,110 per person, converted at 1.70. About NZD 13,900 with the 20% offer."
+  },
+  {
+   "id": "fly",
+   "g": "ret",
+   "c": "ferry",
+   "n": 1,
+   "t": "Fly home",
+   "op": "Air New Zealand jet · Queenstown → Auckland · about 1 h 50",
+   "sp": [
+    "Home in a morning, with the slow travel done on the way down",
+    "Keeps the trip near two weeks"
+   ],
+   "sw": [
+    [
+     "p",
+     "Leaves days spare for a Fiordland weather buffer"
+    ],
+    [
+     "p",
+     "A night in Auckland before collecting the dogs"
+    ],
+    [
+     "m",
+     "Loses the train home"
+    ]
+   ],
+   "v": 700,
+   "st": "est",
+   "b": "Budget about NZD 350 per person including bags. The Auckland hotel is extra."
+  },
+  {
+   "id": "railh",
+   "g": "ret",
+   "c": "rail",
+   "n": 4,
+   "t": "Rail home",
+   "op": "Jet Queenstown → Christchurch, then Coastal Pacific, Interislander and Northern Explorer north",
+   "sp": [
+    "See everything again in the other direction, with a different light and a different season",
+    "Another Scenic Plus day or two to relax"
+   ],
+   "sw": [
+    [
+     "p",
+     "Fulfils \"train the full length\", both ways"
+    ],
+    [
+     "m",
+     "Adds about 3–5 nights. Lodging extra"
+    ],
+    [
+     "m",
+     "The Coastal Pacific leaves Christchurch at 07:00, an early start"
+    ],
+    [
+     "m",
+     "Spring: only connects from Thu or Sat departures"
+    ]
+   ],
+   "v": 2800,
+   "st": "est",
+   "b": "Scenic Plus north (about 1,000 + 1,000), ferry with lounge (300), and a Queenstown–Christchurch jet (500)."
+  }
+ ],
+ "defaultSelection": {
+  "akl": 1,
+  "kennel": 1,
+  "ne": 1,
+  "isl": 1,
+  "cp": 1,
+  "self": 1,
+  "rnw": 1,
+  "railh": 1
+ }
+}

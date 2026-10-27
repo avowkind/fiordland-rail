@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Waiheke to the Fiords</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Holiday 2027 · Andrew &amp; Millie · Gold Card year</div>
+    <h1>Waiheke to the fiords, by train</h1>
+    <p class="lede big">A once-in-a-lifetime journey down the length of New Zealand: rail through both islands, then Fiordland by boat. We want unhurried time together, everything handled, a real sense of seeing the whole country, wildlife and wild places, and some memorable food and wine, without being stressed by long drives, tight connections or early starts.</p>
+    <div class="intro-grid">
+      <div class="intro-col">
+        <h2>What this site does</h2>
+        <p>It pulls together what we've learned about the trains, the ferry and the Fiordland cruises, so we can see which dates line up, what each option feels like, and what our chosen trip would cost and take. Tick options in Discovery and the plan, map, budget and night count update as you go.</p>
+      </div>
+      <div class="intro-col">
+        <h2>Our ground rules</h2>
+        <ul>
+          <li>Two weeks ideally, three at most, because of Poppy and Rua</li>
+          <li>Shoulder season: spring 2027 or autumn 2028; winter allowed</li>
+          <li>Twin beds at minimum, separate rooms where it's worth it</li>
+          <li>Premium where it matters, sensible elsewhere</li>
+        </ul>
+      </div>
+    </div>
+    <nav class="toc" aria-label="Sections">
+      <a href="#timeline"><span>1</span>Timeline<small>When each train and boat runs</small></a>
+      <a href="#discovery-sec"><span>2</span>Discovery<small>What makes each option special</small></a>
+      <a href="#plan-sec"><span>3</span>Chosen plan<small>Day by day, with the route map</small></a>
+      <a href="#things"><span>4</span>Things to think about<small>Loose ends to settle</small></a>
+    </nav>
+  </header>
+
+  <section id="timeline" class="sec-head">
+    <div class="eyebrow">1 · Timeline</div>
+    <h2>When do the trains and the boats line up?</h2>
+    <p class="lede">Rail, ferry and Fiordland cruise availability from October 2026 to June 2028, alongside school holidays, tourist peaks and sandfly season. Solid bars are published dates. Hatched bars are projected from past patterns or not yet confirmed.</p>
+  </section>
+
+  <div class="findings">
+    <div class="finding"><h3>Winter cruises, no Coastal Pacific</h3><p>Most small-ship departures fall between May and early September, when the Picton–Christchurch train doesn't run.</p></div>
+    <div class="finding"><h3>Late September is the pinch point</h3><p>Heritage Explorer's 19 Sep voyage needs the Coastal Pacific running by about 16 Sep. Its 2027 start date is unconfirmed, and the 25 Sep sailing overlaps the school holidays.</p></div>
+    <div class="finding"><h3>October and April suit RealNZ</h3><p>Two-night cruises on the Wanderer (shared bathrooms) sit inside both preferred windows, with all three trains running.</p></div>
+  </div>
+
+  <div class="controls" role="toolbar" aria-label="Timeline view">
+    <button id="z-full" data-preset="full" aria-pressed="true">Full range</button>
+    <button data-preset="winter" aria-pressed="false">Winter 2027</button>
+    <button data-preset="spring" aria-pressed="false">Spring 2027</button>
+    <button data-preset="autumn" aria-pressed="false">Autumn 2028</button>
+    <span class="sep" aria-hidden="true"></span>
+    <button id="zin" aria-label="Zoom in">Zoom +</button>
+    <button id="zout" aria-label="Zoom out">Zoom −</button>
+  </div>
+  <div class="legend" aria-label="Legend">
+    <span><i class="sw" style="background:var(--fg)"></i>Published</span>
+    <span><i class="sw hatch"></i>Projected / unconfirmed</span>
+    <span><i class="sw" style="background:var(--muted);opacity:.3"></i>Dropped or ruled out</span>
+    <span><i class="sw dash"></i>No service</span>
+    <span>Zoom in to see individual train days</span>
+  </div>
+  <div class="board" id="board"><svg id="chart" role="img" aria-label="Timeline of rail, ferry and cruise availability"></svg></div>
+  <p class="hint">Scroll or pinch on the chart to zoom, drag to pan. Tap a bar for details.</p>
+  <section class="detail" id="detail" aria-live="polite">
+    <h2>Select a bar</h2>
+    <p class="meta">Dates, cabin and price notes, and the source appear here.</p>
+  </section>
+
+  <section class="disc-head" id="discovery-sec" aria-labelledby="disc-title">
+    <div class="eyebrow">2 · Discovery</div>
+    <h2 id="disc-title">What would make each option special?</h2>
+    <p class="lede">What each option offers, and what might tip us towards or away from it. Tick the cards for the trip we want. Costs are for the two of us, in NZD: transport, cruises, kennels, and a placeholder for every overnight stay the choices need. Meals aren't included. Prices marked "estimate" are rough guides to check with quotes; USD prices are converted at 1 USD = 1.70 NZD. The starting selection is our current preferred plan: self-drive south, the RealNZ Wanderer on Doubtful Sound, and rail home.</p>
+  </section>
+  <div id="discovery"></div>
+
+  <section class="disc-head" id="plan-sec" aria-labelledby="plan-title">
+    <div class="eyebrow">3 · Chosen plan</div>
+    <h2 id="plan-title">Our trip, day by day</h2>
+    <p class="lede">Built from the cards ticked above. Day numbers assume each leg follows the last with no spare days; real dates come once the season is chosen. Road routes on the map follow the main highways through waypoints, not turn-by-turn directions.</p>
+  </section>
+  <div class="plan">
+    <ol class="plan-list" id="planlist"></ol>
+    <div class="plan-map">
+      <div class="controls" role="toolbar" aria-label="Map view">
+        <button data-mview="nz" aria-pressed="true">Whole trip</button>
+        <button data-mview="si" aria-pressed="false">South Island</button>
+        <button data-mview="fl" aria-pressed="false">Fiordland</button>
+      </div>
+      <div id="map" role="region" aria-label="Map of the chosen route"></div>
+      <div class="legend" id="maplegend"></div>
+    </div>
+  </div>
+
+  <section class="things" id="things" aria-labelledby="things-h">
+    <div class="group-h"><h3 id="things-h">4 · Things to think about</h3><span>Not costed yet</span></div>
+    <ul>
+      <li><b>Where the car stays while we're away (2–3 weeks).</b> Options: leave it at home on Waiheke if a dog taxi works; long-stay parking at Half Moon Bay; Auckland Airport long-term parking, which suits flying home because you land beside the car and Brookby is about 25 minutes away; ask Brookby whether a car can stay on site; or a friend or family driveway. The house-sitters could also take it back to the island.</li>
+      <li><b>Self-drive plus rail home.</b> The rental goes back to Christchurch: Manapouri to Christchurch is about 7.5–8 hours, split via Wanaka and Tekapo. Stay in Christchurch before the 07:00 Coastal Pacific. You could save that night by dropping the car near Addington station before 6am, but only if a depot there has an after-hours key drop. Most depots are at the airport.</li>
+      <li><b>Night counts are approximate.</b> An extra Wellington or Picton night, or a Fiordland weather buffer day, adds to both the total and the kennel bill.</li>
+      <li><b>Kennel cough booster</b> must be current for the whole stay. Check the vaccination booklets.</li>
+      <li><b>Gold Card discount</b>: 10% on Great Journeys fares for holders. Check whether it applies to both of us.</li>
+      <li><b>Travel insurance</b> that covers weather cancellations in Fiordland.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Researched 27 Oct 2026. Sources:
+    <a href="https://www.greatjourneysnz.com/scenic-trains/train-timetables/">Great Journeys timetables</a> ·
+    <a href="https://greatjourneysnz.com/scenic-trains/coastal-pacific">Coastal Pacific</a> ·
+    <a href="https://www.seat61.com/NewZealand.htm">seat61</a> ·
+    <a href="https://www.heritage-expeditions.com/destinations/new-zealand-cruises/southern-fiords-discovery-cruise/">Heritage Expeditions</a> ·
+    <a href="https://www.fiordlanddiscovery.co.nz/fiordland-cruise/fiordland-6-nights-7-days/">Fiordland Discovery</a> ·
+    <a href="https://www.newzealand.com.au/tours/doubtful-sound-overnight-cruise-2-nights-fiordland-navigator">RealNZ two-night</a> ·
+    <a href="https://www.brookbylodge.com/pricing/">Brookby Lodge pricing</a> ·
+    <a href="https://www.calculate.co.nz/nz-school-terms.php">NZ school terms</a>.
+    Map data © OpenStreetMap contributors. Confirm all dates and prices with operators before booking.
+  </footer>
+</div>
+
+<div class="totalbar" role="status" aria-live="polite">
+  <div><div class="tl">Selected total · for two</div><div class="tv" id="total">NZD 0</div></div>
+  <div><div class="tl">Door to door</div><div class="tv" id="tdays">0 days</div></div>
+  <div class="tn" id="totalnote"></div>
+  <div class="tb-actions"><button id="resetsel" type="button">Reset to our plan</button><button id="clearsel" type="button">Clear all</button></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

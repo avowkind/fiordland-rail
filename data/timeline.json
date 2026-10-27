@@ -1,0 +1,1015 @@
+{
+ "sources": {
+  "gj": {
+   "title": "Great Journeys timetables",
+   "url": "https://www.greatjourneysnz.com/scenic-trains/train-timetables/"
+  },
+  "cp": {
+   "title": "Great Journeys Coastal Pacific",
+   "url": "https://greatjourneysnz.com/scenic-trains/coastal-pacific"
+  },
+  "s61": {
+   "title": "seat61 New Zealand",
+   "url": "https://www.seat61.com/NewZealand.htm"
+  },
+  "wiki": {
+   "title": "Wikipedia: Northern Explorer",
+   "url": "https://en.wikipedia.org/wiki/Northern_Explorer"
+  },
+  "he6": {
+   "title": "Heritage: Southern Fiords Discovery",
+   "url": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/southern-fiords-discovery-cruise/"
+  },
+  "he4a": {
+   "title": "Heritage: Fiordland Explored",
+   "url": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/fiordland-explored-cruise/"
+  },
+  "he4b": {
+   "title": "Heritage: Undiscovered Dusky",
+   "url": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/undiscovered-dusky-cruise/"
+  },
+  "hco": {
+   "title": "Heritage: NZ Coastal Odyssey",
+   "url": "https://www.heritage-expeditions.com/destinations/new-zealand/new-zealand-coastal-odyssey-cruise/"
+  },
+  "fj6": {
+   "title": "Fiordland Discovery: Southern Fiords",
+   "url": "https://www.fiordlanddiscovery.co.nz/fiordland-cruise/fiordland-6-nights-7-days/"
+  },
+  "fjn": {
+   "title": "Fiordland Discovery: Northern Fiords",
+   "url": "https://www.fiordlanddiscovery.co.nz/fiordland-cruise/northern-fiords-6-nights/"
+  },
+  "fj9": {
+   "title": "Fiordland Discovery: Grand Tour",
+   "url": "https://www.fiordlanddiscovery.co.nz/fiordland-cruise/fiordland-grand-tour-9-nights/"
+  },
+  "fj1": {
+   "title": "Fiordland Discovery: Milford Overnight",
+   "url": "https://www.fiordlanddiscovery.co.nz/fiordland-cruises/milford-sound-overnight-cruise/"
+  },
+  "rn": {
+   "title": "RealNZ Doubtful Sound two-night",
+   "url": "https://www.newzealand.com.au/tours/doubtful-sound-overnight-cruise-2-nights-fiordland-navigator"
+  },
+  "sch": {
+   "title": "calculate.co.nz: NZ school terms",
+   "url": "https://www.calculate.co.nz/nz-school-terms.php"
+  }
+ },
+ "rows": [
+  {
+   "g": "Our travel windows"
+  },
+  {
+   "id": "win",
+   "label": "Candidate windows",
+   "sub": "from Constraints note",
+   "c": "window",
+   "items": [
+    {
+     "s": "2027-03-15",
+     "e": "2027-04-30",
+     "k": "dropped",
+     "l": "Autumn 2027: ruled out",
+     "n": "Ruled out as too soon."
+    },
+    {
+     "s": "2027-05-01",
+     "e": "2027-08-31",
+     "k": "projected",
+     "l": "Winter 2027: allowed, no Coastal Pacific",
+     "n": "Relaxed on 27 Oct 2026. Most small-ship departures fall here, but the Coastal Pacific does not run 1 May–31 Aug. Cold, short days, possible Milford Road avalanche closures. Settled spells, no sandflies, few tourists, discounts."
+    },
+    {
+     "s": "2027-09-20",
+     "e": "2027-11-15",
+     "k": "confirmed",
+     "l": "Spring 2027",
+     "n": "Preferred window: late September to mid-November 2027. Avoid the school holidays (25 Sep–10 Oct) and Labour Weekend (23–25 Oct)."
+    },
+    {
+     "s": "2028-03-15",
+     "e": "2028-04-30",
+     "k": "confirmed",
+     "l": "Autumn 2028",
+     "n": "Preferred window: mid-March to late April 2028. Avoid Easter (14–17 Apr 2028) and the April school holidays."
+    }
+   ]
+  },
+  {
+   "g": "Rail and ferry"
+  },
+  {
+   "id": "nes",
+   "label": "Northern Explorer south",
+   "sub": "Auckland → Wellington",
+   "c": "rail",
+   "items": [
+    {
+     "s": "2026-10-01",
+     "e": "2026-12-22",
+     "k": "confirmed",
+     "d": [
+      "mon",
+      "thu",
+      "sat"
+     ],
+     "l": "Mon · Thu · Sat",
+     "n": "Runs southbound Mon, Thu and Sat. Reported times: depart Auckland Strand 07:45, arrive Wellington about 18:25 (seat61, possibly dated).",
+     "src": "gj"
+    },
+    {
+     "s": "2026-12-23",
+     "e": "2027-01-13",
+     "k": "off",
+     "l": "Summer shutdown (projected)",
+     "n": "Last season the train did not run 23 Dec–13 Jan. Assumed similar.",
+     "src": "wiki"
+    },
+    {
+     "s": "2027-01-14",
+     "e": "2027-12-22",
+     "k": "confirmed",
+     "d": [
+      "mon",
+      "thu",
+      "sat"
+     ],
+     "l": "Mon · Thu · Sat",
+     "n": "Runs southbound Mon, Thu and Sat, year-round, apart from short maintenance blocks.",
+     "src": "gj"
+    },
+    {
+     "s": "2027-05-22",
+     "e": "2027-05-28",
+     "k": "uncertain",
+     "l": "Possible block",
+     "n": "The TranzAlpine does not run 22–28 May 2027. This may be a network-wide maintenance block. Unconfirmed for the Northern Explorer.",
+     "src": "gj"
+    },
+    {
+     "s": "2027-09-25",
+     "e": "2027-09-28",
+     "k": "uncertain",
+     "l": "Possible block",
+     "n": "The TranzAlpine does not run 25–28 Sep 2027. This may be a network-wide maintenance block. Unconfirmed for the Northern Explorer.",
+     "src": "gj"
+    },
+    {
+     "s": "2027-12-23",
+     "e": "2028-01-13",
+     "k": "off",
+     "l": "Summer shutdown (projected)",
+     "n": "Assumed to follow the previous year's summer shutdown.",
+     "src": "wiki"
+    },
+    {
+     "s": "2028-01-14",
+     "e": "2028-06-30",
+     "k": "projected",
+     "d": [
+      "mon",
+      "thu",
+      "sat"
+     ],
+     "l": "Mon · Thu · Sat (projected)",
+     "n": "Assumes the same pattern continues.",
+     "src": "gj"
+    }
+   ]
+  },
+  {
+   "id": "nen",
+   "label": "Northern Explorer north",
+   "sub": "Wellington → Auckland",
+   "c": "rail",
+   "items": [
+    {
+     "s": "2026-10-01",
+     "e": "2026-12-22",
+     "k": "confirmed",
+     "d": [
+      "wed",
+      "fri",
+      "sun"
+     ],
+     "l": "Wed · Fri · Sun",
+     "n": "Runs northbound Wed, Fri and Sun.",
+     "src": "gj"
+    },
+    {
+     "s": "2026-12-23",
+     "e": "2027-01-13",
+     "k": "off",
+     "l": "Summer shutdown (projected)",
+     "n": "Assumed similar to last season.",
+     "src": "wiki"
+    },
+    {
+     "s": "2027-01-14",
+     "e": "2027-12-22",
+     "k": "confirmed",
+     "d": [
+      "wed",
+      "fri",
+      "sun"
+     ],
+     "l": "Wed · Fri · Sun",
+     "n": "Runs northbound Wed, Fri and Sun, year-round, apart from short maintenance blocks.",
+     "src": "gj"
+    },
+    {
+     "s": "2027-05-22",
+     "e": "2027-05-28",
+     "k": "uncertain",
+     "l": "Possible block",
+     "n": "Possible network-wide maintenance block (TranzAlpine non-running dates). Unconfirmed.",
+     "src": "gj"
+    },
+    {
+     "s": "2027-09-25",
+     "e": "2027-09-28",
+     "k": "uncertain",
+     "l": "Possible block",
+     "n": "Possible network-wide maintenance block (TranzAlpine non-running dates). Unconfirmed.",
+     "src": "gj"
+    },
+    {
+     "s": "2027-12-23",
+     "e": "2028-01-13",
+     "k": "off",
+     "l": "Summer shutdown (projected)",
+     "n": "Assumed.",
+     "src": "wiki"
+    },
+    {
+     "s": "2028-01-14",
+     "e": "2028-06-30",
+     "k": "projected",
+     "d": [
+      "wed",
+      "fri",
+      "sun"
+     ],
+     "l": "Wed · Fri · Sun (projected)",
+     "n": "Assumes the same pattern continues.",
+     "src": "gj"
+    }
+   ]
+  },
+  {
+   "id": "isl",
+   "label": "Interislander ferry",
+   "sub": "Wellington ⇄ Picton",
+   "c": "ferry",
+   "items": [
+    {
+     "s": "2026-10-01",
+     "e": "2028-06-30",
+     "k": "confirmed",
+     "d": [
+      "sun",
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat"
+     ],
+     "l": "Daily, several sailings",
+     "n": "About 3.5 hours. The 08:45 from Wellington connects with the 13:40 Coastal Pacific. Bags check through to Christchurch. Northbound, the 14:15 from Picton connects with the Coastal Pacific arriving 12:40. Times may change with the new ferries.",
+     "src": "s61"
+    }
+   ]
+  },
+  {
+   "id": "cp",
+   "label": "Coastal Pacific",
+   "sub": "Picton ⇄ Christchurch",
+   "c": "rail",
+   "items": [
+    {
+     "s": "2026-10-01",
+     "e": "2026-12-31",
+     "k": "projected",
+     "d": [
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+     ],
+     "l": "Thu–Sun",
+     "n": "Spring pattern in recent seasons: Thursday to Sunday. Southbound departs Picton 13:40, arrives Christchurch 19:30. Northbound departs Christchurch 07:00.",
+     "src": "s61"
+    },
+    {
+     "s": "2027-01-01",
+     "e": "2027-04-30",
+     "k": "projected",
+     "d": [
+      "sun",
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat"
+     ],
+     "l": "Daily (recent pattern)",
+     "n": "Has run daily from January to April in recent seasons (e.g. 1 Jan–27 Apr 2025). Confirm for 2027.",
+     "src": "cp"
+    },
+    {
+     "s": "2027-05-01",
+     "e": "2027-08-31",
+     "k": "off",
+     "l": "No service May–August",
+     "n": "The Coastal Pacific does not operate 1 May–31 Aug.",
+     "src": "gj"
+    },
+    {
+     "s": "2027-09-01",
+     "e": "2027-09-18",
+     "k": "uncertain",
+     "l": "Start date unconfirmed",
+     "n": "Great Journeys says the season runs from 1 September. seat61 says late September, and the 2024 season actually started 19 Sep. This decides whether a mid-September trip south can use the train.",
+     "src": "cp"
+    },
+    {
+     "s": "2027-09-19",
+     "e": "2027-12-31",
+     "k": "projected",
+     "d": [
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+     ],
+     "l": "Thu–Sun (projected)",
+     "n": "Assumes the recent spring pattern of Thursday to Sunday. In spring, start the Northern Explorer on a Thursday or Saturday so the trip south connects.",
+     "src": "s61"
+    },
+    {
+     "s": "2028-01-01",
+     "e": "2028-04-30",
+     "k": "projected",
+     "d": [
+      "sun",
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat"
+     ],
+     "l": "Daily (projected)",
+     "n": "Assumes the recent summer–autumn daily pattern.",
+     "src": "cp"
+    },
+    {
+     "s": "2028-05-01",
+     "e": "2028-06-30",
+     "k": "off",
+     "l": "No service",
+     "n": "Off-season.",
+     "src": "gj"
+    }
+   ]
+  },
+  {
+   "g": "Heritage Expeditions"
+  },
+  {
+   "id": "he4",
+   "label": "Heritage Explorer 4 nights",
+   "sub": "18 guests · helicopter legs",
+   "c": "heritage",
+   "cruise": 1,
+   "items": [
+    {
+     "s": "2027-01-27",
+     "e": "2027-01-31",
+     "k": "confirmed",
+     "l": "Dusky",
+     "n": "Undiscovered Dusky. Helicopter both ways Te Anau–Supper Cove. Heritage Explorer, max 18 guests, 4 nights. Includes helicopter legs. Salvin's Twin USD 3,670–3,850 pp; August departures 20% off if booked before 30 Oct 2026.",
+     "src": "he4b"
+    },
+    {
+     "s": "2027-02-04",
+     "e": "2027-02-08",
+     "k": "confirmed",
+     "l": "Dusky",
+     "n": "Undiscovered Dusky. Heritage Explorer, max 18 guests, 4 nights. Includes helicopter legs. Salvin's Twin USD 3,670–3,850 pp; August departures 20% off if booked before 30 Oct 2026.",
+     "src": "he4b"
+    },
+    {
+     "s": "2027-02-08",
+     "e": "2027-02-12",
+     "k": "confirmed",
+     "l": "Explored",
+     "n": "Fiordland Explored: Doubtful, Breaksea, Dusky. Starts at Te Anau. Heritage Explorer, max 18 guests, 4 nights. Includes helicopter legs. Salvin's Twin USD 3,670–3,850 pp; August departures 20% off if booked before 30 Oct 2026.",
+     "src": "he4a"
+    },
+    {
+     "s": "2027-02-24",
+     "e": "2027-02-28",
+     "k": "confirmed",
+     "l": "Explored",
+     "n": "Fiordland Explored. Heritage Explorer, max 18 guests, 4 nights. Includes helicopter legs. Salvin's Twin USD 3,670–3,850 pp; August departures 20% off if booked before 30 Oct 2026.",
+     "src": "he4a"
+    },
+    {
+     "s": "2027-02-28",
+     "e": "2027-03-04",
+     "k": "confirmed",
+     "l": "Dusky",
+     "n": "Undiscovered Dusky. Heritage Explorer, max 18 guests, 4 nights. Includes helicopter legs. Salvin's Twin USD 3,670–3,850 pp; August departures 20% off if booked before 30 Oct 2026.",
+     "src": "he4b"
+    },
+    {
+     "s": "2027-03-04",
+     "e": "2027-03-08",
+     "k": "confirmed",
+     "l": "Explored",
+     "n": "Fiordland Explored. Heritage Explorer, max 18 guests, 4 nights. Includes helicopter legs. Salvin's Twin USD 3,670–3,850 pp; August departures 20% off if booked before 30 Oct 2026.",
+     "src": "he4a"
+    },
+    {
+     "s": "2027-04-07",
+     "e": "2027-04-11",
+     "k": "confirmed",
+     "l": "Explored",
+     "n": "Fiordland Explored. Falls in the ruled-out autumn 2027 window. Heritage Explorer, max 18 guests, 4 nights. Includes helicopter legs. Salvin's Twin USD 3,670–3,850 pp; August departures 20% off if booked before 30 Oct 2026.",
+     "src": "he4a"
+    },
+    {
+     "s": "2027-08-01",
+     "e": "2027-08-05",
+     "k": "confirmed",
+     "l": "Explored",
+     "n": "Fiordland Explored, winter, 20% off. Salvin's Twin USD 2,936 pp. No Coastal Pacific in August.",
+     "src": "he4a"
+    },
+    {
+     "s": "2027-08-05",
+     "e": "2027-08-09",
+     "k": "confirmed",
+     "l": "Dusky",
+     "n": "Undiscovered Dusky, winter, 20% off. Salvin's Twin USD 3,080 pp.",
+     "src": "he4b"
+    },
+    {
+     "s": "2027-08-09",
+     "e": "2027-08-13",
+     "k": "confirmed",
+     "l": "Explored",
+     "n": "Fiordland Explored, winter, 20% off. All cabins showed as available.",
+     "src": "he4a"
+    },
+    {
+     "s": "2028-01-25",
+     "e": "2028-04-10",
+     "k": "projected",
+     "l": "2028 dates not yet published",
+     "n": "No 2028 dates are published yet. In 2027, 4-night voyages ran late January to early April. Ask Heritage for the 2028 schedule.",
+     "src": "he4a"
+    }
+   ]
+  },
+  {
+   "id": "he6",
+   "label": "Heritage Explorer 6 nights",
+   "sub": "Southern Fiords · 18 guests",
+   "c": "heritage",
+   "cruise": 1,
+   "items": [
+    {
+     "s": "2027-02-12",
+     "e": "2027-02-18",
+     "k": "confirmed",
+     "l": "Southern Fiords",
+     "n": "Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "src": "he6"
+    },
+    {
+     "s": "2027-02-18",
+     "e": "2027-02-24",
+     "k": "confirmed",
+     "l": "Southern Fiords",
+     "n": "Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "src": "he6"
+    },
+    {
+     "s": "2027-04-01",
+     "e": "2027-04-07",
+     "k": "confirmed",
+     "l": "Southern Fiords",
+     "n": "In the ruled-out autumn 2027 window. Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "src": "he6"
+    },
+    {
+     "s": "2027-07-04",
+     "e": "2027-07-10",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Winter, 20% off. Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "src": "he6"
+    },
+    {
+     "s": "2027-07-10",
+     "e": "2027-07-16",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Winter, 20% off. Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "src": "he6"
+    },
+    {
+     "s": "2027-08-13",
+     "e": "2027-08-19",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Winter, 20% off. Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "src": "he6"
+    },
+    {
+     "s": "2027-08-25",
+     "e": "2027-08-31",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Winter, 20% off. Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "src": "he6"
+    },
+    {
+     "s": "2027-09-19",
+     "e": "2027-09-25",
+     "k": "confirmed",
+     "l": "Southern Fiords",
+     "n": "Best fit for late September, if the Coastal Pacific is running by about 16 Sep. 20% off if booked before 30 Oct 2026. Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "src": "he6"
+    },
+    {
+     "s": "2027-09-25",
+     "e": "2027-10-01",
+     "k": "confirmed",
+     "l": "Southern Fiords",
+     "n": "Overlaps the school holidays (25 Sep–10 Oct). 20% off if booked before 30 Oct 2026. Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "src": "he6"
+    },
+    {
+     "s": "2028-01-25",
+     "e": "2028-04-10",
+     "k": "projected",
+     "l": "2028 dates not yet published",
+     "n": "No 2028 dates are published yet. The 2027 pattern suggests February to early April.",
+     "src": "he6"
+    }
+   ]
+  },
+  {
+   "id": "hco",
+   "label": "Heritage Adventurer",
+   "sub": "~140 guests · replaces rail",
+   "c": "heritage",
+   "cruise": 1,
+   "items": [
+    {
+     "s": "2027-11-11",
+     "e": "2027-11-22",
+     "k": "confirmed",
+     "l": "NZ Coastal Odyssey",
+     "n": "Auckland to Invercargill/Queenstown along the coast, about 2 days in Fiordland. A larger ship, and it replaces the rail journey. From USD 9,800 pp (Deck 4 Superior, king or two singles), 20% off if booked before 30 Oct 2026.",
+     "src": "hco"
+    }
+   ]
+  },
+  {
+   "g": "Fiordland Discovery · Fiordland Jewel"
+  },
+  {
+   "id": "fj6",
+   "label": "Jewel 6 nights",
+   "sub": "18 guests",
+   "c": "jewel",
+   "cruise": 1,
+   "items": [
+    {
+     "s": "2027-05-28",
+     "e": "2027-06-03",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Fiordland Jewel catamaran, 9 cabins, max 18 guests. Helicopter one way from Te Anau, coach and boat via Wilmot Pass the other. Endeavour twin (2 king singles) NZD 8,500 pp. Queenstown return transfer NZD 300 pp.",
+     "src": "fj6"
+    },
+    {
+     "s": "2027-06-03",
+     "e": "2027-06-09",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Fiordland Jewel catamaran, 9 cabins, max 18 guests. Helicopter one way from Te Anau, coach and boat via Wilmot Pass the other. Endeavour twin (2 king singles) NZD 8,500 pp. Queenstown return transfer NZD 300 pp.",
+     "src": "fj6"
+    },
+    {
+     "s": "2027-06-09",
+     "e": "2027-06-15",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Fiordland Jewel catamaran, 9 cabins, max 18 guests. Helicopter one way from Te Anau, coach and boat via Wilmot Pass the other. Endeavour twin (2 king singles) NZD 8,500 pp. Queenstown return transfer NZD 300 pp.",
+     "src": "fj6"
+    },
+    {
+     "s": "2027-06-15",
+     "e": "2027-06-21",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Fiordland Jewel catamaran, 9 cabins, max 18 guests. Helicopter one way from Te Anau, coach and boat via Wilmot Pass the other. Endeavour twin (2 king singles) NZD 8,500 pp. Queenstown return transfer NZD 300 pp.",
+     "src": "fj6"
+    },
+    {
+     "s": "2027-06-27",
+     "e": "2027-07-03",
+     "k": "confirmed",
+     "l": "Northern",
+     "n": "Northern Fiords: Doubtful to Milford, road and boat at both ends, no helicopter. Endeavour twin NZD 8,200 pp. Queenstown transfer NZD 300 pp.",
+     "src": "fjn"
+    },
+    {
+     "s": "2027-08-26",
+     "e": "2027-09-01",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Fiordland Jewel catamaran, 9 cabins, max 18 guests. Helicopter one way from Te Anau, coach and boat via Wilmot Pass the other. Endeavour twin (2 king singles) NZD 8,500 pp. Queenstown return transfer NZD 300 pp.",
+     "src": "fj6"
+    },
+    {
+     "s": "2027-09-01",
+     "e": "2027-09-07",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Fiordland Jewel catamaran, 9 cabins, max 18 guests. Helicopter one way from Te Anau, coach and boat via Wilmot Pass the other. Endeavour twin (2 king singles) NZD 8,500 pp. Queenstown return transfer NZD 300 pp.",
+     "src": "fj6"
+    },
+    {
+     "s": "2027-09-07",
+     "e": "2027-09-13",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Fiordland Jewel catamaran, 9 cabins, max 18 guests. Helicopter one way from Te Anau, coach and boat via Wilmot Pass the other. Endeavour twin (2 king singles) NZD 8,500 pp. Queenstown return transfer NZD 300 pp.",
+     "src": "fj6"
+    },
+    {
+     "s": "2027-09-13",
+     "e": "2027-09-19",
+     "k": "confirmed",
+     "l": "Southern",
+     "n": "Last Southern Fiords departure of 2027. Ends just as the Coastal Pacific season may begin. Fiordland Jewel catamaran, 9 cabins, max 18 guests. Helicopter one way from Te Anau, coach and boat via Wilmot Pass the other. Endeavour twin (2 king singles) NZD 8,500 pp. Queenstown return transfer NZD 300 pp.",
+     "src": "fj6"
+    }
+   ]
+  },
+  {
+   "id": "fj9",
+   "label": "Jewel Grand Tour 9 nights",
+   "sub": "dropped: too long, too dear",
+   "c": "jewel",
+   "cruise": 1,
+   "items": [
+    {
+     "s": "2027-05-01",
+     "e": "2027-05-10",
+     "k": "dropped",
+     "l": "Grand Tour",
+     "n": "Dropped. Fully booked anyway.",
+     "src": "fj9"
+    },
+    {
+     "s": "2027-05-10",
+     "e": "2027-05-19",
+     "k": "dropped",
+     "l": "Grand Tour",
+     "n": "Dropped. NZD 12,050 pp Endeavour twin.",
+     "src": "fj9"
+    },
+    {
+     "s": "2027-05-19",
+     "e": "2027-05-28",
+     "k": "dropped",
+     "l": "Grand Tour",
+     "n": "Dropped.",
+     "src": "fj9"
+    },
+    {
+     "s": "2027-10-01",
+     "e": "2027-10-10",
+     "k": "dropped",
+     "l": "Grand Tour",
+     "n": "Dropped as too long and expensive. 2 Endeavour twins were available.",
+     "src": "fj9"
+    },
+    {
+     "s": "2027-10-10",
+     "e": "2027-10-19",
+     "k": "dropped",
+     "l": "Grand Tour",
+     "n": "Dropped as too long and expensive.",
+     "src": "fj9"
+    }
+   ]
+  },
+  {
+   "id": "fj1",
+   "label": "Jewel Milford overnight",
+   "sub": "1 night · no helicopter",
+   "c": "jewel",
+   "items": [
+    {
+     "s": "2026-10-31",
+     "e": "2027-04-26",
+     "k": "confirmed",
+     "l": "Nightly season",
+     "n": "One night in Milford Sound, from 15:10 to about 09:00. Endeavour cabin has king singles. Van from Queenstown or Te Anau NZD 350 pp return. Below the 2-night minimum, kept as a fallback.",
+     "src": "fj1"
+    },
+    {
+     "s": "2027-10-31",
+     "e": "2028-04-26",
+     "k": "projected",
+     "l": "Nightly season (projected)",
+     "n": "Assumes the same October–April season next year.",
+     "src": "fj1"
+    }
+   ]
+  },
+  {
+   "g": "RealNZ · Doubtful Sound 2 nights"
+  },
+  {
+   "id": "rnn",
+   "label": "Fiordland Navigator",
+   "sub": "52 guests · ensuite twins",
+   "c": "realnz",
+   "items": [
+    {
+     "s": "2027-05-01",
+     "e": "2027-05-31",
+     "k": "confirmed",
+     "l": "May (dates TBC)",
+     "n": "Two nights from Manapouri, road and lake both ends, no helicopter. Private twin or double cabins with ensuite. About NZD 1,099 pp twin share. Departures listed for May 2027; exact dates not captured. No Coastal Pacific in May.",
+     "src": "rn"
+    },
+    {
+     "s": "2027-08-01",
+     "e": "2027-08-31",
+     "k": "projected",
+     "l": "Aug (projected)",
+     "n": "Navigator ran in August 2026. Assumed for 2027. No Coastal Pacific in August.",
+     "src": "rn"
+    },
+    {
+     "s": "2028-05-01",
+     "e": "2028-05-31",
+     "k": "projected",
+     "l": "May (projected)",
+     "n": "Assumed from the 2027 pattern.",
+     "src": "rn"
+    }
+   ]
+  },
+  {
+   "id": "rnw",
+   "label": "Fiordland Wanderer",
+   "sub": "36 guests · shared bathrooms",
+   "c": "realnz",
+   "items": [
+    {
+     "s": "2026-10-27",
+     "e": "2026-11-09",
+     "k": "confirmed",
+     "l": "Oct–Nov 2026",
+     "n": "Listed departures 27 Oct–9 Nov 2026. Twin cabins with shared bathrooms. About NZD 999–1,049 pp.",
+     "src": "rn"
+    },
+    {
+     "s": "2027-04-01",
+     "e": "2027-04-30",
+     "k": "confirmed",
+     "l": "Apr (dates TBC)",
+     "n": "Wanderer departures listed for April 2027. In the ruled-out window.",
+     "src": "rn"
+    },
+    {
+     "s": "2027-10-01",
+     "e": "2027-10-31",
+     "k": "projected",
+     "l": "Oct (projected)",
+     "n": "Assumed from the 2026 pattern. Inside the spring 2027 window, with all three trains running. Shared bathrooms. Confirm dates and boat with RealNZ.",
+     "src": "rn"
+    },
+    {
+     "s": "2028-04-01",
+     "e": "2028-04-30",
+     "k": "projected",
+     "l": "Apr (projected)",
+     "n": "Assumed from the 2027 pattern. Inside the autumn 2028 window.",
+     "src": "rn"
+    }
+   ]
+  },
+  {
+   "g": "Context"
+  },
+  {
+   "id": "sch",
+   "label": "NZ school holidays",
+   "sub": "avoid",
+   "c": "context",
+   "items": [
+    {
+     "s": "2026-12-18",
+     "e": "2027-02-01",
+     "k": "confirmed",
+     "l": "Summer",
+     "n": "Approximate. Term 1 2027 starts between 28 Jan and 3 Feb.",
+     "src": "sch"
+    },
+    {
+     "s": "2027-04-10",
+     "e": "2027-04-26",
+     "k": "confirmed",
+     "l": "Apr",
+     "n": "Term 1 ends 9 Apr; Term 2 starts 27 Apr 2027.",
+     "src": "sch"
+    },
+    {
+     "s": "2027-07-03",
+     "e": "2027-07-18",
+     "k": "confirmed",
+     "l": "Jul",
+     "n": "Term 2 ends 2 Jul; Term 3 starts 19 Jul 2027.",
+     "src": "sch"
+    },
+    {
+     "s": "2027-09-25",
+     "e": "2027-10-10",
+     "k": "confirmed",
+     "l": "Sep–Oct",
+     "n": "Term 3 ends 24 Sep; Term 4 starts 11 Oct 2027.",
+     "src": "sch"
+    },
+    {
+     "s": "2027-12-18",
+     "e": "2028-01-31",
+     "k": "projected",
+     "l": "Summer",
+     "n": "Approximate. Term 4 ends by 17 Dec 2027. 2028 dates not captured.",
+     "src": "sch"
+    },
+    {
+     "s": "2028-04-08",
+     "e": "2028-04-24",
+     "k": "projected",
+     "l": "Apr (TBC)",
+     "n": "2028 dates not captured. Likely around Easter (14–17 Apr 2028). Check before booking.",
+     "src": "sch"
+    }
+   ]
+  },
+  {
+   "id": "hol",
+   "label": "Public holidays",
+   "sub": "long weekends",
+   "c": "context",
+   "items": [
+    {
+     "s": "2026-12-25",
+     "e": "2027-01-04",
+     "k": "confirmed",
+     "l": "Xmas–NY",
+     "n": "Christmas and New Year."
+    },
+    {
+     "s": "2027-02-06",
+     "e": "2027-02-08",
+     "k": "confirmed",
+     "l": "Waitangi",
+     "n": "Waitangi Day, Sat 6 Feb, observed Mon 8 Feb 2027."
+    },
+    {
+     "s": "2027-03-26",
+     "e": "2027-03-29",
+     "k": "confirmed",
+     "l": "Easter",
+     "n": "Easter 2027: Good Friday 26 Mar to Easter Monday 29 Mar."
+    },
+    {
+     "s": "2027-04-24",
+     "e": "2027-04-26",
+     "k": "confirmed",
+     "l": "Anzac",
+     "n": "Anzac Day Sun 25 Apr, observed Mon 26 Apr 2027."
+    },
+    {
+     "s": "2027-06-05",
+     "e": "2027-06-07",
+     "k": "confirmed",
+     "l": "King's Bday",
+     "n": "King's Birthday, Mon 7 Jun 2027."
+    },
+    {
+     "s": "2027-06-25",
+     "e": "2027-06-27",
+     "k": "projected",
+     "l": "Matariki",
+     "n": "Matariki 2027, believed to be Fri 25 Jun. Verify."
+    },
+    {
+     "s": "2027-10-23",
+     "e": "2027-10-25",
+     "k": "confirmed",
+     "l": "Labour",
+     "n": "Labour Weekend, 23–25 Oct 2027. The TranzAlpine does not run 23–26 Oct."
+    },
+    {
+     "s": "2027-12-25",
+     "e": "2028-01-04",
+     "k": "confirmed",
+     "l": "Xmas–NY",
+     "n": "Christmas and New Year."
+    },
+    {
+     "s": "2028-04-14",
+     "e": "2028-04-17",
+     "k": "confirmed",
+     "l": "Easter",
+     "n": "Easter 2028: Good Friday 14 Apr to Easter Monday 17 Apr."
+    },
+    {
+     "s": "2028-04-25",
+     "e": "2028-04-25",
+     "k": "confirmed",
+     "l": "Anzac",
+     "n": "Anzac Day, Tue 25 Apr 2028."
+    }
+   ]
+  },
+  {
+   "id": "peak",
+   "label": "International peak",
+   "sub": "approximate",
+   "c": "context",
+   "items": [
+    {
+     "s": "2026-12-15",
+     "e": "2027-02-28",
+     "k": "projected",
+     "l": "Peak season",
+     "n": "Approximate peak for international visitors, December to February."
+    },
+    {
+     "s": "2027-12-15",
+     "e": "2028-02-29",
+     "k": "projected",
+     "l": "Peak season",
+     "n": "Approximate peak for international visitors, December to February."
+    }
+   ]
+  },
+  {
+   "id": "fly",
+   "label": "Fiordland sandflies",
+   "sub": "worst months, approx.",
+   "c": "context",
+   "items": [
+    {
+     "s": "2026-12-01",
+     "e": "2027-03-31",
+     "k": "projected",
+     "l": "Sandfly peak",
+     "n": "Worst in warm months, roughly December to March. Never fully absent."
+    },
+    {
+     "s": "2027-12-01",
+     "e": "2028-03-31",
+     "k": "projected",
+     "l": "Sandfly peak",
+     "n": "Worst in warm months, roughly December to March."
+    }
+   ]
+  },
+  {
+   "id": "wint",
+   "label": "Winter",
+   "sub": "cold, short days",
+   "c": "context",
+   "items": [
+    {
+     "s": "2027-06-01",
+     "e": "2027-08-31",
+     "k": "projected",
+     "l": "Winter",
+     "n": "Cold, short days. Milford Road avalanche-control closures possible. In June, the last hour or more of the Northern Explorer runs in the dark."
+    }
+   ]
+  }
+ ]
+}
