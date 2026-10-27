@@ -71,7 +71,7 @@ export function buildItinerary(sel, opt = {}) {
     seg('rail', P.neSouth, 'Northern Explorer');
     step('Northern Explorer to Wellington',
       (sel.akl ? 'Walk to Strand station for the 07:45 departure. ' : 'Pre-dawn start from Waiheke to make the 07:45 departure. ') +
-      'Volcanic plateau and the Raurimu Spiral; arrive about 18:25.',
+      'Departs 07:45 (Mon, Thu, Sat); volcanic plateau and the Raurimu Spiral; arrives Wellington about 18:25.',
       ['rail'], { place: 'wlg', kind: 'stay' });
   }
   if (sel.isl || sel.cp) {
@@ -170,9 +170,9 @@ export function buildItinerary(sel, opt = {}) {
     }
     seg('rail', rev(P.cpSouth), 'Coastal Pacific north');
     seg('ferry', rev(P.strait), 'Interislander');
-    step('Coastal Pacific and ferry to Wellington', '07:00 train north to Picton, 14:15 sailing, Wellington by 17:45.', ['rail', 'ferry'], { place: 'wlg', kind: 'stay' });
+    step('Coastal Pacific and ferry to Wellington', 'Coastal Pacific departs Christchurch 07:00, arrives Picton 12:40; 14:15 Interislander arrives Wellington 17:45.', ['rail', 'ferry'], { place: 'wlg', kind: 'stay' });
     seg('rail', rev(P.neSouth), 'Northern Explorer north');
-    step('Northern Explorer to Auckland', 'The North Island again in reverse.', ['rail'], { place: 'akl', kind: 'stay' });
+    step('Northern Explorer to Auckland', 'Depart Wellington 07:55 (Wed, Fri, Sun), arrive Auckland Strand about 18:50–19:00. The North Island again in reverse.', ['rail'], { place: 'akl', kind: 'stay' });
     homeLeg();
     step('Collect the dogs and home', 'Brookby Lodge, then the Sealink back to Waiheke.', ['drive', 'ferry'], null);
   } else {
