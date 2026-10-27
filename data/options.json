@@ -324,34 +324,44 @@
    "c": "window",
    "n": 2,
    "t": "Drive ourselves",
-   "op": "One-way rental car · Christchurch → Queenstown via Tekapo · about 480 km, 6–6.5 h of driving",
+   "op": "Rental car · Christchurch via Tekapo and the Lindis Pass, then on to Te Anau and Manapouri · about 6–6.5 h to Queenstown plus 2 h 45 to Manapouri",
    "excl": "south2",
    "sp": [
     "Stop wherever you like: Lake Tekapo, Lake Pukaki with Aoraki/Mt Cook behind it, the Lindis Pass, Central Otago orchards and wineries",
-    "Split over two easy days of about 3 hours each, with a night at Tekapo or Mt Cook under the Dark Sky Reserve",
-    "Keep the car through to Manapouri for RealNZ. There is overnight parking about 950 m from the visitor centre, and limited luggage storage. Te Anau is 30 minutes away for a pre-cruise night"
+    "Split over two easy days with a night at Tekapo or Mt Cook under the Dark Sky Reserve, then on to Te Anau",
+    "Keep the car to Manapouri for RealNZ: overnight parking about 950 m from the visitor centre, limited luggage storage. Te Anau is 30 min away for the pre-cruise night"
    ],
    "sw": [
     [
      "p",
-     "Total freedom of pace, and you know the area is lovely"
+     "Total freedom of pace, and we know the area is lovely"
     ],
     [
      "p",
-     "The cheapest way south, and it can replace the Queenstown transfer"
+     "Keeping the car to Manapouri removes the Queenstown transfer and its timing worries"
     ],
     [
      "m",
-     "You do the driving, against the original no-driving vision"
+     "We do the driving, against the original no-driving vision"
     ],
     [
      "m",
-     "One-way drop-off fees vary; compare rental companies"
+     "Dropping at Queenstown needs a transfer to the cruise; keeping it adds rental days while it sits parked"
     ]
    ],
-   "v": 700,
    "st": "est",
-   "b": "Rough estimate: 3 days of rental with a one-way fee (about NZD 550) plus fuel (about NZD 150). The overnight lodge is extra."
+   "b": "Rough estimate. Drop at Queenstown: 2–3 days with a one-way fee plus fuel. Keep to Manapouri: about 3 more days while parked during the cruise, plus parking and fuel. With fly home the car is dropped at Queenstown airport after the cruise; with rail home it goes back to Christchurch. Lodges extra.",
+   "opts": [
+    {
+     "l": "Drop at Queenstown",
+     "v": 600
+    },
+    {
+     "l": "Keep to Manapouri",
+     "v": 850
+    }
+   ],
+   "def": 1
   },
   {
    "id": "xfer",

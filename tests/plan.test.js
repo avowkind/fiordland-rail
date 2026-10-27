@@ -72,3 +72,25 @@ test('every route waypoint exists in places', () => {
     buildItinerary(sel).segments.forEach(sg => sg.path.forEach(p => assert.ok(places[p], `missing place ${p}`)));
   }
 });
+
+test('self-drive keeps the car to Manapouri by default', () => {
+  const it = buildItinerary(DEF, {});
+  const south = it.segments.filter(s => s.mode === 'drive').map(s => s.path.join(','));
+  assert.ok(south.some(p => p.includes('tek,') && p.endsWith('tea')));
+  assert.ok(it.steps.find(s => s.title.startsWith('RealNZ')).detail.startsWith('Drive 30 min'));
+});
+
+test('drop at Queenstown adds a transfer leg and a transfer warning', async () => {
+  const { warnings } = await import('../js/plan.js');
+  const sel = { akl: 1, ne: 1, isl: 1, cp: 1, self: 1, rnw: 1, fly: 1 };
+  const it = buildItinerary(sel, { self: 0 });
+  assert.ok(it.segments.some(s => s.label === 'Transfer to Te Anau'));
+  assert.equal(it.nights, buildItinerary(sel, { self: 1 }).nights);
+  assert.ok(warnings({ sel, opt: { self: 0 } }, it).some(w => w.includes('transfer')));
+  assert.ok(!warnings({ sel, opt: { self: 1 } }, buildItinerary(sel, { self: 1 })).some(w => w.includes('Add the Queenstown transfer')));
+});
+
+test('rail home forces keep-the-car pricing', () => {
+  const c = data.cards.find(x => x.id === 'self');
+  assert.equal(cardValue(c, { sel: DEF, opt: { self: 0 } }, 12), c.opts[1].v);
+});

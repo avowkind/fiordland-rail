@@ -40,7 +40,13 @@ export function cruiseOf(sel) {
 }
 
 // Build the day-by-day itinerary and the map route from the selection.
-export function buildItinerary(sel) {
+// Self-drive keeps the car to Manapouri unless 'Drop at Queenstown' is chosen; rail home always keeps it.
+export function selfKeeps(sel, opt = {}) {
+  return !!sel.self && (!!sel.railh || (opt.self ?? 1) === 1);
+}
+
+export function buildItinerary(sel, opt = {}) {
+  const keep = selfKeeps(sel, opt);
   const steps = [];
   const segments = [];
   const seg = (mode, path, label) => segments.push({ mode, path, label });
@@ -90,9 +96,16 @@ export function buildItinerary(sel) {
     seg('drive', P.chcTek, who);
     step(`${who} to Lake Tekapo`, 'Canterbury Plains and Fairlie; evening under the Dark Sky Reserve.',
       ['drive'], { place: 'tek', kind: 'stay' });
-    seg('drive', P.tekTea, who);
-    step('Over the Lindis Pass to Te Anau', 'Lake Pukaki, Lindis Pass, Central Otago, Lake Wakatipu.',
-      ['drive'], { place: 'tea', kind: 'stay' });
+    if (sel.self && !keep) {
+      seg('drive', P.tekTea.slice(0, P.tekTea.indexOf('zqn') + 1), who);
+      seg('drive', P.zqnTea, 'Transfer to Te Anau');
+      step('Over the Lindis Pass to Queenstown, then Te Anau', 'Lake Pukaki, Lindis Pass and Central Otago; drop the rental in Queenstown and transfer to Te Anau.',
+        ['drive'], { place: 'tea', kind: 'stay' });
+    } else {
+      seg('drive', P.tekTea, who);
+      step('Over the Lindis Pass to Te Anau', 'Lake Pukaki, Lindis Pass, Central Otago, Lake Wakatipu.' + (keep ? ' We keep the car for the drive to Manapouri.' : ''),
+        ['drive'], { place: 'tea', kind: 'stay' });
+    }
   }
 
   // Cruise
@@ -108,7 +121,7 @@ export function buildItinerary(sel) {
       seg('drive', rev(P.wilmot), 'Wilmot Pass');
       seg('ferry', rev(P.lake), 'Lake Manapouri');
       endAt = 'man';
-      step(c.name, 'Drive 30 min to Manapouri, cross the lake and Wilmot Pass to Deep Cove, then two nights aboard: kayaking, dolphins, fur seals and penguins if we are lucky.',
+      step(c.name, (keep ? 'Drive 30 min to Manapouri and park' : 'Transfer to Manapouri') + ', cross the lake and Wilmot Pass to Deep Cove, then two nights aboard: kayaking, dolphins, fur seals and penguins if we are lucky.',
         ['drive', 'ferry', 'cruise'], { place: 'dco', kind: 'aboard' }, c.nights);
     } else if (c.kind === 'milford') {
       seg('drive', P.milfordRd, 'Milford Road');
@@ -135,8 +148,8 @@ export function buildItinerary(sel) {
     seg('ferry', rev(P.carFerry), 'Sealink home');
   };
   if (sel.fly) {
-    seg('drive', [...backToTea, ...rev(P.zqnTea).slice(1)], 'To Queenstown');
-    step('Back to Queenstown', 'Disembark, then drive or transfer to Queenstown for the night.',
+    seg('drive', [...backToTea, ...rev(P.zqnTea).slice(1)], keep ? 'Drive to Queenstown' : 'To Queenstown');
+    step('Back to Queenstown', keep ? 'Collect the car at Manapouri and drive to Queenstown; drop the rental at the airport in the morning.' : 'Disembark, then transfer to Queenstown for the night.',
       ['drive'], { place: 'zqn', kind: 'stay' });
     seg('flight', ['zqn', 'akl'], 'Jet home');
     homeLeg();
@@ -184,6 +197,7 @@ export function buildItinerary(sel) {
 export function cardValue(card, state, nights) {
   if (card.dyn === 'kennel') return KENNEL_RATE * DOGS * (nights + 1);
   if (card.id === 'railh' && state.sel.self && state.sel.railh) return SELF_RAIL_COST;
+  if (card.id === 'self' && state.sel.railh) return card.opts[1].v; // rail home keeps the car
   if (card.opts) return card.opts[state.opt[card.id] ?? card.def].v;
   return card.v;
 }
@@ -196,7 +210,7 @@ export function staysFrom(itin, places) {
 }
 
 export function totals(data, state, places) {
-  const itin = buildItinerary(state.sel);
+  const itin = buildItinerary(state.sel, state.opt);
   let total = 0, count = 0;
   data.cards.forEach(c => { if (state.sel[c.id]) { total += cardValue(c, state, itin.nights); count++; } });
   const stays = staysFrom(itin, places);
@@ -227,9 +241,11 @@ export function warnings(state, itin) {
   if (s.taxi && s.akl) w.push('With a dog taxi you may not need the Auckland night.');
   if (!s.akl && !s.taxi && s.ne) w.push('Without the Auckland night or a dog taxi, the 07:45 train needs a pre-dawn start from Waiheke.');
   if (s.self && s.railh) w.push('Rail home with self-drive: the car goes back to Christchurch via Wanaka and Tekapo.');
-  if (s.self && s.xfer) w.push('You are driving yourselves, so the private transfer is probably unnecessary.');
+  const keep = selfKeeps(s, state.opt);
+  if (keep && s.xfer) w.push('We keep the car to Manapouri, so the private transfer is unnecessary.');
+  if (s.self && s.railh && (state.opt.self ?? 1) === 0) w.push('Rail home keeps the car (it goes back to Christchurch), so Drop at Queenstown does not apply.');
   const needX = ['rnw', 'rnn', 'he4', 'he6'].some(k => s[k]);
-  if (needX && s.jet && !s.xfer) w.push('Flying to Queenstown: add the Queenstown transfer for this cruise.');
+  if (needX && !s.xfer && (s.jet || (s.self && !keep))) w.push('Add the Queenstown transfer to reach the cruise.');
   if (s.fj1 && s.xfer) w.push('The Jewel sells its own van; the private transfer may be unnecessary.');
   if (!cruiseOf(s)) w.push('No cruise chosen.');
   return w;
