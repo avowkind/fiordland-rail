@@ -51,6 +51,7 @@ export function buildItinerary(sel, opt = {}) {
   const segments = [];
   const seg = (mode, path, label) => segments.push({ mode, path, label });
   const step = (title, detail, modes, night, n = night ? 1 : 0) => steps.push({ title, detail, modes, night, n });
+  const tag = svc => { steps[steps.length - 1].svc = svc; };
 
   // Leaving home
   if (sel.akl) {
@@ -73,6 +74,7 @@ export function buildItinerary(sel, opt = {}) {
       (sel.akl ? 'Walk to Strand station for the 07:45 departure. ' : 'Pre-dawn start from Waiheke to make the 07:45 departure. ') +
       'Departs 07:45 (Mon, Thu, Sat); volcanic plateau and the Raurimu Spiral; arrives Wellington about 18:25.',
       ['rail'], { place: 'wlg', kind: 'stay' });
+    tag('neS');
   }
   if (sel.isl || sel.cp) {
     if (sel.isl) seg('ferry', P.strait, 'Interislander');
@@ -83,6 +85,7 @@ export function buildItinerary(sel, opt = {}) {
       (sel.cp ? '13:40 train along the Kaikōura coast; arrive 19:30.' : ''),
       [sel.isl && 'ferry', sel.cp && 'rail'].filter(Boolean),
       sel.cp ? { place: 'chc', kind: 'stay' } : null);
+    if (sel.cp) tag('cp');
   }
 
   // Christchurch to Fiordland
@@ -140,6 +143,7 @@ export function buildItinerary(sel, opt = {}) {
         ['heli', 'cruise'], { place: start, kind: 'aboard' }, c.nights);
     }
   }
+  if (ck && steps.length) steps[steps.length - 1].svc = 'cruise:' + ck;
   const backToTea = endAt === 'man' ? rev(P.teaMan) : endAt === 'mil' ? rev(P.milfordRd) : ['tea'];
 
   // Getting home
@@ -171,8 +175,10 @@ export function buildItinerary(sel, opt = {}) {
     seg('rail', rev(P.cpSouth), 'Coastal Pacific north');
     seg('ferry', rev(P.strait), 'Interislander');
     step('Coastal Pacific and ferry to Wellington', 'Coastal Pacific departs Christchurch 07:00, arrives Picton 12:40; 14:15 Interislander arrives Wellington 17:45.', ['rail', 'ferry'], { place: 'wlg', kind: 'stay' });
+    tag('cp');
     seg('rail', rev(P.neSouth), 'Northern Explorer north');
     step('Northern Explorer to Auckland', 'Depart Wellington 07:55 (Wed, Fri, Sun), arrive Auckland Strand about 18:50–19:00. The North Island again in reverse.', ['rail'], { place: 'akl', kind: 'stay' });
+    tag('neN');
     homeLeg();
     step('Collect the dogs and home', 'Brookby Lodge, then the Sealink back to Waiheke.', ['drive', 'ferry'], null);
   } else {
@@ -249,4 +255,64 @@ export function warnings(state, itin) {
   if (s.fj1 && s.xfer) w.push('The Jewel sells its own van; the private transfer may be unnecessary.');
   if (!cruiseOf(s)) w.push('No cruise chosen.');
   return w;
+}
+
+const DOW = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+export const DOW_LABEL = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+// Check the itinerary against a season's service days. Tries every start weekday and picks
+// the one that needs the fewest waiting days. Returns per-step comments and blockers.
+export function alignSeason(itin, seasons, key) {
+  const S = seasons.seasons[key];
+  if (!S) return null;
+  const allowed = svc => {
+    if (svc === 'neS') return seasons.neSouth;
+    if (svc === 'neN') return seasons.neNorth;
+    if (svc === 'cp') return S.cp;
+    return null;
+  };
+  const simulate = start => {
+    let day = 1, added = 0;
+    const per = itin.steps.map(st => {
+      const a = st.svc ? allowed(st.svc) : null;
+      let wait = 0;
+      if (a && a.length) {
+        while (!a.includes(DOW[(start + day - 1 + wait) % 7]) && wait < 7) wait++;
+      }
+      added += wait;
+      day += wait;
+      const r = { day, dow: (start + day - 1) % 7, wait };
+      day += st.n;
+      return r;
+    });
+    return { start, added, per, days: day };
+  };
+  let best = null;
+  for (let s = 0; s < 7; s++) {
+    const r = simulate(s);
+    if (!best || r.added < best.added) best = r;
+  }
+  const notes = itin.steps.map(() => []);
+  const blockers = [];
+  itin.steps.forEach((st, i) => {
+    const w = best.per[i].wait;
+    const prev = i > 0 ? itin.steps[i - 1] : null;
+    const where = prev && prev.night ? prev.night.place : null;
+    if (st.svc === 'cp' && !S.cp.length) {
+      notes[i].push({ level: 'block', text: S.cpNote });
+      blockers.push(S.cpNote);
+    } else if (w > 0) {
+      const what = st.svc === 'cp' ? 'the Coastal Pacific' : 'the Northern Explorer';
+      notes[i].push({ level: 'add', text: `Add ${w} day${w > 1 ? 's' : ''}: ${what} does not run on the day before; wait${where ? ' an extra night where we stayed' : ''} until ${DOW_LABEL[best.per[i].dow]}.` , where });
+    }
+    if (st.svc === 'cp' && S.cp.length && S.cp.length < 7) notes[i].push({ level: 'check', text: S.cpNote });
+    if (st.svc && st.svc.startsWith('cruise:')) {
+      const c = S.cruises[st.svc.slice(7)];
+      if (c) {
+        notes[i].push({ level: c.ok ? 'check' : 'block', text: c.note });
+        if (!c.ok) blockers.push(c.note);
+      }
+    }
+  });
+  return { key, label: S.label, window: S.window, general: S.general, start: best.start, startLabel: DOW_LABEL[best.start], added: best.added, per: best.per, notes, blockers: [...new Set(blockers)], days: best.days };
 }

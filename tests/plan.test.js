@@ -94,3 +94,29 @@ test('rail home forces keep-the-car pricing', () => {
   const c = data.cards.find(x => x.id === 'self');
   assert.equal(cardValue(c, { sel: DEF, opt: { self: 0 } }, 12), c.opts[1].v);
 });
+
+const seasons = JSON.parse(readFileSync(new URL('../data/seasons.json', import.meta.url)));
+
+test('spring 2027: default plan lines up with no extra days, starting on a Wednesday', async () => {
+  const { alignSeason } = await import('../js/plan.js');
+  const a = alignSeason(buildItinerary(DEF), seasons, 'spring27');
+  assert.equal(a.added, 0);
+  assert.equal(a.startLabel, 'Wed');
+  assert.equal(a.blockers.length, 0);
+});
+
+test('winter 2027: Coastal Pacific and Wanderer are blockers', async () => {
+  const { alignSeason } = await import('../js/plan.js');
+  const a = alignSeason(buildItinerary(DEF), seasons, 'winter27');
+  assert.ok(a.blockers.some(b => b.includes('Coastal Pacific')));
+  assert.ok(a.blockers.some(b => b.includes('Wanderer')));
+});
+
+test('spring: with no Auckland night the trip should start on a Thursday or Saturday', async () => {
+  const { alignSeason } = await import('../js/plan.js');
+  // Northern Explorer on day 1 (no Auckland night), Coastal Pacific day 2: only Thu/Sat starts avoid waits
+  const sel = { ne: 1, isl: 1, cp: 1, jet: 1, rnw: 1, fly: 1 };
+  const a = alignSeason(buildItinerary(sel), seasons, 'spring27');
+  assert.equal(a.added, 0);
+  assert.ok(['Thu', 'Sat'].includes(a.startLabel));
+});

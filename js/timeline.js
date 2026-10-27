@@ -240,6 +240,8 @@ svg.addEventListener('pointercancel',endPtr);
 document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{
   const p=PRESETS[b.dataset.preset]; view=clampView(p[0],p[1]);
   clearPreset(); b.setAttribute('aria-pressed','true'); render();
+  const season={winter:'winter27',spring:'spring27',autumn:'autumn28'}[b.dataset.preset];
+  if(season) document.dispatchEvent(new CustomEvent('season-pick',{detail:season}));
 }));
 document.getElementById('zin').addEventListener('click',()=>zoomAt(layout.G+layout.CW/2,0.6));
 document.getElementById('zout').addEventListener('click',()=>zoomAt(layout.G+layout.CW/2,1/0.6));

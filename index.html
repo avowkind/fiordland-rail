@@ -54,7 +54,7 @@
 
   <div class="controls" role="toolbar" aria-label="Timeline view">
     <button id="z-full" data-preset="full" aria-pressed="true">Full range</button>
-    <button data-preset="winter" aria-pressed="false">Winter 2027</button>
+    <button data-preset="winter" aria-pressed="false" title="Also sets the season in the plan">Winter 2027</button>
     <button data-preset="spring" aria-pressed="false">Spring 2027</button>
     <button data-preset="autumn" aria-pressed="false">Autumn 2028</button>
     <span class="sep" aria-hidden="true"></span>
@@ -85,7 +85,15 @@
   <section class="disc-head" id="plan-sec" aria-labelledby="plan-title">
     <div class="eyebrow">3 · Chosen plan</div>
     <h2 id="plan-title">Our trip, day by day</h2>
-    <p class="lede">Built from the cards ticked above. Day numbers assume each leg follows the last with no spare days; real dates come once the season is chosen. Road routes on the map follow the main highways through waypoints, not turn-by-turn directions.</p>
+    <p class="lede">Built from the cards ticked above. Choose a season to check that the trains, drives and cruise line up: the plan picks the best weekday to start and flags any step where we'd need to add a day. Road routes on the map follow the main highways through waypoints, not turn-by-turn directions.</p>
+    <div class="controls" role="toolbar" aria-label="Season">
+      <span class="tl-inline">Season</span>
+      <button data-season="" aria-pressed="true">Not chosen</button>
+      <button data-season="spring27" aria-pressed="false">Spring 2027</button>
+      <button data-season="autumn28" aria-pressed="false">Autumn 2028</button>
+      <button data-season="winter27" aria-pressed="false">Winter 2027</button>
+    </div>
+    <div id="seasonbox" class="seasonbox" aria-live="polite"></div>
   </section>
   <div class="plan">
     <ol class="plan-list" id="planlist"></ol>
