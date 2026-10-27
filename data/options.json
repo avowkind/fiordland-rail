@@ -3,7 +3,7 @@
   {
    "id": "home",
    "t": "Leaving home",
-   "n": "Kennels, the Auckland night and getting the dogs to Brookby."
+   "n": "Kennels and the Auckland night."
   },
   {
    "id": "south",
@@ -100,34 +100,6 @@
    "v": 0,
    "st": "pub",
    "b": ""
-  },
-  {
-   "id": "taxi",
-   "g": "home",
-   "c": "context",
-   "t": "Dog taxi instead of driving",
-   "op": "Not yet found for Waiheke to Brookby · would need a quote",
-   "sp": [
-    "The dogs are collected from home or the ferry the day before, and the car stays on Waiheke",
-    "With dogs gone the day before, you could take the 06:00 weekday ferry (about 40 min) to the 07:45 train and skip the Auckland night"
-   ],
-   "sw": [
-    [
-     "p",
-     "Could save the Auckland hotel and the parking problem"
-    ],
-    [
-     "m",
-     "The 06:00 ferry is a very early start. It works only for Monday or Thursday trains: the first Saturday ferry is 07:00, too late"
-    ],
-    [
-     "m",
-     "No service confirmed. Brookby lists none; Franklin-based Elite Pet Services covers Franklin only. Ask Brookby who they recommend"
-    ]
-   ],
-   "v": 400,
-   "st": "est",
-   "b": "Placeholder for a return dog taxi. No provider or price confirmed yet."
   },
   {
    "id": "ne",

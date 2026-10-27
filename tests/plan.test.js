@@ -68,7 +68,7 @@ test('unticking a stay lowers the total but not the nights', () => {
 });
 
 test('every route waypoint exists in places', () => {
-  for (const sel of [DEF, { akl: 1, ne: 1, isl: 1, cp: 1, jet: 1, xfer: 1, fj1: 1, fly: 1 }, { ne: 1, cp: 1, drive: 1, he6: 1, railh: 1 }, { he4: 1, fly: 1, taxi: 1, ne: 1 }]) {
+  for (const sel of [DEF, { akl: 1, ne: 1, isl: 1, cp: 1, jet: 1, xfer: 1, fj1: 1, fly: 1 }, { ne: 1, cp: 1, drive: 1, he6: 1, railh: 1 }, { he4: 1, fly: 1, ne: 1 }]) {
     buildItinerary(sel).segments.forEach(sg => sg.path.forEach(p => assert.ok(places[p], `missing place ${p}`)));
   }
 });

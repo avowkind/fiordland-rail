@@ -58,16 +58,15 @@ export function buildItinerary(sel, opt = {}) {
     seg('ferry', P.carFerry, 'Sealink car ferry');
     seg('drive', P.toKennels, 'Drive to Brookby, then the city');
     step('Waiheke to Brookby, then Auckland',
-      sel.taxi ? 'Dog taxi collects Poppy and Rua; we take the ferry into the city for an evening in Auckland.'
-               : 'Sealink car ferry to Half Moon Bay, drop Poppy and Rua at Brookby Lodge, evening in the city.',
+      'Sealink car ferry to Half Moon Bay, drop Poppy and Rua at Brookby Lodge, evening in the city.',
       ['ferry', 'drive'], { place: 'akl', kind: 'card' });
   }
 
   // Rail south
   if (sel.ne) {
     if (!sel.akl) {
-      if (sel.taxi) seg('ferry', ['mat', 'akl'], '06:00 passenger ferry');
-      else { seg('ferry', P.carFerry, 'Sealink car ferry'); seg('drive', P.toKennels, 'Brookby, then the station'); }
+      seg('ferry', P.carFerry, 'Sealink car ferry');
+      seg('drive', P.toKennels, 'Brookby, then the station');
     }
     seg('rail', P.neSouth, 'Northern Explorer');
     step('Northern Explorer to Wellington',
@@ -244,8 +243,7 @@ export function toggle(data, state, id, on) {
 export function warnings(state, itin) {
   const s = state.sel, w = [];
   if (itin.days > 21) w.push('Over the 3-week ceiling for the dogs.');
-  if (s.taxi && s.akl) w.push('With a dog taxi you may not need the Auckland night.');
-  if (!s.akl && !s.taxi && s.ne) w.push('Without the Auckland night or a dog taxi, the 07:45 train needs a pre-dawn start from Waiheke.');
+  if (!s.akl && s.ne) w.push('Without the Auckland night, the 07:45 train needs a pre-dawn start from Waiheke and a dawn kennel drop-off.');
   if (s.self && s.railh) w.push('Rail home with self-drive: the car goes back to Christchurch via Wanaka and Tekapo.');
   const keep = selfKeeps(s, state.opt);
   if (keep && s.xfer) w.push('We keep the car to Manapouri, so the private transfer is unnecessary.');
