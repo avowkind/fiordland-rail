@@ -38,6 +38,13 @@ jobs:
         run: |
           mkdir -p _site
           cp -r index.html css js data _site/
+      - name: Stamp file links with the commit so browsers fetch fresh copies
+        run: |
+          V="${GITHUB_SHA::8}"
+          sed -i -e "s#css/site.css\"#css/site.css?v=$V\"#" -e "s#js/main.js\"#js/main.js?v=$V\"#" _site/index.html
+          sed -i -E "s#from '\./([a-z]+)\.js'#from './\1.js?v=$V'#g" _site/js/*.js
+          sed -i "s#fetch(u)#fetch(u + '?v=$V')#" _site/js/main.js
+          grep -c "v=$V" _site/index.html _site/js/*.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
