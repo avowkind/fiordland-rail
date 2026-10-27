@@ -120,3 +120,11 @@ test('spring: with no Auckland night the trip should start on a Thursday or Satu
   assert.equal(a.added, 0);
   assert.ok(['Thu', 'Sat'].includes(a.startLabel));
 });
+
+test('card links are https and every rail and cruise card has one', () => {
+  ['ne', 'isl', 'cp', 'rnw', 'rnn', 'fj1', 'he4', 'he6', 'railh'].forEach(id => {
+    const c = data.cards.find(x => x.id === id);
+    assert.ok(c.links && c.links.length, id);
+  });
+  data.cards.flatMap(c => c.links || []).forEach(l => assert.match(l.u, /^https:\/\//));
+});

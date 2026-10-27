@@ -29,7 +29,8 @@ export function renderDiscovery(root, data, state, result) {
         <h4>What could swing it</h4><ul class="swing">${c.sw.map(s => `<li class="${s[0]}">${esc(s[1])}</li>`).join('')}</ul></div>
         <div class="cfoot">${c.opts ? `<div class="opts" role="group" aria-label="Class">${c.opts.map((o, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(o.l)}</button>`).join('')}</div>` : ''}
         ${costRow(cardValue(c, state, nights), c.n, c.st === 'pub')}
-        <p class="basis">${esc(basis(c, state, nights))}</p></div></article>`;
+        <p class="basis">${esc(basis(c, state, nights))}</p>
+        ${c.links ? `<ul class="clinks">${c.links.map(l => `<li><a href="${esc(l.u)}" target="_blank" rel="noopener noreferrer">${esc(l.l)} <span aria-hidden="true">↗</span><span class="sr"> (opens in a new window)</span></a></li>`).join('')}</ul>` : ''}</div></article>`;
     });
     h += '</div>';
   });

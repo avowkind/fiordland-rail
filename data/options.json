@@ -99,7 +99,13 @@
    ],
    "v": 0,
    "st": "pub",
-   "b": ""
+   "b": "",
+   "links": [
+    {
+     "l": "Brookby Lodge prices",
+     "u": "https://www.brookbylodge.com/pricing/"
+    }
+   ]
   },
   {
    "id": "ne",
@@ -144,7 +150,21 @@
    ],
    "def": 1,
    "st": "est",
-   "b": "About NZD 250 / 500 per person (seat61, may be dated). Gold Card 10% off is listed for Great Journeys fares; confirm it applies here."
+   "b": "About NZD 250 / 500 per person (seat61, may be dated). Gold Card 10% off is listed for Great Journeys fares; confirm it applies here.",
+   "links": [
+    {
+     "l": "Great Journeys NZ",
+     "u": "https://www.greatjourneysnz.com/"
+    },
+    {
+     "l": "Great Journeys timetables",
+     "u": "https://www.greatjourneysnz.com/scenic-trains/train-timetables/"
+    },
+    {
+     "l": "Seat61: Northern Explorer guide",
+     "u": "https://www.seat61.com/auckland-to-wellington-by-train.htm"
+    }
+   ]
   },
   {
    "id": "isl",
@@ -183,7 +203,17 @@
    ],
    "def": 1,
    "st": "est",
-   "b": "Fare from about NZD 60–80 per person, Plus lounge about NZD 80 per person extra (seat61)."
+   "b": "Fare from about NZD 60–80 per person, Plus lounge about NZD 80 per person extra (seat61).",
+   "links": [
+    {
+     "l": "Interislander",
+     "u": "https://www.interislander.co.nz/"
+    },
+    {
+     "l": "Seat61: New Zealand trains and ferry",
+     "u": "https://www.seat61.com/NewZealand.htm"
+    }
+   ]
   },
   {
    "id": "cp",
@@ -227,7 +257,21 @@
    ],
    "def": 1,
    "st": "pub",
-   "b": "From NZD 219 per person (Great Journeys); Scenic Plus about NZD 499 per person (seat61)."
+   "b": "From NZD 219 per person (Great Journeys); Scenic Plus about NZD 499 per person (seat61).",
+   "links": [
+    {
+     "l": "Great Journeys: Coastal Pacific",
+     "u": "https://greatjourneysnz.com/scenic-trains/coastal-pacific"
+    },
+    {
+     "l": "Great Journeys timetables",
+     "u": "https://www.greatjourneysnz.com/scenic-trains/train-timetables/"
+    },
+    {
+     "l": "Seat61: New Zealand trains and ferry",
+     "u": "https://www.seat61.com/NewZealand.htm"
+    }
+   ]
   },
   {
    "id": "jet",
@@ -257,7 +301,13 @@
    ],
    "v": 500,
    "st": "est",
-   "b": "Fares advertised from NZD 79; budget about NZD 250 per person including a checked bag."
+   "b": "Fares advertised from NZD 79; budget about NZD 250 per person including a checked bag.",
+   "links": [
+    {
+     "l": "Air New Zealand: Christchurch–Queenstown",
+     "u": "https://www.airnewzealand.co.nz/flights/en-nz/flights-from-christchurch-to-queenstown"
+    }
+   ]
   },
   {
    "id": "drive",
@@ -333,7 +383,13 @@
      "v": 850
     }
    ],
-   "def": 1
+   "def": 1,
+   "links": [
+    {
+     "l": "Manapouri overnight parking",
+     "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
+    }
+   ]
   },
   {
    "id": "xfer",
@@ -391,7 +447,21 @@
    ],
    "v": 2100,
    "st": "pub",
-   "b": "About NZD 1,049 per person twin share (Aug 2026–Apr 2027 rate). 2027/28 dates not yet published."
+   "b": "About NZD 1,049 per person twin share (Aug 2026–Apr 2027 rate). 2027/28 dates not yet published.",
+   "links": [
+    {
+     "l": "RealNZ",
+     "u": "https://www.realnz.com/"
+    },
+    {
+     "l": "Doubtful Sound 2-night details",
+     "u": "https://www.newzealand.com.au/tours/doubtful-sound-overnight-cruise-2-nights-fiordland-navigator"
+    },
+    {
+     "l": "Manapouri departure and parking",
+     "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
+    }
+   ]
   },
   {
    "id": "rnn",
@@ -421,7 +491,21 @@
    ],
    "v": 2280,
    "st": "pub",
-   "b": "About NZD 1,099 per person twin share (May–Aug 2027), plus an optional NZD 41 picnic lunch each."
+   "b": "About NZD 1,099 per person twin share (May–Aug 2027), plus an optional NZD 41 picnic lunch each.",
+   "links": [
+    {
+     "l": "RealNZ",
+     "u": "https://www.realnz.com/"
+    },
+    {
+     "l": "Doubtful Sound 2-night details",
+     "u": "https://www.newzealand.com.au/tours/doubtful-sound-overnight-cruise-2-nights-fiordland-navigator"
+    },
+    {
+     "l": "Manapouri departure and parking",
+     "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
+    }
+   ]
   },
   {
    "id": "fj1",
@@ -456,7 +540,13 @@
    ],
    "v": 4760,
    "st": "pub",
-   "b": "From NZD 2,380 per person twin share (Oct–Dec 2026 and Apr 2027 rate). Van transfer extra."
+   "b": "From NZD 2,380 per person twin share (Oct–Dec 2026 and Apr 2027 rate). Van transfer extra.",
+   "links": [
+    {
+     "l": "Fiordland Discovery: Milford overnight",
+     "u": "https://www.fiordlanddiscovery.co.nz/fiordland-cruises/milford-sound-overnight-cruise/"
+    }
+   ]
   },
   {
    "id": "he4",
@@ -490,7 +580,17 @@
    ],
    "v": 12478,
    "st": "pub",
-   "b": "Salvin's Twin USD 3,670 per person (Fiordland Explored), converted at 1.70."
+   "b": "Salvin's Twin USD 3,670 per person (Fiordland Explored), converted at 1.70.",
+   "links": [
+    {
+     "l": "Heritage: Fiordland Explored",
+     "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/fiordland-explored-cruise/"
+    },
+    {
+     "l": "Heritage: Undiscovered Dusky",
+     "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/undiscovered-dusky-cruise/"
+    }
+   ]
   },
   {
    "id": "he6",
@@ -524,7 +624,13 @@
    ],
    "v": 17374,
    "st": "pub",
-   "b": "Salvin's Twin USD 5,110 per person, converted at 1.70. About NZD 13,900 with the 20% offer."
+   "b": "Salvin's Twin USD 5,110 per person, converted at 1.70. About NZD 13,900 with the 20% offer.",
+   "links": [
+    {
+     "l": "Heritage: Southern Fiords Discovery",
+     "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/southern-fiords-discovery-cruise/"
+    }
+   ]
   },
   {
    "id": "fly",
@@ -553,7 +659,13 @@
    ],
    "v": 700,
    "st": "est",
-   "b": "Budget about NZD 350 per person including bags. The Auckland hotel is extra."
+   "b": "Budget about NZD 350 per person including bags. The Auckland hotel is extra.",
+   "links": [
+    {
+     "l": "Air New Zealand",
+     "u": "https://www.airnewzealand.co.nz/"
+    }
+   ]
   },
   {
    "id": "railh",
@@ -586,7 +698,21 @@
    ],
    "v": 2800,
    "st": "est",
-   "b": "Scenic Plus north (about 1,000 + 1,000), ferry with lounge (300), and a Queenstown–Christchurch jet (500)."
+   "b": "Scenic Plus north (about 1,000 + 1,000), ferry with lounge (300), and a Queenstown–Christchurch jet (500).",
+   "links": [
+    {
+     "l": "Great Journeys: Coastal Pacific",
+     "u": "https://greatjourneysnz.com/scenic-trains/coastal-pacific"
+    },
+    {
+     "l": "Great Journeys timetables",
+     "u": "https://www.greatjourneysnz.com/scenic-trains/train-timetables/"
+    },
+    {
+     "l": "Interislander",
+     "u": "https://www.interislander.co.nz/"
+    }
+   ]
   }
  ],
  "defaultSelection": {

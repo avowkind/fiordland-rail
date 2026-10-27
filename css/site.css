@@ -184,3 +184,7 @@ section[id],nav a{scroll-margin-top:16px}
 .pnote.add{border-left-color:var(--window)}
 .pnote.check{border-left-color:var(--ferry)}
 .pnote.block{border-left-color:var(--rail);color:var(--rail)}
+.clinks{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
+.clinks a{color:var(--heritage);text-decoration:underline;text-underline-offset:2px}
+.clinks a:focus-visible{outline:2px solid var(--heritage);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
