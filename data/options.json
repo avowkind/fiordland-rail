@@ -129,6 +129,14 @@
     ],
     [
      "p",
+     "Park and ride: free, on the way in from Brookby. Panmure station has park and ride; Eastern Line train to Britomart station, beside the hotel. AT says park and rides can currently be used for free, for unlimited time, for any reason"
+    ],
+    [
+     "m",
+     "Park and ride: AT plans to start charging people who park and don't ride; confirm overnight stays are still allowed in 2027. Albany is the exception now: paid, pre-booked, at most 5 days per booking"
+    ],
+    [
+     "p",
      "Free: unrestricted street parking further out near an Eastern Line station (Glen Innes or Meadowbank, say), on the way in from Brookby. Then the train to Britomart station, beside the hotel, or a taxi of about 10 km"
     ],
     [
@@ -159,6 +167,10 @@
      "v": 300
     },
     {
+     "l": "Park and ride (Panmure)",
+     "v": 20
+    },
+    {
      "l": "Free street + train or taxi",
      "v": 80
     },
@@ -173,7 +185,7 @@
    ],
    "def": 0,
    "st": "est",
-   "b": "Estimates for 12 nights. AT car park: about NZD 300 from its flat rates. Free street parking plus a taxi each way at about NZD 4 flagfall and NZD 3 a km (gobytaxi): about NZD 80; by train, a few dollars. Britomart Car Park: placeholder, long-stay rate not published. Hotel valet: NZD 70 a day (hotels.com).",
+   "b": "Estimates for 12 nights. AT car park: about NZD 300 from its flat rates. Park and ride: free parking plus train fares, about NZD 20. Free street parking plus a taxi each way at about NZD 4 flagfall and NZD 3 a km (gobytaxi): about NZD 80; by train, a few dollars. Britomart Car Park: placeholder, long-stay rate not published. Hotel valet: NZD 70 a day (hotels.com).",
    "links": [
     {
      "l": "AT: open-air car parks (Railway Station)",
@@ -186,6 +198,14 @@
     {
      "l": "AT: when a car counts as abandoned",
      "u": "https://at.govt.nz/driving-parking/abandoned-vehicles/"
+    },
+    {
+     "l": "AT parking strategy: park and ride info sheet",
+     "u": "https://AT.govt.nz/media/1991907/room-to-move-tāmaki-makaurau-aucklands-parking-strategy-park-and-ride-info-sheet.pdf"
+    },
+    {
+     "l": "AT: Albany pre-booked park and ride terms",
+     "u": "https://at.govt.nz/driving-and-parking/park-ride/albany-park-and-ride-pre-booked-parking-terms-and-conditions"
     },
     {
      "l": "AT: park and ride",
