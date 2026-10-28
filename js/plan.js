@@ -96,23 +96,23 @@ export function buildItinerary(sel, opt = {}) {
   // Christchurch to Fiordland, by road
   if (sel.self) {
     if (k === 0) {
-      seg('drive', join(P.chcTek, P.tekTea), 'Drive ourselves');
+      seg('drive', join(P.chcTek, P.tekTea), 'Drive Christchurch to Fiordland');
       step('self', 'Drive: Christchurch to Te Anau direct', 'One long day, about 7–8 hours, via Tekapo, the Lindis Pass and Central Otago.', ['drive'], { place: 'tea', kind: 'stay' });
     } else {
-      seg('drive', P.chcTek, 'Drive ourselves');
+      seg('drive', P.chcTek, 'Drive Christchurch to Fiordland');
       step('self', 'Drive to Lake Tekapo', 'About 3 hours across the Canterbury Plains; evening under the Dark Sky Reserve.', ['drive'], { place: 'tek', kind: 'stay' });
       if (k === 1) {
-        seg('drive', P.tekTea, 'Drive ourselves');
+        seg('drive', P.tekTea, 'Drive Christchurch to Fiordland');
         step('self', 'Over the Lindis Pass to Te Anau', 'About 4.5 hours: Lake Pukaki, the Lindis Pass, Central Otago, Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
       } else {
-        seg('drive', P.tekWan, 'Drive ourselves');
+        seg('drive', P.tekWan, 'Drive Christchurch to Fiordland');
         step('self', 'Lindis Pass to Wanaka', 'About 2.5 hours, with time at Lake Pukaki and Aoraki/Mt Cook views.', ['drive'], { place: 'wan', kind: 'stay' });
-        seg('drive', P.wanTea, 'Drive ourselves');
+        seg('drive', P.wanTea, 'Drive Christchurch to Fiordland');
         step('self', 'Crown Range to Te Anau', 'About 3.5 hours over the Crown Range and along Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
       }
     }
   } else if (cruiseOf(sel)) {
-    step(null, 'Road to Fiordland not chosen yet', 'Tick Drive ourselves.', [], null);
+    step(null, 'Road to Fiordland not chosen yet', 'Tick Drive Christchurch to Fiordland.', [], null);
   }
 
   // Cruise
@@ -267,7 +267,7 @@ export function warnings(state, itin) {
   if (itin.days > 15) w.push('Longer than the agreed two weeks.');
   if (!s.akl && s.ne) w.push('Without the Auckland night, the 07:45 train means a very early kennel drop-off.');
   if (!s.cp && !s.pdrive) w.push('Choose the Coastal Pacific or the Picton–Christchurch drive.');
-  if (cruiseOf(s) && !s.self) w.push('Tick Drive ourselves for the road to Fiordland and back.');
+  if (cruiseOf(s) && !s.self) w.push('Tick Drive Christchurch to Fiordland for the road there and back.');
   if (!cruiseOf(s)) w.push('No cruise chosen.');
   return w;
 }
