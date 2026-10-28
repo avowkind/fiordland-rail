@@ -488,7 +488,8 @@
      "u": "https://www.fiordlanddiscovery.co.nz/fiordland-cruises/milford-sound-overnight-cruise/"
     }
    ],
-   "dir": "mid"
+   "dir": "mid",
+   "hidden": true
   },
   {
    "id": "he4",
@@ -571,7 +572,8 @@
      "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/southern-fiords-discovery-cruise/"
     }
    ],
-   "dir": "mid"
+   "dir": "mid",
+   "hidden": true
   }
  ],
  "defaultSelection": {

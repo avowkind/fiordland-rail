@@ -239,7 +239,7 @@ export function staysFrom(itin, places) {
 export function totals(data, state, places) {
   const itin = buildItinerary(state.sel, state.opt);
   let total = 0, count = 0;
-  data.cards.forEach(c => { if (state.sel[c.id]) { total += cardValue(c, state, itin.nights); count++; } });
+  data.cards.forEach(c => { if (state.sel[c.id] && !c.hidden) { total += cardValue(c, state, itin.nights); count++; } });
   const stays = staysFrom(itin, places);
   let stayCount = 0;
   stays.forEach(st => {

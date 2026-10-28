@@ -22,7 +22,7 @@ export function renderDiscovery(root, data, state, result) {
   let h = '';
   data.groups.forEach(g => {
     h += `<div class="group-h"><h3>${esc(g.t)}</h3><span>${esc(g.n)}</span></div><div class="cards">`;
-    data.cards.filter(c => c.g === g.id).forEach(c => {
+    data.cards.filter(c => c.g === g.id && !c.hidden).forEach(c => {
       const on = !!state.sel[c.id];
       const oi = state.opt[c.id] ?? c.def;
       h += `<article class="card${on ? ' on' : ''}" style="--c:var(--${c.c})" data-id="${c.id}">${band(c.dir)}

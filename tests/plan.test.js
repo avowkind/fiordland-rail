@@ -130,3 +130,8 @@ test('season check: default plan in spring needs one waiting day', () => {
   assert.equal(a.added, 1);
   assert.ok(a.notes.flat().some(n => n.level === 'add'));
 });
+
+test('hidden cards: the 1-night Milford and 6-night Heritage cruises are hidden', () => {
+  const hidden = data.cards.filter(c => c.hidden).map(c => c.id).sort();
+  assert.deepEqual(hidden, ['fj1', 'he6']);
+});

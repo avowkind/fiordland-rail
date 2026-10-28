@@ -15,6 +15,8 @@ options._places = places;
 const fresh = () => ({ sel: { ...options.defaultSelection }, opt: {}, stayOff: {}, showPrices: false });
 let state = fresh();
 try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.sel) state = { opt: {}, stayOff: {}, ...s }; } catch (e) { /* storage unavailable */ }
+// Hidden cards can't stay selected from an older saved selection.
+options.cards.filter(c => c.hidden).forEach(c => { if (state.sel[c.id]) { const sel = { ...state.sel }; delete sel[c.id]; state = { ...state, sel }; } });
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* ignore */ } };
 
 initTimeline(timeline);
