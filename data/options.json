@@ -40,29 +40,33 @@
      "No rush for the 07:45 train"
     ],
     [
-     "m",
-     "Every room has one Super King bed. We agreed twin beds at minimum, so book two rooms, or ask the hotel whether the bed can be split into two singles"
+     "p",
+     "The City View Room Twin has two beds, so one room works with our twin-beds rule"
     ]
    ],
    "opts": [
     {
-     "l": "One room (ask to split the bed)",
-     "v": 350
+     "l": "One room",
+     "v": 0
     },
     {
      "l": "Two rooms",
-     "v": 700
+     "v": 0
     }
    ],
-   "def": 1,
-   "st": "est",
-   "b": "No prices on the hotel site; placeholder per room per night.",
+   "def": 0,
+   "st": "pub",
+   "b": "",
    "dir": "out",
    "hotel": "akl",
    "links": [
     {
      "l": "The Hotel Britomart: guest rooms",
      "u": "https://thehotelbritomart.com/our-guest-rooms/"
+    },
+    {
+     "l": "Hotel booking site",
+     "u": "https://bookings.thehotelbritomart.com/book/accommodations?datein=09%2F01%2F2027&dateout=09%2F02%2F2027&adults=2&children=0&discount=&identifier="
     }
    ]
   },

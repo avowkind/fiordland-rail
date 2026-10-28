@@ -220,7 +220,19 @@ export function cardNights(card, itin) {
   return itin.steps.filter(s => s.owner === card.id).reduce((a, s) => a + s.n, 0);
 }
 
-export function cardValue(card, state, nights) {
+// Hotel rate for a hotel-backed night: room type, rate plan and room count, by season month.
+export function hotelRate(hotel, state, key) {
+  const ri = state.opt[key + '-room'] ?? hotel.defRoom;
+  const pi = state.opt[key + '-plan'] ?? hotel.defPlan;
+  const count = (state.opt[key] ?? 0) + 1;
+  const month = state.season === 'winter27' ? 'aug' : 'sep';
+  const room = hotel.rooms[ri], plan = hotel.plans[pi];
+  const each = room.rates[month][plan.k];
+  return { value: each * count, each, count, room, plan, month };
+}
+
+export function cardValue(card, state, nights, places) {
+  if (card.hotel && places) return hotelRate(places[card.hotel].hotel, state, card.id).value;
   if (card.dyn === 'kennel') return KENNEL_RATE * DOGS * (nights + 1);
   if (card.v !== undefined) return card.v;
   if (card.opts) return card.opts[state.opt[card.id] ?? card.def].v;
@@ -232,19 +244,19 @@ export function staysFrom(itin, places) {
   return itin.steps.filter(s => s.night && s.night.kind === 'stay').map(s => ({
     dir: ci < 0 || itin.steps.indexOf(s) < ci ? 'out' : 'ret',
     id: s.night.id, place: s.night.place, name: places[s.night.place].name,
-    why: s.title, rates: places[s.night.place].stay,
-    def: places[s.night.place].hotel ? 1 : 0 // hotels with only Super King beds default to two rooms
+    why: s.title, rates: places[s.night.place].stay, hotel: places[s.night.place].hotel || null,
+    def: 0
   }));
 }
 
 export function totals(data, state, places) {
   const itin = buildItinerary(state.sel, state.opt);
   let total = 0, count = 0;
-  data.cards.forEach(c => { if (state.sel[c.id] && !c.hidden) { total += cardValue(c, state, itin.nights); count++; } });
+  data.cards.forEach(c => { if (state.sel[c.id] && !c.hidden) { total += cardValue(c, state, itin.nights, places); count++; } });
   const stays = staysFrom(itin, places);
   let stayCount = 0;
   stays.forEach(st => {
-    if (!(state.stayOff || {})[st.id]) { total += st.rates[state.opt[st.id] ?? st.def]; stayCount++; }
+    if (!(state.stayOff || {})[st.id]) { total += st.hotel ? hotelRate(st.hotel, state, st.id).value : st.rates[state.opt[st.id] ?? st.def]; stayCount++; }
   });
   return { total, count, stays, stayCount, itin };
 }

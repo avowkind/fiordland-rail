@@ -1,5 +1,5 @@
 // Discovery cards and generated overnight-stay cards.
-import { cardValue, cardNights, KENNEL_RATE, DOGS } from './plan.js';
+import { cardValue, cardNights, hotelRate, KENNEL_RATE, DOGS } from './plan.js';
 
 export const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 export const nz = n => 'NZD ' + Math.round(n).toLocaleString('en-NZ');
@@ -14,8 +14,13 @@ function basis(c, state, nights) {
 
 // Room-type dropdown for places with a chosen hotel (e.g. The Hotel Britomart in Auckland).
 function roomSelect(hotel, key, state) {
-  const sel = state.opt[key] ?? 0;
-  return `<label class="roomsel"><span>Room</span><select data-room="${esc(key)}" id="rs-${esc(key)}">${hotel.rooms.map((r, i) => `<option value="${i}" ${i === sel ? 'selected' : ''}>${esc(r.n)}</option>`).join('')}</select></label><p class="basis">${esc(hotel.rooms[sel].d)}</p>`;
+  const hr = hotelRate(hotel, state, key);
+  const ri = hotel.rooms.indexOf(hr.room), pi = hotel.plans.indexOf(hr.plan);
+  const monthLabel = hr.month === 'aug' ? '1 Aug 2027' : '1 Sep 2027';
+  return `<label class="roomsel"><span>Room</span><select data-room="${esc(key)}-room" id="rs-${esc(key)}-room">${hotel.rooms.map((r, i) => `<option value="${i}" ${i === ri ? 'selected' : ''}>${esc(r.n)}</option>`).join('')}</select></label>
+    <p class="basis">${esc(hr.room.bed)} bed${hr.room.bed === 'Twin' ? 's' : ''} · ${esc(hr.room.d)}${hr.room.bed !== 'Twin' ? ' · one shared bed: book two rooms' : ''}</p>
+    <label class="roomsel price"><span>Rate</span><select data-room="${esc(key)}-plan" id="rs-${esc(key)}-plan">${hotel.plans.map((p, i) => `<option value="${i}" ${i === pi ? 'selected' : ''}>${esc(p.l)}</option>`).join('')}</select></label>
+    <p class="basis price">${esc(monthLabel)} rate: NZD ${hr.each} per room per night, incl. taxes${hr.count > 1 ? `, × ${hr.count} rooms` : ''}.</p>`;
 }
 
 // Price elements carry the 'price' class so the Show prices switch can hide them.
@@ -35,9 +40,9 @@ export function renderDiscovery(root, data, state, result) {
         <label class="chead" for="cb-${c.id}"><input type="checkbox" id="cb-${c.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">${esc(c.t)}</h4><p class="cop">${esc(c.op)}</p></div></label>
         <div class="cbody"><h4>What feels special</h4><ul class="special">${c.sp.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
         <h4>What could swing it</h4><ul class="swing">${c.sw.map(s => `<li class="${s[0]}${s[2] === 'price' ? ' price' : ''}">${esc(s[1])}</li>`).join('')}</ul></div>
-        <div class="cfoot">${c.hotel ? roomSelect(data._places[c.hotel].hotel, c.id + '-room', state) : ''}${c.opts ? `<div class="opts" role="group" aria-label="${c.id === 'self' ? 'Stops' : c.hotel ? 'Rooms' : 'Class'}">${c.opts.map((o, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(o.l)}</button>`).join('')}</div>` : ''}
-        ${costRow(cardValue(c, state, nights), cardNights(c, result.itin), c.st === 'pub')}
-        <p class="basis price">${esc(basis(c, state, nights))}</p>
+        <div class="cfoot">${c.hotel ? roomSelect(data._places[c.hotel].hotel, c.id, state) : ''}${c.opts ? `<div class="opts" role="group" aria-label="${c.id === 'self' ? 'Stops' : c.hotel ? 'Rooms' : 'Class'}">${c.opts.map((o, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(o.l)}</button>`).join('')}</div>` : ''}
+        ${costRow(cardValue(c, state, nights, data._places), cardNights(c, result.itin), c.st === 'pub')}
+        ${c.hotel ? `<p class="basis price">${esc(data._places[c.hotel].hotel.ratesNote)}</p>` : `<p class="basis price">${esc(basis(c, state, nights))}</p>`}
         ${c.links ? `<ul class="clinks">${c.links.map(l => `<li><a href="${esc(l.u)}" target="_blank" rel="noopener noreferrer">${esc(l.l)} <span aria-hidden="true">↗</span><span class="sr"> (opens in a new window)</span></a></li>`).join('')}</ul>` : ''}</div></article>`;
     });
     h += '</div>';
@@ -53,9 +58,9 @@ export function renderDiscovery(root, data, state, result) {
     h += `<article class="card${on ? ' on' : ''}" style="--c:var(--muted)" data-id="${st.id}" data-stay="1">${band(st.dir)}
       <label class="chead" for="cb-${st.id}"><input type="checkbox" id="cb-${st.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">${esc(st.name)}${p.hotel ? ' · ' + esc(p.hotel.name) : ''}</h4><p class="cop">Night after: ${esc(st.why)}</p></div></label>
       <div class="cbody"><ul class="special"><li>${esc(p.staySpecial || '')}</li></ul></div>
-      <div class="cfoot">${p.hotel ? roomSelect(p.hotel, st.id + '-room', state) : ''}<div class="opts" role="group" aria-label="Room">${(p.hotel ? p.hotel.counts : ROOM).map((l, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(l)}</button>`).join('')}</div>
+      <div class="cfoot">${p.hotel ? roomSelect(p.hotel, st.id, state) : ''}<div class="opts" role="group" aria-label="Room">${(p.hotel ? p.hotel.counts : ROOM).map((l, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(l)}</button>`).join('')}</div>
       ${p.hotel ? `<ul class="clinks"><li><a href="${esc(p.hotel.url)}" target="_blank" rel="noopener noreferrer">${esc(p.hotel.name)}: guest rooms <span aria-hidden="true">↗</span><span class="sr"> (opens in a new window)</span></a></li></ul>` : ''}
-      ${costRow(st.rates[oi], 1, false)}</div></article>`;
+      ${costRow(p.hotel ? hotelRate(p.hotel, state, st.id).value : st.rates[oi], 1, !!p.hotel)}</div></article>`;
   });
   h += '</div>';
   root.innerHTML = h;

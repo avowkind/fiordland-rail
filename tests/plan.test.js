@@ -69,7 +69,7 @@ test('every night is a stay, the Auckland card night, or aboard', () => {
 
 test('stays have prices and unique ids', () => {
   const stays = staysFrom(buildItinerary(DEF, { self: 2 }), places);
-  stays.forEach(s => assert.ok(s.rates.length >= 2, s.place));
+  stays.forEach(s => assert.ok(s.hotel || s.rates.length >= 2, s.place));
   assert.equal(new Set(stays.map(s => s.id)).size, stays.length);
 });
 
@@ -136,10 +136,14 @@ test('hidden cards: the 1-night Milford and 6-night Heritage cruises are hidden'
   assert.deepEqual(hidden, ['fj1', 'he6']);
 });
 
-test('Auckland nights use The Hotel Britomart with its five room types', () => {
+test('Auckland nights: The Hotel Britomart rates by room, plan, month and count', async () => {
+  const { hotelRate } = await import('../js/plan.js');
   const h = places.akl.hotel;
   assert.equal(h.name, 'The Hotel Britomart');
-  assert.equal(h.rooms.length, 5);
-  assert.equal(places.akl.stay.length, h.counts.length);
+  assert.equal(h.rooms[h.defRoom].n, 'City View Room Twin');
+  const base = { sel: DEF, opt: {}, stayOff: {} };
+  assert.equal(hotelRate(h, { ...base, season: 'sept27' }, 'akl').value, 439);
+  assert.equal(hotelRate(h, { ...base, season: 'winter27' }, 'akl').value, 419);
+  assert.equal(hotelRate(h, { ...base, season: 'sept27', opt: { 'akl-plan': 0, akl: 1 } }, 'akl').value, 790);
   assert.equal(data.cards.find(c => c.id === 'akl').hotel, 'akl');
 });

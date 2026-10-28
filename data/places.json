@@ -34,38 +34,151 @@
   "lon": 174.776,
   "stop": true,
   "blurb": "Strand station, start of the Northern Explorer",
-  "stay": [
-   350,
-   700
-  ],
-  "staySpecial": "The Hotel Britomart: our choice for the Auckland nights. Every room has one Super King bed.",
+  "staySpecial": "The Hotel Britomart: our choice for the Auckland nights. The City View Room Twin has two beds.",
   "hotel": {
    "name": "The Hotel Britomart",
    "url": "https://thehotelbritomart.com/our-guest-rooms/",
+   "bookUrl": "https://bookings.thehotelbritomart.com/book/accommodations?datein=09%2F01%2F2027&dateout=09%2F02%2F2027&adults=2&children=0&discount=&identifier=",
    "counts": [
-    "One room (ask to split the bed)",
+    "One room",
     "Two rooms"
    ],
+   "plans": [
+    {
+     "k": "ap",
+     "l": "Advance Purchase (save 10%)"
+    },
+    {
+     "k": "flex",
+     "l": "Fully Flexible"
+    },
+    {
+     "k": "bb",
+     "l": "Bed & Breakfast"
+    }
+   ],
+   "defRoom": 4,
+   "defPlan": 1,
+   "ratesNote": "Rates from the hotel booking site for 1 August 2027 (Sun) and 1 September 2027 (Wed), 2 adults, NZD incl. taxes; checked 28 Oct 2026. October 2027 not yet bookable. Rates vary by date. For August, only the Laneway rooms' Fully Flexible and Bed & Breakfast rates were read directly; the others are calculated from the same pattern as September (Advance Purchase is 10% off Fully Flexible; Bed & Breakfast adds 76).",
    "rooms": [
     {
-     "n": "Waitematā View Room",
-     "d": "Harbour view across the port to the North Shore; built-in sofas; 22 m²"
+     "n": "Laneway Room King",
+     "bed": "King",
+     "d": "Laneway or internal outlook with a reading nook; 22 m²",
+     "rates": {
+      "aug": {
+       "ap": 341,
+       "flex": 379,
+       "bb": 455
+      },
+      "sep": {
+       "ap": 359,
+       "flex": 399,
+       "bb": 475
+      }
+     }
     },
     {
-     "n": "City View Room",
-     "d": "Downtown skyline over Britomart's warehouse roofs; 22 m²"
+     "n": "Laneway Accessible Room",
+     "bed": "King",
+     "d": "Accessible room on the laneway; 22 m²",
+     "rates": {
+      "aug": {
+       "ap": 341,
+       "flex": 379,
+       "bb": 455
+      },
+      "sep": {
+       "ap": 359,
+       "flex": 399,
+       "bb": 475
+      }
+     }
     },
     {
-     "n": "Takutai View Room",
-     "d": "Corner room over Takutai Square; New Zealand books; 22 m²"
+     "n": "Galway Room King",
+     "bed": "King",
+     "d": "Galway Street towards the harbour; sofas facing the street; 22 m²",
+     "rates": {
+      "aug": {
+       "ap": 359,
+       "flex": 399,
+       "bb": 475
+      },
+      "sep": {
+       "ap": 377,
+       "flex": 419,
+       "bb": 495
+      }
+     }
     },
     {
-     "n": "Laneway Room",
-     "d": "Laneway or internal outlook with a reading nook; 22 m²"
+     "n": "City View Room King",
+     "bed": "King",
+     "d": "Downtown skyline over Britomart's warehouse roofs; 22 m²",
+     "rates": {
+      "aug": {
+       "ap": 377,
+       "flex": 419,
+       "bb": 495
+      },
+      "sep": {
+       "ap": 395,
+       "flex": 439,
+       "bb": 515
+      }
+     }
     },
     {
-     "n": "Galway Room",
-     "d": "Galway Street towards the harbour; sofas facing the street; 22 m²"
+     "n": "City View Room Twin",
+     "bed": "Twin",
+     "d": "Two beds; downtown skyline over Britomart's warehouse roofs; 22 m²",
+     "rates": {
+      "aug": {
+       "ap": 377,
+       "flex": 419,
+       "bb": 495
+      },
+      "sep": {
+       "ap": 395,
+       "flex": 439,
+       "bb": 515
+      }
+     }
+    },
+    {
+     "n": "Takutai View Room King",
+     "bed": "King",
+     "d": "Corner room over Takutai Square; 22 m²",
+     "rates": {
+      "aug": {
+       "ap": 395,
+       "flex": 439,
+       "bb": 515
+      },
+      "sep": {
+       "ap": 413,
+       "flex": 459,
+       "bb": 535
+      }
+     }
+    },
+    {
+     "n": "Waitematā View Room King",
+     "bed": "King",
+     "d": "Harbour view across the port to the North Shore; 22 m²",
+     "rates": {
+      "aug": {
+       "ap": 413,
+       "flex": 459,
+       "bb": 535
+      },
+      "sep": {
+       "ap": 431,
+       "flex": 479,
+       "bb": 555
+      }
+     }
     }
    ]
   }
