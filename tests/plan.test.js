@@ -97,9 +97,12 @@ test('every route waypoint exists in places', () => {
       buildItinerary(sel, opt).segments.forEach(sg => sg.path.forEach(p => assert.ok(places[p], `missing place ${p}`)));
 });
 
-test('sandflies: spring and autumn fail, winter and September do not', () => {
+test('sandflies: autumn fails; spring is an accepted trade-off; winter and September pass', () => {
   const it = buildItinerary(DEF);
-  for (const k of ['spring27', 'autumn28']) assert.ok(alignSeason(it, seasons, k).blockers.some(b => b.startsWith('Sandflies')), k);
+  assert.ok(alignSeason(it, seasons, 'autumn28').blockers.some(b => b.startsWith('Sandflies')));
+  const sp = alignSeason(it, seasons, 'spring27');
+  assert.ok(!sp.blockers.some(b => b.startsWith('Sandflies')));
+  assert.ok(sp.notes.flat().some(n => n.level === 'check' && /Accepted by Andrew/.test(n.text)));
   for (const k of ['winter27', 'sept27']) assert.ok(!alignSeason(it, seasons, k).blockers.some(b => b.startsWith('Sandflies')), k);
 });
 
@@ -163,16 +166,17 @@ test('station and ferry nights list walking distance for every idea', () => {
   }
 });
 
-test('initial preference: Fiordland Explored on 9 Aug 2027, winter, Picton drive', async () => {
-  assert.deepEqual(Object.keys(PREF).sort(), ['akl', 'he4', 'isl', 'kennel', 'ne', 'pdrive', 'self'].sort());
-  assert.equal(data.defaultSeason, 'winter27');
-  const he4 = data.cards.find(c => c.id === 'he4');
-  assert.equal(he4.date, '2027-08-09');
+test('locked-in plan: RealNZ Wanderer Tue 5 Oct 2027, Coastal Pacific, leave Wed 29 Sep', () => {
+  assert.deepEqual(Object.keys(PREF).sort(), ['akl', 'cp', 'isl', 'kennel', 'ne', 'rnw', 'self'].sort());
+  assert.equal(data.defaultSeason, 'spring27');
+  const rnw = data.cards.find(c => c.id === 'rnw');
+  assert.equal(rnw.date, '2027-10-05');
   const it = buildItinerary(PREF);
-  const a = alignSeason(it, seasons, 'winter27', { he4: he4.date });
+  const a = alignSeason(it, seasons, 'spring27', { rnw: rnw.date });
   assert.equal(a.blockers.length, 0);
-  const ci = it.steps.findIndex(s => s.svc === 'cruise:he4');
-  const cruiseDay = new Date(a.startDate + (a.per[ci].day - 1) * 864e5).toISOString().slice(0, 10);
-  assert.equal(cruiseDay, '2027-08-09');
-  assert.ok(it.segments.some(s => s.mode === 'heli'));
+  const day = i => new Date(a.startDate + (a.per[i].day - 1) * 864e5).toISOString().slice(0, 10);
+  assert.equal(day(it.steps.findIndex(s => s.svc === 'cruise:rnw')), '2027-10-05');
+  assert.equal(new Date(a.startDate).toISOString().slice(0, 10), '2027-09-29');
+  assert.equal(a.days - 1, 12);
+  assert.ok(!it.segments.some(s => s.mode === 'heli' || s.mode === 'flight'));
 });

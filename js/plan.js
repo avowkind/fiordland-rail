@@ -341,7 +341,7 @@ export function alignSeason(itin, seasons, key, fixedDates = {}) {
     if (st.svc === 'cp' && S.cp.length && S.cp.length < 7) notes[i].push({ level: 'check', text: S.cpNote });
     if (st.svc && st.svc.startsWith('cruise:')) {
       if (S.sandflies) {
-        const lv = S.sandflies.level === 'peak' ? 'block' : S.sandflies.level === 'lowest' ? 'ok' : 'check';
+        const lv = S.sandflies.level === 'peak' ? (S.sandflies.accepted ? 'check' : 'block') : S.sandflies.level === 'lowest' ? 'ok' : 'check';
         notes[i].push({ level: lv, text: S.sandflies.note });
         if (lv === 'block') blockers.push(S.sandflies.note);
       }

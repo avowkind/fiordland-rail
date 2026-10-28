@@ -358,7 +358,7 @@
    "c": "realnz",
    "n": 2,
    "t": "RealNZ Doubtful Sound, 2 nights · Wanderer",
-   "op": "From Manapouri · up to 36 guests · 14 twin cabins and 2 family quad cabins, shared bathrooms · Oct and Apr (projected)",
+   "op": "Chosen · Tue 5 Oct 2027 · 3 days, 2 nights from Manapouri · up to 36 guests · shared bathrooms",
    "sp": [
     "Doubtful Sound: far bigger and much quieter than Milford, with no day-trip crowds overnight",
     "Lake Manapouri crossing and the Wilmot Pass road in, with no aircraft at all",
@@ -371,21 +371,25 @@
      "No aircraft: road and lake crossing"
     ],
     [
-     "m",
-     "Sails in October and April (projected), inside the sandfly peak"
+     "p",
+     "Sails Tue, Thu and Sat in October 2027, so the trains line up with a Tuesday start"
     ],
     [
      "m",
-     "Two-person sleeping compartments with shared bathrooms, no ensuites (RealNZ). Bed layout not stated, so it could be bunks: ask RealNZ"
+     "October is inside the sandfly peak: accepted by Andrew, check with Millie"
+    ],
+    [
+     "m",
+     "Two-person cabins with shared bathrooms, no ensuites (RealNZ). Bed layout not stated, so it could be bunks: ask RealNZ"
     ],
     [
      "m",
      "Comfortable rather than luxury"
     ]
    ],
-   "v": 2100,
-   "st": "pub",
-   "b": "About NZD 1,049 per person twin share (Aug 2026–Apr 2027 rate). 2027/28 dates not yet published.",
+   "v": 1578,
+   "st": "est",
+   "b": "From NZD 789 per person on the RealNZ booking calendar for October 2027 sailings (checked 28 Oct 2026), for two. Cabin type behind that fare not confirmed.",
    "links": [
     {
      "l": "RealNZ: Doubtful Sound overnight cruises (cabin details)",
@@ -400,7 +404,8 @@
      "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
     }
    ],
-   "dir": "mid"
+   "dir": "mid",
+   "date": "2027-10-05"
   },
   {
    "id": "rnn",
@@ -504,7 +509,7 @@
    "c": "heritage",
    "n": 4,
    "t": "Heritage Explorer: Fiordland Explored",
-   "op": "Initial preference · 9–13 Aug 2027 · 4 nights · 18 guests · Te Anau → Dusky Sound → Doubtful Sound → Te Anau",
+   "op": "9–13 Aug 2027 · 4 nights · 18 guests · Te Anau → Dusky Sound → Doubtful Sound → Te Anau",
    "sp": [
     "Expert naturalist guides on a true expedition yacht, 18 guests at most",
     "Dusky Sound: Cook's 1773 Astronomer's Point and Anchor Island, then north through Breaksea Sound and Acheron Passage to Doubtful Sound",
@@ -524,10 +529,6 @@
     [
      "m",
      "Helicopter in from Te Anau: allowed only because there is no other way in"
-    ],
-    [
-     "m",
-     "Fixed sailing: the rest of the trip is planned around 9 August"
     ],
     [
      "m",
@@ -596,9 +597,9 @@
   "kennel": 1,
   "ne": 1,
   "isl": 1,
-  "pdrive": 1,
+  "cp": 1,
   "self": 1,
-  "he4": 1
+  "rnw": 1
  },
- "defaultSeason": "winter27"
+ "defaultSeason": "spring27"
 }

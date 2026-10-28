@@ -52,10 +52,6 @@
    "title": "RealNZ Doubtful Sound two-night",
    "url": "https://www.newzealand.com.au/tours/doubtful-sound-overnight-cruise-2-nights-fiordland-navigator"
   },
-  "sch": {
-   "title": "calculate.co.nz: NZ school terms",
-   "url": "https://www.calculate.co.nz/nz-school-terms.php"
-  },
   "luxe": {
    "title": "Luxe Tours: Milford Sound sandflies",
    "url": "https://www.luxetours.co.nz/how-to-survive-milford-sound-sandflies"
@@ -94,14 +90,14 @@
      "e": "2027-09-24",
      "k": "confirmed",
      "l": "September 2027",
-     "n": "Outside the sandfly peak. Coastal Pacific start date unconfirmed (1 Sep per Great Journeys; 19 Sep in 2024). Heritage 6-night sails 19 Sep (helicopter in, no other access). School holidays from 25 Sep."
+     "n": "Outside the sandfly peak. Coastal Pacific start date unconfirmed (1 Sep per Great Journeys; 19 Sep in 2024). Heritage 6-night sails 19 Sep (helicopter in, no other access)."
     },
     {
      "s": "2027-09-25",
      "e": "2027-11-15",
      "k": "uncertain",
-     "l": "Spring 2027: sandfly peak",
-     "n": "Inside the October–April sandfly peak, so it fails the agreed sandfly constraint. Also school holidays 25 Sep–10 Oct and Labour Weekend."
+     "l": "Spring 2027: chosen",
+     "n": "Chosen: RealNZ Wanderer on Tue 5 Oct 2027, leaving Waiheke Wed 29 Sep. Inside the October–April sandfly peak: accepted by Andrew, check with Millie."
     },
     {
      "s": "2028-03-15",
@@ -608,7 +604,7 @@
      "e": "2027-10-01",
      "k": "confirmed",
      "l": "Southern Fiords",
-     "n": "Overlaps the school holidays (25 Sep–10 Oct). 20% off if booked before 30 Oct 2026. Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
+     "n": "20% off if booked before 30 Oct 2026. Heritage Explorer, max 18 guests. Helicopter in from Te Anau to Preservation Inlet, coach out via Wilmot Pass (some dates reversed). Salvin's Twin cabin USD 5,110 pp (20% off Jul–Sep 2027 departures if booked before 30 Oct 2026). House drinks included. No Queenstown transfer.",
      "src": "he6"
     },
     {
@@ -872,62 +868,6 @@
   },
   {
    "g": "Context"
-  },
-  {
-   "id": "sch",
-   "label": "NZ school holidays",
-   "sub": "avoid",
-   "c": "context",
-   "items": [
-    {
-     "s": "2026-12-18",
-     "e": "2027-02-01",
-     "k": "confirmed",
-     "l": "Summer",
-     "n": "Approximate. Term 1 2027 starts between 28 Jan and 3 Feb.",
-     "src": "sch"
-    },
-    {
-     "s": "2027-04-10",
-     "e": "2027-04-26",
-     "k": "confirmed",
-     "l": "Apr",
-     "n": "Term 1 ends 9 Apr; Term 2 starts 27 Apr 2027.",
-     "src": "sch"
-    },
-    {
-     "s": "2027-07-03",
-     "e": "2027-07-18",
-     "k": "confirmed",
-     "l": "Jul",
-     "n": "Term 2 ends 2 Jul; Term 3 starts 19 Jul 2027.",
-     "src": "sch"
-    },
-    {
-     "s": "2027-09-25",
-     "e": "2027-10-10",
-     "k": "confirmed",
-     "l": "Sep–Oct",
-     "n": "Term 3 ends 24 Sep; Term 4 starts 11 Oct 2027.",
-     "src": "sch"
-    },
-    {
-     "s": "2027-12-18",
-     "e": "2028-01-31",
-     "k": "projected",
-     "l": "Summer",
-     "n": "Approximate. Term 4 ends by 17 Dec 2027. 2028 dates not captured.",
-     "src": "sch"
-    },
-    {
-     "s": "2028-04-08",
-     "e": "2028-04-24",
-     "k": "projected",
-     "l": "Apr (TBC)",
-     "n": "2028 dates not captured. Likely around Easter (14–17 Apr 2028). Check before booking.",
-     "src": "sch"
-    }
-   ]
   },
   {
    "id": "hol",

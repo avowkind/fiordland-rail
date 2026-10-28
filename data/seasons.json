@@ -13,7 +13,7 @@
  "seasons": {
   "sept27": {
    "label": "September 2027",
-   "window": "September 2027, before the school holidays on 25 September",
+   "window": "September 2027",
    "cp": [
     "thu",
     "fri",
@@ -26,7 +26,6 @@
     "note": "Sandflies: September is outside the October–April peak, but they are present all year."
    },
    "general": [
-    "Avoid the school holidays from 25 September.",
     "Early spring: cool, with snow still on the tops; the Milford Road can have avalanche closures.",
     "Possible rail maintenance block 25–28 Sep 2027 (unconfirmed)."
    ],
@@ -49,7 +48,7 @@
     },
     "he6": {
      "ok": true,
-     "note": "Fixed sailing on 19 September 2027 (helicopter in: no other access). The 25 September sailing falls in the school holidays."
+     "note": "Fixed sailings on 19 and 25 September 2027 (helicopter in: no other access)."
     }
    }
   },
@@ -100,13 +99,13 @@
    ],
    "cpNote": "The Coastal Pacific has run Thu–Sun in spring (projected for 2027). Its 2027 start date is unconfirmed: 1 September or mid-September.",
    "general": [
-    "Avoid the school holidays (25 Sep–10 Oct) and Labour Weekend (23–25 Oct).",
+    "Labour Weekend (23–25 Oct) is busy on the roads.",
     "Possible rail maintenance block 25–28 Sep 2027 (unconfirmed)."
    ],
    "cruises": {
     "rnw": {
      "ok": true,
-     "note": "Wanderer listed for October (projected from 2026). Confirm which days it sails; if not on this day, add a night in Te Anau."
+     "note": "Chosen: Wanderer sailing Tuesday 5 October 2027. In October 2027 it sails Tue, Thu and Sat (RealNZ booking calendar, checked 28 Oct 2026; 19 Oct not available)."
     },
     "rnn": {
      "ok": false,
@@ -127,7 +126,8 @@
    },
    "sandflies": {
     "level": "peak",
-    "note": "Sandflies: October–November is inside the October–April peak. Fails the agreed sandfly constraint."
+    "accepted": true,
+    "note": "Sandflies: October is inside the October–April peak, so this misses the agreed sandfly constraint. Accepted by Andrew on 28 Oct 2026 to choose the October Wanderer; check with Millie. Take repellent and cover up."
    }
   },
   "autumn28": {
@@ -144,7 +144,7 @@
    ],
    "cpNote": "The Coastal Pacific has run daily from January to April in recent seasons (projected for 2028).",
    "general": [
-    "Avoid Easter (14–17 Apr 2028) and the April school holidays (2028 dates not yet confirmed)."
+    "Avoid Easter (14–17 Apr 2028)."
    ],
    "cruises": {
     "rnw": {
