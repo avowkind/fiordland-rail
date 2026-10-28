@@ -24,6 +24,9 @@ const P = {
   chcMtc: ['chc', 'ash', 'ger', 'fai', 'tek', 'pkj', 'gle', 'mtc'],
   mtcWan: ['mtc', 'gle', 'pkj', 'twz', 'oma', 'lin', 'tar', 'lug', 'wan'],
   mtcArr: ['mtc', 'gle', 'pkj', 'twz', 'oma', 'lin', 'tar', 'cro', 'arj', 'arr'],
+  mtcHaw: ['mtc', 'gle', 'pkj', 'twz', 'oma', 'lin', 'tar', 'lug', 'haw'],
+  hawWan: ['haw', 'wan'],
+  hawTek: ['haw', 'lug', 'tar', 'lin', 'oma', 'twz', 'tek'],
   arrTea: ['arr', 'arj', 'zqn', 'kin', 'mos', 'tea'],
   mtcTea: ['mtc', 'gle', 'pkj', 'twz', 'oma', 'lin', 'tar', 'cro', 'arj', 'zqn', 'kin', 'mos', 'tea'],
   tekTea: ['tek', 'twz', 'oma', 'lin', 'tar', 'cro', 'arj', 'zqn', 'kin', 'mos', 'tea'],
@@ -44,7 +47,13 @@ const join = (...parts) => parts.reduce((acc, p) => acc.length && acc[acc.length
 export const SECOND_NIGHT = [
   { place: 'mtc', l: 'Second night at The Hermitage', d: 'A full day at Aoraki/Mt Cook with no driving, then about 5 hours to Te Anau.' },
   { place: 'wan', l: 'Night in Wanaka', d: 'Morning at Mt Cook, about 2.5–3 hours to Wanaka, then about 3.5 hours to Te Anau. Splits the drive.' },
+  { place: 'haw', l: 'Night at Lake Hawea', d: 'Morning at Mt Cook, about 2.5–3 hours to the Hawea Hotel above the lake, then about 3.5–4 hours via Wanaka and the Crown Range to Te Anau.' },
   { place: 'arr', l: 'Night in Arrowtown', d: 'Morning at Mt Cook, about 3.5 hours to Arrowtown, then about 2.5 hours to Te Anau. Gold-rush village near Queenstown.' }
+];
+
+export const RETURN_NIGHT = [
+  { place: 'wan', l: 'Night in Wanaka', d: 'About 3.5 hours from Manapouri over the Crown Range; lakeside town with restaurants.' },
+  { place: 'haw', l: 'Night at Lake Hawea', d: 'About 15 minutes beyond Wanaka: quieter, with the Hawea Hotel looking straight down the lake. About 5.5 hours to Christchurch next day.' }
 ];
 
 export const ROAD_STOPS = ['Direct both ways', 'Hermitage down, Wanaka back', 'Two breaks each way'];
@@ -120,6 +129,11 @@ export function buildItinerary(sel, opt = {}) {
         seg('drive', P.wanTea, 'Drive Christchurch to Fiordland');
         step('self', 'Wanaka to Te Anau', 'About 3.5 hours over the Crown Range and along Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
       } else if (n2 === 2) {
+        seg('drive', P.mtcHaw, 'Drive Christchurch to Fiordland');
+        step('self', 'Aoraki/Mt Cook to Lake Hawea', 'Morning at Aoraki/Mt Cook, then about 2.5–3 hours over the Lindis Pass to Lake Hawea.', ['drive'], { place: 'haw', kind: 'stay' });
+        seg('drive', join(P.hawWan, P.wanTea), 'Drive Christchurch to Fiordland');
+        step('self', 'Lake Hawea to Te Anau', 'About 3.5–4 hours via Wanaka, the Crown Range and Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+      } else if (n2 === 3) {
         seg('drive', P.mtcArr, 'Drive Christchurch to Fiordland');
         step('self', 'Aoraki/Mt Cook to Arrowtown', 'Morning at Aoraki/Mt Cook, then about 3.5 hours over the Lindis Pass, through Cromwell and the Kawarau Gorge.', ['drive'], { place: 'arr', kind: 'stay' });
         seg('drive', P.arrTea, 'Drive Christchurch to Fiordland');
@@ -187,10 +201,19 @@ export function buildItinerary(sel, opt = {}) {
       seg('drive', join(backToTea, rev(P.tekTea), rev(P.chcTek)), 'Drive back');
       step('self', 'Drive back to Christchurch direct', 'Disembark around midday and drive about 8 hours via the Lindis Pass and Tekapo.', ['drive'], { place: 'chc', kind: 'stay' });
     } else if (k === 1) {
-      seg('drive', join(backToTea, rev(P.wanTea)), 'Drive back');
-      step('self', 'Drive to Wanaka', 'Disembark and head north over the Crown Range, about 3.5 hours.', ['drive'], { place: 'wan', kind: 'stay' });
-      seg('drive', join(rev(P.tekWan), rev(P.chcTek)), 'Drive back');
-      step('self', 'Wanaka to Christchurch', 'About 5.5 hours over the Lindis Pass and past Tekapo.', ['drive'], { place: 'chc', kind: 'stay' });
+      const r1 = opt.r1 ?? 0;
+      if (r1 === 1) {
+        seg('drive', join(backToTea, rev(P.wanTea), rev(P.hawWan)), 'Drive back');
+        step('self', 'Drive to Lake Hawea', 'Disembark and head north over the Crown Range and past Wanaka, about 4 hours.', ['drive'], { place: 'haw', kind: 'stay' });
+        seg('drive', join(P.hawTek, rev(P.chcTek)), 'Drive back');
+        step('self', 'Lake Hawea to Christchurch', 'About 5.5 hours over the Lindis Pass and past Tekapo.', ['drive'], { place: 'chc', kind: 'stay' });
+      } else {
+        seg('drive', join(backToTea, rev(P.wanTea)), 'Drive back');
+        step('self', 'Drive to Wanaka', 'Disembark and head north over the Crown Range, about 3.5 hours.', ['drive'], { place: 'wan', kind: 'stay' });
+        seg('drive', join(rev(P.tekWan), rev(P.chcTek)), 'Drive back');
+        step('self', 'Wanaka to Christchurch', 'About 5.5 hours over the Lindis Pass and past Tekapo.', ['drive'], { place: 'chc', kind: 'stay' });
+      }
+      steps[steps.length - 2].choice = { key: 'r1', sel: r1, options: RETURN_NIGHT };
     } else {
       seg('drive', join(backToTea, rev(P.wanTea)), 'Drive back');
       step('self', 'Drive to Wanaka', 'Disembark and head north over the Crown Range, about 3.5 hours.', ['drive'], { place: 'wan', kind: 'stay' });

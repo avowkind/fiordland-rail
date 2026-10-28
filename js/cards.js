@@ -67,7 +67,7 @@ function stayHTML(st, data, state) {
     ${costRow(p.hotel ? hotelRate(p.hotel, state, st.id).value : st.rates[oi], 1, !!p.hotel)}</div></article>`;
 }
 
-// Alternative cards beside a night that is a choice (the second night on the way down).
+// Alternative cards beside a night that is a choice (the second night down, the Wanaka/Hawea night back).
 function choiceHTML(ch, data) {
   const cur = ch.options[ch.sel];
   return ch.options.map((o, i) => i === ch.sel ? '' : `<article class="card alt" style="--c:var(--muted)">

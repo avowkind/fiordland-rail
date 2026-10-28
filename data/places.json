@@ -749,6 +749,30 @@
    "u": "https://nzpocketguide.com/10-best-luxury-accommodation-in-wanaka/"
   }
  },
+ "haw": {
+  "name": "Lake Hawea",
+  "lat": -44.611,
+  "lon": 169.256,
+  "stop": true,
+  "blurb": "Hawea Hotel",
+  "stay": [
+   270,
+   540,
+   700
+  ],
+  "staySpecial": "The Hawea Hotel: refurbished rooms with uninterrupted views of the lake and mountains, and a restaurant and bar. 15 minutes from Wanaka, quieter.",
+  "ideas": [
+   {
+    "n": "Hawea Hotel",
+    "u": "https://www.newzealand.com/au/plan/business/lake-hawea-hotel-4320913/",
+    "d": "1 Capell Avenue, Lake Hawea. Refurbished rooms, lake views, restaurant and bar. NZD 160–270 a night on the listing. Twin rooms not stated: ask."
+   }
+  ],
+  "ideasSrc": {
+   "l": "newzealand.com: Hawea Hotel",
+   "u": "https://www.newzealand.com/au/plan/business/lake-hawea-hotel-4320913/"
+  }
+ },
  "lug": {
   "name": "Luggate",
   "lat": -44.73,
