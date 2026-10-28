@@ -305,7 +305,7 @@
    "t": "Drive Christchurch to Fiordland",
    "op": "Rental car, collected and returned at a Christchurch city branch · kept through the cruise",
    "sp": [
-    "Choose the pace: straight through in a day each way, or stops at Lake Tekapo, Aoraki/Mt Cook, the Lindis Pass and Wanaka",
+    "Down: two nights at The Hermitage under Aoraki/Mt Cook, then Te Anau the night before the cruise. Back: a night in Wanaka",
     "The car stays with us: park at Manapouri for the RealNZ cruise (about 950 m from the visitor centre)",
     "Central Otago orchards and wineries along the way"
    ],
@@ -324,14 +324,14 @@
     ]
    ],
    "st": "est",
-   "b": "Rough estimate for the rental for the South Island loop plus fuel. One break: Tekapo going down, Wanaka coming back. Two breaks: Tekapo and Wanaka each way.",
+   "b": "Rough estimate for the rental for the South Island loop plus fuel. Hermitage down, Wanaka back: two nights at Aoraki/Mt Cook going down, Wanaka coming back. Two breaks: Tekapo and Wanaka each way.",
    "opts": [
     {
      "l": "Direct both ways",
      "v": 1200
     },
     {
-     "l": "One break each way",
+     "l": "Hermitage down, Wanaka back",
      "v": 1200
     },
     {

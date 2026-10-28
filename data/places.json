@@ -456,6 +456,41 @@
    "u": "https://pointstheory.com/where-to-stay-lake-tekapo/"
   }
  },
+ "pkj": {
+  "name": "Lake Pukaki",
+  "lat": -44.187,
+  "lon": 170.151
+ },
+ "gle": {
+  "name": "Glentanner",
+  "lat": -43.914,
+  "lon": 170.12
+ },
+ "mtc": {
+  "name": "Aoraki/Mt Cook Village",
+  "lat": -43.736,
+  "lon": 170.096,
+  "stop": true,
+  "blurb": "The Hermitage",
+  "stay": [
+   450,
+   900,
+   1100
+  ],
+  "staySpecial": "The Hermitage: historic hotel under Aoraki/Mt Cook, two nights. Ask for a Premium or Superior room with a Mt Cook view, twin beds.",
+  "ideas": [
+   {
+    "n": "The Hermitage Hotel",
+    "u": "https://www.hermitage.co.nz/",
+    "d": "Chosen. Standard, Superior (Mt Cook view), Premium (Aoraki wing, Mt Cook view) and Premium Plus (10th floor) rooms. Twin beds not confirmed: ask."
+   },
+   {
+    "n": "Kuoni: The Hermitage room types",
+    "u": "https://www.kuoni.co.uk/new-zealand/south-island/west-coast-glaciers-and-southern-alps/hotels/the-hermitage-hotel-aoraki-mount-cook",
+    "d": "Room types, restaurants and the Alpine Centre"
+   }
+  ]
+ },
  "twz": {
   "name": "Twizel",
   "lat": -44.258,

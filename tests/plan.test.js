@@ -25,16 +25,18 @@ test('helicopter only appears with the Heritage cruises (no other access)', () =
   assert.ok(buildItinerary({ ...DEF, rnw: 0, he6: 1 }).segments.some(s => s.mode === 'heli'));
 });
 
-test('default plan: one break each way, 11 nights', () => {
+test('default plan: two Hermitage nights down, Wanaka back, 12 nights', () => {
   const it = buildItinerary(DEF);
-  assert.equal(it.nights, 11);
-  assert.deepEqual(staysFrom(it, places).map(s => s.place), ['wlg', 'chc', 'tek', 'tea', 'wan', 'chc', 'wlg', 'akl']);
+  assert.equal(it.nights, 12);
+  const stays = staysFrom(it, places);
+  assert.deepEqual(stays.map(s => s.place), ['wlg', 'chc', 'mtc', 'mtc', 'tea', 'wan', 'chc', 'wlg', 'akl']);
+  assert.equal(new Set(stays.map(s => s.id)).size, stays.length);
 });
 
-test('road stops apply both ways: direct, one break, two breaks', () => {
+test('road stops: direct, Hermitage down and Wanaka back, two breaks', () => {
   const n = k => buildItinerary(DEF, { self: k }).nights;
   assert.equal(n(0), 9);
-  assert.equal(n(1), 11);
+  assert.equal(n(1), 12);
   assert.equal(n(2), 13);
 });
 
@@ -129,10 +131,11 @@ test('every card has a direction', () => {
   data.cards.forEach(c => assert.ok(['out', 'ret', 'mid', 'both'].includes(c.dir), c.id));
 });
 
-test('season check: default plan in spring needs one waiting day', () => {
-  const a = alignSeason(buildItinerary(DEF), seasons, 'spring27');
-  assert.equal(a.added, 1);
-  assert.ok(a.notes.flat().some(n => n.level === 'add'));
+test('season check: spring default needs no waiting day; two breaks each way does', () => {
+  assert.equal(alignSeason(buildItinerary(DEF), seasons, 'spring27').added, 0);
+  const w = alignSeason(buildItinerary({ ...DEF, self: 1 }, { self: 2 }), seasons, 'spring27');
+  assert.ok(w.added >= 1);
+  assert.ok(w.notes.flat().some(n => n.level === 'add'));
 });
 
 test('hidden cards: the 1-night Milford and 6-night Heritage cruises are hidden', () => {
@@ -153,7 +156,7 @@ test('Auckland nights: The Hotel Britomart rates by room, plan, month and count'
 });
 
 test('every overnight place except Auckland has hotel ideas with https links', () => {
-  for (const k of ['wlg', 'pic', 'chc', 'tek', 'wan', 'tea']) {
+  for (const k of ['wlg', 'pic', 'chc', 'tek', 'mtc', 'wan', 'tea']) {
     assert.ok(places[k].ideas?.length >= 2, k);
     places[k].ideas.forEach(i => assert.match(i.u, /^https:\/\//));
   }
@@ -178,5 +181,8 @@ test('locked-in plan: RealNZ Wanderer Tue 5 Oct 2027, Coastal Pacific, leave Wed
   assert.equal(day(it.steps.findIndex(s => s.svc === 'cruise:rnw')), '2027-10-05');
   assert.equal(new Date(a.startDate).toISOString().slice(0, 10), '2027-09-29');
   assert.equal(a.days - 1, 12);
+  assert.equal(a.added, 0);
+  assert.equal(day(it.steps.findIndex(s => /The Hermitage/.test(s.title))), '2027-10-02');
+  assert.equal(day(it.steps.findIndex(s => /to Te Anau/.test(s.title))), '2027-10-04');
   assert.ok(!it.segments.some(s => s.mode === 'heli' || s.mode === 'flight'));
 });
