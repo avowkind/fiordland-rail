@@ -4,7 +4,7 @@ import { totals, toggle, warnings, alignSeason, DOW_LABEL } from './plan.js';
 import { renderDiscovery, esc, nz } from './cards.js';
 import { initMap, drawRoute, setView, legendHTML, invalidate } from './map.js';
 
-const KEY = 'fiordland-rail-selection-v3';
+const KEY = 'fiordland-rail-selection-v4';
 const MODE_LABEL = { rail: 'Train', ferry: 'Ferry', drive: 'Road', flight: 'Flight', cruise: 'Cruise', heli: 'Helicopter' };
 
 const [timeline, options, places, seasons] = await Promise.all(
@@ -12,7 +12,7 @@ const [timeline, options, places, seasons] = await Promise.all(
 );
 options._places = places;
 
-const fresh = () => ({ sel: { ...options.defaultSelection }, opt: {}, stayOff: {}, showPrices: false });
+const fresh = () => ({ sel: { ...options.defaultSelection }, opt: {}, stayOff: {}, showPrices: false, season: options.defaultSeason || null });
 let state = fresh();
 try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.sel) state = { opt: {}, stayOff: {}, ...s }; } catch (e) { /* storage unavailable */ }
 // Hidden cards can't stay selected from an older saved selection.
@@ -29,7 +29,8 @@ function renderPlan(itin, al) {
   const placeName = k => places[k] ? places[k].name : k;
   planEl.innerHTML = itin.steps.map((s, i) => {
     const d0 = al ? al.per[i].day : s.day;
-    const wd = al ? ` · ${DOW_LABEL[al.per[i].dow]}` : '';
+    const fmtD = n => new Date(n).toLocaleDateString('en-NZ', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
+    const wd = al ? (al.startDate ? ` · ${fmtD(al.startDate + (d0 - 1) * 864e5)}` : ` · ${DOW_LABEL[al.per[i].dow]}`) : '';
     const days = s.n > 1 ? `Days ${d0}–${d0 + s.n - 1}${wd}` : `Day ${d0}${wd}`;
     const notes = al ? al.notes[i].map(n => `<p class="pnote ${n.level}">${esc(n.text)}</p>`).join('') : '';
     let night = '';
@@ -49,7 +50,8 @@ function renderPlan(itin, al) {
 function render(focusSel) {
   const r = totals(options, state, places);
   renderDiscovery(disc, options, state, r);
-  const al = state.season ? alignSeason(r.itin, seasons, state.season) : null;
+  const fixed = Object.fromEntries(options.cards.filter(c => c.date && state.sel[c.id]).map(c => [c.id, c.date]));
+  const al = state.season ? alignSeason(r.itin, seasons, state.season, fixed) : null;
   renderPlan(r.itin, al);
   renderSeason(al);
   if (mapOk) {
@@ -96,7 +98,7 @@ function renderSeason(al) {
   const status = al.blockers.length ? `<span class="chip blk">Doesn't fit</span>` : al.added ? `<span class="chip addc">+${al.added} day${al.added > 1 ? 's' : ''}</span>` : `<span class="chip pub">Lines up</span>`;
   const sf = al.sandflies ? `<p class="sandfly sf-${al.sandflies.level}">${esc(al.sandflies.note)}</p>` : '';
   box.innerHTML = `<p><b>${esc(al.label)}</b> (${esc(al.window)}) ${status}</p>${sf}
-    <p>Best day to leave Waiheke: <b>${al.startLabel}</b>. ${al.added ? `Even then, ${al.added} waiting day${al.added > 1 ? 's are' : ' is'} needed; see the amber notes below.` : 'Every train connects with no waiting days.'}</p>
+    <p>${al.startDate ? `Leave Waiheke <b>${new Date(al.startDate).toLocaleDateString('en-NZ', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</b>, worked back from the fixed sailing.` : `Best day to leave Waiheke: <b>${al.startLabel}</b>.`} ${al.added ? `Even then, ${al.added} waiting day${al.added > 1 ? 's are' : ' is'} needed; see the amber notes below.` : 'Every train connects with no waiting days.'}</p>
     ${al.blockers.filter(b => !b.startsWith('Sandflies')).length ? `<ul class="blk-list">${al.blockers.filter(b => !b.startsWith('Sandflies')).map(b => `<li>${esc(b)}</li>`).join('')}</ul>` : ''}
     <ul class="gen-list">${al.general.map(g => `<li>${esc(g)}</li>`).join('')}</ul>`;
 }

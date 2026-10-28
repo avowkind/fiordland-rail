@@ -503,41 +503,49 @@
    "g": "cruise",
    "c": "heritage",
    "n": 4,
-   "t": "Heritage Explorer, 4 nights",
-   "op": "Heritage Expeditions · 18 guests · Jan–Apr and Aug",
+   "t": "Heritage Explorer: Fiordland Explored",
+   "op": "Initial preference · 9–13 Aug 2027 · 4 nights · 18 guests · Te Anau → Dusky Sound → Doubtful Sound → Te Anau",
    "sp": [
-    "Expert naturalist guides on a true expedition yacht",
-    "Dusky Sound: Cook's 1773 Astronomer's Point, Anchor Island, Breaksea Sound",
-    "House drinks included, ensuite cabins"
+    "Expert naturalist guides on a true expedition yacht, 18 guests at most",
+    "Dusky Sound: Cook's 1773 Astronomer's Point and Anchor Island, then north through Breaksea Sound and Acheron Passage to Doubtful Sound",
+    "August: the lowest sandfly period, snow on the tops",
+    "House drinks, landing fees and transfers included; ensuite cabins"
    ],
    "sw": [
     [
      "p",
-     "The most intimate, expedition-style trip"
+     "Salvin's Twin cabin: two lower berths, fits our twin-beds rule"
+    ],
+    [
+     "p",
+     "20% off if booked before 30 October 2026",
+     "price"
     ],
     [
      "m",
-     "Helicopter leg: allowed only because there is no other way in"
+     "Helicopter in from Te Anau: allowed only because there is no other way in"
     ],
     [
      "m",
-     "2028 dates not yet published; 2027 dates are January–April and August"
+     "Fixed sailing: the rest of the trip is planned around 9 August"
+    ],
+    [
+     "m",
+     "Transfer details conflict on the page (helicopter in and coach out, or the reverse): confirm with Heritage"
     ]
    ],
-   "v": 12478,
+   "v": 9982,
    "st": "pub",
-   "b": "Salvin's Twin USD 3,670 per person (Fiordland Explored), converted at 1.70.",
+   "b": "Salvin's Twin USD 2,936 per person with the 20% offer (USD 3,670 without), for two, converted at 1 USD = 1.70 NZD. Offer: new bookings before 30 October 2026, July–September 2027 Fiordland departures; excludes landing fees and optional extras.",
    "links": [
     {
-     "l": "Heritage: Fiordland Explored",
-     "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/fiordland-explored-cruise/"
-    },
-    {
-     "l": "Heritage: Undiscovered Dusky",
-     "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/undiscovered-dusky-cruise/"
+     "l": "Heritage: Fiordland Explored, pricing",
+     "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/fiordland-explored-cruise/#pricing"
     }
    ],
-   "dir": "mid"
+   "dir": "mid",
+   "date": "2027-08-09",
+   "preferred": true
   },
   {
    "id": "he6",
@@ -588,8 +596,9 @@
   "kennel": 1,
   "ne": 1,
   "isl": 1,
-  "cp": 1,
+  "pdrive": 1,
   "self": 1,
-  "rnw": 1
- }
+  "he4": 1
+ },
+ "defaultSeason": "winter27"
 }

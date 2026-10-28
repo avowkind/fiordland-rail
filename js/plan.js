@@ -9,7 +9,7 @@ const CRUISES = {
   rnw: { name: 'RealNZ Wanderer, Doubtful Sound', nights: 2, kind: 'doubtful' },
   rnn: { name: 'RealNZ Navigator, Doubtful Sound', nights: 2, kind: 'doubtful' },
   fj1: { name: 'Fiordland Jewel, Milford Sound', nights: 1, kind: 'milford' },
-  he4: { name: 'Heritage Explorer, Dusky and Doubtful', nights: 4, kind: 'heli-dusky' },
+  he4: { name: 'Heritage Explorer: Fiordland Explored', nights: 4, kind: 'heli-dusky' },
   he6: { name: 'Heritage Explorer, Southern Fiords', nights: 6, kind: 'heli-pres' }
 };
 
@@ -140,10 +140,11 @@ export function buildItinerary(sel, opt = {}) {
       const start = c.kind === 'heli-pres' ? 'pre' : 'dus';
       seg('heli', ['tea', start], 'Helicopter (only access)');
       seg('cruise', c.kind === 'heli-pres' ? P.presCruise : P.duskyCruise, c.name);
-      seg('drive', rev(P.wilmot), 'Wilmot Pass');
+      seg('drive', rev(P.wilmot), 'Coach over Wilmot Pass');
       seg('ferry', rev(P.lake), 'Lake Manapouri');
-      endAt = 'man';
-      step(ck, c.name, `Helicopter from Te Anau to ${c.kind === 'heli-pres' ? 'Preservation Inlet' : 'Dusky Sound'}: allowed only because there is no other way in. Then ${c.nights} nights aboard with naturalist guides.`,
+      seg('drive', P.teaMan.slice().reverse(), 'Coach to Te Anau');
+      endAt = 'tea';
+      step(ck, c.name, `Park at Te Anau. Helicopter from Te Anau to ${c.kind === 'heli-pres' ? 'Preservation Inlet' : 'Dusky Sound'}: allowed only because there is no other way in. Then ${c.nights} nights aboard with naturalist guides, north through Breaksea Sound to Doubtful Sound, and the included coach back to Te Anau.`,
         ['heli', 'cruise'], { place: start, kind: 'aboard' }, c.nights);
     }
     tag('cruise:' + ck);
@@ -290,13 +291,17 @@ export const DOW_LABEL = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 // Check the itinerary against a season's service days. Tries every start weekday and picks
 // the one that needs the fewest waiting days. Returns per-step comments and blockers.
-export function alignSeason(itin, seasons, key) {
+export function alignSeason(itin, seasons, key, fixedDates = {}) {
   const S = seasons.seasons[key];
   if (!S) return null;
   const allowed = svc => {
     if (svc === 'neS') return seasons.neSouth;
     if (svc === 'neN') return seasons.neNorth;
     if (svc === 'cp') return S.cp;
+    if (svc && svc.startsWith('cruise:') && fixedDates[svc.slice(7)]) {
+      const [y, m, d] = fixedDates[svc.slice(7)].split('-').map(Number);
+      return [DOW[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]];
+    }
     return null;
   };
   const simulate = start => {
@@ -330,7 +335,7 @@ export function alignSeason(itin, seasons, key) {
       notes[i].push({ level: 'block', text: S.cpNote });
       blockers.push(S.cpNote);
     } else if (w > 0) {
-      const what = st.svc === 'cp' ? 'the Coastal Pacific' : 'the Northern Explorer';
+      const what = st.svc === 'cp' ? 'the Coastal Pacific' : st.svc.startsWith('cruise:') ? 'the fixed sailing' : 'the Northern Explorer';
       notes[i].push({ level: 'add', text: `Add ${w} day${w > 1 ? 's' : ''}: ${what} does not run on the day before; wait${where ? ' an extra night where we stayed' : ''} until ${DOW_LABEL[best.per[i].dow]}.` , where });
     }
     if (st.svc === 'cp' && S.cp.length && S.cp.length < 7) notes[i].push({ level: 'check', text: S.cpNote });
@@ -347,5 +352,12 @@ export function alignSeason(itin, seasons, key) {
       }
     }
   });
-  return { key, label: S.label, window: S.window, general: S.general, sandflies: S.sandflies, start: best.start, startLabel: DOW_LABEL[best.start], added: best.added, per: best.per, notes, blockers: [...new Set(blockers)], days: best.days };
+  // With a fixed sailing date, work out real calendar dates for every step.
+  let startDate = null;
+  const ci = itin.steps.findIndex(st => st.svc && st.svc.startsWith('cruise:') && fixedDates[st.svc.slice(7)]);
+  if (ci >= 0) {
+    const [y, m, d] = fixedDates[itin.steps[ci].svc.slice(7)].split('-').map(Number);
+    startDate = Date.UTC(y, m - 1, d) - (best.per[ci].day - 1) * 864e5;
+  }
+  return { startDate, key, label: S.label, window: S.window, general: S.general, sandflies: S.sandflies, start: best.start, startLabel: DOW_LABEL[best.start], added: best.added, per: best.per, notes, blockers: [...new Set(blockers)], days: best.days };
 }

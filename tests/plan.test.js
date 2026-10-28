@@ -7,7 +7,8 @@ const data = JSON.parse(readFileSync(new URL('../data/options.json', import.meta
 const places = JSON.parse(readFileSync(new URL('../data/places.json', import.meta.url)));
 const seasons = JSON.parse(readFileSync(new URL('../data/seasons.json', import.meta.url)));
 const st = (sel, opt = {}) => ({ sel, opt, stayOff: {} });
-const DEF = data.defaultSelection;
+const DEF = { akl: 1, kennel: 1, ne: 1, isl: 1, cp: 1, self: 1, rnw: 1 }; // reference plan used by most tests
+const PREF = data.defaultSelection;
 
 test('no flying: no flight cards and no flight segments in any plan', () => {
   assert.ok(!data.cards.some(c => ['jet', 'fly', 'xfer', 'drive'].includes(c.id)));
@@ -160,4 +161,18 @@ test('station and ferry nights list walking distance for every idea', () => {
     assert.ok(places[k].transitNote, k);
     places[k].ideas.forEach(i => assert.ok(i.walk, `${k}: ${i.n}`));
   }
+});
+
+test('initial preference: Fiordland Explored on 9 Aug 2027, winter, Picton drive', async () => {
+  assert.deepEqual(Object.keys(PREF).sort(), ['akl', 'he4', 'isl', 'kennel', 'ne', 'pdrive', 'self'].sort());
+  assert.equal(data.defaultSeason, 'winter27');
+  const he4 = data.cards.find(c => c.id === 'he4');
+  assert.equal(he4.date, '2027-08-09');
+  const it = buildItinerary(PREF);
+  const a = alignSeason(it, seasons, 'winter27', { he4: he4.date });
+  assert.equal(a.blockers.length, 0);
+  const ci = it.steps.findIndex(s => s.svc === 'cruise:he4');
+  const cruiseDay = new Date(a.startDate + (a.per[ci].day - 1) * 864e5).toISOString().slice(0, 10);
+  assert.equal(cruiseDay, '2027-08-09');
+  assert.ok(it.segments.some(s => s.mode === 'heli'));
 });
