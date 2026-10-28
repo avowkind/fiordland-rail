@@ -4,6 +4,8 @@ export const D=s=>{const[y,m,d]=s.split('-').map(Number);return Date.UTC(y,m-1,d
 const fmt=n=>new Date(n*DAY).toLocaleDateString('en-NZ',{weekday:'short',day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
 const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const WDK=['sun','mon','tue','wed','thu','fri','sat'];
+// Sentences that mention money are wrapped so the Show prices switch can hide them.
+function priceAware(t){return (String(t).match(/[^.]+(?:\.(?!\d)|$)/g)||[]).map(x=>/NZD|USD|\$\d|% off|price|discount/i.test(x)?`<span class="price">${esc(x)}</span>`:esc(x)).join('');}
 function esc(t){return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 
 export function initTimeline(data){
@@ -174,7 +176,7 @@ function showDetail(ri,ii){
   if(r.cruise && it.k!=='projected') dates+=` · ${e-s} nights`;
   if(it.d && it.d.length<7) dates+=` · runs ${it.d.map(d=>WD[d]).join(', ')}`;
   const src=it.src&&SRC[it.src]?`<p class="meta">Source: <a href="${SRC[it.src].url}" target="_blank" rel="noopener">${esc(SRC[it.src].title)}</a></p>`:'';
-  detail.innerHTML=`<h2>${esc(r.label)}${it.l?' · '+esc(it.l):''}<span class="pill" style="color:var(--${it.k==='confirmed'?r.c:(it.k==='uncertain'?'window':'muted')})">${status}</span></h2><p class="meta">${esc(dates)}</p><p>${esc(it.n||'')}</p>${src}`;
+  detail.innerHTML=`<h2>${esc(r.label)}${it.l?' · '+esc(it.l):''}<span class="pill" style="color:var(--${it.k==='confirmed'?r.c:(it.k==='uncertain'?'window':'muted')})">${status}</span></h2><p class="meta">${esc(dates)}</p><p>${priceAware(it.n||'')}</p>${src}`;
   render();
 }
 

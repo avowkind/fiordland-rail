@@ -4,7 +4,7 @@ import { totals, toggle, warnings, alignSeason, DOW_LABEL } from './plan.js';
 import { renderDiscovery, esc, nz } from './cards.js';
 import { initMap, drawRoute, setView, legendHTML, invalidate } from './map.js';
 
-const KEY = 'fiordland-rail-selection-v2';
+const KEY = 'fiordland-rail-selection-v3';
 const MODE_LABEL = { rail: 'Train', ferry: 'Ferry', drive: 'Road', flight: 'Flight', cruise: 'Cruise', heli: 'Helicopter' };
 
 const [timeline, options, places, seasons] = await Promise.all(
@@ -12,7 +12,7 @@ const [timeline, options, places, seasons] = await Promise.all(
 );
 options._places = places;
 
-const fresh = () => ({ sel: { ...options.defaultSelection }, opt: {}, stayOff: {} });
+const fresh = () => ({ sel: { ...options.defaultSelection }, opt: {}, stayOff: {}, showPrices: false });
 let state = fresh();
 try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.sel) state = { opt: {}, stayOff: {}, ...s }; } catch (e) { /* storage unavailable */ }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* ignore */ } };
@@ -54,11 +54,13 @@ function render(focusSel) {
     drawRoute(r.itin, places);
     document.getElementById('maplegend').innerHTML = legendHTML(r.itin);
   }
+  document.body.classList.toggle('noprice', !state.showPrices);
+  const pb = document.getElementById('pricesw'); pb.setAttribute('aria-checked', String(!!state.showPrices));
   document.getElementById('total').textContent = nz(r.total);
   document.getElementById('tdays').textContent = `${r.itin.days} days · ${r.itin.nights} nights`;
   const w = warnings(state, r.itin);
   document.getElementById('totalnote').textContent =
-    `${r.count} options and ${r.stayCount} overnight stays. Meals extra.` + (w.length ? ' ' + w.join(' ') : '');
+    `${r.count} options and ${r.stayCount} overnight stays.` + (w.length ? ' ' + w.join(' ') : '');
   if (focusSel) { const el = document.querySelector(focusSel); if (el) el.focus(); }
 }
 
@@ -95,8 +97,9 @@ document.querySelectorAll('[data-season]').forEach(b => b.addEventListener('clic
   state = { ...state, season: b.dataset.season || null }; save(); render();
 }));
 document.addEventListener('season-pick', e => { state = { ...state, season: e.detail }; save(); render(); });
-document.getElementById('clearsel').addEventListener('click', () => { state = { sel: {}, opt: {}, stayOff: {} }; save(); render(); });
-document.getElementById('resetsel').addEventListener('click', () => { state = fresh(); save(); render(); });
+document.getElementById('clearsel').addEventListener('click', () => { state = { ...state, sel: {}, opt: {}, stayOff: {} }; save(); render(); });
+document.getElementById('pricesw').addEventListener('click', () => { state = { ...state, showPrices: !state.showPrices }; save(); render(); });
+document.getElementById('resetsel').addEventListener('click', () => { state = { ...fresh(), showPrices: state.showPrices }; save(); render(); });
 document.querySelectorAll('[data-mview]').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('[data-mview]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
   setView(b.dataset.mview);

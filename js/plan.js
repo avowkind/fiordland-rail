@@ -36,78 +36,83 @@ const P = {
 const rev = a => [...a].reverse();
 const join = (...parts) => parts.reduce((acc, p) => acc.length && acc[acc.length - 1] === p[0] ? acc.concat(p.slice(1)) : acc.concat(p), []);
 
-export const SOUTH_STOPS = ['Direct', 'Break at Tekapo', 'Tekapo and Wanaka'];
-export const BACK_STOPS = ['Direct', 'Break at Wanaka', 'Wanaka and Tekapo'];
+export const ROAD_STOPS = ['Direct both ways', 'One break each way', 'Two breaks each way'];
 
 export function cruiseOf(sel) {
   return Object.keys(CRUISES).find(k => sel[k]) || null;
 }
-const driveCard = sel => sel.self ? 'self' : null;
-const southStops = (sel, opt) => { const k = driveCard(sel); return k ? (opt[k] ?? 1) : null; };
-const backStops = opt => opt.back ?? 2;
+const stopsOf = opt => opt.self ?? 1;
 
 // Build the day-by-day itinerary and the map route from the selection.
+// Each card covers its leg in both directions; the way home mirrors the way down.
 export function buildItinerary(sel, opt = {}) {
   const steps = [];
   const segments = [];
   const seg = (mode, path, label) => segments.push({ mode, path, label });
-  const step = (title, detail, modes, night, n = night ? 1 : 0) => steps.push({ title, detail, modes, night, n });
+  const step = (owner, title, detail, modes, night, n = night ? 1 : 0) => steps.push({ owner, title, detail, modes, night, n });
   const tag = svc => { steps[steps.length - 1].svc = svc; };
-  const who = sel.self ? 'Drive ourselves' : 'By road';
+  const k = stopsOf(opt);
 
   // Leaving home
   if (sel.akl) {
     seg('ferry', P.carFerry, 'Sealink car ferry');
     seg('drive', P.toKennels, 'Drive to Brookby, then the city');
-    step('Waiheke to Brookby, then Auckland',
+    step('akl', 'Waiheke to Brookby, then Auckland',
       'Sealink car ferry to Half Moon Bay, drop Poppy and Rua at Brookby Lodge, evening in the city.',
       ['ferry', 'drive'], { place: 'akl', kind: 'card' });
   }
 
-  // Rail south
+  // North Island south
   if (sel.ne) {
     if (!sel.akl) {
       seg('ferry', P.carFerry, 'Sealink car ferry');
       seg('drive', P.toKennels, 'Brookby, then the station');
     }
     seg('rail', P.neSouth, 'Northern Explorer');
-    step('Northern Explorer to Wellington',
+    step('ne', 'Northern Explorer to Wellington',
       (sel.akl ? 'Walk to Strand station. ' : 'Early start from Waiheke and a dawn kennel drop-off. ') +
       'Departs 07:45 (Mon, Thu, Sat); volcanic plateau and the Raurimu Spiral; arrives Wellington about 18:25.',
       ['rail'], { place: 'wlg', kind: 'stay' });
     tag('neS');
   }
-  if (sel.isl || sel.cp) {
-    if (sel.isl) seg('ferry', P.strait, 'Interislander');
-    if (sel.cp) seg('rail', P.cpSouth, 'Coastal Pacific');
-    const t = sel.isl && sel.cp ? 'Interislander and Coastal Pacific to Christchurch'
-            : sel.isl ? 'Interislander to Picton' : 'Coastal Pacific to Christchurch';
-    step(t, (sel.isl ? '08:45 sailing through Tory Channel; bags checked through. ' : '') +
-      (sel.cp ? '13:40 train along the Kaikōura coast; arrives 19:30.' : ''),
-      [sel.isl && 'ferry', sel.cp && 'rail'].filter(Boolean),
-      sel.cp ? { place: 'chc', kind: 'stay' } : null);
-    if (sel.cp) tag('cp');
+
+  // Cook Strait and Picton to Christchurch: Coastal Pacific, or drive from Picton
+  if (sel.isl) seg('ferry', P.strait, 'Interislander');
+  if (sel.cp) {
+    seg('rail', P.cpSouth, 'Coastal Pacific');
+    step('cp', sel.isl ? 'Interislander and Coastal Pacific to Christchurch' : 'Coastal Pacific to Christchurch',
+      (sel.isl ? '08:45 sailing through Tory Channel; bags checked through. ' : '') + '13:40 train along the Kaikōura coast; arrives 19:30.',
+      [sel.isl && 'ferry', 'rail'].filter(Boolean), { place: 'chc', kind: 'stay' });
+    tag('cp');
+  } else if (sel.pdrive) {
+    seg('drive', P.cpSouth, 'Drive Picton to Christchurch');
+    step('pdrive', sel.isl ? 'Interislander, then drive Picton to Christchurch' : 'Drive Picton to Christchurch',
+      (sel.isl ? '08:45 sailing, arriving Picton 12:15. ' : '') + 'Collect the rental at Picton and drive about 4.5–5 hours via Blenheim and the Kaikōura coast.',
+      [sel.isl && 'ferry', 'drive'].filter(Boolean), { place: 'chc', kind: 'stay' });
+  } else if (sel.isl) {
+    step('isl', 'Interislander to Picton', '08:45 sailing through Tory Channel.', ['ferry'], null);
   }
 
   // Christchurch to Fiordland, by road
-  const ss = southStops(sel, opt);
-  if (ss === 0) {
-    seg('drive', join(P.chcTek, P.tekTea), who);
-    step(`${who}: Christchurch to Te Anau direct`, 'One long day, about 7–8 hours, via Tekapo, the Lindis Pass and Central Otago.', ['drive'], { place: 'tea', kind: 'stay' });
-  } else if (ss === 1) {
-    seg('drive', P.chcTek, who);
-    step(`${who} to Lake Tekapo`, 'About 3 hours across the Canterbury Plains; evening under the Dark Sky Reserve.', ['drive'], { place: 'tek', kind: 'stay' });
-    seg('drive', P.tekTea, who);
-    step('Over the Lindis Pass to Te Anau', 'About 4.5 hours: Lake Pukaki, the Lindis Pass, Central Otago, Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
-  } else if (ss === 2) {
-    seg('drive', P.chcTek, who);
-    step(`${who} to Lake Tekapo`, 'About 3 hours across the Canterbury Plains; evening under the Dark Sky Reserve.', ['drive'], { place: 'tek', kind: 'stay' });
-    seg('drive', P.tekWan, who);
-    step('Lindis Pass to Wanaka', 'About 2.5 hours, with time at Lake Pukaki and Aoraki/Mt Cook views.', ['drive'], { place: 'wan', kind: 'stay' });
-    seg('drive', P.wanTea, who);
-    step('Crown Range to Te Anau', 'About 3.5 hours over the Crown Range and along Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+  if (sel.self) {
+    if (k === 0) {
+      seg('drive', join(P.chcTek, P.tekTea), 'Drive ourselves');
+      step('self', 'Drive: Christchurch to Te Anau direct', 'One long day, about 7–8 hours, via Tekapo, the Lindis Pass and Central Otago.', ['drive'], { place: 'tea', kind: 'stay' });
+    } else {
+      seg('drive', P.chcTek, 'Drive ourselves');
+      step('self', 'Drive to Lake Tekapo', 'About 3 hours across the Canterbury Plains; evening under the Dark Sky Reserve.', ['drive'], { place: 'tek', kind: 'stay' });
+      if (k === 1) {
+        seg('drive', P.tekTea, 'Drive ourselves');
+        step('self', 'Over the Lindis Pass to Te Anau', 'About 4.5 hours: Lake Pukaki, the Lindis Pass, Central Otago, Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+      } else {
+        seg('drive', P.tekWan, 'Drive ourselves');
+        step('self', 'Lindis Pass to Wanaka', 'About 2.5 hours, with time at Lake Pukaki and Aoraki/Mt Cook views.', ['drive'], { place: 'wan', kind: 'stay' });
+        seg('drive', P.wanTea, 'Drive ourselves');
+        step('self', 'Crown Range to Te Anau', 'About 3.5 hours over the Crown Range and along Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+      }
+    }
   } else if (cruiseOf(sel)) {
-    step('Christchurch to Fiordland not chosen yet', 'Tick Drive ourselves.', [], null);
+    step(null, 'Road to Fiordland not chosen yet', 'Tick Drive ourselves.', [], null);
   }
 
   // Cruise
@@ -123,13 +128,13 @@ export function buildItinerary(sel, opt = {}) {
       seg('drive', rev(P.wilmot), 'Wilmot Pass');
       seg('ferry', rev(P.lake), 'Lake Manapouri');
       endAt = 'man';
-      step(c.name, (sel.self ? 'Drive 30 min to Manapouri and park' : 'To Manapouri') + ', cross the lake and Wilmot Pass to Deep Cove, then two nights aboard: kayaking, dolphins, fur seals and penguins if we are lucky. No aircraft.',
+      step(ck, c.name, 'Drive 30 min to Manapouri and park, cross the lake and Wilmot Pass to Deep Cove, then two nights aboard: kayaking, dolphins, fur seals and penguins if we are lucky. No aircraft.',
         ['drive', 'ferry', 'cruise'], { place: 'dco', kind: 'aboard' }, c.nights);
     } else if (c.kind === 'milford') {
       seg('drive', P.milfordRd, 'Milford Road');
       seg('cruise', P.milfordSd, c.name);
       endAt = 'mil';
-      step(c.name, 'Milford Road through the Homer Tunnel, board at 15:10; sunset and sunrise under Mitre Peak. No aircraft.',
+      step(ck, c.name, 'Milford Road through the Homer Tunnel, board at 15:10; sunset and sunrise under Mitre Peak. No aircraft.',
         ['drive', 'cruise'], { place: 'mil', kind: 'aboard' }, c.nights);
     } else {
       const start = c.kind === 'heli-pres' ? 'pre' : 'dus';
@@ -138,54 +143,61 @@ export function buildItinerary(sel, opt = {}) {
       seg('drive', rev(P.wilmot), 'Wilmot Pass');
       seg('ferry', rev(P.lake), 'Lake Manapouri');
       endAt = 'man';
-      step(c.name, `Helicopter from Te Anau to ${c.kind === 'heli-pres' ? 'Preservation Inlet' : 'Dusky Sound'}: allowed only because there is no other way in. Then ${c.nights} nights aboard with naturalist guides.`,
+      step(ck, c.name, `Helicopter from Te Anau to ${c.kind === 'heli-pres' ? 'Preservation Inlet' : 'Dusky Sound'}: allowed only because there is no other way in. Then ${c.nights} nights aboard with naturalist guides.`,
         ['heli', 'cruise'], { place: start, kind: 'aboard' }, c.nights);
     }
     tag('cruise:' + ck);
   }
   const backToTea = endAt === 'man' ? rev(P.teaMan) : endAt === 'mil' ? rev(P.milfordRd) : ['tea'];
 
-  // Back to Christchurch by road
-  if (sel.back) {
-    const bs = backStops(opt);
-    const by = sel.self ? 'Drive' : 'By road';
-    if (bs === 0) {
-      seg('drive', join(backToTea, rev(P.tekTea), rev(P.chcTek)), `${by} back`);
-      step(`${by} back to Christchurch direct`, 'Disembark around midday and drive about 8 hours via the Lindis Pass and Tekapo.' + (sel.self ? ' Return the car.' : ''), ['drive'], { place: 'chc', kind: 'stay' });
-    } else if (bs === 1) {
-      seg('drive', join(backToTea, rev(P.wanTea)), `${by} back`);
-      step(`${by} to Wanaka`, 'Disembark and head north over the Crown Range, about 3.5 hours.', ['drive'], { place: 'wan', kind: 'stay' });
-      seg('drive', join(rev(P.tekWan), rev(P.chcTek)), `${by} back`);
-      step('Wanaka to Christchurch', 'About 5.5 hours over the Lindis Pass and past Tekapo.' + (sel.self ? ' Return the car.' : ''), ['drive'], { place: 'chc', kind: 'stay' });
+  // Road back to Christchurch: mirrors the drive south
+  if (sel.self && ck) {
+    if (k === 0) {
+      seg('drive', join(backToTea, rev(P.tekTea), rev(P.chcTek)), 'Drive back');
+      step('self', 'Drive back to Christchurch direct', 'Disembark around midday and drive about 8 hours via the Lindis Pass and Tekapo.', ['drive'], { place: 'chc', kind: 'stay' });
+    } else if (k === 1) {
+      seg('drive', join(backToTea, rev(P.wanTea)), 'Drive back');
+      step('self', 'Drive to Wanaka', 'Disembark and head north over the Crown Range, about 3.5 hours.', ['drive'], { place: 'wan', kind: 'stay' });
+      seg('drive', join(rev(P.tekWan), rev(P.chcTek)), 'Drive back');
+      step('self', 'Wanaka to Christchurch', 'About 5.5 hours over the Lindis Pass and past Tekapo.', ['drive'], { place: 'chc', kind: 'stay' });
     } else {
-      seg('drive', join(backToTea, rev(P.wanTea)), `${by} back`);
-      step(`${by} to Wanaka`, 'Disembark and head north over the Crown Range, about 3.5 hours.', ['drive'], { place: 'wan', kind: 'stay' });
-      seg('drive', rev(P.tekWan), `${by} back`);
-      step('Lindis Pass to Lake Tekapo', 'A gentle 2.5 hours back over the pass.', ['drive'], { place: 'tek', kind: 'stay' });
-      seg('drive', rev(P.chcTek), `${by} back`);
-      step('Tekapo to Christchurch', 'About 3 hours.' + (sel.self ? ' Return the car.' : ''), ['drive'], { place: 'chc', kind: 'stay' });
+      seg('drive', join(backToTea, rev(P.wanTea)), 'Drive back');
+      step('self', 'Drive to Wanaka', 'Disembark and head north over the Crown Range, about 3.5 hours.', ['drive'], { place: 'wan', kind: 'stay' });
+      seg('drive', rev(P.tekWan), 'Drive back');
+      step('self', 'Lindis Pass to Lake Tekapo', 'A gentle 2.5 hours back over the pass.', ['drive'], { place: 'tek', kind: 'stay' });
+      seg('drive', rev(P.chcTek), 'Drive back');
+      step('self', 'Tekapo to Christchurch', 'About 3 hours.', ['drive'], { place: 'chc', kind: 'stay' });
     }
-  } else if (ck) {
-    step('Road back to Christchurch not chosen yet', 'Tick Road back to Christchurch.', [], null);
   }
 
-  // Rail home
+  // North again: Coastal Pacific or Picton drive, ferry, Northern Explorer
+  if (sel.cp) {
+    seg('rail', rev(P.cpSouth), 'Coastal Pacific north');
+    if (sel.isl) seg('ferry', rev(P.strait), 'Interislander');
+    step('cp', sel.isl ? 'Coastal Pacific and ferry to Wellington' : 'Coastal Pacific to Picton',
+      'Coastal Pacific departs Christchurch 07:00, arrives Picton 12:40' + (sel.isl ? '; 14:15 Interislander arrives Wellington 17:45.' : '.'),
+      ['rail', sel.isl && 'ferry'].filter(Boolean), sel.isl ? { place: 'wlg', kind: 'stay' } : null);
+    tag('cp');
+  } else if (sel.pdrive) {
+    seg('drive', rev(P.cpSouth), 'Drive Christchurch to Picton');
+    step('pdrive', 'Drive Christchurch to Picton', 'About 4.5–5 hours via the Kaikōura coast. A night in Picton avoids a tight ferry connection.', ['drive'], { place: 'pic', kind: 'stay' });
+    if (sel.isl) {
+      seg('ferry', rev(P.strait), 'Interislander');
+      step('isl', 'Return the car, Interislander to Wellington', 'Drop the rental at the Picton terminal; morning sailing, about 3.5 hours.', ['ferry'], { place: 'wlg', kind: 'stay' });
+    }
+  }
   const homeLeg = () => {
     seg('drive', P.homeFromAkl, 'Collect the dogs');
     seg('ferry', rev(P.carFerry), 'Sealink home');
   };
-  if (sel.railh) {
-    seg('rail', rev(P.cpSouth), 'Coastal Pacific north');
-    seg('ferry', rev(P.strait), 'Interislander');
-    step('Coastal Pacific and ferry to Wellington', 'Coastal Pacific departs Christchurch 07:00, arrives Picton 12:40; 14:15 Interislander arrives Wellington 17:45.', ['rail', 'ferry'], { place: 'wlg', kind: 'stay' });
-    tag('cp');
+  if (sel.ne) {
     seg('rail', rev(P.neSouth), 'Northern Explorer north');
-    step('Northern Explorer to Auckland', 'Depart Wellington 07:55 (Wed, Fri, Sun), arrive Auckland Strand about 18:50–19:00. The North Island again in reverse.', ['rail'], { place: 'akl', kind: 'stay' });
+    step('ne', 'Northern Explorer to Auckland', 'Depart Wellington 07:55 (Wed, Fri, Sun), arrive Auckland Strand about 18:50–19:00. The North Island again in reverse.', ['rail'], { place: 'akl', kind: 'stay' });
     tag('neN');
     homeLeg();
-    step('Collect the dogs and home', 'Brookby Lodge, then the Sealink back to Waiheke.', ['drive', 'ferry'], null);
+    step(null, 'Collect the dogs and home', 'Brookby Lodge, then the Sealink back to Waiheke.', ['drive', 'ferry'], null);
   } else {
-    step('Rail home not chosen yet', 'Tick Rail home.', [], null);
+    step(null, 'Way home not complete', 'Tick the Northern Explorer for the trip back to Auckland.', [], null);
   }
 
   // Day numbers and stay ids
@@ -203,16 +215,13 @@ export function buildItinerary(sel, opt = {}) {
   return { steps, segments, nights, days: nights + 1 };
 }
 
-// Nights a card adds, for its badge.
-export function cardNights(card, state) {
-  if (card.id === 'self') return 1 + (state.opt[card.id] ?? card.def);
-  if (card.id === 'back') return 1 + (state.opt.back ?? card.def);
-  return card.n || 0;
+// Nights belonging to a card in the current itinerary, for its badge.
+export function cardNights(card, itin) {
+  return itin.steps.filter(s => s.owner === card.id).reduce((a, s) => a + s.n, 0);
 }
 
 export function cardValue(card, state, nights) {
   if (card.dyn === 'kennel') return KENNEL_RATE * DOGS * (nights + 1);
-  if (card.id === 'back') return 0; // included in the rental
   if (card.v !== undefined) return card.v;
   if (card.opts) return card.opts[state.opt[card.id] ?? card.def].v;
   return 0;
@@ -257,7 +266,8 @@ export function warnings(state, itin) {
   const s = state.sel, w = [];
   if (itin.days > 15) w.push('Longer than the agreed two weeks.');
   if (!s.akl && s.ne) w.push('Without the Auckland night, the 07:45 train means a very early kennel drop-off.');
-  if (s.back && !s.self) w.push('Tick Drive ourselves for the road legs.');
+  if (!s.cp && !s.pdrive) w.push('Choose the Coastal Pacific or the Picton–Christchurch drive.');
+  if (cruiseOf(s) && !s.self) w.push('Tick Drive ourselves for the road to Fiordland and back.');
   if (!cruiseOf(s)) w.push('No cruise chosen.');
   return w;
 }

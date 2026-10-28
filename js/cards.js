@@ -9,12 +9,12 @@ const band = dir => dir ? `<div class="cband" aria-label="${DIR[dir].replace(/[�
 
 function basis(c, state, nights) {
   if (c.dyn === 'kennel') return `$${KENNEL_RATE} per small dog per day (Brookby Lodge price list), × ${DOGS} dogs × ${nights + 1} days. The first day and an afternoon pick-up each count as a full day.`;
-  if (c.id === 'back') return state.sel.self ? 'Included in the rental (Drive ourselves).' : 'Tick Drive ourselves above.';
   return c.b;
 }
 
+// Price elements carry the 'price' class so the Show prices switch can hide them.
 function costRow(value, nights, published) {
-  return `<div class="cost"><b>${nz(value)}</b><span class="chips">${nights ? `<span class="chip">${nights} night${nights > 1 ? 's' : ''}</span>` : ''}<span class="chip ${published ? 'pub' : ''}">${published ? 'Published price' : 'Estimate'}</span></span></div>`;
+  return `<div class="cost"><b class="price">${nz(value)}</b><span class="chips">${nights ? `<span class="chip">${nights} night${nights > 1 ? 's' : ''}</span>` : ''}<span class="chip price ${published ? 'pub' : ''}">${published ? 'Published price' : 'Estimate'}</span></span></div>`;
 }
 
 export function renderDiscovery(root, data, state, result) {
@@ -28,17 +28,17 @@ export function renderDiscovery(root, data, state, result) {
       h += `<article class="card${on ? ' on' : ''}" style="--c:var(--${c.c})" data-id="${c.id}">${band(c.dir)}
         <label class="chead" for="cb-${c.id}"><input type="checkbox" id="cb-${c.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">${esc(c.t)}</h4><p class="cop">${esc(c.op)}</p></div></label>
         <div class="cbody"><h4>What feels special</h4><ul class="special">${c.sp.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
-        <h4>What could swing it</h4><ul class="swing">${c.sw.map(s => `<li class="${s[0]}">${esc(s[1])}</li>`).join('')}</ul></div>
-        <div class="cfoot">${c.opts ? `<div class="opts" role="group" aria-label="${c.id === 'self' || c.id === 'back' ? 'Stops' : 'Class'}">${c.opts.map((o, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(o.l)}</button>`).join('')}</div>` : ''}
-        ${costRow(cardValue(c, state, nights), cardNights(c, state), c.st === 'pub')}
-        <p class="basis">${esc(basis(c, state, nights))}</p>
+        <h4>What could swing it</h4><ul class="swing">${c.sw.map(s => `<li class="${s[0]}${s[2] === 'price' ? ' price' : ''}">${esc(s[1])}</li>`).join('')}</ul></div>
+        <div class="cfoot">${c.opts ? `<div class="opts" role="group" aria-label="${c.id === 'self' ? 'Stops' : 'Class'}">${c.opts.map((o, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(o.l)}</button>`).join('')}</div>` : ''}
+        ${costRow(cardValue(c, state, nights), cardNights(c, result.itin), c.st === 'pub')}
+        <p class="basis price">${esc(basis(c, state, nights))}</p>
         ${c.links ? `<ul class="clinks">${c.links.map(l => `<li><a href="${esc(l.u)}" target="_blank" rel="noopener noreferrer">${esc(l.l)} <span aria-hidden="true">↗</span><span class="sr"> (opens in a new window)</span></a></li>`).join('')}</ul>` : ''}</div></article>`;
     });
     h += '</div>';
   });
 
   const stays = result.stays;
-  h += `<div class="group-h"><h3>Overnight stays</h3><span>Generated from the legs ticked above. Placeholder prices per night for two. Untick any we won't pay for (staying with friends, say).</span></div><div class="cards">`;
+  h += `<div class="group-h"><h3>Overnight stays</h3><span>Generated from the legs ticked above. One card per night, with a room choice. Untick any we won't need (staying with friends, say).</span></div><div class="cards">`;
   if (!stays.length) h += `<p class="basis">Tick some legs above and the overnight stays they need will appear here.</p>`;
   stays.forEach(st => {
     const on = !(state.stayOff || {})[st.id];

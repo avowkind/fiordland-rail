@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="css/site.css">
 </head>
-<body>
+<body class="noprice">
 <div class="wrap">
   <header class="intro">
     <div class="eyebrow">Holiday 2027 · Andrew &amp; Millie · Gold Card year</div>
@@ -20,7 +20,7 @@
     <div class="intro-grid">
       <div class="intro-col">
         <h2>What this site does</h2>
-        <p>It pulls together what we've learned about the trains, the ferry and the Fiordland cruises, so we can see which dates line up, what each option feels like, and what our chosen trip would cost and take. Tick options in Discovery and the plan, map, budget and night count update as you go.</p>
+        <p>It pulls together what we've learned about the trains, the ferry and the Fiordland cruises, so we can see which dates line up, what each option feels like, and how our chosen trip fits together. Tick options in Discovery and the plan, map and night count update as you go.</p>
       </div>
       <div class="intro-col">
         <h2>What the trip is about</h2>
@@ -93,7 +93,7 @@
   <section class="disc-head" id="discovery-sec" aria-labelledby="disc-title">
     <div class="eyebrow">2 · Discovery</div>
     <h2 id="disc-title">What would make each option special?</h2>
-    <p class="lede">What each option offers, and what might tip us towards or away from it. Tick the cards for the trip we want. Costs are for the two of us, in NZD: transport, cruises, kennels, and a placeholder for every overnight stay the choices need. Meals aren't included. Prices marked "estimate" are rough guides to check with quotes; USD prices are converted at 1 USD = 1.70 NZD. The starting selection is a working plan, not an agreed one: rail south, self-drive in Fiordland, the RealNZ Wanderer, the road back and rail home. The Wanderer sails in the sandfly peak, so the cruise depends on the season decision.</p>
+    <p class="lede">What each option offers, and what might tip us towards or away from it. Tick the cards for the trip we want. Prices are hidden unless someone turns on Show prices in the bar at the bottom: costs are not part of the decision. The starting selection is a working plan, not an agreed one: rail south, self-drive in Fiordland, the RealNZ Wanderer, the road back and rail home. The Wanderer sails in the sandfly peak, so the cruise depends on the season decision.</p>
   </section>
   <div id="discovery"></div>
 
@@ -152,10 +152,10 @@
 </div>
 
 <div class="totalbar" role="status" aria-live="polite">
-  <div><div class="tl">Selected total · for two</div><div class="tv" id="total">NZD 0</div></div>
+  <div class="price"><div class="tl">Selected total · for two</div><div class="tv" id="total">NZD 0</div></div>
   <div><div class="tl">Door to door</div><div class="tv" id="tdays">0 days</div></div>
   <div class="tn" id="totalnote"></div>
-  <div class="tb-actions"><button id="resetsel" type="button">Reset to our plan</button><button id="clearsel" type="button">Clear all</button></div>
+  <div class="tb-actions"><button id="pricesw" type="button" role="switch" aria-checked="false" class="switch"><span class="knob" aria-hidden="true"></span>Show prices</button><button id="resetsel" type="button">Reset to our plan</button><button id="clearsel" type="button">Clear all</button></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>

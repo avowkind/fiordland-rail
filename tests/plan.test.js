@@ -10,8 +10,8 @@ const st = (sel, opt = {}) => ({ sel, opt, stayOff: {} });
 const DEF = data.defaultSelection;
 
 test('no flying: no flight cards and no flight segments in any plan', () => {
-  assert.ok(!data.cards.some(c => ['jet', 'fly', 'xfer'].includes(c.id)));
-  for (const opt of [{}, { self: 0, back: 0 }, { self: 2, back: 1 }]) {
+  assert.ok(!data.cards.some(c => ['jet', 'fly', 'xfer', 'drive'].includes(c.id)));
+  for (const opt of [{}, { self: 0 }, { self: 2 }]) {
     for (const sel of [DEF, { ...DEF, rnw: 0, he6: 1 }]) {
       const it = buildItinerary(sel, opt);
       assert.ok(!it.segments.some(s => s.mode === 'flight'), 'flight segment found');
@@ -24,38 +24,51 @@ test('helicopter only appears with the Heritage cruises (no other access)', () =
   assert.ok(buildItinerary({ ...DEF, rnw: 0, he6: 1 }).segments.some(s => s.mode === 'heli'));
 });
 
-test('default plan: Tekapo on the way down, Wanaka and Tekapo on the way back, 12 nights', () => {
+test('default plan: one break each way, 11 nights', () => {
   const it = buildItinerary(DEF);
-  assert.equal(it.nights, 12);
-  const stays = staysFrom(it, places).map(s => s.place);
-  assert.deepEqual(stays, ['wlg', 'chc', 'tek', 'tea', 'wan', 'tek', 'chc', 'wlg', 'akl']);
+  assert.equal(it.nights, 11);
+  assert.deepEqual(staysFrom(it, places).map(s => s.place), ['wlg', 'chc', 'tek', 'tea', 'wan', 'chc', 'wlg', 'akl']);
 });
 
-test('drive options: direct, one break or two breaks change the nights', () => {
-  const n = (self, back) => buildItinerary(DEF, { self, back }).nights;
-  assert.equal(n(0, 0), 9);
-  assert.equal(n(1, 1), 11);
-  assert.equal(n(2, 2), 13);
+test('road stops apply both ways: direct, one break, two breaks', () => {
+  const n = k => buildItinerary(DEF, { self: k }).nights;
+  assert.equal(n(0), 9);
+  assert.equal(n(1), 11);
+  assert.equal(n(2), 13);
 });
 
 test('card night badges add up to the itinerary nights', () => {
-  for (const opt of [{}, { self: 0, back: 0 }, { self: 2, back: 1 }]) {
-    const s = st(DEF, opt);
-    const sum = data.cards.filter(c => DEF[c.id]).reduce((a, c) => a + cardNights(c, s), 0);
-    assert.equal(buildItinerary(DEF, opt).nights, sum);
+  for (const sel of [DEF, { ...DEF, cp: 0, pdrive: 1 }, { ...DEF, rnw: 0, he6: 1 }]) for (const k of [0, 1, 2]) {
+    const it = buildItinerary(sel, { self: k });
+    const sum = data.cards.filter(c => sel[c.id]).reduce((a, c) => a + cardNights(c, it), 0);
+    assert.equal(sum, it.nights);
   }
 });
 
+test('Picton drive replaces the Coastal Pacific both ways and is exclusive with it', () => {
+  const s2 = toggle(data, st(DEF), 'pdrive', true);
+  assert.ok(s2.sel.pdrive && !s2.sel.cp);
+  const it = buildItinerary(s2.sel);
+  assert.ok(!it.segments.some(x => x.label.startsWith('Coastal Pacific')));
+  assert.equal(it.segments.filter(x => x.label.startsWith('Drive Picton') || x.label.startsWith('Drive Christchurch to Picton')).length, 2);
+  assert.ok(staysFrom(it, places).some(x => x.place === 'pic'));
+});
+
+test('winter with the Picton drive: no Coastal Pacific blocker', () => {
+  const a = alignSeason(buildItinerary({ ...DEF, cp: 0, pdrive: 1, rnw: 0, rnn: 1 }), seasons, 'winter27');
+  assert.ok(!a.blockers.some(b => b.includes('Coastal Pacific')));
+});
+
 test('every night is a stay, the Auckland card night, or aboard', () => {
-  for (const sel of [DEF, { ...DEF, rnw: 0, he6: 1 }, { ne: 1, cp: 1, self: 1, fj1: 1, back: 1, railh: 1 }]) {
-    const it = buildItinerary(sel, { self: 2, back: 0 });
+  for (const sel of [DEF, { ...DEF, rnw: 0, he6: 1 }, { ne: 1, cp: 1, self: 1, fj1: 1 }]) {
+    const it = buildItinerary(sel, { self: 2 });
     const counted = it.steps.reduce((a, s) => a + (s.night ? s.n : 0), 0);
     assert.equal(counted, it.nights);
   }
 });
 
 test('stays have prices and unique ids', () => {
-  const stays = staysFrom(buildItinerary(DEF, { self: 2, back: 2 }), places);
+  const stays = staysFrom(buildItinerary(DEF, { self: 2 }), places);
   stays.forEach(s => assert.equal(s.rates.length, 3, s.place));
   assert.equal(new Set(stays.map(s => s.id)).size, stays.length);
 });
@@ -63,11 +76,6 @@ test('stays have prices and unique ids', () => {
 test('kennel cost scales with trip days', () => {
   const k = data.cards.find(c => c.id === 'kennel');
   assert.equal(cardValue(k, st(DEF), 12), KENNEL_RATE * DOGS * 13);
-});
-
-test('road back is included in the rental; no chauffeured option', () => {
-  assert.ok(!data.cards.some(c => c.id === 'drive'));
-  assert.equal(cardValue(data.cards.find(c => c.id === 'back'), st(DEF), 12), 0);
 });
 
 test('choosing a cruise replaces the previous one', () => {
@@ -83,8 +91,8 @@ test('unticking a stay lowers the total but not the nights', () => {
 });
 
 test('every route waypoint exists in places', () => {
-  for (const opt of [{}, { self: 0, back: 0 }, { self: 2, back: 1 }])
-    for (const sel of [DEF, { ...DEF, rnw: 0, fj1: 1 }, { ...DEF, rnw: 0, he4: 1 }, { ...DEF, rnw: 0, he6: 1 }])
+  for (const opt of [{}, { self: 0 }, { self: 2 }])
+    for (const sel of [DEF, { ...DEF, rnw: 0, fj1: 1 }, { ...DEF, cp: 0, pdrive: 1 }, { ...DEF, rnw: 0, he4: 1 }, { ...DEF, rnw: 0, he6: 1 }])
       buildItinerary(sel, opt).segments.forEach(sg => sg.path.forEach(p => assert.ok(places[p], `missing place ${p}`)));
 });
 
@@ -108,17 +116,17 @@ test('September with the Heritage 6-night: no sandfly blocker, Coastal Pacific f
   assert.ok(a.notes.flat().some(n => n.text.includes('start date unconfirmed')));
 });
 
-test('spring rail days line up with a Wednesday start for the default plan', () => {
-  const a = alignSeason(buildItinerary(DEF), seasons, 'spring27');
-  assert.equal(a.added, 0);
-  assert.equal(a.startLabel, 'Wed');
-});
-
 test('card links are https and every rail and cruise card has one', () => {
-  ['ne', 'isl', 'cp', 'rnw', 'rnn', 'fj1', 'he4', 'he6', 'railh'].forEach(id => assert.ok(data.cards.find(x => x.id === id).links?.length, id));
+  ['ne', 'isl', 'cp', 'rnw', 'rnn', 'fj1', 'he4', 'he6'].forEach(id => assert.ok(data.cards.find(x => x.id === id).links?.length, id));
   data.cards.flatMap(c => c.links || []).forEach(l => assert.match(l.u, /^https:\/\//));
 });
 
 test('every card has a direction', () => {
   data.cards.forEach(c => assert.ok(['out', 'ret', 'mid', 'both'].includes(c.dir), c.id));
+});
+
+test('season check: default plan in spring needs one waiting day', () => {
+  const a = alignSeason(buildItinerary(DEF), seasons, 'spring27');
+  assert.equal(a.added, 1);
+  assert.ok(a.notes.flat().some(n => n.level === 'add'));
 });

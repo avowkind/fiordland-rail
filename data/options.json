@@ -7,24 +7,19 @@
   },
   {
    "id": "south",
-   "t": "Rail and ferry south",
-   "n": "Auckland to Christchurch. Tick each leg you want."
+   "t": "Rail and ferry, both ways",
+   "n": "Each card covers its leg down and back. If the Coastal Pacific is not running, swap it for the Picton–Christchurch drive."
   },
   {
    "id": "getsouth",
-   "t": "Christchurch to Fiordland",
-   "n": "By road, driving ourselves. Go direct or break the journey at good places."
+   "t": "Christchurch to Fiordland and back",
+   "n": "By road, driving ourselves. The way back mirrors the way down."
   },
   {
    "id": "cruise",
    "t": "Fiordland cruise",
    "n": "Choose one.",
    "excl": true
-  },
-  {
-   "id": "ret",
-   "t": "Getting home",
-   "n": "Road back to Christchurch, then rail north. No flying."
   }
  ],
  "cards": [
@@ -42,7 +37,7 @@
    "sw": [
     [
      "p",
-     "Drop the dogs off in daylight, with no rush for the 07:45 train"
+     "No rush for the 07:45 train"
     ],
     [
      "m",
@@ -94,7 +89,8 @@
     ],
     [
      "m",
-     "Public holidays add $16 per dog per day; peak surcharge 20 Dec to 15 Jan and at Easter"
+     "Public holidays add $16 per dog per day; peak surcharge 20 Dec to 15 Jan and at Easter",
+     "price"
     ]
    ],
    "v": 0,
@@ -114,7 +110,7 @@
    "c": "rail",
    "n": 1,
    "t": "Northern Explorer",
-   "op": "Great Journeys · Auckland Strand → Wellington · about 10.5–11 h",
+   "op": "Great Journeys · Auckland Strand ⇄ Wellington · about 10.5–11 h each way",
    "sp": [
     "A full cross-section of the North Island in one day: farmland, the King Country, the volcanic plateau and the Kāpiti Coast",
     "The Raurimu Spiral, a 1908 loop-and-tunnel climb, and the high viaducts over the plateau",
@@ -132,22 +128,22 @@
     ],
     [
      "m",
-     "Long day. Runs southbound Mon, Thu and Sat only"
+     "Southbound Mon, Thu, Sat (07:45); northbound Wed, Fri, Sun (07:55)"
     ]
    ],
    "opts": [
     {
      "l": "Scenic",
-     "v": 500
+     "v": 1000
     },
     {
      "l": "Scenic Plus",
-     "v": 1000
+     "v": 2000
     }
    ],
    "def": 1,
    "st": "est",
-   "b": "About NZD 250 / 500 per person (seat61, may be dated). Gold Card 10% off is listed for Great Journeys fares; confirm it applies here.",
+   "b": "Both ways. About NZD 250 / 500 per person each way (seat61, may be dated).",
    "links": [
     {
      "l": "Great Journeys NZ",
@@ -162,14 +158,14 @@
      "u": "https://www.seat61.com/auckland-to-wellington-by-train.htm"
     }
    ],
-   "dir": "out"
+   "dir": "both"
   },
   {
    "id": "isl",
    "g": "south",
    "c": "ferry",
    "t": "Interislander + Plus lounge",
-   "op": "Wellington → Picton · about 3.5 h",
+   "op": "Wellington ⇄ Picton · about 3.5 h each way",
    "sp": [
     "The approach through Tory Channel into Queen Charlotte Sound, the best scenery of the crossing",
     "Kaitaki Plus lounge: quieter, with food and drinks included",
@@ -178,7 +174,7 @@
    "sw": [
     [
      "p",
-     "The 08:45 sailing meets the 13:40 Coastal Pacific, so the same-day connection is easy"
+     "Southbound, the 08:45 sailing meets the 13:40 Coastal Pacific; northbound, the 07:00 train meets the 14:15 sailing"
     ],
     [
      "m",
@@ -188,16 +184,16 @@
    "opts": [
     {
      "l": "Standard",
-     "v": 140
+     "v": 280
     },
     {
      "l": "With Plus lounge",
-     "v": 300
+     "v": 600
     }
    ],
    "def": 1,
    "st": "est",
-   "b": "Fare from about NZD 60–80 per person, Plus lounge about NZD 80 per person extra (seat61).",
+   "b": "Both ways. Fare from about NZD 60–80 per person each way, Plus lounge about NZD 80 per person extra (seat61).",
    "links": [
     {
      "l": "Interislander",
@@ -208,7 +204,7 @@
      "u": "https://www.seat61.com/NewZealand.htm"
     }
    ],
-   "dir": "out"
+   "dir": "both"
   },
   {
    "id": "cp",
@@ -216,7 +212,7 @@
    "c": "rail",
    "n": 1,
    "t": "Coastal Pacific",
-   "op": "Great Journeys · Picton → Christchurch · about 5 h 20",
+   "op": "Great Journeys · Picton ⇄ Christchurch · about 5 h 20 each way",
    "sp": [
     "Through Marlborough wine country, then right along the Kaikōura coast where the mountains meet the sea",
     "Seals on the rocks and the chance of seeing whales offshore",
@@ -225,34 +221,26 @@
    "sw": [
     [
      "p",
-     "Leaves Picton at 13:40: a gentle afternoon train"
-    ],
-    [
-     "p",
-     "Gold Card 10% off Scenic and Scenic Plus (published)"
+     "Southbound leaves Picton 13:40, arrives 19:30; northbound leaves Christchurch 07:00, arrives 12:40"
     ],
     [
      "m",
-     "Runs Thu–Sun in spring and not at all May–August"
-    ],
-    [
-     "m",
-     "Arrives Christchurch 19:30"
+     "Runs Thu–Sun in spring and not at all May–August: use the Picton drive instead"
     ]
    ],
    "opts": [
     {
      "l": "Scenic",
-     "v": 440
+     "v": 880
     },
     {
      "l": "Scenic Plus",
-     "v": 1000
+     "v": 2000
     }
    ],
    "def": 1,
    "st": "pub",
-   "b": "From NZD 219 per person (Great Journeys); Scenic Plus about NZD 499 per person (seat61).",
+   "b": "Both ways. From NZD 219 per person each way (Great Journeys); Scenic Plus about NZD 499 per person each way (seat61).",
    "links": [
     {
      "l": "Great Journeys: Coastal Pacific",
@@ -267,17 +255,55 @@
      "u": "https://www.seat61.com/NewZealand.htm"
     }
    ],
-   "dir": "out"
+   "dir": "both",
+   "excl": "picchc"
+  },
+  {
+   "id": "pdrive",
+   "g": "south",
+   "c": "window",
+   "dir": "both",
+   "excl": "picchc",
+   "t": "Drive Picton ⇄ Christchurch",
+   "op": "Rental collected and returned at Picton, kept for the whole South Island · about 4.5–5 h each way",
+   "sp": [
+    "The coast road past Kaikōura: seals on the rocks and mountains dropping to the sea",
+    "Marlborough vineyards around Blenheim",
+    "Works in any season, including when the Coastal Pacific is not running"
+   ],
+   "sw": [
+    [
+     "p",
+     "Use this when the southern rail is not available"
+    ],
+    [
+     "m",
+     "One of us drives instead of watching from the train"
+    ],
+    [
+     "m",
+     "On the way home, a night in Picton before the morning ferry"
+    ]
+   ],
+   "v": 400,
+   "st": "est",
+   "b": "Rough estimate: extra rental days for collecting at Picton instead of Christchurch, plus fuel.",
+   "links": [
+    {
+     "l": "Interislander",
+     "u": "https://www.interislander.co.nz/"
+    }
+   ]
   },
   {
    "id": "self",
    "g": "getsouth",
    "c": "window",
    "t": "Drive ourselves",
-   "op": "Rental car, collected and returned in Christchurch · kept through the cruise",
+   "op": "Rental car · Christchurch to Fiordland and back, kept through the cruise",
    "sp": [
-    "Choose the pace: straight through in a day, or stops at Lake Tekapo, Aoraki/Mt Cook, the Lindis Pass and Wanaka",
-    "The car stays with us: park at Manapouri for the RealNZ cruise (about 950 m from the visitor centre) and drive back north afterwards",
+    "Choose the pace: straight through in a day each way, or stops at Lake Tekapo, Aoraki/Mt Cook, the Lindis Pass and Wanaka",
+    "The car stays with us: park at Manapouri for the RealNZ cruise (about 950 m from the visitor centre)",
     "Central Otago orchards and wineries along the way"
    ],
    "sw": [
@@ -291,22 +317,22 @@
     ],
     [
      "m",
-     "Direct means one long day of about 7–8 hours to Te Anau"
+     "Direct means one long day of about 7–8 hours each way"
     ]
    ],
    "st": "est",
-   "b": "Rough estimate for a rental for the whole South Island loop (about 8–10 days) plus fuel. Overnight stays are priced separately below.",
+   "b": "Rough estimate for the rental for the South Island loop plus fuel. One break: Tekapo going down, Wanaka coming back. Two breaks: Tekapo and Wanaka each way.",
    "opts": [
     {
-     "l": "Direct",
+     "l": "Direct both ways",
      "v": 1200
     },
     {
-     "l": "Break at Tekapo",
+     "l": "One break each way",
      "v": 1200
     },
     {
-     "l": "Tekapo and Wanaka",
+     "l": "Two breaks each way",
      "v": 1200
     }
    ],
@@ -317,7 +343,7 @@
      "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
     }
    ],
-   "dir": "out"
+   "dir": "both"
   },
   {
    "id": "rnw",
@@ -379,7 +405,7 @@
    "sp": [
     "Same route as the Wanderer on a larger boat",
     "Private twin cabins with ensuites",
-    "Winter: snow on the tops, no sandflies, few other visitors"
+    "Winter: snow on the tops, fewer sandflies (never none), few other visitors"
    ],
    "sw": [
     [
@@ -524,7 +550,8 @@
     ],
     [
      "p",
-     "20% off if booked before 30 Oct 2026"
+     "20% off if booked before 30 Oct 2026",
+     "price"
     ],
     [
      "m",
@@ -545,93 +572,6 @@
     }
    ],
    "dir": "mid"
-  },
-  {
-   "id": "back",
-   "g": "ret",
-   "c": "window",
-   "dir": "ret",
-   "t": "Road back to Christchurch",
-   "op": "After the cruise, in the rental car",
-   "sp": [
-    "Back through Wanaka and over the Lindis Pass, or straight through in a day",
-    "Return to Christchurch for the train north"
-   ],
-   "sw": [
-    [
-     "p",
-     "Direct gets us back in one long day of about 8 hours"
-    ],
-    [
-     "p",
-     "Breaking at Wanaka and Tekapo makes it two or three easy days"
-    ],
-    [
-     "m",
-     "Each break adds a night"
-    ]
-   ],
-   "opts": [
-    {
-     "l": "Direct",
-     "v": 0
-    },
-    {
-     "l": "Break at Wanaka",
-     "v": 0
-    },
-    {
-     "l": "Wanaka and Tekapo",
-     "v": 0
-    }
-   ],
-   "def": 2,
-   "st": "est",
-   "b": "Included in the rental (Drive ourselves)."
-  },
-  {
-   "id": "railh",
-   "g": "ret",
-   "c": "rail",
-   "n": 2,
-   "t": "Rail home",
-   "op": "Coastal Pacific, Interislander and Northern Explorer north, from Christchurch",
-   "sp": [
-    "See everything again in the other direction, with a different light and a different season",
-    "Another Scenic Plus day or two to relax"
-   ],
-   "sw": [
-    [
-     "p",
-     "Train the full length, both ways"
-    ],
-    [
-     "p",
-     "The Coastal Pacific leaves Christchurch at 07:00 and reaches Picton at 12:40, meeting the 14:15 ferry"
-    ],
-    [
-     "m",
-     "In spring, the Coastal Pacific runs Thu–Sun only; not at all May–August"
-    ]
-   ],
-   "v": 2300,
-   "st": "est",
-   "b": "Scenic Plus on both trains (about 1,000 + 1,000) and the ferry with the Plus lounge (300).",
-   "links": [
-    {
-     "l": "Great Journeys: Coastal Pacific",
-     "u": "https://greatjourneysnz.com/scenic-trains/coastal-pacific"
-    },
-    {
-     "l": "Great Journeys timetables",
-     "u": "https://www.greatjourneysnz.com/scenic-trains/train-timetables/"
-    },
-    {
-     "l": "Interislander",
-     "u": "https://www.interislander.co.nz/"
-    }
-   ],
-   "dir": "ret"
   }
  ],
  "defaultSelection": {
@@ -641,8 +581,6 @@
   "isl": 1,
   "cp": 1,
   "self": 1,
-  "rnw": 1,
-  "back": 1,
-  "railh": 1
+  "rnw": 1
  }
 }

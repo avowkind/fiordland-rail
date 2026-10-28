@@ -5,7 +5,7 @@ Planner for Andrew and Millie's Holiday 2027: rail through both islands of New Z
 The site has four sections:
 
 1. **Timeline**: when the Northern Explorer, Interislander, Coastal Pacific and the Fiordland cruises run, alongside school holidays, tourist peaks and sandfly season.
-2. **Discovery**: an option card for each leg, saying what makes it special and what might swing the choice. Ticking a card adds its cost, and any overnight stays it needs, to the running total.
+2. **Discovery**: an option card for each leg, saying what makes it special and what might swing the choice. Each card covers its leg in both directions, since the way home mirrors the way down. Ticking a card adds the overnight stays it needs to the plan. Prices are hidden unless the Show prices switch is turned on.
 3. **Chosen plan**: a day-by-day itinerary built from the ticked cards, beside a route map (Leaflet with OpenStreetMap tiles).
 4. **Things to think about**: loose ends that aren't costed yet.
 

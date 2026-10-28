@@ -1,64 +1,396 @@
 {
  "_note": "Coordinates are approximate. stop=true places get a map marker; others are route waypoints. stay = placeholder NZD per night for two: [comfortable twin, two rooms, luxury lodge].",
- "kpt": {"name": "Kennedy Point, Waiheke", "lat": -36.812, "lon": 175.062, "stop": true, "blurb": "Sealink car ferry terminal"},
- "mat": {"name": "Matiatia, Waiheke", "lat": -36.781, "lon": 174.990, "stop": true, "blurb": "Fullers passenger ferry"},
- "hmb": {"name": "Half Moon Bay", "lat": -36.884, "lon": 174.900, "stop": true, "blurb": "Sealink car ferry, east Auckland"},
- "bro": {"name": "Brookby Lodge", "lat": -36.995, "lon": 174.985, "stop": true, "blurb": "Poppy and Rua's kennels"},
- "akl": {"name": "Auckland", "lat": -36.849, "lon": 174.776, "stop": true, "blurb": "Strand station, start of the Northern Explorer", "stay": [300, 600, 650], "staySpecial": "Near Strand station"},
- "pap": {"name": "Papakura", "lat": -37.064, "lon": 174.944},
- "ham": {"name": "Hamilton", "lat": -37.787, "lon": 175.279},
- "oto": {"name": "Otorohanga", "lat": -38.186, "lon": 175.210},
- "tmn": {"name": "Taumarunui", "lat": -38.883, "lon": 175.262},
- "rau": {"name": "Raurimu Spiral", "lat": -39.118, "lon": 175.395, "label": true},
- "npk": {"name": "National Park", "lat": -39.180, "lon": 175.401},
- "ohk": {"name": "Ohakune", "lat": -39.418, "lon": 175.400},
- "tai": {"name": "Taihape", "lat": -39.676, "lon": 175.797},
- "mtn": {"name": "Marton", "lat": -40.070, "lon": 175.380},
- "pmr": {"name": "Palmerston North", "lat": -40.357, "lon": 175.611},
- "ppm": {"name": "Paraparaumu", "lat": -40.915, "lon": 175.006},
- "wlg": {"name": "Wellington", "lat": -41.279, "lon": 174.781, "stop": true, "blurb": "Interislander terminal", "stay": [280, 560, 600], "staySpecial": "Waterfront hotel near the station and ferry terminal"},
- "cks": {"name": "Cook Strait", "lat": -41.300, "lon": 174.550},
- "tor": {"name": "Tory Channel", "lat": -41.214, "lon": 174.318, "label": true},
- "qcs": {"name": "Queen Charlotte Sound", "lat": -41.255, "lon": 174.120},
- "pic": {"name": "Picton", "lat": -41.290, "lon": 174.007, "stop": true, "blurb": "Ferry meets the Coastal Pacific"},
- "blm": {"name": "Blenheim", "lat": -41.514, "lon": 173.960},
- "sed": {"name": "Seddon", "lat": -41.670, "lon": 174.070},
- "kai": {"name": "Kaikōura", "lat": -42.400, "lon": 173.681, "label": true},
- "chv": {"name": "Cheviot", "lat": -42.810, "lon": 173.270},
- "wpa": {"name": "Waipara", "lat": -43.060, "lon": 172.750},
- "chc": {"name": "Christchurch", "lat": -43.540, "lon": 172.600, "stop": true, "blurb": "Coastal Pacific terminus", "stay": [250, 500, 550], "staySpecial": "Central city, close to Addington station"},
- "ash": {"name": "Ashburton", "lat": -43.905, "lon": 171.746},
- "ger": {"name": "Geraldine", "lat": -44.090, "lon": 171.243},
- "fai": {"name": "Fairlie", "lat": -44.098, "lon": 170.830},
- "tek": {"name": "Lake Tekapo", "lat": -44.004, "lon": 170.477, "stop": true, "blurb": "Dark Sky Reserve", "stay": [350, 700, 900], "staySpecial": "Stargazing, Church of the Good Shepherd; Aoraki/Mt Cook an hour away"},
- "twz": {"name": "Twizel", "lat": -44.258, "lon": 170.100},
- "oma": {"name": "Omarama", "lat": -44.487, "lon": 169.968},
- "lin": {"name": "Lindis Pass", "lat": -44.586, "lon": 169.650, "label": true},
- "tar": {"name": "Tarras", "lat": -44.840, "lon": 169.410},
- "cro": {"name": "Cromwell", "lat": -45.038, "lon": 169.198},
- "arj": {"name": "Arrow Junction", "lat": -44.985, "lon": 168.830},
- "zqn": {"name": "Queenstown", "lat": -45.031, "lon": 168.663, "stop": true, "blurb": "Lake Wakatipu", "stay": [350, 700, 1200], "staySpecial": "Lakeside; good dining after the cruise"},
- "kin": {"name": "Kingston", "lat": -45.333, "lon": 168.716},
- "mos": {"name": "Mossburn", "lat": -45.671, "lon": 168.237},
- "tea": {"name": "Te Anau", "lat": -45.414, "lon": 167.718, "stop": true, "blurb": "Gateway to Fiordland", "stay": [280, 560, 800], "staySpecial": "Lakefront, 30 min from Manapouri; glow-worm caves across the lake"},
- "man": {"name": "Manapouri", "lat": -45.565, "lon": 167.613, "stop": true, "blurb": "RealNZ visitor centre; overnight parking about 950 m away"},
- "lm1": {"name": "Lake Manapouri", "lat": -45.545, "lon": 167.450},
- "wam": {"name": "West Arm", "lat": -45.508, "lon": 167.335},
- "wil": {"name": "Wilmot Pass", "lat": -45.470, "lon": 167.240},
- "dco": {"name": "Deep Cove", "lat": -45.455, "lon": 167.155, "stop": true, "blurb": "Doubtful Sound boarding point"},
- "ds1": {"name": "Doubtful Sound", "lat": -45.400, "lon": 167.050, "label": true},
- "ds2": {"name": "Doubtful Sound", "lat": -45.320, "lon": 166.970},
- "dsm": {"name": "Doubtful Sound entrance", "lat": -45.250, "lon": 166.880},
- "tad": {"name": "Te Anau Downs", "lat": -45.183, "lon": 167.828},
- "kfl": {"name": "Knobs Flat", "lat": -44.995, "lon": 168.017},
- "hom": {"name": "Homer Tunnel", "lat": -44.763, "lon": 168.075},
- "mil": {"name": "Milford Sound", "lat": -44.672, "lon": 167.927, "stop": true, "blurb": "Fiordland Jewel overnight"},
- "mmo": {"name": "Milford Sound entrance", "lat": -44.580, "lon": 167.790},
- "brk": {"name": "Breaksea Sound", "lat": -45.580, "lon": 166.700, "label": true},
- "dus": {"name": "Dusky Sound", "lat": -45.730, "lon": 166.550, "stop": true, "blurb": "Cook's 1773 anchorage"},
- "pre": {"name": "Preservation Inlet", "lat": -46.080, "lon": 166.650, "stop": true, "blurb": "Gold-rush history, Puysegur Point"},
- "car": {"name": "Cardrona", "lat": -44.873, "lon": 169.007},
- "crn": {"name": "Crown Range", "lat": -44.975, "lon": 168.940},
- "wan": {"name": "Wanaka", "lat": -44.700, "lon": 169.132, "stop": true, "blurb": "Lake Wanaka", "stay": [320, 640, 900], "staySpecial": "Lake Wanaka, a quieter alternative to Queenstown"},
- "lug": {"name": "Luggate", "lat": -44.730, "lon": 169.280}
+ "kpt": {
+  "name": "Kennedy Point, Waiheke",
+  "lat": -36.812,
+  "lon": 175.062,
+  "stop": true,
+  "blurb": "Sealink car ferry terminal"
+ },
+ "mat": {
+  "name": "Matiatia, Waiheke",
+  "lat": -36.781,
+  "lon": 174.99,
+  "stop": true,
+  "blurb": "Fullers passenger ferry"
+ },
+ "hmb": {
+  "name": "Half Moon Bay",
+  "lat": -36.884,
+  "lon": 174.9,
+  "stop": true,
+  "blurb": "Sealink car ferry, east Auckland"
+ },
+ "bro": {
+  "name": "Brookby Lodge",
+  "lat": -36.995,
+  "lon": 174.985,
+  "stop": true,
+  "blurb": "Poppy and Rua's kennels"
+ },
+ "akl": {
+  "name": "Auckland",
+  "lat": -36.849,
+  "lon": 174.776,
+  "stop": true,
+  "blurb": "Strand station, start of the Northern Explorer",
+  "stay": [
+   300,
+   600,
+   650
+  ],
+  "staySpecial": "Near Strand station"
+ },
+ "pap": {
+  "name": "Papakura",
+  "lat": -37.064,
+  "lon": 174.944
+ },
+ "ham": {
+  "name": "Hamilton",
+  "lat": -37.787,
+  "lon": 175.279
+ },
+ "oto": {
+  "name": "Otorohanga",
+  "lat": -38.186,
+  "lon": 175.21
+ },
+ "tmn": {
+  "name": "Taumarunui",
+  "lat": -38.883,
+  "lon": 175.262
+ },
+ "rau": {
+  "name": "Raurimu Spiral",
+  "lat": -39.118,
+  "lon": 175.395,
+  "label": true
+ },
+ "npk": {
+  "name": "National Park",
+  "lat": -39.18,
+  "lon": 175.401
+ },
+ "ohk": {
+  "name": "Ohakune",
+  "lat": -39.418,
+  "lon": 175.4
+ },
+ "tai": {
+  "name": "Taihape",
+  "lat": -39.676,
+  "lon": 175.797
+ },
+ "mtn": {
+  "name": "Marton",
+  "lat": -40.07,
+  "lon": 175.38
+ },
+ "pmr": {
+  "name": "Palmerston North",
+  "lat": -40.357,
+  "lon": 175.611
+ },
+ "ppm": {
+  "name": "Paraparaumu",
+  "lat": -40.915,
+  "lon": 175.006
+ },
+ "wlg": {
+  "name": "Wellington",
+  "lat": -41.279,
+  "lon": 174.781,
+  "stop": true,
+  "blurb": "Interislander terminal",
+  "stay": [
+   280,
+   560,
+   600
+  ],
+  "staySpecial": "Waterfront hotel near the station and ferry terminal"
+ },
+ "cks": {
+  "name": "Cook Strait",
+  "lat": -41.3,
+  "lon": 174.55
+ },
+ "tor": {
+  "name": "Tory Channel",
+  "lat": -41.214,
+  "lon": 174.318,
+  "label": true
+ },
+ "qcs": {
+  "name": "Queen Charlotte Sound",
+  "lat": -41.255,
+  "lon": 174.12
+ },
+ "pic": {
+  "name": "Picton",
+  "lat": -41.29,
+  "lon": 174.007,
+  "stop": true,
+  "blurb": "Ferry meets the Coastal Pacific",
+  "stay": [
+   250,
+   500,
+   600
+  ],
+  "staySpecial": "Waterfront, a short walk from the ferry terminal"
+ },
+ "blm": {
+  "name": "Blenheim",
+  "lat": -41.514,
+  "lon": 173.96
+ },
+ "sed": {
+  "name": "Seddon",
+  "lat": -41.67,
+  "lon": 174.07
+ },
+ "kai": {
+  "name": "Kaikōura",
+  "lat": -42.4,
+  "lon": 173.681,
+  "label": true
+ },
+ "chv": {
+  "name": "Cheviot",
+  "lat": -42.81,
+  "lon": 173.27
+ },
+ "wpa": {
+  "name": "Waipara",
+  "lat": -43.06,
+  "lon": 172.75
+ },
+ "chc": {
+  "name": "Christchurch",
+  "lat": -43.54,
+  "lon": 172.6,
+  "stop": true,
+  "blurb": "Coastal Pacific terminus",
+  "stay": [
+   250,
+   500,
+   550
+  ],
+  "staySpecial": "Central city, close to Addington station"
+ },
+ "ash": {
+  "name": "Ashburton",
+  "lat": -43.905,
+  "lon": 171.746
+ },
+ "ger": {
+  "name": "Geraldine",
+  "lat": -44.09,
+  "lon": 171.243
+ },
+ "fai": {
+  "name": "Fairlie",
+  "lat": -44.098,
+  "lon": 170.83
+ },
+ "tek": {
+  "name": "Lake Tekapo",
+  "lat": -44.004,
+  "lon": 170.477,
+  "stop": true,
+  "blurb": "Dark Sky Reserve",
+  "stay": [
+   350,
+   700,
+   900
+  ],
+  "staySpecial": "Stargazing, Church of the Good Shepherd; Aoraki/Mt Cook an hour away"
+ },
+ "twz": {
+  "name": "Twizel",
+  "lat": -44.258,
+  "lon": 170.1
+ },
+ "oma": {
+  "name": "Omarama",
+  "lat": -44.487,
+  "lon": 169.968
+ },
+ "lin": {
+  "name": "Lindis Pass",
+  "lat": -44.586,
+  "lon": 169.65,
+  "label": true
+ },
+ "tar": {
+  "name": "Tarras",
+  "lat": -44.84,
+  "lon": 169.41
+ },
+ "cro": {
+  "name": "Cromwell",
+  "lat": -45.038,
+  "lon": 169.198
+ },
+ "arj": {
+  "name": "Arrow Junction",
+  "lat": -44.985,
+  "lon": 168.83
+ },
+ "zqn": {
+  "name": "Queenstown",
+  "lat": -45.031,
+  "lon": 168.663,
+  "stop": true,
+  "blurb": "Lake Wakatipu",
+  "stay": [
+   350,
+   700,
+   1200
+  ],
+  "staySpecial": "Lakeside; good dining after the cruise"
+ },
+ "kin": {
+  "name": "Kingston",
+  "lat": -45.333,
+  "lon": 168.716
+ },
+ "mos": {
+  "name": "Mossburn",
+  "lat": -45.671,
+  "lon": 168.237
+ },
+ "tea": {
+  "name": "Te Anau",
+  "lat": -45.414,
+  "lon": 167.718,
+  "stop": true,
+  "blurb": "Gateway to Fiordland",
+  "stay": [
+   280,
+   560,
+   800
+  ],
+  "staySpecial": "Lakefront, 30 min from Manapouri; glow-worm caves across the lake"
+ },
+ "man": {
+  "name": "Manapouri",
+  "lat": -45.565,
+  "lon": 167.613,
+  "stop": true,
+  "blurb": "RealNZ visitor centre; overnight parking about 950 m away"
+ },
+ "lm1": {
+  "name": "Lake Manapouri",
+  "lat": -45.545,
+  "lon": 167.45
+ },
+ "wam": {
+  "name": "West Arm",
+  "lat": -45.508,
+  "lon": 167.335
+ },
+ "wil": {
+  "name": "Wilmot Pass",
+  "lat": -45.47,
+  "lon": 167.24
+ },
+ "dco": {
+  "name": "Deep Cove",
+  "lat": -45.455,
+  "lon": 167.155,
+  "stop": true,
+  "blurb": "Doubtful Sound boarding point"
+ },
+ "ds1": {
+  "name": "Doubtful Sound",
+  "lat": -45.4,
+  "lon": 167.05,
+  "label": true
+ },
+ "ds2": {
+  "name": "Doubtful Sound",
+  "lat": -45.32,
+  "lon": 166.97
+ },
+ "dsm": {
+  "name": "Doubtful Sound entrance",
+  "lat": -45.25,
+  "lon": 166.88
+ },
+ "tad": {
+  "name": "Te Anau Downs",
+  "lat": -45.183,
+  "lon": 167.828
+ },
+ "kfl": {
+  "name": "Knobs Flat",
+  "lat": -44.995,
+  "lon": 168.017
+ },
+ "hom": {
+  "name": "Homer Tunnel",
+  "lat": -44.763,
+  "lon": 168.075
+ },
+ "mil": {
+  "name": "Milford Sound",
+  "lat": -44.672,
+  "lon": 167.927,
+  "stop": true,
+  "blurb": "Fiordland Jewel overnight"
+ },
+ "mmo": {
+  "name": "Milford Sound entrance",
+  "lat": -44.58,
+  "lon": 167.79
+ },
+ "brk": {
+  "name": "Breaksea Sound",
+  "lat": -45.58,
+  "lon": 166.7,
+  "label": true
+ },
+ "dus": {
+  "name": "Dusky Sound",
+  "lat": -45.73,
+  "lon": 166.55,
+  "stop": true,
+  "blurb": "Cook's 1773 anchorage"
+ },
+ "pre": {
+  "name": "Preservation Inlet",
+  "lat": -46.08,
+  "lon": 166.65,
+  "stop": true,
+  "blurb": "Gold-rush history, Puysegur Point"
+ },
+ "car": {
+  "name": "Cardrona",
+  "lat": -44.873,
+  "lon": 169.007
+ },
+ "crn": {
+  "name": "Crown Range",
+  "lat": -44.975,
+  "lon": 168.94
+ },
+ "wan": {
+  "name": "Wanaka",
+  "lat": -44.7,
+  "lon": 169.132,
+  "stop": true,
+  "blurb": "Lake Wanaka",
+  "stay": [
+   320,
+   640,
+   900
+  ],
+  "staySpecial": "Lake Wanaka, a quieter alternative to Queenstown"
+ },
+ "lug": {
+  "name": "Luggate",
+  "lat": -44.73,
+  "lon": 169.28
+ }
 }
