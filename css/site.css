@@ -219,3 +219,8 @@ body.noprice .price{display:none!important}
 .ideas a{color:var(--heritage)}
 .ideas li .walk{font-size:12px;font-weight:600;color:var(--heritage)}
 .ideas li .walk.far{color:var(--rail)}
+
+.card.alt{border-style:dashed;opacity:.92}
+.card.alt .chead{cursor:default}
+.choose{font:inherit;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--fg);background:var(--surface);color:var(--fg);cursor:pointer}
+.choose:hover{background:var(--fg);color:var(--surface)}

@@ -522,6 +522,40 @@
   "lat": -44.985,
   "lon": 168.83
  },
+ "arr": {
+  "name": "Arrowtown",
+  "lat": -44.942,
+  "lon": 168.832,
+  "stop": true,
+  "blurb": "Gold-rush village",
+  "stay": [
+   350,
+   700,
+   1000
+  ],
+  "staySpecial": "Historic gold-rush village: the Chinese settlement, the Arrow River walk, good small restaurants; 20 minutes from Queenstown.",
+  "ideas": [
+   {
+    "n": "Millbrook Resort",
+    "u": "https://www.queenstownnz.co.nz/stories/post/great-places-to-stay-in-arrowtown/",
+    "d": "Five-star resort just outside the village: golf, five restaurants, five accommodation types"
+   },
+   {
+    "n": "Arrowtown House Boutique Hotel",
+    "u": "https://www.queenstownnz.co.nz/stories/post/great-places-to-stay-in-arrowtown/",
+    "d": "Five suites in the village centre, some with private outdoor areas; breakfast included"
+   },
+   {
+    "n": "Arrowtown Lodge",
+    "u": "https://www.queenstownnz.co.nz/stories/post/great-places-to-stay-in-arrowtown/",
+    "d": "Stone cottages in gardens a few minutes' walk from the main street; farm breakfast"
+   }
+  ],
+  "ideasSrc": {
+   "l": "Destination Queenstown: great places to stay in Arrowtown",
+   "u": "https://www.queenstownnz.co.nz/stories/post/great-places-to-stay-in-arrowtown/"
+  }
+ },
  "zqn": {
   "name": "Queenstown",
   "lat": -45.031,

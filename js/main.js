@@ -85,6 +85,11 @@ disc.addEventListener('change', e => {
   save(); render('#cb-' + CSS.escape(id));
 });
 disc.addEventListener('click', e => {
+  const ch = e.target.closest('[data-choice]');
+  if (ch) {
+    state = { ...state, opt: { ...state.opt, [ch.dataset.choice]: Number(ch.dataset.val) } };
+    save(); render(`[data-choice="${CSS.escape(ch.dataset.choice)}"]`); return;
+  }
   const b = e.target.closest('[data-opt]'); if (!b) return;
   const id = b.closest('.card').dataset.id;
   state = { ...state, opt: { ...state.opt, [id]: Number(b.dataset.opt) } };

@@ -204,3 +204,18 @@ test('discovery sequence: legs and stays in trip order, each card once', () => {
   const stays = staysFrom(it, places).map(s => s.id);
   assert.deepEqual(groups.map(g => g.stay).filter(Boolean), stays);
 });
+
+test('second night on the way down: Hermitage, Wanaka or Arrowtown, same dates either way', () => {
+  const places2 = o => staysFrom(buildItinerary(PREF, { n2: o }), places).map(s => s.place).slice(0, 5);
+  assert.deepEqual(places2(0), ['wlg', 'chc', 'mtc', 'mtc', 'tea']);
+  assert.deepEqual(places2(1), ['wlg', 'chc', 'mtc', 'wan', 'tea']);
+  assert.deepEqual(places2(2), ['wlg', 'chc', 'mtc', 'arr', 'tea']);
+  for (const o of [0, 1, 2]) {
+    const it = buildItinerary(PREF, { n2: o });
+    assert.equal(it.nights, 12);
+    const g = sequence(it, data.cards, { sel: PREF }).groups.find(x => x.choice);
+    assert.equal(g.choice.sel, o);
+    assert.equal(it.steps[g.step].night.place, ['mtc', 'wan', 'arr'][o]);
+    assert.ok(places.arr && places[g.choice.options[o].place]);
+  }
+});

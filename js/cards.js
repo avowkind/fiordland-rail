@@ -67,6 +67,15 @@ function stayHTML(st, data, state) {
     ${costRow(p.hotel ? hotelRate(p.hotel, state, st.id).value : st.rates[oi], 1, !!p.hotel)}</div></article>`;
 }
 
+// Alternative cards beside a night that is a choice (the second night on the way down).
+function choiceHTML(ch, data) {
+  const cur = ch.options[ch.sel];
+  return ch.options.map((o, i) => i === ch.sel ? '' : `<article class="card alt" style="--c:var(--muted)">
+    <div class="chead"><div><p class="cop">Instead of: ${esc(cur.l)}</p><h4 class="ctitle">${esc(o.l)}</h4></div></div>
+    <div class="cbody"><ul class="special"><li>${esc(o.d)}</li>${data._places[o.place].staySpecial ? `<li>${esc(data._places[o.place].staySpecial)}</li>` : ''}</ul>${data._places[o.place].ideas ? ideasList(data._places[o.place]) : ''}</div>
+    <div class="cfoot"><button type="button" class="choose" data-choice="${esc(ch.key)}" data-val="${i}">Choose this instead</button></div></article>`).join('');
+}
+
 // One sequence in trip order: each step's heading (day and date), the card for that leg the first
 // time it appears, then the overnight stay. Later steps on the same card refer back to it.
 export function renderDiscovery(root, data, state, result, al) {
@@ -85,7 +94,7 @@ export function renderDiscovery(root, data, state, result, al) {
     const again = s.owner && seen.has(s.owner) && !g.cards.includes(s.owner) && byId[s.owner] ? `<span>${esc(byId[s.owner].t)}: see the card above.</span>` : '';
     if (s.owner) seen.add(s.owner);
     h += `<div class="seq-h"><div class="seq-day">${days}${date}</div><h3>${esc(s.title)}</h3>${again}</div>`;
-    const inner = g.cards.map(id => cardHTML(byId[id], data, state, result)).join('') + (g.stay && stayById[g.stay] ? stayHTML(stayById[g.stay], data, state) : '');
+    const inner = g.cards.map(id => cardHTML(byId[id], data, state, result)).join('') + (g.stay && stayById[g.stay] ? stayHTML(stayById[g.stay], data, state) : '') + (g.choice ? choiceHTML(g.choice, data) : '');
     if (inner) h += `<div class="cards">${inner}</div>`;
   });
   if (unused.length) {

@@ -22,6 +22,9 @@ const P = {
   cpSouth: ['pic', 'blm', 'sed', 'kai', 'chv', 'wpa', 'chc'],
   chcTek: ['chc', 'ash', 'ger', 'fai', 'tek'],
   chcMtc: ['chc', 'ash', 'ger', 'fai', 'tek', 'pkj', 'gle', 'mtc'],
+  mtcWan: ['mtc', 'gle', 'pkj', 'twz', 'oma', 'lin', 'tar', 'lug', 'wan'],
+  mtcArr: ['mtc', 'gle', 'pkj', 'twz', 'oma', 'lin', 'tar', 'cro', 'arj', 'arr'],
+  arrTea: ['arr', 'arj', 'zqn', 'kin', 'mos', 'tea'],
   mtcTea: ['mtc', 'gle', 'pkj', 'twz', 'oma', 'lin', 'tar', 'cro', 'arj', 'zqn', 'kin', 'mos', 'tea'],
   tekTea: ['tek', 'twz', 'oma', 'lin', 'tar', 'cro', 'arj', 'zqn', 'kin', 'mos', 'tea'],
   tekWan: ['tek', 'twz', 'oma', 'lin', 'tar', 'lug', 'wan'],
@@ -37,6 +40,12 @@ const P = {
 };
 const rev = a => [...a].reverse();
 const join = (...parts) => parts.reduce((acc, p) => acc.length && acc[acc.length - 1] === p[0] ? acc.concat(p.slice(1)) : acc.concat(p), []);
+
+export const SECOND_NIGHT = [
+  { place: 'mtc', l: 'Second night at The Hermitage', d: 'A full day at Aoraki/Mt Cook with no driving, then about 5 hours to Te Anau.' },
+  { place: 'wan', l: 'Night in Wanaka', d: 'Morning at Mt Cook, about 2.5–3 hours to Wanaka, then about 3.5 hours to Te Anau. Splits the drive.' },
+  { place: 'arr', l: 'Night in Arrowtown', d: 'Morning at Mt Cook, about 3.5 hours to Arrowtown, then about 2.5 hours to Te Anau. Gold-rush village near Queenstown.' }
+];
 
 export const ROAD_STOPS = ['Direct both ways', 'Hermitage down, Wanaka back', 'Two breaks each way'];
 
@@ -104,9 +113,24 @@ export function buildItinerary(sel, opt = {}) {
     } else if (k === 1) {
       seg('drive', P.chcMtc, 'Drive Christchurch to Fiordland');
       step('self', 'Drive to Aoraki/Mt Cook: The Hermitage', 'About 4.5 hours via Tekapo and up Lake Pukaki to Aoraki/Mt Cook Village.', ['drive'], { place: 'mtc', kind: 'stay' });
-      step('self', 'A day at Aoraki/Mt Cook', 'No driving. Hooker Valley track, the Tasman Glacier lake, the Sir Edmund Hillary Alpine Centre.', [], { place: 'mtc', kind: 'stay' });
-      seg('drive', P.mtcTea, 'Drive Christchurch to Fiordland');
-      step('self', 'Aoraki/Mt Cook to Te Anau', 'About 5 hours: Lake Pukaki, the Lindis Pass, Central Otago, Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+      const n2 = opt.n2 ?? 0;
+      if (n2 === 1) {
+        seg('drive', P.mtcWan, 'Drive Christchurch to Fiordland');
+        step('self', 'Aoraki/Mt Cook to Wanaka', 'Morning at Aoraki/Mt Cook, then about 2.5–3 hours over the Lindis Pass to Lake Wanaka.', ['drive'], { place: 'wan', kind: 'stay' });
+        seg('drive', P.wanTea, 'Drive Christchurch to Fiordland');
+        step('self', 'Wanaka to Te Anau', 'About 3.5 hours over the Crown Range and along Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+      } else if (n2 === 2) {
+        seg('drive', P.mtcArr, 'Drive Christchurch to Fiordland');
+        step('self', 'Aoraki/Mt Cook to Arrowtown', 'Morning at Aoraki/Mt Cook, then about 3.5 hours over the Lindis Pass, through Cromwell and the Kawarau Gorge.', ['drive'], { place: 'arr', kind: 'stay' });
+        seg('drive', P.arrTea, 'Drive Christchurch to Fiordland');
+        step('self', 'Arrowtown to Te Anau', 'About 2.5 hours past Queenstown and along Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+      } else {
+        step('self', 'A day at Aoraki/Mt Cook', 'No driving. Hooker Valley track, the Tasman Glacier lake, the Sir Edmund Hillary Alpine Centre.', [], { place: 'mtc', kind: 'stay' });
+        seg('drive', P.mtcTea, 'Drive Christchurch to Fiordland');
+        step('self', 'Aoraki/Mt Cook to Te Anau', 'About 5 hours: Lake Pukaki, the Lindis Pass, Central Otago, Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+      }
+      // The second night on the way down is a choice: shown as alternative cards beside it.
+      steps[steps.length - 2].choice = { key: 'n2', sel: n2, options: SECOND_NIGHT };
     } else {
       seg('drive', P.chcTek, 'Drive Christchurch to Fiordland');
       step('self', 'Drive to Lake Tekapo', 'About 3 hours across the Canterbury Plains; evening under the Dark Sky Reserve.', ['drive'], { place: 'tek', kind: 'stay' });
@@ -270,7 +294,7 @@ export function sequence(itin, cards, state) {
     const ids = [];
     [...(s.also || []), s.owner].forEach(id => { if (id && !shown.has(id) && visible.some(c => c.id === id)) { ids.push(id); shown.add(id); } });
     if (i === 0) extra.forEach(id => { if (!shown.has(id)) { ids.push(id); shown.add(id); } });
-    return { step: i, cards: ids, stay: s.night && s.night.kind === 'stay' ? s.night.id : null };
+    return { step: i, cards: ids, stay: s.night && s.night.kind === 'stay' ? s.night.id : null, choice: s.choice || null };
   });
   const unused = visible.filter(c => !shown.has(c.id)).map(c => c.id);
   return { groups, unused };
