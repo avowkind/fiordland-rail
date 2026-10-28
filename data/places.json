@@ -368,8 +368,26 @@
    500,
    550
   ],
-  "staySpecial": "Station night: the train uses Addington station, about 3 km from the city centre",
+  "staySpecial": "Station night: a short taxi from Addington station; rental collected from a city branch",
   "ideas": [
+   {
+    "n": "The George",
+    "u": "https://www.newzealand.com/nz/plan/business/the-george-hotel/",
+    "d": "53 rooms overlooking Hagley Park and the Avon; award-winning boutique",
+    "walk": "Short taxi from the station, about 3 km"
+   },
+   {
+    "n": "The Observatory Hotel",
+    "u": "https://www.newzealand.com/au/plan/business/the-observatory-hotel/",
+    "d": "Boutique hotel in the Arts Centre",
+    "walk": "Short taxi from the station, about 3 km"
+   },
+   {
+    "n": "The Classic Villa",
+    "u": "https://www.newzealand.com/au/plan/business/the-classic-villa-luxury-boutique-hotel",
+    "d": "Boutique hotel in a restored 1899 building",
+    "walk": "Short taxi from the station, about 3 km"
+   },
    {
     "n": "Anika Motel / Arena Motel",
     "u": "https://www.anikamotel.co.nz/index.html",
@@ -381,31 +399,13 @@
     "u": "https://addingtonstadiummotel.co.nz/",
     "d": "Award-winning motel on Lincoln Road; studios and family suites; free shuttle from the station",
     "walk": "Close to the station"
-   },
-   {
-    "n": "The George",
-    "u": "https://www.newzealand.com/nz/plan/business/the-george-hotel/",
-    "d": "53 rooms overlooking Hagley Park and the Avon; award-winning boutique",
-    "walk": "Not walkable: central city, about 3 km, a short taxi"
-   },
-   {
-    "n": "The Observatory Hotel",
-    "u": "https://www.newzealand.com/au/plan/business/the-observatory-hotel/",
-    "d": "Boutique hotel in the Arts Centre",
-    "walk": "Not walkable: central city, about 3 km, a short taxi"
-   },
-   {
-    "n": "The Classic Villa",
-    "u": "https://www.newzealand.com/au/plan/business/the-classic-villa-luxury-boutique-hotel",
-    "d": "Boutique hotel in a restored 1899 building",
-    "walk": "Not walkable: central city, about 3 km, a short taxi"
    }
   ],
   "ideasSrc": {
    "l": "NZ Pocket Guide: luxury stays in Christchurch",
    "u": "https://nzpocketguide.com/10-best-luxury-accommodation-in-christchurch/"
   },
-  "transitNote": "Station night: Christchurch railway station is at Addington, about 3 km from the city centre. Only motels are within walking distance; the boutique hotels are a short taxi away. Trade-off to decide."
+  "transitNote": "Station night: a short taxi from Addington station (about 3 km) to a central hotel is fine. Rental car: no desk at the station is confirmed. Apex has a city branch at 150 Kilmore Street, open 8:00am–4:59pm every day, with no after-hours pick-up. So collect the car the morning after arriving, and drop it off by 5pm the day before the 07:00 train north. The motels near the station are kept as walkable alternatives."
  },
  "ash": {
   "name": "Ashburton",

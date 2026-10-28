@@ -303,7 +303,7 @@
    "g": "si",
    "c": "window",
    "t": "Drive Christchurch to Fiordland",
-   "op": "Rental car · Christchurch to Fiordland and back, kept through the cruise",
+   "op": "Rental car, collected and returned at a Christchurch city branch · kept through the cruise",
    "sp": [
     "Choose the pace: straight through in a day each way, or stops at Lake Tekapo, Aoraki/Mt Cook, the Lindis Pass and Wanaka",
     "The car stays with us: park at Manapouri for the RealNZ cruise (about 950 m from the visitor centre)",
@@ -344,6 +344,10 @@
     {
      "l": "Manapouri overnight parking",
      "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
+    },
+    {
+     "l": "Apex Rentals: Christchurch city branch",
+     "u": "https://www.apexrentals.co.nz/rental-car-locations/christchurch-city-branch"
     }
    ],
    "dir": "both"
