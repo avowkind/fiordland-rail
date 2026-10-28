@@ -29,10 +29,10 @@
    "c": "window",
    "n": 1,
    "t": "Auckland night on the way out",
-   "op": "Hotel near Strand station · night before the Northern Explorer",
+   "op": "The Hotel Britomart · night before the Northern Explorer",
    "sp": [
-    "Drop the dogs at Brookby in daylight, then a relaxed evening in the city",
-    "Walk to the 07:45 train next morning with no ferry rush"
+    "Our choice for the Auckland nights, in Britomart, a short walk from Strand station",
+    "Drop the dogs at Brookby in daylight, then a relaxed evening in the city"
    ],
    "sw": [
     [
@@ -41,31 +41,30 @@
     ],
     [
      "m",
-     "Adds a night and a hotel bill"
-    ],
-    [
-     "m",
-     "The car still has to be parked somewhere (see Things to think about)"
+     "Every room has one Super King bed. We agreed twin beds at minimum, so book two rooms, or ask the hotel whether the bed can be split into two singles"
     ]
    ],
    "opts": [
     {
-     "l": "Comfortable twin",
-     "v": 300
+     "l": "One room (ask to split the bed)",
+     "v": 350
     },
     {
      "l": "Two rooms",
-     "v": 600
-    },
-    {
-     "l": "Luxury",
-     "v": 650
+     "v": 700
     }
    ],
-   "def": 0,
+   "def": 1,
    "st": "est",
-   "b": "Placeholder per night for two. Book close to Strand station or Britomart.",
-   "dir": "out"
+   "b": "No prices on the hotel site; placeholder per room per night.",
+   "dir": "out",
+   "hotel": "akl",
+   "links": [
+    {
+     "l": "The Hotel Britomart: guest rooms",
+     "u": "https://thehotelbritomart.com/our-guest-rooms/"
+    }
+   ]
   },
   {
    "id": "kennel",

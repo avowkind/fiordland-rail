@@ -35,11 +35,40 @@
   "stop": true,
   "blurb": "Strand station, start of the Northern Explorer",
   "stay": [
-   300,
-   600,
-   650
+   350,
+   700
   ],
-  "staySpecial": "Near Strand station"
+  "staySpecial": "The Hotel Britomart: our choice for the Auckland nights. Every room has one Super King bed.",
+  "hotel": {
+   "name": "The Hotel Britomart",
+   "url": "https://thehotelbritomart.com/our-guest-rooms/",
+   "counts": [
+    "One room (ask to split the bed)",
+    "Two rooms"
+   ],
+   "rooms": [
+    {
+     "n": "Waitematā View Room",
+     "d": "Harbour view across the port to the North Shore; built-in sofas; 22 m²"
+    },
+    {
+     "n": "City View Room",
+     "d": "Downtown skyline over Britomart's warehouse roofs; 22 m²"
+    },
+    {
+     "n": "Takutai View Room",
+     "d": "Corner room over Takutai Square; New Zealand books; 22 m²"
+    },
+    {
+     "n": "Laneway Room",
+     "d": "Laneway or internal outlook with a reading nook; 22 m²"
+    },
+    {
+     "n": "Galway Room",
+     "d": "Galway Street towards the harbour; sofas facing the street; 22 m²"
+    }
+   ]
+  }
  },
  "pap": {
   "name": "Papakura",

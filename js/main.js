@@ -67,6 +67,11 @@ function render(focusSel) {
 }
 
 disc.addEventListener('change', e => {
+  const rs = e.target.closest('select[data-room]');
+  if (rs) {
+    state = { ...state, opt: { ...state.opt, [rs.dataset.room]: Number(rs.value) } };
+    save(); render('#rs-' + CSS.escape(rs.dataset.room)); return;
+  }
   const cb = e.target.closest('input[type=checkbox]'); if (!cb) return;
   const card = cb.closest('.card'); const id = card.dataset.id;
   if (card.dataset.stay) {

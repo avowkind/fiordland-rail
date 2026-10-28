@@ -232,7 +232,8 @@ export function staysFrom(itin, places) {
   return itin.steps.filter(s => s.night && s.night.kind === 'stay').map(s => ({
     dir: ci < 0 || itin.steps.indexOf(s) < ci ? 'out' : 'ret',
     id: s.night.id, place: s.night.place, name: places[s.night.place].name,
-    why: s.title, rates: places[s.night.place].stay
+    why: s.title, rates: places[s.night.place].stay,
+    def: places[s.night.place].hotel ? 1 : 0 // hotels with only Super King beds default to two rooms
   }));
 }
 
@@ -243,7 +244,7 @@ export function totals(data, state, places) {
   const stays = staysFrom(itin, places);
   let stayCount = 0;
   stays.forEach(st => {
-    if (!(state.stayOff || {})[st.id]) { total += st.rates[state.opt[st.id] ?? 0]; stayCount++; }
+    if (!(state.stayOff || {})[st.id]) { total += st.rates[state.opt[st.id] ?? st.def]; stayCount++; }
   });
   return { total, count, stays, stayCount, itin };
 }
