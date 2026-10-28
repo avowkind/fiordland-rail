@@ -9,7 +9,7 @@ const band = dir => dir ? `<div class="cband" aria-label="${DIR[dir].replace(/[�
 
 function basis(c, state, nights) {
   if (c.dyn === 'kennel') return `$${KENNEL_RATE} per small dog per day (Brookby Lodge price list), × ${DOGS} dogs × ${nights + 1} days. The first day and an afternoon pick-up each count as a full day.`;
-  if (c.id === 'back') return state.sel.drive ? 'Chauffeured back to Christchurch: about NZD 3,000 (estimate). Get quotes.' : state.sel.self ? 'Included in the rental (Drive ourselves).' : 'Choose Drive ourselves or Chauffeured above.';
+  if (c.id === 'back') return state.sel.self ? 'Included in the rental (Drive ourselves).' : 'Tick Drive ourselves above.';
   return c.b;
 }
 
@@ -29,7 +29,7 @@ export function renderDiscovery(root, data, state, result) {
         <label class="chead" for="cb-${c.id}"><input type="checkbox" id="cb-${c.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">${esc(c.t)}</h4><p class="cop">${esc(c.op)}</p></div></label>
         <div class="cbody"><h4>What feels special</h4><ul class="special">${c.sp.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
         <h4>What could swing it</h4><ul class="swing">${c.sw.map(s => `<li class="${s[0]}">${esc(s[1])}</li>`).join('')}</ul></div>
-        <div class="cfoot">${c.opts ? `<div class="opts" role="group" aria-label="${c.id === 'self' || c.id === 'drive' || c.id === 'back' ? 'Stops' : 'Class'}">${c.opts.map((o, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(o.l)}</button>`).join('')}</div>` : ''}
+        <div class="cfoot">${c.opts ? `<div class="opts" role="group" aria-label="${c.id === 'self' || c.id === 'back' ? 'Stops' : 'Class'}">${c.opts.map((o, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(o.l)}</button>`).join('')}</div>` : ''}
         ${costRow(cardValue(c, state, nights), cardNights(c, state), c.st === 'pub')}
         <p class="basis">${esc(basis(c, state, nights))}</p>
         ${c.links ? `<ul class="clinks">${c.links.map(l => `<li><a href="${esc(l.u)}" target="_blank" rel="noopener noreferrer">${esc(l.l)} <span aria-hidden="true">↗</span><span class="sr"> (opens in a new window)</span></a></li>`).join('')}</ul>` : ''}</div></article>`;

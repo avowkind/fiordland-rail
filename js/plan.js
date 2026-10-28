@@ -42,7 +42,7 @@ export const BACK_STOPS = ['Direct', 'Break at Wanaka', 'Wanaka and Tekapo'];
 export function cruiseOf(sel) {
   return Object.keys(CRUISES).find(k => sel[k]) || null;
 }
-const driveCard = sel => sel.self ? 'self' : sel.drive ? 'drive' : null;
+const driveCard = sel => sel.self ? 'self' : null;
 const southStops = (sel, opt) => { const k = driveCard(sel); return k ? (opt[k] ?? 1) : null; };
 const backStops = opt => opt.back ?? 2;
 
@@ -53,7 +53,7 @@ export function buildItinerary(sel, opt = {}) {
   const seg = (mode, path, label) => segments.push({ mode, path, label });
   const step = (title, detail, modes, night, n = night ? 1 : 0) => steps.push({ title, detail, modes, night, n });
   const tag = svc => { steps[steps.length - 1].svc = svc; };
-  const who = sel.self ? 'Drive ourselves' : sel.drive ? 'Chauffeured' : 'By road';
+  const who = sel.self ? 'Drive ourselves' : 'By road';
 
   // Leaving home
   if (sel.akl) {
@@ -107,7 +107,7 @@ export function buildItinerary(sel, opt = {}) {
     seg('drive', P.wanTea, who);
     step('Crown Range to Te Anau', 'About 3.5 hours over the Crown Range and along Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
   } else if (cruiseOf(sel)) {
-    step('Christchurch to Fiordland not chosen yet', 'Tick Drive ourselves or Chauffeured drive.', [], null);
+    step('Christchurch to Fiordland not chosen yet', 'Tick Drive ourselves.', [], null);
   }
 
   // Cruise
@@ -148,7 +148,7 @@ export function buildItinerary(sel, opt = {}) {
   // Back to Christchurch by road
   if (sel.back) {
     const bs = backStops(opt);
-    const by = sel.self ? 'Drive' : sel.drive ? 'Chauffeured' : 'By road';
+    const by = sel.self ? 'Drive' : 'By road';
     if (bs === 0) {
       seg('drive', join(backToTea, rev(P.tekTea), rev(P.chcTek)), `${by} back`);
       step(`${by} back to Christchurch direct`, 'Disembark around midday and drive about 8 hours via the Lindis Pass and Tekapo.' + (sel.self ? ' Return the car.' : ''), ['drive'], { place: 'chc', kind: 'stay' });
@@ -205,14 +205,14 @@ export function buildItinerary(sel, opt = {}) {
 
 // Nights a card adds, for its badge.
 export function cardNights(card, state) {
-  if (card.id === 'self' || card.id === 'drive') return 1 + (state.opt[card.id] ?? card.def);
+  if (card.id === 'self') return 1 + (state.opt[card.id] ?? card.def);
   if (card.id === 'back') return 1 + (state.opt.back ?? card.def);
   return card.n || 0;
 }
 
 export function cardValue(card, state, nights) {
   if (card.dyn === 'kennel') return KENNEL_RATE * DOGS * (nights + 1);
-  if (card.id === 'back') return state.sel.drive ? card.chauffeur : 0;
+  if (card.id === 'back') return 0; // included in the rental
   if (card.v !== undefined) return card.v;
   if (card.opts) return card.opts[state.opt[card.id] ?? card.def].v;
   return 0;
@@ -257,7 +257,7 @@ export function warnings(state, itin) {
   const s = state.sel, w = [];
   if (itin.days > 15) w.push('Longer than the agreed two weeks.');
   if (!s.akl && s.ne) w.push('Without the Auckland night, the 07:45 train means a very early kennel drop-off.');
-  if (s.back && !s.self && !s.drive) w.push('Choose Drive ourselves or Chauffeured for the road legs.');
+  if (s.back && !s.self) w.push('Tick Drive ourselves for the road legs.');
   if (!cruiseOf(s)) w.push('No cruise chosen.');
   return w;
 }

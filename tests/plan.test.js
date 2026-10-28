@@ -12,7 +12,7 @@ const DEF = data.defaultSelection;
 test('no flying: no flight cards and no flight segments in any plan', () => {
   assert.ok(!data.cards.some(c => ['jet', 'fly', 'xfer'].includes(c.id)));
   for (const opt of [{}, { self: 0, back: 0 }, { self: 2, back: 1 }]) {
-    for (const sel of [DEF, { ...DEF, self: 0, drive: 1 }, { ...DEF, rnw: 0, he6: 1 }]) {
+    for (const sel of [DEF, { ...DEF, rnw: 0, he6: 1 }]) {
       const it = buildItinerary(sel, opt);
       assert.ok(!it.segments.some(s => s.mode === 'flight'), 'flight segment found');
     }
@@ -47,7 +47,7 @@ test('card night badges add up to the itinerary nights', () => {
 });
 
 test('every night is a stay, the Auckland card night, or aboard', () => {
-  for (const sel of [DEF, { ...DEF, self: 0, drive: 1, rnw: 0, he6: 1 }, { ne: 1, cp: 1, self: 1, fj1: 1, back: 1, railh: 1 }]) {
+  for (const sel of [DEF, { ...DEF, rnw: 0, he6: 1 }, { ne: 1, cp: 1, self: 1, fj1: 1, back: 1, railh: 1 }]) {
     const it = buildItinerary(sel, { self: 2, back: 0 });
     const counted = it.steps.reduce((a, s) => a + (s.night ? s.n : 0), 0);
     assert.equal(counted, it.nights);
@@ -65,16 +65,13 @@ test('kennel cost scales with trip days', () => {
   assert.equal(cardValue(k, st(DEF), 12), KENNEL_RATE * DOGS * 13);
 });
 
-test('road back is included in the rental, or costed if chauffeured', () => {
-  const b = data.cards.find(c => c.id === 'back');
-  assert.equal(cardValue(b, st(DEF), 12), 0);
-  assert.equal(cardValue(b, st({ ...DEF, self: 0, drive: 1 }), 12), b.chauffeur);
+test('road back is included in the rental; no chauffeured option', () => {
+  assert.ok(!data.cards.some(c => c.id === 'drive'));
+  assert.equal(cardValue(data.cards.find(c => c.id === 'back'), st(DEF), 12), 0);
 });
 
-test('choosing a cruise replaces the previous one; self and chauffeured are exclusive', () => {
+test('choosing a cruise replaces the previous one', () => {
   assert.ok(!toggle(data, st(DEF), 'he4', true).sel.rnw);
-  const s2 = toggle(data, st(DEF), 'drive', true);
-  assert.ok(s2.sel.drive && !s2.sel.self);
 });
 
 test('unticking a stay lowers the total but not the nights', () => {
@@ -87,7 +84,7 @@ test('unticking a stay lowers the total but not the nights', () => {
 
 test('every route waypoint exists in places', () => {
   for (const opt of [{}, { self: 0, back: 0 }, { self: 2, back: 1 }])
-    for (const sel of [DEF, { ...DEF, rnw: 0, fj1: 1 }, { ...DEF, rnw: 0, he4: 1 }, { ...DEF, rnw: 0, he6: 1, self: 0, drive: 1 }])
+    for (const sel of [DEF, { ...DEF, rnw: 0, fj1: 1 }, { ...DEF, rnw: 0, he4: 1 }, { ...DEF, rnw: 0, he6: 1 }])
       buildItinerary(sel, opt).segments.forEach(sg => sg.path.forEach(p => assert.ok(places[p], `missing place ${p}`)));
 });
 

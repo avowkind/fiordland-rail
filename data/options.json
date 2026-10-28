@@ -13,7 +13,7 @@
   {
    "id": "getsouth",
    "t": "Christchurch to Fiordland",
-   "n": "By road. Choose who drives, and whether to go direct or break the journey at good places."
+   "n": "By road, driving ourselves. Go direct or break the journey at good places."
   },
   {
    "id": "cruise",
@@ -270,53 +270,11 @@
    "dir": "out"
   },
   {
-   "id": "drive",
-   "g": "getsouth",
-   "c": "context",
-   "t": "Chauffeured drive",
-   "op": "Private driver · Christchurch to Te Anau and on to the cruise",
-   "excl": "south2",
-   "sp": [
-    "Nobody has to drive: watch the Mackenzie Basin and the Lindis Pass go by",
-    "The driver can take us all the way to Manapouri or the Milford Road for the cruise",
-    "Stops wherever we want them"
-   ],
-   "sw": [
-    [
-     "p",
-     "Everything handled"
-    ],
-    [
-     "m",
-     "The driver also has to be booked for the road back north"
-    ]
-   ],
-   "st": "est",
-   "b": "Rough estimate for a private driver one way, Christchurch to Fiordland. Get quotes. The road back north is costed on its own card.",
-   "dir": "out",
-   "opts": [
-    {
-     "l": "Direct",
-     "v": 3000
-    },
-    {
-     "l": "Break at Tekapo",
-     "v": 3000
-    },
-    {
-     "l": "Tekapo and Wanaka",
-     "v": 3000
-    }
-   ],
-   "def": 1
-  },
-  {
    "id": "self",
    "g": "getsouth",
    "c": "window",
    "t": "Drive ourselves",
    "op": "Rental car, collected and returned in Christchurch · kept through the cruise",
-   "excl": "south2",
    "sp": [
     "Choose the pace: straight through in a day, or stops at Lake Tekapo, Aoraki/Mt Cook, the Lindis Pass and Wanaka",
     "The car stays with us: park at Manapouri for the RealNZ cruise (about 950 m from the visitor centre) and drive back north afterwards",
@@ -594,7 +552,7 @@
    "c": "window",
    "dir": "ret",
    "t": "Road back to Christchurch",
-   "op": "After the cruise · by the same means as the drive south",
+   "op": "After the cruise, in the rental car",
    "sp": [
     "Back through Wanaka and over the Lindis Pass, or straight through in a day",
     "Return to Christchurch for the train north"
@@ -628,9 +586,8 @@
     }
    ],
    "def": 2,
-   "chauffeur": 3000,
    "st": "est",
-   "b": "Included in the rental if we drive ourselves. About NZD 3,000 (estimate) if chauffeured."
+   "b": "Included in the rental (Drive ourselves)."
   },
   {
    "id": "railh",
