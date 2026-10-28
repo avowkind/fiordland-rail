@@ -170,7 +170,7 @@ test('station and ferry nights list walking distance for every idea', () => {
 });
 
 test('locked-in plan: RealNZ Wanderer Tue 5 Oct 2027, Coastal Pacific, leave Wed 29 Sep', () => {
-  assert.deepEqual(Object.keys(PREF).sort(), ['akl', 'cp', 'isl', 'kennel', 'ne', 'park', 'rnw', 'self'].sort());
+  assert.deepEqual(Object.keys(PREF).sort(), ['akl', 'cp', 'isl', 'kennel', 'ne', 'park', 'rnw', 'self', 'wfer'].sort());
   assert.equal(data.defaultSeason, 'spring27');
   const state = { sel: PREF, opt: {}, stayOff: {} };
   assert.deepEqual(fixedDates(data.cards, state), { rnw: '2027-10-05' });
@@ -199,7 +199,7 @@ test('discovery sequence: legs and stays in trip order, each card once', () => {
   const it = buildItinerary(PREF);
   const { groups, unused } = sequence(it, data.cards, { sel: PREF });
   assert.equal(groups.length, it.steps.length);
-  assert.deepEqual(groups.flatMap(g => g.cards), ['akl', 'kennel', 'park', 'ne', 'isl', 'cp', 'self', 'rnw']);
+  assert.deepEqual(groups.flatMap(g => g.cards), ['akl', 'kennel', 'wfer', 'park', 'ne', 'isl', 'cp', 'self', 'rnw']);
   assert.deepEqual(unused, []);
   const stays = staysFrom(it, places).map(s => s.id);
   assert.deepEqual(groups.map(g => g.stay).filter(Boolean), stays);
@@ -228,4 +228,17 @@ test('night on the way back: Wanaka or Lake Hawea', () => {
     const g = sequence(it, data.cards, { sel: PREF }).groups.find(x => x.choice && x.choice.key === 'r1');
     assert.equal(it.steps[g.step].night.place, pl);
   }
+});
+
+test('off Waiheke: own car needs parking; foot ferry options do not', () => {
+  const park = data.cards.find(c => c.id === 'park');
+  assert.ok(cardValue(park, { sel: PREF, opt: {} }, 12, places) > 0);
+  for (const w of [1, 2]) {
+    assert.equal(cardValue(park, { sel: PREF, opt: { wfer: w } }, 12, places), 0);
+    const it = buildItinerary(PREF, { wfer: w });
+    assert.ok(it.segments.some(s => s.label.startsWith('Fullers')));
+    assert.ok(!it.segments.some(s => s.label.startsWith('SeaLink')));
+    assert.equal(it.nights, 12);
+  }
+  assert.ok(buildItinerary(PREF, {}).segments.some(s => s.label === 'SeaLink car ferry'));
 });

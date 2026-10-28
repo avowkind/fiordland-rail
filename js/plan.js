@@ -17,6 +17,8 @@ const P = {
   carFerry: ['kpt', 'hmb'],
   toKennels: ['hmb', 'bro', 'akl'],
   homeFromAkl: ['akl', 'bro', 'hmb'],
+  footFerry: ['mat', 'akl'],
+  cityKennels: ['akl', 'bro', 'akl'],
   neSouth: ['akl', 'pap', 'ham', 'oto', 'tmn', 'rau', 'npk', 'ohk', 'tai', 'mtn', 'pmr', 'ppm', 'wlg'],
   strait: ['wlg', 'cks', 'tor', 'qcs', 'pic'],
   cpSouth: ['pic', 'blm', 'sed', 'kai', 'chv', 'wpa', 'chc'],
@@ -75,17 +77,27 @@ export function buildItinerary(sel, opt = {}) {
 
   // Leaving home
   if (sel.akl) {
-    seg('ferry', P.carFerry, 'Sealink car ferry');
-    seg('drive', P.toKennels, 'Drive to Brookby, then the city');
-    step('akl', 'Waiheke to Brookby, then Auckland',
-      'Sealink car ferry to Half Moon Bay, drop Poppy and Rua at Brookby Lodge, evening in the city.',
-      ['ferry', 'drive'], { place: 'akl', kind: 'card' });
+    const w = sel.wfer ? (opt.wfer ?? 0) : 0;
+    if (w === 0) {
+      seg('ferry', P.carFerry, 'SeaLink car ferry');
+      seg('drive', P.toKennels, 'Drive to Brookby, then the city');
+      step('akl', 'Waiheke to Brookby, then Auckland',
+        'SeaLink car ferry to Half Moon Bay, drop Poppy and Rua at Brookby Lodge, park the car, evening in the city.',
+        ['ferry', 'drive'], { place: 'akl', kind: 'card' });
+    } else {
+      seg('ferry', P.footFerry, 'Fullers to the city');
+      if (w === 2) seg('drive', P.cityKennels, 'Rental car to Brookby and back');
+      step('akl', w === 1 ? 'Dogs to Brookby, then the ferry to Auckland' : 'Waiheke to Auckland, dogs to Brookby by rental car',
+        w === 1 ? 'Finn takes Poppy and Rua to Brookby Lodge; we take the Fullers ferry to Downtown, a short walk to the hotel.'
+          : 'Fullers ferry to Downtown with the dogs (crated or on a short lead), a one-day rental car to Brookby Lodge and back, return the car, evening in the city.',
+        w === 1 ? ['ferry'] : ['ferry', 'drive'], { place: 'akl', kind: 'card' });
+    }
   }
 
   // North Island south
   if (sel.ne) {
     if (!sel.akl) {
-      seg('ferry', P.carFerry, 'Sealink car ferry');
+      seg('ferry', P.carFerry, 'SeaLink car ferry');
       seg('drive', P.toKennels, 'Brookby, then the station');
     }
     seg('rail', P.neSouth, 'Northern Explorer');
@@ -241,16 +253,25 @@ export function buildItinerary(sel, opt = {}) {
       step('isl', 'Return the car, Interislander to Wellington', 'Drop the rental at the Picton terminal; morning sailing, about 3.5 hours.', ['ferry'], { place: 'wlg', kind: 'stay' });
     }
   }
+  const w = sel.wfer ? (opt.wfer ?? 0) : 0;
   const homeLeg = () => {
-    seg('drive', P.homeFromAkl, 'Collect the dogs');
-    seg('ferry', rev(P.carFerry), 'Sealink home');
+    if (w === 0) {
+      seg('drive', P.homeFromAkl, 'Collect the dogs');
+      seg('ferry', rev(P.carFerry), 'SeaLink home');
+    } else {
+      if (w === 2) seg('drive', P.cityKennels, 'Rental car to Brookby and back');
+      seg('ferry', rev(P.footFerry), 'Fullers home');
+    }
   };
+  const homeText = ['Collect the car, then Brookby Lodge for the dogs and the SeaLink back to Waiheke.',
+    'Finn brings Poppy and Rua home from Brookby; we take the Fullers ferry from Downtown.',
+    'One-day rental car to Brookby Lodge and back, return the car, then the Fullers ferry home with the dogs.'][w];
   if (sel.ne) {
     seg('rail', rev(P.neSouth), 'Northern Explorer north');
     step('ne', 'Northern Explorer to Auckland', 'Depart Wellington 07:55 (Wed, Fri, Sun), arrive Auckland Strand about 18:50–19:00. The North Island again in reverse.', ['rail'], { place: 'akl', kind: 'stay' });
     tag('neN');
     homeLeg();
-    step(null, 'Collect the dogs and home', 'Brookby Lodge, then the Sealink back to Waiheke.', ['drive', 'ferry'], null);
+    step(null, 'Collect the dogs and home', homeText, w === 1 ? ['ferry'] : ['drive', 'ferry'], null);
   } else {
     step(null, 'Way home not complete', 'Tick the Northern Explorer for the trip back to Auckland.', [], null);
   }
@@ -289,6 +310,8 @@ export function hotelRate(hotel, state, key) {
 export function cardValue(card, state, nights, places) {
   if (card.hotel && places) return hotelRate(places[card.hotel].hotel, state, card.id).value;
   if (card.dyn === 'kennel') return KENNEL_RATE * DOGS * (nights + 1);
+  // Parking only applies when we take our own car off the island.
+  if (card.id === 'park' && state.sel.wfer && (state.opt.wfer ?? 0) !== 0) return 0;
   if (card.v !== undefined) return card.v;
   if (card.opts) return card.opts[state.opt[card.id] ?? card.def].v;
   return 0;

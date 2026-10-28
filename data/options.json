@@ -3,7 +3,7 @@
   {
    "id": "home",
    "t": "Leaving home",
-   "n": "Kennels, car parking and the Auckland night."
+   "n": "Getting off Waiheke, kennels, car parking and the Auckland night."
   },
   {
    "id": "north",
@@ -108,12 +108,78 @@
    "dir": "both"
   },
   {
+   "id": "wfer",
+   "g": "home",
+   "c": "ferry",
+   "dir": "both",
+   "t": "Off Waiheke and back, with the dogs",
+   "op": "Day 1 and the last day · how we and Poppy and Rua get across",
+   "sp": [
+    "Own car: the dogs ride with us on SeaLink straight to Brookby, nothing to arrange",
+    "Without the car: the Fullers ferry lands Downtown, a short walk from the hotel and the Strand"
+   ],
+   "sw": [
+    [
+     "p",
+     "Own car: SeaLink Kennedy Point ⇄ Half Moon Bay, about 45–60 minutes; check in 30 minutes before"
+    ],
+    [
+     "m",
+     "Own car: SeaLink car and driver from NZD 154 each way, extra adult NZD 28 or senior NZD 22.50 (Gold AT HOP passengers free); plus 12 nights of parking (see the parking card)",
+     "price"
+    ],
+    [
+     "p",
+     "Finn: takes the dogs to Brookby and back, so we travel light on the foot ferry. Details and price to confirm with Finn"
+    ],
+    [
+     "p",
+     "One-day rental: hire a car in the city on day 1 and on the last day, Brookby and back each time"
+    ],
+    [
+     "m",
+     "One-day rental: the dogs cross on Fullers with us. Fullers allows dogs on a short lead; in the cabin they must be in a crate"
+    ],
+    [
+     "m",
+     "Without the car, the parking card is not needed and costs nothing"
+    ]
+   ],
+   "opts": [
+    {
+     "l": "Own car + SeaLink",
+     "v": 364
+    },
+    {
+     "l": "Foot ferry + Finn",
+     "v": 300
+    },
+    {
+     "l": "Foot ferry + 1-day rentals",
+     "v": 350
+    }
+   ],
+   "def": 0,
+   "st": "est",
+   "b": "Estimates. Own car: SeaLink car and driver NZD 154 each way plus one extra adult NZD 28 each way (less if a Gold AT HOP card applies), parking separate. Finn: placeholder until we ask. Rentals: two one-day hires plus fuel, and Fullers fares for two each way: placeholder.",
+   "links": [
+    {
+     "l": "SeaLink: Waiheke timetables and fares",
+     "u": "https://www.sealink.co.nz/waiheke/timetables"
+    },
+    {
+     "l": "Fullers360: pets on board",
+     "u": "https://fullers.co.nz/travel-information/pets-on-board"
+    }
+   ]
+  },
+  {
    "id": "park",
    "g": "home",
    "c": "context",
    "dir": "both",
    "t": "Car parking for the trip",
-   "op": "12 nights, Wed 29 Sep to Mon 11 Oct · the car comes in from Brookby and goes back out",
+   "op": "12 nights, Wed 29 Sep to Mon 11 Oct · only if we take our own car off the island",
    "sp": [
     "One less thing to think about: the car is parked once and collected on the last morning"
    ],
@@ -724,6 +790,7 @@
  "defaultSelection": {
   "akl": 1,
   "kennel": 1,
+  "wfer": 1,
   "park": 1,
   "ne": 1,
   "isl": 1,
