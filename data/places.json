@@ -250,7 +250,33 @@
    560,
    600
   ],
-  "staySpecial": "Waterfront hotel near the station and ferry terminal"
+  "staySpecial": "Waterfront hotel near the station and ferry terminal",
+  "ideas": [
+   {
+    "n": "The Bolton Hotel",
+    "u": "https://www.boltonhotel.co.nz/",
+    "d": "Thorndon, near Parliament and the railway station; 136 rooms; simple, contemporary"
+   },
+   {
+    "n": "Sofitel Wellington",
+    "u": "https://all.accor.com/hotel/9051/index.en.shtml",
+    "d": "CBD at the foot of the Botanic Gardens, near Parliament and the Cable Car; luxury; about 127 rooms"
+   },
+   {
+    "n": "InterContinental Wellington",
+    "u": "https://wellington.intercontinental.com/",
+    "d": "Waterfront on Grey Street; grand and recently refurbished; larger (236 rooms)"
+   },
+   {
+    "n": "Ohtel Wellington",
+    "u": "https://ohtel.nz/wellington/",
+    "d": "Oriental Bay, opposite the beach promenade; 10-room mid-century boutique; further from the station"
+   }
+  ],
+  "ideasSrc": {
+   "l": "The Hotel Journal: Wellington boutique and luxury hotels",
+   "u": "https://thehoteljournal.com/best-boutique-luxury-hotels-wellington-new-zealand/"
+  }
  },
  "cks": {
   "name": "Cook Strait",
@@ -279,7 +305,33 @@
    500,
    600
   ],
-  "staySpecial": "Waterfront, a short walk from the ferry terminal"
+  "staySpecial": "Waterfront, a short walk from the ferry terminal",
+  "ideas": [
+   {
+    "n": "Picton Yacht Club Hotel",
+    "u": "https://www.newzealand.com/au/plan/business/cpg-hotels-picton-yacht-club/",
+    "d": "Contemporary harbour-facing hotel"
+   },
+   {
+    "n": "Escape to Picton",
+    "u": "https://www.escapetopicton.com/",
+    "d": "Central boutique hotel with a wine-focused restaurant"
+   },
+   {
+    "n": "Picton Waterfront Luxury Apartments",
+    "u": "https://pictonwaterfrontapartments.co.nz/",
+    "d": "Spacious apartments overlooking the harbour and marina"
+   },
+   {
+    "n": "Bay of Many Coves",
+    "u": "https://guide.michelin.com/en/hotels-stays/marlborough/bay-of-many-coves-6685",
+    "d": "Luxury resort in Queen Charlotte Sound, reached by boat: a special night rather than a ferry-side one"
+   }
+  ],
+  "ideasSrc": {
+   "l": "Ouviste: places to stay in Picton",
+   "u": "https://ouviste.com/the-7-best-hotels-and-places-to-stay-in-picton/"
+  }
  },
  "blm": {
   "name": "Blenheim",
@@ -318,7 +370,28 @@
    500,
    550
   ],
-  "staySpecial": "Central city, close to Addington station"
+  "staySpecial": "Central city, close to Addington station",
+  "ideas": [
+   {
+    "n": "The George",
+    "u": "https://www.newzealand.com/nz/plan/business/the-george-hotel/",
+    "d": "53 rooms overlooking Hagley Park and the Avon; award-winning boutique"
+   },
+   {
+    "n": "The Observatory Hotel",
+    "u": "https://www.newzealand.com/au/plan/business/the-observatory-hotel/",
+    "d": "Boutique hotel in the Arts Centre's former astronomy and physics school"
+   },
+   {
+    "n": "The Classic Villa",
+    "u": "https://www.newzealand.com/au/plan/business/the-classic-villa-luxury-boutique-hotel",
+    "d": "Boutique hotel in a restored 1899 building, with a garden terrace"
+   }
+  ],
+  "ideasSrc": {
+   "l": "NZ Pocket Guide: luxury stays in Christchurch",
+   "u": "https://nzpocketguide.com/10-best-luxury-accommodation-in-christchurch/"
+  }
  },
  "ash": {
   "name": "Ashburton",
@@ -346,7 +419,28 @@
    700,
    900
   ],
-  "staySpecial": "Stargazing, Church of the Good Shepherd; Aoraki/Mt Cook an hour away"
+  "staySpecial": "Stargazing, Church of the Good Shepherd; Aoraki/Mt Cook an hour away",
+  "ideas": [
+   {
+    "n": "Grand Suites Lake Tekapo",
+    "u": "https://www.newzealand.com/au/plan/business/grand-suites-lake-tekapo/",
+    "d": "Modern all-suite property near the village and the lake"
+   },
+   {
+    "n": "Galaxy Boutique Hotel",
+    "u": "https://www.mackenzienz.com/visit/galaxy-boutique-hotel/",
+    "d": "15 rooms, lake views, skylights above the beds for the night sky"
+   },
+   {
+    "n": "The Hermitage Hotel, Aoraki/Mt Cook",
+    "u": "https://www.newzealand.com/nz/plan/business/the-hermitage-hotel/",
+    "d": "Instead of Tekapo: the historic hotel under Aoraki/Mt Cook, about an hour further on"
+   }
+  ],
+  "ideasSrc": {
+   "l": "Points Theory: where to stay in Lake Tekapo",
+   "u": "https://pointstheory.com/where-to-stay-lake-tekapo/"
+  }
  },
  "twz": {
   "name": "Twizel",
@@ -413,7 +507,33 @@
    560,
    800
   ],
-  "staySpecial": "Lakefront, 30 min from Manapouri; glow-worm caves across the lake"
+  "staySpecial": "Lakefront, 30 min from Manapouri; glow-worm caves across the lake",
+  "ideas": [
+   {
+    "n": "Fiordland Lodge",
+    "u": "https://www.newzealand.com/au/plan/business/fiordland-lodge",
+    "d": "Luxury lodge above Lake Te Anau, outside town; dinner and breakfast included"
+   },
+   {
+    "n": "Te Anau Lodge",
+    "u": "https://www.newzealand.com/nz/plan/business/te-anau-lodge/",
+    "d": "Boutique lodge in a historic former convent"
+   },
+   {
+    "n": "Radfords on the Lake",
+    "u": "https://www.fiordland.org.nz/accommodation/show/radfords-on-the-lake/",
+    "d": "Lakefront studios and suites, close to town"
+   },
+   {
+    "n": "Dunluce boutique B&B",
+    "u": "https://www.newzealand.com/us/plan/business/dunluce-boutique-accommodation/",
+    "d": "Small B&B with gardens and lake and mountain views"
+   }
+  ],
+  "ideasSrc": {
+   "l": "New Zealand Wanderer: places to stay in Te Anau",
+   "u": "https://newzealandwanderer.com/best-accommodation-in-te-anau/"
+  }
  },
  "man": {
   "name": "Manapouri",
@@ -528,7 +648,23 @@
    640,
    900
   ],
-  "staySpecial": "Lake Wanaka, a quieter alternative to Queenstown"
+  "staySpecial": "Lake Wanaka, a quieter alternative to Queenstown",
+  "ideas": [
+   {
+    "n": "Lime Tree Lodge",
+    "u": "https://www.newzealand.com/au/plan/business/lime-tree-lodge",
+    "d": "Boutique lodge for up to 12 guests, mountain views, outdoor pool"
+   },
+   {
+    "n": "Edgewater",
+    "u": "https://www.newzealand.com/au/plan/business/edgewater-lake-wanaka/",
+    "d": "On the lakeshore, with a day spa"
+   }
+  ],
+  "ideasSrc": {
+   "l": "NZ Pocket Guide: luxury stays in Wanaka",
+   "u": "https://nzpocketguide.com/10-best-luxury-accommodation-in-wanaka/"
+  }
  },
  "lug": {
   "name": "Luggate",

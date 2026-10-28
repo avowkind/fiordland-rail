@@ -23,6 +23,13 @@ function roomSelect(hotel, key, state) {
     <p class="basis price">${esc(monthLabel)} rate: NZD ${hr.each} per room per night, incl. taxes${hr.count > 1 ? `, × ${hr.count} rooms` : ''}.</p>`;
 }
 
+// Hotel ideas for a place: links only, nothing chosen.
+const ext = (u, l) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(l)} <span aria-hidden="true">↗</span><span class="sr"> (opens in a new window)</span></a>`;
+function ideasList(p) {
+  return `<details class="ideas"><summary>Hotel ideas (${p.ideas.length})</summary><ul>${p.ideas.map(i => `<li>${ext(i.u, i.n)}<span>${esc(i.d)}</span></li>`).join('')}</ul>
+    <p class="basis">Ideas only, nothing chosen. Twin beds not confirmed for any of these: ask when enquiring.${p.ideasSrc ? ` More: ${ext(p.ideasSrc.u, p.ideasSrc.l)}` : ''}</p></details>`;
+}
+
 // Price elements carry the 'price' class so the Show prices switch can hide them.
 function costRow(value, nights, published) {
   return `<div class="cost"><b class="price">${nz(value)}</b><span class="chips">${nights ? `<span class="chip">${nights} night${nights > 1 ? 's' : ''}</span>` : ''}<span class="chip price ${published ? 'pub' : ''}">${published ? 'Published price' : 'Estimate'}</span></span></div>`;
@@ -57,7 +64,7 @@ export function renderDiscovery(root, data, state, result) {
     const p = data._places[st.place];
     h += `<article class="card${on ? ' on' : ''}" style="--c:var(--muted)" data-id="${st.id}" data-stay="1">${band(st.dir)}
       <label class="chead" for="cb-${st.id}"><input type="checkbox" id="cb-${st.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">${esc(st.name)}${p.hotel ? ' · ' + esc(p.hotel.name) : ''}</h4><p class="cop">Night after: ${esc(st.why)}</p></div></label>
-      <div class="cbody"><ul class="special"><li>${esc(p.staySpecial || '')}</li></ul></div>
+      <div class="cbody"><ul class="special"><li>${esc(p.staySpecial || '')}</li></ul>${p.ideas ? ideasList(p) : ''}</div>
       <div class="cfoot">${p.hotel ? roomSelect(p.hotel, st.id, state) : ''}<div class="opts" role="group" aria-label="Room">${(p.hotel ? p.hotel.counts : ROOM).map((l, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(l)}</button>`).join('')}</div>
       ${p.hotel ? `<ul class="clinks"><li><a href="${esc(p.hotel.url)}" target="_blank" rel="noopener noreferrer">${esc(p.hotel.name)}: guest rooms <span aria-hidden="true">↗</span><span class="sr"> (opens in a new window)</span></a></li></ul>` : ''}
       ${costRow(p.hotel ? hotelRate(p.hotel, state, st.id).value : st.rates[oi], 1, !!p.hotel)}</div></article>`;

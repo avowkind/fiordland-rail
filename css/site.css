@@ -204,3 +204,11 @@ body.noprice .price{display:none!important}
 .roomsel{display:flex;gap:8px;align-items:center;font-size:13px}
 .roomsel span{font-family:var(--display);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .roomsel select{font:inherit;font-size:14px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);min-width:0;flex:1}
+.ideas{border-top:1px solid var(--line);padding-top:6px}
+.ideas summary{cursor:pointer;font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--heritage)}
+.ideas summary:focus-visible{outline:2px solid var(--heritage);outline-offset:2px}
+.ideas ul{list-style:none;margin:6px 0;padding:0;display:grid;gap:6px;font-size:14px}
+.ideas li{display:grid;gap:1px}
+.ideas li a{color:var(--heritage);font-weight:600}
+.ideas li span{font-size:13px;color:var(--muted)}
+.ideas a{color:var(--heritage)}

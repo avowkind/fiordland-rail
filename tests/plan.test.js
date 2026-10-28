@@ -147,3 +147,10 @@ test('Auckland nights: The Hotel Britomart rates by room, plan, month and count'
   assert.equal(hotelRate(h, { ...base, season: 'sept27', opt: { 'akl-plan': 0, akl: 1 } }, 'akl').value, 790);
   assert.equal(data.cards.find(c => c.id === 'akl').hotel, 'akl');
 });
+
+test('every overnight place except Auckland has hotel ideas with https links', () => {
+  for (const k of ['wlg', 'pic', 'chc', 'tek', 'wan', 'tea']) {
+    assert.ok(places[k].ideas?.length >= 2, k);
+    places[k].ideas.forEach(i => assert.match(i.u, /^https:\/\//));
+  }
+});
