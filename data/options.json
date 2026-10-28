@@ -3,7 +3,7 @@
   {
    "id": "home",
    "t": "Leaving home",
-   "n": "Kennels and the Auckland night."
+   "n": "Kennels, car parking and the Auckland night."
   },
   {
    "id": "north",
@@ -106,6 +106,92 @@
     }
    ],
    "dir": "both"
+  },
+  {
+   "id": "park",
+   "g": "home",
+   "c": "context",
+   "dir": "both",
+   "t": "Car parking for the trip",
+   "op": "12 nights, Wed 29 Sep to Mon 11 Oct · the car comes in from Brookby and goes back out",
+   "sp": [
+    "One less thing to think about: the car is parked once and collected on the last morning"
+   ],
+   "sw": [
+    [
+     "p",
+     "AT Railway Station car park, Beach Road (entry off Te Taou Crescent): beside the Strand station, open 24 hours, 7 days"
+    ],
+    [
+     "p",
+     "AT car park rates: weekdays NZD 12 by day and NZD 17 overnight, weekends NZD 17 per 24 hours",
+     "price"
+    ],
+    [
+     "p",
+     "Free: unrestricted street parking further out near an Eastern Line station (Glen Innes or Meadowbank, say), on the way in from Brookby. Then the train to Britomart station, beside the hotel, or a taxi of about 10 km"
+    ],
+    [
+     "m",
+     "Free street parking: no AT time limit for a registered car, but it is unattended on a street for 12 nights; check the signs"
+    ],
+    [
+     "m",
+     "AT car park: no maximum stay published; confirm 12 nights is allowed"
+    ],
+    [
+     "p",
+     "Britomart Car Park, 88 Quay Street, near the hotel: 24/7, long-stay pre-booking at mycarpark.co.nz (rate not published)"
+    ],
+    [
+     "m",
+     "Hotel valet: NZD 70 a day, and may not keep the car while we're not guests",
+     "price"
+    ],
+    [
+     "m",
+     "Ngaoho Place car park beside the platform is now run by Kiwi Parking: rates not found"
+    ]
+   ],
+   "opts": [
+    {
+     "l": "AT station car park",
+     "v": 300
+    },
+    {
+     "l": "Free street + train or taxi",
+     "v": 80
+    },
+    {
+     "l": "Britomart Car Park",
+     "v": 500
+    },
+    {
+     "l": "Hotel valet",
+     "v": 840
+    }
+   ],
+   "def": 0,
+   "st": "est",
+   "b": "Estimates for 12 nights. AT car park: about NZD 300 from its flat rates. Free street parking plus a taxi each way at about NZD 4 flagfall and NZD 3 a km (gobytaxi): about NZD 80; by train, a few dollars. Britomart Car Park: placeholder, long-stay rate not published. Hotel valet: NZD 70 a day (hotels.com).",
+   "links": [
+    {
+     "l": "AT: open-air car parks (Railway Station)",
+     "u": "https://at.govt.nz/driving-parking/find-parking/parking-in-central-auckland/open-air-car-parks/"
+    },
+    {
+     "l": "Britomart Car Park",
+     "u": "https://britomart.org/valet"
+    },
+    {
+     "l": "AT: when a car counts as abandoned",
+     "u": "https://at.govt.nz/driving-parking/abandoned-vehicles/"
+    },
+    {
+     "l": "AT: park and ride",
+     "u": "https://at.govt.nz/driving-parking/park-ride"
+    }
+   ]
   },
   {
    "id": "ne",
@@ -618,6 +704,7 @@
  "defaultSelection": {
   "akl": 1,
   "kennel": 1,
+  "park": 1,
   "ne": 1,
   "isl": 1,
   "cp": 1,

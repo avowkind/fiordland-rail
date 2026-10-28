@@ -37,6 +37,7 @@ function costRow(value, nights, published) {
 
 function optLabel(c) {
   if (c.id === 'self') return 'Stops';
+  if (c.id === 'park') return 'Where to park';
   if (c.opts && c.opts[0].date) return 'Sailing date';
   return c.hotel ? 'Rooms' : 'Class';
 }
