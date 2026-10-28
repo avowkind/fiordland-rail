@@ -296,7 +296,8 @@
      "l": "Interislander",
      "u": "https://www.interislander.co.nz/"
     }
-   ]
+   ],
+   "hidden": true
   },
   {
    "id": "self",
@@ -358,7 +359,7 @@
    "c": "realnz",
    "n": 2,
    "t": "RealNZ Doubtful Sound, 2 nights · Wanderer",
-   "op": "Chosen · Tue 5 Oct 2027 · 3 days, 2 nights from Manapouri · up to 36 guests · shared bathrooms",
+   "op": "Chosen · Tuesday sailing · 3 days, 2 nights from Manapouri · up to 36 guests · shared bathrooms",
    "sp": [
     "Doubtful Sound: far bigger and much quieter than Milford, with no day-trip crowds overnight",
     "Lake Manapouri crossing and the Wilmot Pass road in, with no aircraft at all",
@@ -376,6 +377,10 @@
     ],
     [
      "m",
+     "Tue 19 Oct is not available. Sailing 26 Oct puts the trip south over Labour Weekend (23–25 Oct)"
+    ],
+    [
+     "m",
      "October is inside the sandfly peak: accepted by Andrew, check with Millie"
     ],
     [
@@ -387,7 +392,6 @@
      "Comfortable rather than luxury"
     ]
    ],
-   "v": 1578,
    "st": "est",
    "b": "From NZD 789 per person on the RealNZ booking calendar for October 2027 sailings (checked 28 Oct 2026), for two. Cabin type behind that fare not confirmed.",
    "links": [
@@ -405,7 +409,24 @@
     }
    ],
    "dir": "mid",
-   "date": "2027-10-05"
+   "opts": [
+    {
+     "l": "Tue 5 Oct",
+     "v": 1578,
+     "date": "2027-10-05"
+    },
+    {
+     "l": "Tue 12 Oct",
+     "v": 1578,
+     "date": "2027-10-12"
+    },
+    {
+     "l": "Tue 26 Oct",
+     "v": 1578,
+     "date": "2027-10-26"
+    }
+   ],
+   "def": 0
   },
   {
    "id": "rnn",
@@ -454,7 +475,8 @@
      "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
     }
    ],
-   "dir": "mid"
+   "dir": "mid",
+   "hidden": true
   },
   {
    "id": "fj1",
@@ -546,7 +568,8 @@
    ],
    "dir": "mid",
    "date": "2027-08-09",
-   "preferred": true
+   "preferred": true,
+   "hidden": true
   },
   {
    "id": "he6",

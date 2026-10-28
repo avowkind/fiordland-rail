@@ -86,6 +86,7 @@ export function buildItinerary(sel, opt = {}) {
       (sel.isl ? '08:45 sailing through Tory Channel; bags checked through. ' : '') + '13:40 train along the Kaikōura coast; arrives 19:30.',
       [sel.isl && 'ferry', 'rail'].filter(Boolean), { place: 'chc', kind: 'stay' });
     tag('cp');
+    if (sel.isl) steps[steps.length - 1].also = ['isl'];
   } else if (sel.pdrive) {
     seg('drive', P.cpSouth, 'Drive Picton to Christchurch');
     step('pdrive', sel.isl ? 'Interislander, then drive Picton to Christchurch' : 'Drive Picton to Christchurch',
@@ -184,6 +185,7 @@ export function buildItinerary(sel, opt = {}) {
       'Coastal Pacific departs Christchurch 07:00, arrives Picton 12:40' + (sel.isl ? '; 14:15 Interislander arrives Wellington 17:45.' : '.'),
       ['rail', sel.isl && 'ferry'].filter(Boolean), sel.isl ? { place: 'wlg', kind: 'stay' } : null);
     tag('cp');
+    if (sel.isl) steps[steps.length - 1].also = ['isl'];
   } else if (sel.pdrive) {
     seg('drive', rev(P.cpSouth), 'Drive Christchurch to Picton');
     step('pdrive', 'Drive Christchurch to Picton', 'About 4.5–5 hours via the Kaikōura coast. A night in Picton avoids a tight ferry connection.', ['drive'], { place: 'pic', kind: 'stay' });
@@ -243,6 +245,35 @@ export function cardValue(card, state, nights, places) {
   if (card.v !== undefined) return card.v;
   if (card.opts) return card.opts[state.opt[card.id] ?? card.def].v;
   return 0;
+}
+
+// Fixed sailing dates from the selected cards: a card's own date, or the date on its chosen option.
+export function fixedDates(cards, state) {
+  const out = {};
+  cards.forEach(c => {
+    if (!state.sel[c.id]) return;
+    const o = c.opts && c.opts[state.opt[c.id] ?? c.def];
+    const d = (o && o.date) || c.date;
+    if (d) out[c.id] = d;
+  });
+  return out;
+}
+
+// Discovery order: the itinerary steps in sequence, each with the card that owns it (first time only)
+// and the overnight stay it ends with. Selected cards that own no step (the kennels) join the first step.
+export function sequence(itin, cards, state) {
+  const shown = new Set();
+  const visible = cards.filter(c => !c.hidden);
+  const owners = new Set(itin.steps.flatMap(s => [s.owner, ...(s.also || [])]).filter(Boolean));
+  const extra = visible.filter(c => state.sel[c.id] && !owners.has(c.id)).map(c => c.id);
+  const groups = itin.steps.map((s, i) => {
+    const ids = [];
+    [...(s.also || []), s.owner].forEach(id => { if (id && !shown.has(id) && visible.some(c => c.id === id)) { ids.push(id); shown.add(id); } });
+    if (i === 0) extra.forEach(id => { if (!shown.has(id)) { ids.push(id); shown.add(id); } });
+    return { step: i, cards: ids, stay: s.night && s.night.kind === 'stay' ? s.night.id : null };
+  });
+  const unused = visible.filter(c => !shown.has(c.id)).map(c => c.id);
+  return { groups, unused };
 }
 
 export function staysFrom(itin, places) {

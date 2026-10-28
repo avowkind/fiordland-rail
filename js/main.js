@@ -1,6 +1,6 @@
 // Entry point: loads data, holds selection state, wires the sections together.
 import { initTimeline } from './timeline.js';
-import { totals, toggle, warnings, alignSeason, DOW_LABEL } from './plan.js';
+import { totals, toggle, warnings, alignSeason, fixedDates, DOW_LABEL } from './plan.js';
 import { renderDiscovery, esc, nz } from './cards.js';
 import { initMap, drawRoute, setView, legendHTML, invalidate } from './map.js';
 
@@ -49,9 +49,8 @@ function renderPlan(itin, al) {
 
 function render(focusSel) {
   const r = totals(options, state, places);
-  renderDiscovery(disc, options, state, r);
-  const fixed = Object.fromEntries(options.cards.filter(c => c.date && state.sel[c.id]).map(c => [c.id, c.date]));
-  const al = state.season ? alignSeason(r.itin, seasons, state.season, fixed) : null;
+  const al = state.season ? alignSeason(r.itin, seasons, state.season, fixedDates(options.cards, state)) : null;
+  renderDiscovery(disc, options, state, r, al);
   renderPlan(r.itin, al);
   renderSeason(al);
   if (mapOk) {

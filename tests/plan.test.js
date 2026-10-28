@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { buildItinerary, totals, toggle, staysFrom, cardValue, cardNights, alignSeason, KENNEL_RATE, DOGS } from '../js/plan.js';
+import { buildItinerary, totals, toggle, staysFrom, cardValue, cardNights, alignSeason, fixedDates, sequence, KENNEL_RATE, DOGS } from '../js/plan.js';
 
 const data = JSON.parse(readFileSync(new URL('../data/options.json', import.meta.url)));
 const places = JSON.parse(readFileSync(new URL('../data/places.json', import.meta.url)));
@@ -138,9 +138,9 @@ test('season check: spring default needs no waiting day; two breaks each way doe
   assert.ok(w.notes.flat().some(n => n.level === 'add'));
 });
 
-test('hidden cards: the 1-night Milford and 6-night Heritage cruises are hidden', () => {
-  const hidden = data.cards.filter(c => c.hidden).map(c => c.id).sort();
-  assert.deepEqual(hidden, ['fj1', 'he6']);
+test('hidden cards: only the cards in the chosen plan are visible', () => {
+  const visible = data.cards.filter(c => !c.hidden).map(c => c.id).sort();
+  assert.deepEqual(visible, Object.keys(PREF).sort());
 });
 
 test('Auckland nights: The Hotel Britomart rates by room, plan, month and count', async () => {
@@ -172,10 +172,10 @@ test('station and ferry nights list walking distance for every idea', () => {
 test('locked-in plan: RealNZ Wanderer Tue 5 Oct 2027, Coastal Pacific, leave Wed 29 Sep', () => {
   assert.deepEqual(Object.keys(PREF).sort(), ['akl', 'cp', 'isl', 'kennel', 'ne', 'rnw', 'self'].sort());
   assert.equal(data.defaultSeason, 'spring27');
-  const rnw = data.cards.find(c => c.id === 'rnw');
-  assert.equal(rnw.date, '2027-10-05');
+  const state = { sel: PREF, opt: {}, stayOff: {} };
+  assert.deepEqual(fixedDates(data.cards, state), { rnw: '2027-10-05' });
   const it = buildItinerary(PREF);
-  const a = alignSeason(it, seasons, 'spring27', { rnw: rnw.date });
+  const a = alignSeason(it, seasons, 'spring27', fixedDates(data.cards, state));
   assert.equal(a.blockers.length, 0);
   const day = i => new Date(a.startDate + (a.per[i].day - 1) * 864e5).toISOString().slice(0, 10);
   assert.equal(day(it.steps.findIndex(s => s.svc === 'cruise:rnw')), '2027-10-05');
@@ -185,4 +185,22 @@ test('locked-in plan: RealNZ Wanderer Tue 5 Oct 2027, Coastal Pacific, leave Wed
   assert.equal(day(it.steps.findIndex(s => /The Hermitage/.test(s.title))), '2027-10-02');
   assert.equal(day(it.steps.findIndex(s => /to Te Anau/.test(s.title))), '2027-10-04');
   assert.ok(!it.segments.some(s => s.mode === 'heli' || s.mode === 'flight'));
+});
+
+test('sliding the sailing a week later moves the whole trip a week', () => {
+  const it = buildItinerary(PREF);
+  const start = o => new Date(alignSeason(it, seasons, 'spring27', fixedDates(data.cards, { sel: PREF, opt: { rnw: o } })).startDate).toISOString().slice(0, 10);
+  assert.equal(start(1), '2027-10-06');
+  assert.equal(start(2), '2027-10-20');
+  assert.ok(!data.cards.find(c => c.id === 'rnw').opts.some(o => o.date === '2027-10-19'));
+});
+
+test('discovery sequence: legs and stays in trip order, each card once', () => {
+  const it = buildItinerary(PREF);
+  const { groups, unused } = sequence(it, data.cards, { sel: PREF });
+  assert.equal(groups.length, it.steps.length);
+  assert.deepEqual(groups.flatMap(g => g.cards), ['akl', 'kennel', 'ne', 'isl', 'cp', 'self', 'rnw']);
+  assert.deepEqual(unused, []);
+  const stays = staysFrom(it, places).map(s => s.id);
+  assert.deepEqual(groups.map(g => g.stay).filter(Boolean), stays);
 });
