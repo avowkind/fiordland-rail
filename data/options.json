@@ -6,14 +6,14 @@
    "n": "Kennels and the Auckland night."
   },
   {
-   "id": "south",
-   "t": "Rail and ferry, both ways",
-   "n": "Each card covers its leg down and back. If the Coastal Pacific is not running, swap it for the Picton–Christchurch drive."
+   "id": "north",
+   "t": "North Island to Picton, both ways",
+   "n": "Northern Explorer to Wellington, then the Interislander across to Picton."
   },
   {
-   "id": "getsouth",
-   "t": "Christchurch to Fiordland and back",
-   "n": "By road, driving ourselves. The way back mirrors the way down."
+   "id": "si",
+   "t": "Picton to Fiordland, both ways",
+   "n": "Picton to Christchurch by the Coastal Pacific or by road (pick one), then drive ourselves to Fiordland. The way back mirrors the way down."
   },
   {
    "id": "cruise",
@@ -106,7 +106,7 @@
   },
   {
    "id": "ne",
-   "g": "south",
+   "g": "north",
    "c": "rail",
    "n": 1,
    "t": "Northern Explorer",
@@ -162,7 +162,7 @@
   },
   {
    "id": "isl",
-   "g": "south",
+   "g": "north",
    "c": "ferry",
    "t": "Interislander + Plus lounge",
    "op": "Wellington ⇄ Picton · about 3.5 h each way",
@@ -208,7 +208,7 @@
   },
   {
    "id": "cp",
-   "g": "south",
+   "g": "si",
    "c": "rail",
    "n": 1,
    "t": "Coastal Pacific",
@@ -260,7 +260,7 @@
   },
   {
    "id": "pdrive",
-   "g": "south",
+   "g": "si",
    "c": "window",
    "dir": "both",
    "excl": "picchc",
@@ -297,7 +297,7 @@
   },
   {
    "id": "self",
-   "g": "getsouth",
+   "g": "si",
    "c": "window",
    "t": "Drive ourselves",
    "op": "Rental car · Christchurch to Fiordland and back, kept through the cruise",
