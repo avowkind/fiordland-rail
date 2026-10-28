@@ -55,6 +55,14 @@
   "sch": {
    "title": "calculate.co.nz: NZ school terms",
    "url": "https://www.calculate.co.nz/nz-school-terms.php"
+  },
+  "luxe": {
+   "title": "Luxe Tours: Milford Sound sandflies",
+   "url": "https://www.luxetours.co.nz/how-to-survive-milford-sound-sandflies"
+  },
+  "smsl": {
+   "title": "Southern Monitoring Services: sandflies",
+   "url": "https://www.smsl.co.nz/Pests/Sandflies+or+Blackflies.html"
   }
  },
  "rows": [
@@ -64,7 +72,7 @@
   {
    "id": "win",
    "label": "Candidate windows",
-   "sub": "from Constraints note",
+   "sub": "agreed 28 Oct 2026",
    "c": "window",
    "items": [
     {
@@ -77,23 +85,70 @@
     {
      "s": "2027-05-01",
      "e": "2027-08-31",
-     "k": "projected",
-     "l": "Winter 2027: allowed, no Coastal Pacific",
-     "n": "Relaxed on 27 Oct 2026. Most small-ship departures fall here, but the Coastal Pacific does not run 1 May–31 Aug. Cold, short days, possible Milford Road avalanche closures. Settled spells, no sandflies, few tourists, discounts."
+     "k": "confirmed",
+     "l": "Winter 2027: fewest sandflies, no Coastal Pacific",
+     "n": "Lowest sandfly period, but they are never fully absent. The Coastal Pacific does not run 1 May–31 Aug, so Picton–Christchurch is by road. RealNZ Navigator sails in May and August. Cold, short days, possible Milford Road closures."
     },
     {
-     "s": "2027-09-20",
-     "e": "2027-11-15",
+     "s": "2027-09-01",
+     "e": "2027-09-24",
      "k": "confirmed",
-     "l": "Spring 2027",
-     "n": "Preferred window: late September to mid-November 2027. Avoid the school holidays (25 Sep–10 Oct) and Labour Weekend (23–25 Oct)."
+     "l": "September 2027",
+     "n": "Outside the sandfly peak. Coastal Pacific start date unconfirmed (1 Sep per Great Journeys; 19 Sep in 2024). Heritage 6-night sails 19 Sep (helicopter in, no other access). School holidays from 25 Sep."
+    },
+    {
+     "s": "2027-09-25",
+     "e": "2027-11-15",
+     "k": "uncertain",
+     "l": "Spring 2027: sandfly peak",
+     "n": "Inside the October–April sandfly peak, so it fails the agreed sandfly constraint. Also school holidays 25 Sep–10 Oct and Labour Weekend."
     },
     {
      "s": "2028-03-15",
      "e": "2028-04-30",
+     "k": "uncertain",
+     "l": "Autumn 2028: sandfly peak",
+     "n": "Inside the October–April sandfly peak, so it fails the agreed sandfly constraint."
+    }
+   ]
+  },
+  {
+   "id": "fly",
+   "label": "Fewer sandflies",
+   "sub": "Fiordland · never fully absent",
+   "c": "heritage",
+   "items": [
+    {
+     "s": "2027-05-01",
+     "e": "2027-06-30",
+     "k": "projected",
+     "l": "Below peak",
+     "n": "Outside the October–April peak. Sandflies are present all year; a NZ Geographic writer was bitten heavily in Fiordland in early June.",
+     "src": "luxe"
+    },
+    {
+     "s": "2027-07-01",
+     "e": "2027-08-31",
      "k": "confirmed",
-     "l": "Autumn 2028",
-     "n": "Preferred window: mid-March to late April 2028. Avoid Easter (14–17 Apr 2028) and the April school holidays."
+     "l": "Lowest: July–August",
+     "n": "The lowest period found: \"a slight reduction in numbers during July and August\". Still not absent.",
+     "src": "smsl"
+    },
+    {
+     "s": "2027-09-01",
+     "e": "2027-09-30",
+     "k": "projected",
+     "l": "Below peak",
+     "n": "Outside the October–April peak (\"most active during the warmer months from late spring through autumn (October to April)\").",
+     "src": "luxe"
+    },
+    {
+     "s": "2028-05-01",
+     "e": "2028-06-30",
+     "k": "projected",
+     "l": "Below peak",
+     "n": "Outside the October–April peak.",
+     "src": "luxe"
     }
    ]
   },
@@ -971,28 +1026,6 @@
      "k": "projected",
      "l": "Peak season",
      "n": "Approximate peak for international visitors, December to February."
-    }
-   ]
-  },
-  {
-   "id": "fly",
-   "label": "Fiordland sandflies",
-   "sub": "worst months, approx.",
-   "c": "context",
-   "items": [
-    {
-     "s": "2026-12-01",
-     "e": "2027-03-31",
-     "k": "projected",
-     "l": "Sandfly peak",
-     "n": "Worst in warm months, roughly December to March. Never fully absent."
-    },
-    {
-     "s": "2027-12-01",
-     "e": "2028-03-31",
-     "k": "projected",
-     "l": "Sandfly peak",
-     "n": "Worst in warm months, roughly December to March."
     }
    ]
   },

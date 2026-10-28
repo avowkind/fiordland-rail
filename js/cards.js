@@ -1,5 +1,5 @@
 // Discovery cards and generated overnight-stay cards.
-import { cardValue, KENNEL_RATE, DOGS, SELF_RAIL_COST } from './plan.js';
+import { cardValue, cardNights, KENNEL_RATE, DOGS } from './plan.js';
 
 export const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 export const nz = n => 'NZD ' + Math.round(n).toLocaleString('en-NZ');
@@ -9,7 +9,7 @@ const band = dir => dir ? `<div class="cband" aria-label="${DIR[dir].replace(/[�
 
 function basis(c, state, nights) {
   if (c.dyn === 'kennel') return `$${KENNEL_RATE} per small dog per day (Brookby Lodge price list), × ${DOGS} dogs × ${nights + 1} days. The first day and an afternoon pick-up each count as a full day.`;
-  if (c.id === 'railh' && state.sel.self && state.sel.railh) return `With Drive ourselves: drive the rental back to Christchurch instead of flying (no jet, about NZD 500 saved), with extra rental days and fuel (about NZD 350) and one more night on the road. Total about NZD ${SELF_RAIL_COST.toLocaleString('en-NZ')}.`;
+  if (c.id === 'back') return state.sel.drive ? 'Chauffeured back to Christchurch: about NZD 3,000 (estimate). Get quotes.' : state.sel.self ? 'Included in the rental (Drive ourselves).' : 'Choose Drive ourselves or Chauffeured above.';
   return c.b;
 }
 
@@ -29,8 +29,8 @@ export function renderDiscovery(root, data, state, result) {
         <label class="chead" for="cb-${c.id}"><input type="checkbox" id="cb-${c.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">${esc(c.t)}</h4><p class="cop">${esc(c.op)}</p></div></label>
         <div class="cbody"><h4>What feels special</h4><ul class="special">${c.sp.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
         <h4>What could swing it</h4><ul class="swing">${c.sw.map(s => `<li class="${s[0]}">${esc(s[1])}</li>`).join('')}</ul></div>
-        <div class="cfoot">${c.opts ? `<div class="opts" role="group" aria-label="Class">${c.opts.map((o, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(o.l)}</button>`).join('')}</div>` : ''}
-        ${costRow(cardValue(c, state, nights), c.n, c.st === 'pub')}
+        <div class="cfoot">${c.opts ? `<div class="opts" role="group" aria-label="${c.id === 'self' || c.id === 'drive' || c.id === 'back' ? 'Stops' : 'Class'}">${c.opts.map((o, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(o.l)}</button>`).join('')}</div>` : ''}
+        ${costRow(cardValue(c, state, nights), cardNights(c, state), c.st === 'pub')}
         <p class="basis">${esc(basis(c, state, nights))}</p>
         ${c.links ? `<ul class="clinks">${c.links.map(l => `<li><a href="${esc(l.u)}" target="_blank" rel="noopener noreferrer">${esc(l.l)} <span aria-hidden="true">↗</span><span class="sr"> (opens in a new window)</span></a></li>`).join('')}</ul>` : ''}</div></article>`;
     });

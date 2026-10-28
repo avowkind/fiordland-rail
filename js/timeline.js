@@ -15,7 +15,7 @@ const MARKERS=[
 ];
 
 const DOM={s:D('2026-10-01'),e:D('2028-07-01')};
-const PRESETS={full:[DOM.s,DOM.e],winter:[D('2027-04-20'),D('2027-09-30')],spring:[D('2027-08-25'),D('2027-11-30')],autumn:[D('2028-01-20'),D('2028-05-20')]};
+const PRESETS={full:[DOM.s,DOM.e],winter:[D('2027-04-20'),D('2027-09-30')],spring:[D('2027-08-25'),D('2027-11-30')],sept:[D('2027-08-15'),D('2027-10-15')],autumn:[D('2028-01-20'),D('2028-05-20')]};
 let view={s:DOM.s,e:DOM.e};
 let selected=null;
 const svg=document.getElementById('chart');
@@ -240,7 +240,7 @@ svg.addEventListener('pointercancel',endPtr);
 document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{
   const p=PRESETS[b.dataset.preset]; view=clampView(p[0],p[1]);
   clearPreset(); b.setAttribute('aria-pressed','true'); render();
-  const season={winter:'winter27',spring:'spring27',autumn:'autumn28'}[b.dataset.preset];
+  const season={winter:'winter27',sept:'sept27',spring:'spring27',autumn:'autumn28'}[b.dataset.preset];
   if(season) document.dispatchEvent(new CustomEvent('season-pick',{detail:season}));
 }));
 document.getElementById('zin').addEventListener('click',()=>zoomAt(layout.G+layout.CW/2,0.6));

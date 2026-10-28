@@ -1,48 +1,176 @@
 {
  "_note": "Service patterns per season, used to check that the chosen legs line up. Researched 27 Oct 2026; projected patterns are marked in the notes. Weekdays: sun mon tue wed thu fri sat.",
- "neSouth": ["mon", "thu", "sat"],
- "neNorth": ["wed", "fri", "sun"],
+ "neSouth": [
+  "mon",
+  "thu",
+  "sat"
+ ],
+ "neNorth": [
+  "wed",
+  "fri",
+  "sun"
+ ],
  "seasons": {
-  "spring27": {
-   "label": "Spring 2027",
-   "window": "Late September to mid-November 2027",
-   "cp": ["thu", "fri", "sat", "sun"],
-   "cpNote": "The Coastal Pacific has run Thu–Sun in spring (projected for 2027). Its 2027 start date is unconfirmed: 1 September or mid-September.",
-   "general": ["Avoid the school holidays (25 Sep–10 Oct) and Labour Weekend (23–25 Oct).", "Possible rail maintenance block 25–28 Sep 2027 (unconfirmed)."],
+  "sept27": {
+   "label": "September 2027",
+   "window": "September 2027, before the school holidays on 25 September",
+   "cp": [
+    "thu",
+    "fri",
+    "sat",
+    "sun"
+   ],
+   "cpNote": "Coastal Pacific start date unconfirmed: Great Journeys says 1 September; in 2024 it started on 19 September (then Thu–Sun). Confirm before booking.",
+   "sandflies": {
+    "level": "reduced",
+    "note": "Sandflies: September is outside the October–April peak, but they are present all year."
+   },
+   "general": [
+    "Avoid the school holidays from 25 September.",
+    "Early spring: cool, with snow still on the tops; the Milford Road can have avalanche closures.",
+    "Possible rail maintenance block 25–28 Sep 2027 (unconfirmed)."
+   ],
    "cruises": {
-    "rnw": {"ok": true, "note": "Wanderer listed for October (projected from 2026). Confirm which days it sails; if not on this day, add a night in Te Anau."},
-    "rnn": {"ok": false, "note": "The Navigator runs in May and August, not spring."},
-    "fj1": {"ok": true, "note": "The Milford overnight sails nightly from late October; earlier in spring it isn't running."},
-    "he4": {"ok": false, "note": "No 4-night Heritage departures in spring 2027."},
-    "he6": {"ok": true, "note": "Fixed sailings on 19 Sep and 25 Sep 2027 only. Work the rail legs back from the sailing date; expect a waiting day."}
-   }
-  },
-  "autumn28": {
-   "label": "Autumn 2028",
-   "window": "Mid-March to late April 2028",
-   "cp": ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
-   "cpNote": "The Coastal Pacific has run daily from January to April in recent seasons (projected for 2028).",
-   "general": ["Avoid Easter (14–17 Apr 2028) and the April school holidays (2028 dates not yet confirmed)."],
-   "cruises": {
-    "rnw": {"ok": true, "note": "Wanderer listed for April (projected from 2027). Confirm which days it sails; if not on this day, add a night in Te Anau."},
-    "rnn": {"ok": false, "note": "The Navigator runs in May and August, not autumn."},
-    "fj1": {"ok": true, "note": "The Milford overnight runs until about 26 April."},
-    "he4": {"ok": true, "note": "2028 dates not yet published; in 2027 these sailed late January to early April on fixed dates. Expect a waiting day."},
-    "he6": {"ok": true, "note": "2028 dates not yet published; fixed sailing dates. Expect a waiting day."}
+    "rnw": {
+     "ok": false,
+     "note": "The Wanderer is listed for October and April, not September. Ask RealNZ about September sailings."
+    },
+    "rnn": {
+     "ok": false,
+     "note": "The Navigator is listed for May and August. Ask RealNZ about September sailings."
+    },
+    "fj1": {
+     "ok": false,
+     "note": "The Milford overnight starts in late October."
+    },
+    "he4": {
+     "ok": false,
+     "note": "No 4-night Heritage sailings in September 2027."
+    },
+    "he6": {
+     "ok": true,
+     "note": "Fixed sailing on 19 September 2027 (helicopter in: no other access). The 25 September sailing falls in the school holidays."
+    }
    }
   },
   "winter27": {
    "label": "Winter 2027",
    "window": "May to August 2027",
    "cp": [],
-   "cpNote": "The Coastal Pacific does not run 1 May–31 August. Replace Picton–Christchurch with a drive or a flight.",
-   "general": ["Cold and short days; Milford Road avalanche closures possible.", "Possible rail maintenance block 22–28 May 2027 (unconfirmed)."],
+   "cpNote": "The Coastal Pacific does not run 1 May–31 August. Picton to Christchurch would be by road instead.",
+   "general": [
+    "Cold and short days; Milford Road avalanche closures possible.",
+    "Possible rail maintenance block 22–28 May 2027 (unconfirmed)."
+   ],
    "cruises": {
-    "rnw": {"ok": false, "note": "The Wanderer runs in April and October, not winter."},
-    "rnn": {"ok": true, "note": "Navigator listed for May and August (ensuite twins). Confirm which days it sails; if not on this day, add a night in Te Anau."},
-    "fj1": {"ok": false, "note": "The Milford overnight runs late October to April only."},
-    "he4": {"ok": true, "note": "Fixed sailings 1, 5 and 9 August 2027. Expect a waiting day."},
-    "he6": {"ok": true, "note": "Fixed sailings in July and August 2027. Expect a waiting day."}
+    "rnw": {
+     "ok": false,
+     "note": "The Wanderer runs in April and October, not winter."
+    },
+    "rnn": {
+     "ok": true,
+     "note": "Navigator listed for May and August (ensuite twins). Confirm which days it sails; if not on this day, add a night in Te Anau."
+    },
+    "fj1": {
+     "ok": false,
+     "note": "The Milford overnight runs late October to April only."
+    },
+    "he4": {
+     "ok": true,
+     "note": "Fixed sailings 1, 5 and 9 August 2027. Expect a waiting day."
+    },
+    "he6": {
+     "ok": true,
+     "note": "Fixed sailings in July and August 2027. Expect a waiting day."
+    }
+   },
+   "sandflies": {
+    "level": "lowest",
+    "note": "Sandflies: winter is the lowest period (a slight reduction in July and August), but they are never fully absent."
+   }
+  },
+  "spring27": {
+   "label": "Spring 2027",
+   "window": "Late September to mid-November 2027",
+   "cp": [
+    "thu",
+    "fri",
+    "sat",
+    "sun"
+   ],
+   "cpNote": "The Coastal Pacific has run Thu–Sun in spring (projected for 2027). Its 2027 start date is unconfirmed: 1 September or mid-September.",
+   "general": [
+    "Avoid the school holidays (25 Sep–10 Oct) and Labour Weekend (23–25 Oct).",
+    "Possible rail maintenance block 25–28 Sep 2027 (unconfirmed)."
+   ],
+   "cruises": {
+    "rnw": {
+     "ok": true,
+     "note": "Wanderer listed for October (projected from 2026). Confirm which days it sails; if not on this day, add a night in Te Anau."
+    },
+    "rnn": {
+     "ok": false,
+     "note": "The Navigator runs in May and August, not spring."
+    },
+    "fj1": {
+     "ok": true,
+     "note": "The Milford overnight sails nightly from late October; earlier in spring it isn't running."
+    },
+    "he4": {
+     "ok": false,
+     "note": "No 4-night Heritage departures in spring 2027."
+    },
+    "he6": {
+     "ok": true,
+     "note": "Fixed sailings on 19 Sep and 25 Sep 2027 only. Work the rail legs back from the sailing date; expect a waiting day."
+    }
+   },
+   "sandflies": {
+    "level": "peak",
+    "note": "Sandflies: October–November is inside the October–April peak. Fails the agreed sandfly constraint."
+   }
+  },
+  "autumn28": {
+   "label": "Autumn 2028",
+   "window": "Mid-March to late April 2028",
+   "cp": [
+    "sun",
+    "mon",
+    "tue",
+    "wed",
+    "thu",
+    "fri",
+    "sat"
+   ],
+   "cpNote": "The Coastal Pacific has run daily from January to April in recent seasons (projected for 2028).",
+   "general": [
+    "Avoid Easter (14–17 Apr 2028) and the April school holidays (2028 dates not yet confirmed)."
+   ],
+   "cruises": {
+    "rnw": {
+     "ok": true,
+     "note": "Wanderer listed for April (projected from 2027). Confirm which days it sails; if not on this day, add a night in Te Anau."
+    },
+    "rnn": {
+     "ok": false,
+     "note": "The Navigator runs in May and August, not autumn."
+    },
+    "fj1": {
+     "ok": true,
+     "note": "The Milford overnight runs until about 26 April."
+    },
+    "he4": {
+     "ok": true,
+     "note": "2028 dates not yet published; in 2027 these sailed late January to early April on fixed dates. Expect a waiting day."
+    },
+    "he6": {
+     "ok": true,
+     "note": "2028 dates not yet published; fixed sailing dates. Expect a waiting day."
+    }
+   },
+   "sandflies": {
+    "level": "peak",
+    "note": "Sandflies: March–April is inside the October–April peak. Fails the agreed sandfly constraint."
    }
   }
  }

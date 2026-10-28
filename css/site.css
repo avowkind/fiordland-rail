@@ -188,3 +188,9 @@ section[id],nav a{scroll-margin-top:16px}
 .clinks a{color:var(--heritage);text-decoration:underline;text-underline-offset:2px}
 .clinks a:focus-visible{outline:2px solid var(--heritage);outline-offset:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pnote.ok{border-left-color:var(--heritage)}
+.seasonbox .sandfly{font-weight:600;padding:4px 8px;border-left:3px solid var(--muted);background:var(--bg)}
+.seasonbox .sf-peak{border-left-color:var(--rail);color:var(--rail)}
+.seasonbox .sf-reduced{border-left-color:var(--window)}
+.seasonbox .sf-lowest{border-left-color:var(--heritage)}
+.intro-grid h2{font-family:var(--display);font-weight:700;font-size:18px;margin:0 0 4px}

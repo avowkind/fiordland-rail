@@ -4,7 +4,7 @@ import { totals, toggle, warnings, alignSeason, DOW_LABEL } from './plan.js';
 import { renderDiscovery, esc, nz } from './cards.js';
 import { initMap, drawRoute, setView, legendHTML, invalidate } from './map.js';
 
-const KEY = 'fiordland-rail-selection-v1';
+const KEY = 'fiordland-rail-selection-v2';
 const MODE_LABEL = { rail: 'Train', ferry: 'Ferry', drive: 'Road', flight: 'Flight', cruise: 'Cruise', heli: 'Helicopter' };
 
 const [timeline, options, places, seasons] = await Promise.all(
@@ -85,9 +85,10 @@ function renderSeason(al) {
   const box = document.getElementById('seasonbox');
   if (!al) { box.innerHTML = '<p class="basis">No season chosen. Pick one to check the days line up.</p>'; return; }
   const status = al.blockers.length ? `<span class="chip blk">Doesn't fit</span>` : al.added ? `<span class="chip addc">+${al.added} day${al.added > 1 ? 's' : ''}</span>` : `<span class="chip pub">Lines up</span>`;
-  box.innerHTML = `<p><b>${esc(al.label)}</b> (${esc(al.window)}) ${status}</p>
+  const sf = al.sandflies ? `<p class="sandfly sf-${al.sandflies.level}">${esc(al.sandflies.note)}</p>` : '';
+  box.innerHTML = `<p><b>${esc(al.label)}</b> (${esc(al.window)}) ${status}</p>${sf}
     <p>Best day to leave Waiheke: <b>${al.startLabel}</b>. ${al.added ? `Even then, ${al.added} waiting day${al.added > 1 ? 's are' : ' is'} needed; see the amber notes below.` : 'Every train connects with no waiting days.'}</p>
-    ${al.blockers.length ? `<ul class="blk-list">${al.blockers.map(b => `<li>${esc(b)}</li>`).join('')}</ul>` : ''}
+    ${al.blockers.filter(b => !b.startsWith('Sandflies')).length ? `<ul class="blk-list">${al.blockers.filter(b => !b.startsWith('Sandflies')).map(b => `<li>${esc(b)}</li>`).join('')}</ul>` : ''}
     <ul class="gen-list">${al.general.map(g => `<li>${esc(g)}</li>`).join('')}</ul>`;
 }
 document.querySelectorAll('[data-season]').forEach(b => b.addEventListener('click', () => {

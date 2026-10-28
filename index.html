@@ -16,20 +16,39 @@
   <header class="intro">
     <div class="eyebrow">Holiday 2027 · Andrew &amp; Millie · Gold Card year</div>
     <h1>Waiheke to the fiords, by train</h1>
-    <p class="lede big">A once-in-a-lifetime journey down the length of New Zealand: rail through both islands, then Fiordland by boat. We want unhurried time together, everything handled, a real sense of seeing the whole country, wildlife and wild places, and some memorable food and wine, without being stressed by long drives, tight connections or early starts.</p>
+    <p class="lede big">A once-in-a-lifetime journey down the length of New Zealand: rail through both islands, then a cruise in Fiordland. No flying, no sandflies, no crowds and no tight connections, with everything handled.</p>
     <div class="intro-grid">
       <div class="intro-col">
         <h2>What this site does</h2>
         <p>It pulls together what we've learned about the trains, the ferry and the Fiordland cruises, so we can see which dates line up, what each option feels like, and what our chosen trip would cost and take. Tick options in Discovery and the plan, map, budget and night count update as you go.</p>
       </div>
       <div class="intro-col">
-        <h2>Our ground rules</h2>
+        <h2>What the trip is about</h2>
         <ul>
-          <li>Two weeks ideally, three at most, because of Poppy and Rua</li>
-          <li>Shoulder season: spring 2027 or autumn 2028; winter allowed</li>
-          <li>Twin beds at minimum, separate rooms where it's worth it</li>
-          <li>Premium where it matters, sensible elsewhere</li>
+          <li>Showing listening skills, and carrying out both spouses' wishes faithfully and accurately</li>
+          <li>Showing in-depth knowledge of each other's likes and dislikes, after 19 years together</li>
+          <li>Unhurried time together, with everything handled</li>
         </ul>
+      </div>
+      <div class="intro-col">
+        <h2>Agreed by both</h2>
+        <ul>
+          <li><b>No sandflies in Fiordland</b>: the key constraint</li>
+          <li>No flying, except a helicopter where a cruise has no other access</li>
+          <li>Avoid crowds (health risk) and tight connections; early starts are fine</li>
+          <li>Everything handled, premium carriages and cabins, luxury lodges</li>
+          <li>Two weeks, ideally. Twin beds at minimum</li>
+          <li>Penny and Charlie look after the house, plants and hens; timing to agree</li>
+        </ul>
+      </div>
+      <div class="intro-col">
+        <h2>Andrew's preferences (not yet agreed)</h2>
+        <ul>
+          <li>Three weeks as the absolute maximum</li>
+          <li>A gently active pace</li>
+        </ul>
+        <h2 style="margin-top:8px">Not important</h2>
+        <ul><li>Private guiding</li></ul>
       </div>
     </div>
     <nav class="toc" aria-label="Sections">
@@ -47,14 +66,15 @@
   </section>
 
   <div class="findings">
-    <div class="finding"><h3>Winter cruises, no Coastal Pacific</h3><p>Most small-ship departures fall between May and early September, when the Picton–Christchurch train doesn't run.</p></div>
-    <div class="finding"><h3>Late September is the pinch point</h3><p>Heritage Explorer's 19 Sep voyage needs the Coastal Pacific running by about 16 Sep. Its 2027 start date is unconfirmed, and the 25 Sep sailing overlaps the school holidays.</p></div>
-    <div class="finding"><h3>October and April suit RealNZ</h3><p>Two-night cruises on the Wanderer (shared bathrooms) sit inside both preferred windows, with all three trains running.</p></div>
+    <div class="finding"><h3>No sandfly-free period exists</h3><p>Sandflies are in Fiordland all year. They peak October to April and are lowest in July and August. Spring and autumn fail the agreed constraint.</p></div>
+    <div class="finding"><h3>Winter: fewest sandflies, no Coastal Pacific</h3><p>The Picton–Christchurch train doesn't run May–August. The RealNZ Navigator sails in May and August, with no aircraft needed.</p></div>
+    <div class="finding"><h3>September is the middle ground</h3><p>Outside the sandfly peak and before the school holidays. The Coastal Pacific start date is unconfirmed, and the only cruise found so far needs a helicopter.</p></div>
   </div>
 
   <div class="controls" role="toolbar" aria-label="Timeline view">
     <button id="z-full" data-preset="full" aria-pressed="true">Full range</button>
     <button data-preset="winter" aria-pressed="false" title="Also sets the season in the plan">Winter 2027</button>
+    <button data-preset="sept" aria-pressed="false">September 2027</button>
     <button data-preset="spring" aria-pressed="false">Spring 2027</button>
     <button data-preset="autumn" aria-pressed="false">Autumn 2028</button>
     <span class="sep" aria-hidden="true"></span>
@@ -78,7 +98,7 @@
   <section class="disc-head" id="discovery-sec" aria-labelledby="disc-title">
     <div class="eyebrow">2 · Discovery</div>
     <h2 id="disc-title">What would make each option special?</h2>
-    <p class="lede">What each option offers, and what might tip us towards or away from it. Tick the cards for the trip we want. Costs are for the two of us, in NZD: transport, cruises, kennels, and a placeholder for every overnight stay the choices need. Meals aren't included. Prices marked "estimate" are rough guides to check with quotes; USD prices are converted at 1 USD = 1.70 NZD. The starting selection is our current preferred plan: self-drive south, the RealNZ Wanderer on Doubtful Sound, and rail home.</p>
+    <p class="lede">What each option offers, and what might tip us towards or away from it. Tick the cards for the trip we want. Costs are for the two of us, in NZD: transport, cruises, kennels, and a placeholder for every overnight stay the choices need. Meals aren't included. Prices marked "estimate" are rough guides to check with quotes; USD prices are converted at 1 USD = 1.70 NZD. The starting selection is a working plan, not an agreed one: rail south, self-drive in Fiordland, the RealNZ Wanderer, the road back and rail home. The Wanderer sails in the sandfly peak, so the cruise depends on the season decision.</p>
   </section>
   <div id="discovery"></div>
 
@@ -89,9 +109,10 @@
     <div class="controls" role="toolbar" aria-label="Season">
       <span class="tl-inline">Season</span>
       <button data-season="" aria-pressed="true">Not chosen</button>
+      <button data-season="winter27" aria-pressed="false">Winter 2027</button>
+      <button data-season="sept27" aria-pressed="false">September 2027</button>
       <button data-season="spring27" aria-pressed="false">Spring 2027</button>
       <button data-season="autumn28" aria-pressed="false">Autumn 2028</button>
-      <button data-season="winter27" aria-pressed="false">Winter 2027</button>
     </div>
     <div id="seasonbox" class="seasonbox" aria-live="polite"></div>
   </section>
@@ -111,11 +132,12 @@
   <section class="things" id="things" aria-labelledby="things-h">
     <div class="group-h"><h3 id="things-h">4 · Things to think about</h3><span>Not costed yet</span></div>
     <ul>
-      <li><b>Where the car stays while we're away (2–3 weeks).</b> Options: long-stay parking at Half Moon Bay; Auckland Airport long-term parking, which suits flying home because you land beside the car and Brookby is about 25 minutes away; ask Brookby whether a car can stay on site; or a friend or family driveway. The house-sitters could also take it back to the island.</li>
-      <li><b>Self-drive plus rail home.</b> The rental goes back to Christchurch: Manapouri to Christchurch is about 7.5–8 hours, split via Wanaka and Tekapo. Stay in Christchurch before the 07:00 Coastal Pacific. You could save that night by dropping the car near Addington station before 6am, but only if a depot there has an after-hours key drop. Most depots are at the airport.</li>
+      <li><b>Timing with Penny and Charlie.</b> They have been offered the house while we're away and would look after the plants and hens. Agree when they arrive and leave; they may not need to be there the whole time.</li>
+      <li><b>Sandflies and season.</b> No sandfly-free period was found. Decide together between winter (fewest sandflies, no Coastal Pacific) and September (outside the peak, Coastal Pacific start unconfirmed).</li>
+      <li><b>Where the car stays while we're away.</b> Options: long-stay parking at Half Moon Bay, on site at Brookby (ask them), or a friend's driveway.</li>
+      <li><b>Rental car pick-up and return.</b> Most Christchurch depots are at the airport; check for one near the city or Addington station, since we're not flying.</li>
       <li><b>Night counts are approximate.</b> An extra Wellington or Picton night, or a Fiordland weather buffer day, adds to both the total and the kennel bill.</li>
       <li><b>Kennel cough booster</b> must be current for the whole stay. Check the vaccination booklets.</li>
-      <li><b>Gold Card discount</b>: 10% on Great Journeys fares for holders. Check whether it applies to both of us.</li>
       <li><b>Travel insurance</b> that covers weather cancellations in Fiordland.</li>
     </ul>
   </section>

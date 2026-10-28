@@ -13,7 +13,7 @@
   {
    "id": "getsouth",
    "t": "Christchurch to Fiordland",
-   "n": "Choose one way south, and add a Queenstown transfer if the cruise needs one."
+   "n": "By road. Choose who drives, and whether to go direct or break the journey at good places."
   },
   {
    "id": "cruise",
@@ -24,8 +24,7 @@
   {
    "id": "ret",
    "t": "Getting home",
-   "n": "Choose one.",
-   "excl": true
+   "n": "Road back to Christchurch, then rail north. No flying."
   }
  ],
  "cards": [
@@ -43,7 +42,7 @@
    "sw": [
     [
      "p",
-     "Removes the only really early start on the way out"
+     "Drop the dogs off in daylight, with no rush for the 07:45 train"
     ],
     [
      "m",
@@ -133,10 +132,6 @@
     ],
     [
      "m",
-     "07:45 departure: an early start, softened by an Auckland hotel the night before"
-    ],
-    [
-     "m",
      "Long day. Runs southbound Mon, Thu and Sat only"
     ]
    ],
@@ -188,10 +183,6 @@
     [
      "m",
      "Cook Strait can be rough"
-    ],
-    [
-     "m",
-     "Same-day Wellington to Christchurch means an early start. A night in Wellington or Picton avoids it"
     ]
    ],
    "opts": [
@@ -279,115 +270,86 @@
    "dir": "out"
   },
   {
-   "id": "jet",
-   "g": "getsouth",
-   "c": "ferry",
-   "n": 1,
-   "t": "Jet, Christchurch → Queenstown",
-   "op": "Air New Zealand · direct, about 1 h",
-   "excl": "south2",
-   "sp": [
-    "A short flight over the Southern Alps",
-    "Saves a full day compared with driving"
-   ],
-   "sw": [
-    [
-     "p",
-     "The quick and simple option, and you said it appealed"
-    ],
-    [
-     "m",
-     "Airport time and baggage limits"
-    ],
-    [
-     "m",
-     "You miss the Mackenzie Basin and Aoraki/Mt Cook"
-    ]
-   ],
-   "v": 500,
-   "st": "est",
-   "b": "Fares advertised from NZD 79; budget about NZD 250 per person including a checked bag.",
-   "links": [
-    {
-     "l": "Air New Zealand: Christchurch–Queenstown",
-     "u": "https://www.airnewzealand.co.nz/flights/en-nz/flights-from-christchurch-to-queenstown"
-    }
-   ],
-   "dir": "out"
-  },
-  {
    "id": "drive",
    "g": "getsouth",
    "c": "context",
-   "n": 2,
-   "t": "Two-day chauffeured drive",
-   "op": "Private driver · via Tekapo or Aoraki/Mt Cook · about 4 h a day",
+   "t": "Chauffeured drive",
+   "op": "Private driver · Christchurch to Te Anau and on to the cruise",
    "excl": "south2",
    "sp": [
-    "Turquoise Lakes Tekapo and Pukaki, with Aoraki/Mt Cook views",
-    "Aoraki Mackenzie Dark Sky Reserve: a lodge night under the stars",
-    "The Central Otago wine route on day two"
+    "Nobody has to drive: watch the Mackenzie Basin and the Lindis Pass go by",
+    "The driver can take us all the way to Manapouri or the Milford Road for the cruise",
+    "Stops wherever we want them"
    ],
    "sw": [
     [
      "p",
-     "A road journey with nobody driving but the chauffeur"
+     "Everything handled"
     ],
     [
      "m",
-     "Adds a night and a day"
-    ],
-    [
-     "m",
-     "Two days in a vehicle"
+     "The driver also has to be booked for the road back north"
     ]
    ],
-   "v": 3000,
    "st": "est",
-   "b": "Rough estimate for a private driver over two days. Get quotes. The overnight lodge is extra.",
-   "dir": "out"
+   "b": "Rough estimate for a private driver one way, Christchurch to Fiordland. Get quotes. The road back north is costed on its own card.",
+   "dir": "out",
+   "opts": [
+    {
+     "l": "Direct",
+     "v": 3000
+    },
+    {
+     "l": "Break at Tekapo",
+     "v": 3000
+    },
+    {
+     "l": "Tekapo and Wanaka",
+     "v": 3000
+    }
+   ],
+   "def": 1
   },
   {
    "id": "self",
    "g": "getsouth",
    "c": "window",
-   "n": 2,
    "t": "Drive ourselves",
-   "op": "Rental car · Christchurch via Tekapo and the Lindis Pass, then on to Te Anau and Manapouri · about 6–6.5 h to Queenstown plus 2 h 45 to Manapouri",
+   "op": "Rental car, collected and returned in Christchurch · kept through the cruise",
    "excl": "south2",
    "sp": [
-    "Stop wherever you like: Lake Tekapo, Lake Pukaki with Aoraki/Mt Cook behind it, the Lindis Pass, Central Otago orchards and wineries",
-    "Split over two easy days with a night at Tekapo or Mt Cook under the Dark Sky Reserve, then on to Te Anau",
-    "Keep the car to Manapouri for RealNZ: overnight parking about 950 m from the visitor centre, limited luggage storage. Te Anau is 30 min away for the pre-cruise night"
+    "Choose the pace: straight through in a day, or stops at Lake Tekapo, Aoraki/Mt Cook, the Lindis Pass and Wanaka",
+    "The car stays with us: park at Manapouri for the RealNZ cruise (about 950 m from the visitor centre) and drive back north afterwards",
+    "Central Otago orchards and wineries along the way"
    ],
    "sw": [
     [
      "p",
-     "Total freedom of pace, and we know the area is lovely"
-    ],
-    [
-     "p",
-     "Keeping the car to Manapouri removes the Queenstown transfer and its timing worries"
+     "We set our own pace and stops"
     ],
     [
      "m",
-     "We do the driving, against the original no-driving vision"
+     "One of us drives"
     ],
     [
      "m",
-     "Dropping at Queenstown needs a transfer to the cruise; keeping it adds rental days while it sits parked"
+     "Direct means one long day of about 7–8 hours to Te Anau"
     ]
    ],
    "st": "est",
-   "b": "Rough estimate. Drop at Queenstown: 2–3 days with a one-way fee plus fuel. Keep to Manapouri: about 3 more days while parked during the cruise, plus parking and fuel. With fly home the car is dropped at Queenstown airport after the cruise; with rail home it goes back to Christchurch. Lodges extra.",
+   "b": "Rough estimate for a rental for the whole South Island loop (about 8–10 days) plus fuel. Overnight stays are priced separately below.",
    "opts": [
     {
-     "l": "Drop at Queenstown",
-     "v": 600
+     "l": "Direct",
+     "v": 1200
     },
     {
-     "l": "Keep to Manapouri",
-     "v": 850
+     "l": "Break at Tekapo",
+     "v": 1200
+    },
+    {
+     "l": "Tekapo and Wanaka",
+     "v": 1200
     }
    ],
    "def": 1,
@@ -398,30 +360,6 @@
     }
    ],
    "dir": "out"
-  },
-  {
-   "id": "xfer",
-   "g": "getsouth",
-   "c": "context",
-   "t": "Queenstown ⇄ Te Anau/Manapouri transfer",
-   "op": "Private car · Queenstown–Manapouri about 2 h 45 each way",
-   "sp": [
-    "A door-to-door transfer into Fiordland via Lake Wakatipu and the Southland plains"
-   ],
-   "sw": [
-    [
-     "p",
-     "Needed for RealNZ and Heritage cruises"
-    ],
-    [
-     "m",
-     "Not needed for Jewel cruises, which include or sell a NZD 300–350 per person van"
-    ]
-   ],
-   "v": 1200,
-   "st": "est",
-   "b": "Rough estimate for a private return transfer for two. Get quotes.",
-   "dir": "both"
   },
   {
    "id": "rnw",
@@ -439,11 +377,11 @@
    "sw": [
     [
      "p",
-     "Fits October 2027 and April 2028 with every train running"
+     "No aircraft: road and lake crossing"
     ],
     [
-     "p",
-     "Best value by far, leaving budget for better lodges"
+     "m",
+     "Sails in October and April (projected), inside the sandfly peak"
     ],
     [
      "m",
@@ -488,11 +426,15 @@
    "sw": [
     [
      "p",
-     "Ensuite twins"
+     "No aircraft, and ensuite twins"
+    ],
+    [
+     "p",
+     "Sails in May and August, when sandflies are fewer"
     ],
     [
      "m",
-     "Only runs when the Coastal Pacific is closed"
+     "The Coastal Pacific does not run then"
     ],
     [
      "m",
@@ -538,7 +480,7 @@
     ],
     [
      "p",
-     "No helicopter needed. The van from Queenstown or Te Anau is NZD 350 per person"
+     "No aircraft needed: drive the Milford Road"
     ],
     [
      "m",
@@ -547,6 +489,10 @@
     [
      "m",
      "Milford is busy by day"
+    ],
+    [
+     "m",
+     "Runs late October to April: the sandfly peak"
     ]
    ],
    "v": 4760,
@@ -579,15 +525,11 @@
     ],
     [
      "m",
-     "One or two helicopter legs"
+     "Helicopter leg: allowed only because there is no other way in"
     ],
     [
      "m",
-     "2028 dates not yet published; 2027 dates miss your windows"
-    ],
-    [
-     "m",
-     "About six times the cost of RealNZ"
+     "2028 dates not yet published; 2027 dates are January–April and August"
     ]
    ],
    "v": 12478,
@@ -620,7 +562,7 @@
    "sw": [
     [
      "p",
-     "The 19 Sep sailing fits late September"
+     "The 19 Sep sailing falls outside the October–April sandfly peak"
     ],
     [
      "p",
@@ -632,7 +574,7 @@
     ],
     [
      "m",
-     "Helicopter in; 6 nights stretches the rail-home option"
+     "Helicopter leg: allowed only because there is no other way in"
     ]
    ],
    "v": 17374,
@@ -647,48 +589,56 @@
    "dir": "mid"
   },
   {
-   "id": "fly",
+   "id": "back",
    "g": "ret",
-   "c": "ferry",
-   "n": 1,
-   "t": "Fly home",
-   "op": "Air New Zealand jet · Queenstown → Auckland · about 1 h 50",
+   "c": "window",
+   "dir": "ret",
+   "t": "Road back to Christchurch",
+   "op": "After the cruise · by the same means as the drive south",
    "sp": [
-    "Home in a morning, with the slow travel done on the way down",
-    "Keeps the trip near two weeks"
+    "Back through Wanaka and over the Lindis Pass, or straight through in a day",
+    "Return to Christchurch for the train north"
    ],
    "sw": [
     [
      "p",
-     "Leaves days spare for a Fiordland weather buffer"
+     "Direct gets us back in one long day of about 8 hours"
     ],
     [
      "p",
-     "A night in Auckland before collecting the dogs"
+     "Breaking at Wanaka and Tekapo makes it two or three easy days"
     ],
     [
      "m",
-     "Loses the train home"
+     "Each break adds a night"
     ]
    ],
-   "v": 700,
-   "st": "est",
-   "b": "Budget about NZD 350 per person including bags. The Auckland hotel is extra.",
-   "links": [
+   "opts": [
     {
-     "l": "Air New Zealand",
-     "u": "https://www.airnewzealand.co.nz/"
+     "l": "Direct",
+     "v": 0
+    },
+    {
+     "l": "Break at Wanaka",
+     "v": 0
+    },
+    {
+     "l": "Wanaka and Tekapo",
+     "v": 0
     }
    ],
-   "dir": "ret"
+   "def": 2,
+   "chauffeur": 3000,
+   "st": "est",
+   "b": "Included in the rental if we drive ourselves. About NZD 3,000 (estimate) if chauffeured."
   },
   {
    "id": "railh",
    "g": "ret",
    "c": "rail",
-   "n": 4,
+   "n": 2,
    "t": "Rail home",
-   "op": "Jet Queenstown → Christchurch, then Coastal Pacific, Interislander and Northern Explorer north",
+   "op": "Coastal Pacific, Interislander and Northern Explorer north, from Christchurch",
    "sp": [
     "See everything again in the other direction, with a different light and a different season",
     "Another Scenic Plus day or two to relax"
@@ -696,24 +646,20 @@
    "sw": [
     [
      "p",
-     "Fulfils \"train the full length\", both ways"
+     "Train the full length, both ways"
+    ],
+    [
+     "p",
+     "The Coastal Pacific leaves Christchurch at 07:00 and reaches Picton at 12:40, meeting the 14:15 ferry"
     ],
     [
      "m",
-     "Adds about 3–5 nights. Lodging extra"
-    ],
-    [
-     "m",
-     "The Coastal Pacific leaves Christchurch at 07:00, an early start"
-    ],
-    [
-     "m",
-     "Spring: only connects from Thu or Sat departures"
+     "In spring, the Coastal Pacific runs Thu–Sun only; not at all May–August"
     ]
    ],
-   "v": 2800,
+   "v": 2300,
    "st": "est",
-   "b": "Scenic Plus north (about 1,000 + 1,000), ferry with lounge (300), and a Queenstown–Christchurch jet (500).",
+   "b": "Scenic Plus on both trains (about 1,000 + 1,000) and the ferry with the Plus lounge (300).",
    "links": [
     {
      "l": "Great Journeys: Coastal Pacific",
@@ -739,6 +685,7 @@
   "cp": 1,
   "self": 1,
   "rnw": 1,
+  "back": 1,
   "railh": 1
  }
 }

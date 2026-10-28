@@ -1,8 +1,9 @@
 // Pure itinerary and budget logic. No DOM access, so it can be unit-tested with node --test.
+// Agreed 28 Oct 2026: no flying (helicopter only where a cruise has no other access);
+// Christchurch to Fiordland and back is by road, either direct or broken at good places.
 
 export const KENNEL_RATE = 37;   // NZD per small dog per day, Brookby Lodge price list (checked 27 Oct 2026)
 export const DOGS = 2;
-export const SELF_RAIL_COST = 2650; // rail home when the rental car is driven back to Christchurch
 
 const CRUISES = {
   rnw: { name: 'RealNZ Wanderer, Doubtful Sound', nights: 2, kind: 'doubtful' },
@@ -21,7 +22,8 @@ const P = {
   cpSouth: ['pic', 'blm', 'sed', 'kai', 'chv', 'wpa', 'chc'],
   chcTek: ['chc', 'ash', 'ger', 'fai', 'tek'],
   tekTea: ['tek', 'twz', 'oma', 'lin', 'tar', 'cro', 'arj', 'zqn', 'kin', 'mos', 'tea'],
-  zqnTea: ['zqn', 'kin', 'mos', 'tea'],
+  tekWan: ['tek', 'twz', 'oma', 'lin', 'tar', 'lug', 'wan'],
+  wanTea: ['wan', 'car', 'crn', 'arj', 'zqn', 'kin', 'mos', 'tea'],
   teaMan: ['tea', 'man'],
   lake: ['man', 'lm1', 'wam'],
   wilmot: ['wam', 'wil', 'dco'],
@@ -29,29 +31,29 @@ const P = {
   milfordRd: ['tea', 'tad', 'kfl', 'hom', 'mil'],
   milfordSd: ['mil', 'mmo', 'mil'],
   duskyCruise: ['dus', 'brk', 'ds2', 'ds1', 'dco'],
-  presCruise: ['pre', 'dus', 'brk', 'ds2', 'ds1', 'dco'],
-  teaWan: ['tea', 'mos', 'kin', 'zqn', 'arj', 'crn', 'car', 'wan'],
-  wanTek: ['wan', 'lug', 'tar', 'lin', 'oma', 'twz', 'tek']
+  presCruise: ['pre', 'dus', 'brk', 'ds2', 'ds1', 'dco']
 };
 const rev = a => [...a].reverse();
+const join = (...parts) => parts.reduce((acc, p) => acc.length && acc[acc.length - 1] === p[0] ? acc.concat(p.slice(1)) : acc.concat(p), []);
+
+export const SOUTH_STOPS = ['Direct', 'Break at Tekapo', 'Tekapo and Wanaka'];
+export const BACK_STOPS = ['Direct', 'Break at Wanaka', 'Wanaka and Tekapo'];
 
 export function cruiseOf(sel) {
   return Object.keys(CRUISES).find(k => sel[k]) || null;
 }
+const driveCard = sel => sel.self ? 'self' : sel.drive ? 'drive' : null;
+const southStops = (sel, opt) => { const k = driveCard(sel); return k ? (opt[k] ?? 1) : null; };
+const backStops = opt => opt.back ?? 2;
 
 // Build the day-by-day itinerary and the map route from the selection.
-// Self-drive keeps the car to Manapouri unless 'Drop at Queenstown' is chosen; rail home always keeps it.
-export function selfKeeps(sel, opt = {}) {
-  return !!sel.self && (!!sel.railh || (opt.self ?? 1) === 1);
-}
-
 export function buildItinerary(sel, opt = {}) {
-  const keep = selfKeeps(sel, opt);
   const steps = [];
   const segments = [];
   const seg = (mode, path, label) => segments.push({ mode, path, label });
   const step = (title, detail, modes, night, n = night ? 1 : 0) => steps.push({ title, detail, modes, night, n });
   const tag = svc => { steps[steps.length - 1].svc = svc; };
+  const who = sel.self ? 'Drive ourselves' : sel.drive ? 'Chauffeured' : 'By road';
 
   // Leaving home
   if (sel.akl) {
@@ -70,7 +72,7 @@ export function buildItinerary(sel, opt = {}) {
     }
     seg('rail', P.neSouth, 'Northern Explorer');
     step('Northern Explorer to Wellington',
-      (sel.akl ? 'Walk to Strand station for the 07:45 departure. ' : 'Pre-dawn start from Waiheke to make the 07:45 departure. ') +
+      (sel.akl ? 'Walk to Strand station. ' : 'Early start from Waiheke and a dawn kennel drop-off. ') +
       'Departs 07:45 (Mon, Thu, Sat); volcanic plateau and the Raurimu Spiral; arrives Wellington about 18:25.',
       ['rail'], { place: 'wlg', kind: 'stay' });
     tag('neS');
@@ -81,33 +83,31 @@ export function buildItinerary(sel, opt = {}) {
     const t = sel.isl && sel.cp ? 'Interislander and Coastal Pacific to Christchurch'
             : sel.isl ? 'Interislander to Picton' : 'Coastal Pacific to Christchurch';
     step(t, (sel.isl ? '08:45 sailing through Tory Channel; bags checked through. ' : '') +
-      (sel.cp ? '13:40 train along the Kaikōura coast; arrive 19:30.' : ''),
+      (sel.cp ? '13:40 train along the Kaikōura coast; arrives 19:30.' : ''),
       [sel.isl && 'ferry', sel.cp && 'rail'].filter(Boolean),
       sel.cp ? { place: 'chc', kind: 'stay' } : null);
     if (sel.cp) tag('cp');
   }
 
-  // Christchurch to Fiordland
-  if (sel.jet) {
-    seg('flight', ['chc', 'zqn'], 'Jet to Queenstown');
-    seg('drive', P.zqnTea, sel.self ? 'Drive' : 'Transfer to Te Anau');
-    step('Fly to Queenstown, on to Te Anau', 'About an hour in the air, then 2 h by road to Te Anau.',
-      ['flight', 'drive'], { place: 'tea', kind: 'stay' });
-  } else if (sel.drive || sel.self) {
-    const who = sel.self ? 'Drive ourselves' : 'Chauffeured drive';
+  // Christchurch to Fiordland, by road
+  const ss = southStops(sel, opt);
+  if (ss === 0) {
+    seg('drive', join(P.chcTek, P.tekTea), who);
+    step(`${who}: Christchurch to Te Anau direct`, 'One long day, about 7–8 hours, via Tekapo, the Lindis Pass and Central Otago.', ['drive'], { place: 'tea', kind: 'stay' });
+  } else if (ss === 1) {
     seg('drive', P.chcTek, who);
-    step(`${who} to Lake Tekapo`, 'Canterbury Plains and Fairlie; evening under the Dark Sky Reserve.',
-      ['drive'], { place: 'tek', kind: 'stay' });
-    if (sel.self && !keep) {
-      seg('drive', P.tekTea.slice(0, P.tekTea.indexOf('zqn') + 1), who);
-      seg('drive', P.zqnTea, 'Transfer to Te Anau');
-      step('Over the Lindis Pass to Queenstown, then Te Anau', 'Lake Pukaki, Lindis Pass and Central Otago; drop the rental in Queenstown and transfer to Te Anau.',
-        ['drive'], { place: 'tea', kind: 'stay' });
-    } else {
-      seg('drive', P.tekTea, who);
-      step('Over the Lindis Pass to Te Anau', 'Lake Pukaki, Lindis Pass, Central Otago, Lake Wakatipu.' + (keep ? ' We keep the car for the drive to Manapouri.' : ''),
-        ['drive'], { place: 'tea', kind: 'stay' });
-    }
+    step(`${who} to Lake Tekapo`, 'About 3 hours across the Canterbury Plains; evening under the Dark Sky Reserve.', ['drive'], { place: 'tek', kind: 'stay' });
+    seg('drive', P.tekTea, who);
+    step('Over the Lindis Pass to Te Anau', 'About 4.5 hours: Lake Pukaki, the Lindis Pass, Central Otago, Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+  } else if (ss === 2) {
+    seg('drive', P.chcTek, who);
+    step(`${who} to Lake Tekapo`, 'About 3 hours across the Canterbury Plains; evening under the Dark Sky Reserve.', ['drive'], { place: 'tek', kind: 'stay' });
+    seg('drive', P.tekWan, who);
+    step('Lindis Pass to Wanaka', 'About 2.5 hours, with time at Lake Pukaki and Aoraki/Mt Cook views.', ['drive'], { place: 'wan', kind: 'stay' });
+    seg('drive', P.wanTea, who);
+    step('Crown Range to Te Anau', 'About 3.5 hours over the Crown Range and along Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
+  } else if (cruiseOf(sel)) {
+    step('Christchurch to Fiordland not chosen yet', 'Tick Drive ourselves or Chauffeured drive.', [], null);
   }
 
   // Cruise
@@ -123,54 +123,58 @@ export function buildItinerary(sel, opt = {}) {
       seg('drive', rev(P.wilmot), 'Wilmot Pass');
       seg('ferry', rev(P.lake), 'Lake Manapouri');
       endAt = 'man';
-      step(c.name, (keep ? 'Drive 30 min to Manapouri and park' : 'Transfer to Manapouri') + ', cross the lake and Wilmot Pass to Deep Cove, then two nights aboard: kayaking, dolphins, fur seals and penguins if we are lucky.',
+      step(c.name, (sel.self ? 'Drive 30 min to Manapouri and park' : 'To Manapouri') + ', cross the lake and Wilmot Pass to Deep Cove, then two nights aboard: kayaking, dolphins, fur seals and penguins if we are lucky. No aircraft.',
         ['drive', 'ferry', 'cruise'], { place: 'dco', kind: 'aboard' }, c.nights);
     } else if (c.kind === 'milford') {
       seg('drive', P.milfordRd, 'Milford Road');
       seg('cruise', P.milfordSd, c.name);
       endAt = 'mil';
-      step(c.name, 'Milford Road through the Homer Tunnel, board at 15:10; sunset and sunrise under Mitre Peak.',
+      step(c.name, 'Milford Road through the Homer Tunnel, board at 15:10; sunset and sunrise under Mitre Peak. No aircraft.',
         ['drive', 'cruise'], { place: 'mil', kind: 'aboard' }, c.nights);
     } else {
       const start = c.kind === 'heli-pres' ? 'pre' : 'dus';
-      seg('heli', ['tea', start], 'Helicopter');
+      seg('heli', ['tea', start], 'Helicopter (only access)');
       seg('cruise', c.kind === 'heli-pres' ? P.presCruise : P.duskyCruise, c.name);
       seg('drive', rev(P.wilmot), 'Wilmot Pass');
       seg('ferry', rev(P.lake), 'Lake Manapouri');
       endAt = 'man';
-      step(c.name, `Helicopter from Te Anau to ${c.kind === 'heli-pres' ? 'Preservation Inlet' : 'Dusky Sound'}, then ${c.nights} nights aboard with naturalist guides.`,
+      step(c.name, `Helicopter from Te Anau to ${c.kind === 'heli-pres' ? 'Preservation Inlet' : 'Dusky Sound'}: allowed only because there is no other way in. Then ${c.nights} nights aboard with naturalist guides.`,
         ['heli', 'cruise'], { place: start, kind: 'aboard' }, c.nights);
     }
+    tag('cruise:' + ck);
   }
-  if (ck && steps.length) steps[steps.length - 1].svc = 'cruise:' + ck;
   const backToTea = endAt === 'man' ? rev(P.teaMan) : endAt === 'mil' ? rev(P.milfordRd) : ['tea'];
 
-  // Getting home
+  // Back to Christchurch by road
+  if (sel.back) {
+    const bs = backStops(opt);
+    const by = sel.self ? 'Drive' : sel.drive ? 'Chauffeured' : 'By road';
+    if (bs === 0) {
+      seg('drive', join(backToTea, rev(P.tekTea), rev(P.chcTek)), `${by} back`);
+      step(`${by} back to Christchurch direct`, 'Disembark around midday and drive about 8 hours via the Lindis Pass and Tekapo.' + (sel.self ? ' Return the car.' : ''), ['drive'], { place: 'chc', kind: 'stay' });
+    } else if (bs === 1) {
+      seg('drive', join(backToTea, rev(P.wanTea)), `${by} back`);
+      step(`${by} to Wanaka`, 'Disembark and head north over the Crown Range, about 3.5 hours.', ['drive'], { place: 'wan', kind: 'stay' });
+      seg('drive', join(rev(P.tekWan), rev(P.chcTek)), `${by} back`);
+      step('Wanaka to Christchurch', 'About 5.5 hours over the Lindis Pass and past Tekapo.' + (sel.self ? ' Return the car.' : ''), ['drive'], { place: 'chc', kind: 'stay' });
+    } else {
+      seg('drive', join(backToTea, rev(P.wanTea)), `${by} back`);
+      step(`${by} to Wanaka`, 'Disembark and head north over the Crown Range, about 3.5 hours.', ['drive'], { place: 'wan', kind: 'stay' });
+      seg('drive', rev(P.tekWan), `${by} back`);
+      step('Lindis Pass to Lake Tekapo', 'A gentle 2.5 hours back over the pass.', ['drive'], { place: 'tek', kind: 'stay' });
+      seg('drive', rev(P.chcTek), `${by} back`);
+      step('Tekapo to Christchurch', 'About 3 hours.' + (sel.self ? ' Return the car.' : ''), ['drive'], { place: 'chc', kind: 'stay' });
+    }
+  } else if (ck) {
+    step('Road back to Christchurch not chosen yet', 'Tick Road back to Christchurch.', [], null);
+  }
+
+  // Rail home
   const homeLeg = () => {
     seg('drive', P.homeFromAkl, 'Collect the dogs');
     seg('ferry', rev(P.carFerry), 'Sealink home');
   };
-  if (sel.fly) {
-    seg('drive', [...backToTea, ...rev(P.zqnTea).slice(1)], keep ? 'Drive to Queenstown' : 'To Queenstown');
-    step('Back to Queenstown', keep ? 'Collect the car at Manapouri and drive to Queenstown; drop the rental at the airport in the morning.' : 'Disembark, then transfer to Queenstown for the night.',
-      ['drive'], { place: 'zqn', kind: 'stay' });
-    seg('flight', ['zqn', 'akl'], 'Jet home');
-    homeLeg();
-    step('Fly home and collect the dogs', 'Morning flight to Auckland, Brookby by afternoon, ferry home.', ['flight', 'drive', 'ferry'], null);
-  } else if (sel.railh) {
-    if (sel.self) {
-      seg('drive', [...backToTea, ...P.teaWan.slice(1)], 'Drive north');
-      step('Drive to Wanaka', 'Disembark and head north via Queenstown and the Crown Range.', ['drive'], { place: 'wan', kind: 'stay' });
-      seg('drive', P.wanTek, 'Drive north');
-      step('Lindis Pass to Lake Tekapo', 'A gentle day back over the pass.', ['drive'], { place: 'tek', kind: 'stay' });
-      seg('drive', rev(P.chcTek), 'Return the car');
-      step('Return the car in Christchurch', 'Drop the rental and rest before the early train.', ['drive'], { place: 'chc', kind: 'stay' });
-    } else {
-      seg('drive', [...backToTea, ...rev(P.zqnTea).slice(1)], 'To Queenstown');
-      step('Back to Queenstown', 'Disembark and transfer to Queenstown.', ['drive'], { place: 'zqn', kind: 'stay' });
-      seg('flight', ['zqn', 'chc'], 'Jet to Christchurch');
-      step('Fly to Christchurch', 'Short flight; an evening in the city before the early train.', ['flight'], { place: 'chc', kind: 'stay' });
-    }
+  if (sel.railh) {
     seg('rail', rev(P.cpSouth), 'Coastal Pacific north');
     seg('ferry', rev(P.strait), 'Interislander');
     step('Coastal Pacific and ferry to Wellington', 'Coastal Pacific departs Christchurch 07:00, arrives Picton 12:40; 14:15 Interislander arrives Wellington 17:45.', ['rail', 'ferry'], { place: 'wlg', kind: 'stay' });
@@ -181,7 +185,7 @@ export function buildItinerary(sel, opt = {}) {
     homeLeg();
     step('Collect the dogs and home', 'Brookby Lodge, then the Sealink back to Waiheke.', ['drive', 'ferry'], null);
   } else {
-    step('Way home not chosen yet', 'Tick Fly home or Rail home.', [], null);
+    step('Rail home not chosen yet', 'Tick Rail home.', [], null);
   }
 
   // Day numbers and stay ids
@@ -199,12 +203,19 @@ export function buildItinerary(sel, opt = {}) {
   return { steps, segments, nights, days: nights + 1 };
 }
 
+// Nights a card adds, for its badge.
+export function cardNights(card, state) {
+  if (card.id === 'self' || card.id === 'drive') return 1 + (state.opt[card.id] ?? card.def);
+  if (card.id === 'back') return 1 + (state.opt.back ?? card.def);
+  return card.n || 0;
+}
+
 export function cardValue(card, state, nights) {
   if (card.dyn === 'kennel') return KENNEL_RATE * DOGS * (nights + 1);
-  if (card.id === 'railh' && state.sel.self && state.sel.railh) return SELF_RAIL_COST;
-  if (card.id === 'self' && state.sel.railh) return card.opts[1].v; // rail home keeps the car
+  if (card.id === 'back') return state.sel.drive ? card.chauffeur : 0;
+  if (card.v !== undefined) return card.v;
   if (card.opts) return card.opts[state.opt[card.id] ?? card.def].v;
-  return card.v;
+  return 0;
 }
 
 export function staysFrom(itin, places) {
@@ -244,15 +255,9 @@ export function toggle(data, state, id, on) {
 
 export function warnings(state, itin) {
   const s = state.sel, w = [];
-  if (itin.days > 21) w.push('Over the 3-week ceiling for the dogs.');
-  if (!s.akl && s.ne) w.push('Without the Auckland night, the 07:45 train needs a pre-dawn start from Waiheke and a dawn kennel drop-off.');
-  if (s.self && s.railh) w.push('Rail home with self-drive: the car goes back to Christchurch via Wanaka and Tekapo.');
-  const keep = selfKeeps(s, state.opt);
-  if (keep && s.xfer) w.push('We keep the car to Manapouri, so the private transfer is unnecessary.');
-  if (s.self && s.railh && (state.opt.self ?? 1) === 0) w.push('Rail home keeps the car (it goes back to Christchurch), so Drop at Queenstown does not apply.');
-  const needX = ['rnw', 'rnn', 'he4', 'he6'].some(k => s[k]);
-  if (needX && !s.xfer && (s.jet || (s.self && !keep))) w.push('Add the Queenstown transfer to reach the cruise.');
-  if (s.fj1 && s.xfer) w.push('The Jewel sells its own van; the private transfer may be unnecessary.');
+  if (itin.days > 15) w.push('Longer than the agreed two weeks.');
+  if (!s.akl && s.ne) w.push('Without the Auckland night, the 07:45 train means a very early kennel drop-off.');
+  if (s.back && !s.self && !s.drive) w.push('Choose Drive ourselves or Chauffeured for the road legs.');
   if (!cruiseOf(s)) w.push('No cruise chosen.');
   return w;
 }
@@ -307,6 +312,11 @@ export function alignSeason(itin, seasons, key) {
     }
     if (st.svc === 'cp' && S.cp.length && S.cp.length < 7) notes[i].push({ level: 'check', text: S.cpNote });
     if (st.svc && st.svc.startsWith('cruise:')) {
+      if (S.sandflies) {
+        const lv = S.sandflies.level === 'peak' ? 'block' : S.sandflies.level === 'lowest' ? 'ok' : 'check';
+        notes[i].push({ level: lv, text: S.sandflies.note });
+        if (lv === 'block') blockers.push(S.sandflies.note);
+      }
       const c = S.cruises[st.svc.slice(7)];
       if (c) {
         notes[i].push({ level: c.ok ? 'check' : 'block', text: c.note });
@@ -314,5 +324,5 @@ export function alignSeason(itin, seasons, key) {
       }
     }
   });
-  return { key, label: S.label, window: S.window, general: S.general, start: best.start, startLabel: DOW_LABEL[best.start], added: best.added, per: best.per, notes, blockers: [...new Set(blockers)], days: best.days };
+  return { key, label: S.label, window: S.window, general: S.general, sandflies: S.sandflies, start: best.start, startLabel: DOW_LABEL[best.start], added: best.added, per: best.per, notes, blockers: [...new Set(blockers)], days: best.days };
 }
