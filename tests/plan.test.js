@@ -154,3 +154,10 @@ test('every overnight place except Auckland has hotel ideas with https links', (
     places[k].ideas.forEach(i => assert.match(i.u, /^https:\/\//));
   }
 });
+
+test('station and ferry nights list walking distance for every idea', () => {
+  for (const k of ['wlg', 'pic', 'chc']) {
+    assert.ok(places[k].transitNote, k);
+    places[k].ideas.forEach(i => assert.ok(i.walk, `${k}: ${i.n}`));
+  }
+});

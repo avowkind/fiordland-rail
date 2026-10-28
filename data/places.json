@@ -250,33 +250,32 @@
    560,
    600
   ],
-  "staySpecial": "Waterfront hotel near the station and ferry terminal",
+  "staySpecial": "Station night: walkable from Wellington station; free Interislander shuttle from Platform 10",
   "ideas": [
    {
     "n": "The Bolton Hotel",
     "u": "https://www.boltonhotel.co.nz/",
-    "d": "Thorndon, near Parliament and the railway station; 136 rooms; simple, contemporary"
+    "d": "Thorndon, near Parliament; 136 rooms; simple, contemporary",
+    "walk": "Short walk to the station (verify)"
    },
    {
     "n": "Sofitel Wellington",
     "u": "https://all.accor.com/hotel/9051/index.en.shtml",
-    "d": "CBD at the foot of the Botanic Gardens, near Parliament and the Cable Car; luxury; about 127 rooms"
+    "d": "Thorndon, at the foot of the Botanic Gardens; luxury; about 127 rooms",
+    "walk": "Short walk to the station (verify)"
    },
    {
     "n": "InterContinental Wellington",
     "u": "https://wellington.intercontinental.com/",
-    "d": "Waterfront on Grey Street; grand and recently refurbished; larger (236 rooms)"
-   },
-   {
-    "n": "Ohtel Wellington",
-    "u": "https://ohtel.nz/wellington/",
-    "d": "Oriental Bay, opposite the beach promenade; 10-room mid-century boutique; further from the station"
+    "d": "Waterfront on Grey Street; grand; larger (236 rooms)",
+    "walk": "Walkable to the station (verify)"
    }
   ],
   "ideasSrc": {
    "l": "The Hotel Journal: Wellington boutique and luxury hotels",
    "u": "https://thehoteljournal.com/best-boutique-luxury-hotels-wellington-new-zealand/"
-  }
+  },
+  "transitNote": "Station night: walkable from Wellington station. The Interislander runs a free shuttle from Platform 10 to the ferry terminal, leaving 70 minutes before sailings, and drops arriving passengers back at Platform 10."
  },
  "cks": {
   "name": "Cook Strait",
@@ -305,33 +304,32 @@
    500,
    600
   ],
-  "staySpecial": "Waterfront, a short walk from the ferry terminal",
+  "staySpecial": "Ferry night: a short walk from the ferry terminal",
   "ideas": [
-   {
-    "n": "Picton Yacht Club Hotel",
-    "u": "https://www.newzealand.com/au/plan/business/cpg-hotels-picton-yacht-club/",
-    "d": "Contemporary harbour-facing hotel"
-   },
    {
     "n": "Escape to Picton",
     "u": "https://www.escapetopicton.com/",
-    "d": "Central boutique hotel with a wine-focused restaurant"
+    "d": "Central boutique hotel with a wine-focused restaurant",
+    "walk": "In the town centre, a short walk to the ferry and station"
+   },
+   {
+    "n": "Picton Yacht Club Hotel",
+    "u": "https://www.newzealand.com/au/plan/business/cpg-hotels-picton-yacht-club/",
+    "d": "Contemporary harbour-facing hotel",
+    "walk": "Walkable across town (verify)"
    },
    {
     "n": "Picton Waterfront Luxury Apartments",
     "u": "https://pictonwaterfrontapartments.co.nz/",
-    "d": "Spacious apartments overlooking the harbour and marina"
-   },
-   {
-    "n": "Bay of Many Coves",
-    "u": "https://guide.michelin.com/en/hotels-stays/marlborough/bay-of-many-coves-6685",
-    "d": "Luxury resort in Queen Charlotte Sound, reached by boat: a special night rather than a ferry-side one"
+    "d": "Apartments overlooking the harbour and marina",
+    "walk": "Walkable (verify)"
    }
   ],
   "ideasSrc": {
    "l": "Ouviste: places to stay in Picton",
    "u": "https://ouviste.com/the-7-best-hotels-and-places-to-stay-in-picton/"
-  }
+  },
+  "transitNote": "Ferry night: Picton is compact and the ferry terminal and railway station are on the foreshore. Allow about 400 m on foot, including steps, inside the terminal to board."
  },
  "blm": {
   "name": "Blenheim",
@@ -370,28 +368,44 @@
    500,
    550
   ],
-  "staySpecial": "Central city, close to Addington station",
+  "staySpecial": "Station night: the train uses Addington station, about 3 km from the city centre",
   "ideas": [
+   {
+    "n": "Anika Motel / Arena Motel",
+    "u": "https://www.anikamotel.co.nz/index.html",
+    "d": "3-star motel at 30 Whiteleigh Ave; studios and one- or two-bedroom units (two bedrooms suits our sleeping needs); free shuttle from the station",
+    "walk": "About 900 m from the station"
+   },
+   {
+    "n": "Addington Stadium Motel",
+    "u": "https://addingtonstadiummotel.co.nz/",
+    "d": "Award-winning motel on Lincoln Road; studios and family suites; free shuttle from the station",
+    "walk": "Close to the station"
+   },
    {
     "n": "The George",
     "u": "https://www.newzealand.com/nz/plan/business/the-george-hotel/",
-    "d": "53 rooms overlooking Hagley Park and the Avon; award-winning boutique"
+    "d": "53 rooms overlooking Hagley Park and the Avon; award-winning boutique",
+    "walk": "Not walkable: central city, about 3 km, a short taxi"
    },
    {
     "n": "The Observatory Hotel",
     "u": "https://www.newzealand.com/au/plan/business/the-observatory-hotel/",
-    "d": "Boutique hotel in the Arts Centre's former astronomy and physics school"
+    "d": "Boutique hotel in the Arts Centre",
+    "walk": "Not walkable: central city, about 3 km, a short taxi"
    },
    {
     "n": "The Classic Villa",
     "u": "https://www.newzealand.com/au/plan/business/the-classic-villa-luxury-boutique-hotel",
-    "d": "Boutique hotel in a restored 1899 building, with a garden terrace"
+    "d": "Boutique hotel in a restored 1899 building",
+    "walk": "Not walkable: central city, about 3 km, a short taxi"
    }
   ],
   "ideasSrc": {
    "l": "NZ Pocket Guide: luxury stays in Christchurch",
    "u": "https://nzpocketguide.com/10-best-luxury-accommodation-in-christchurch/"
-  }
+  },
+  "transitNote": "Station night: Christchurch railway station is at Addington, about 3 km from the city centre. Only motels are within walking distance; the boutique hotels are a short taxi away. Trade-off to decide."
  },
  "ash": {
   "name": "Ashburton",

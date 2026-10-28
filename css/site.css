@@ -212,3 +212,5 @@ body.noprice .price{display:none!important}
 .ideas li a{color:var(--heritage);font-weight:600}
 .ideas li span{font-size:13px;color:var(--muted)}
 .ideas a{color:var(--heritage)}
+.ideas li .walk{font-size:12px;font-weight:600;color:var(--heritage)}
+.ideas li .walk.far{color:var(--rail)}

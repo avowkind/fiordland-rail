@@ -26,7 +26,7 @@ function roomSelect(hotel, key, state) {
 // Hotel ideas for a place: links only, nothing chosen.
 const ext = (u, l) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(l)} <span aria-hidden="true">↗</span><span class="sr"> (opens in a new window)</span></a>`;
 function ideasList(p) {
-  return `<details class="ideas"><summary>Hotel ideas (${p.ideas.length})</summary><ul>${p.ideas.map(i => `<li>${ext(i.u, i.n)}<span>${esc(i.d)}</span></li>`).join('')}</ul>
+  return `<details class="ideas"><summary>Hotel ideas (${p.ideas.length})</summary>${p.transitNote ? `<p class="basis">${esc(p.transitNote)}</p>` : '<p class="basis">Car night: we have the rental car here.</p>'}<ul>${p.ideas.map(i => `<li>${ext(i.u, i.n)}<span>${esc(i.d)}</span>${i.walk ? `<span class="walk${/^Not walkable/.test(i.walk) ? ' far' : ''}">${esc(i.walk)}</span>` : ''}</li>`).join('')}</ul>
     <p class="basis">Ideas only, nothing chosen. Twin beds not confirmed for any of these: ask when enquiring.${p.ideasSrc ? ` More: ${ext(p.ideasSrc.u, p.ideasSrc.l)}` : ''}</p></details>`;
 }
 
