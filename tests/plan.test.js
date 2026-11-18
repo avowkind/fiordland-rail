@@ -6,6 +6,7 @@ import { buildItinerary, totals, toggle, staysFrom, cardValue, cardNights, align
 const data = JSON.parse(readFileSync(new URL('../data/options.json', import.meta.url)));
 const places = JSON.parse(readFileSync(new URL('../data/places.json', import.meta.url)));
 const seasons = JSON.parse(readFileSync(new URL('../data/seasons.json', import.meta.url)));
+const bookings = JSON.parse(readFileSync(new URL('../data/bookings.json', import.meta.url)));
 const st = (sel, opt = {}) => ({ sel, opt, stayOff: {} });
 const DEF = { akl: 1, kennel: 1, ne: 1, isl: 1, cp: 1, self: 1, rnw: 1 }; // reference plan used by most tests
 const PREF = data.defaultSelection;
@@ -193,4 +194,18 @@ test('the cruise is fixed: Wanderer twin-share on Tue 5 Oct, rooms 11 or 15', ()
   assert.ok(!rnw.opts);
   assert.match(rnw.op, /room 11 or 15/);
   assert.equal(rnw.v, 2198);
+});
+
+test('bookings file: a status for every leg card and every night of the trip', () => {
+  const OK = ['none', 'booked', 'confirmed'];
+  assert.deepEqual(Object.keys(bookings.legs).sort(), data.cards.map(c => c.id).sort());
+  Object.values(bookings.legs).forEach(b => assert.ok(OK.includes(b.status)));
+  const it = buildItinerary(PREF);
+  const a = alignSeason(it, seasons, 'spring27', fixedDates(data.cards, { sel: PREF, opt: {} }));
+  const nights = [];
+  it.steps.forEach((s, i) => {
+    if (s.night && s.night.kind === 'stay') nights.push(new Date(a.startDate + (a.per[i].day - 1) * 864e5).toISOString().slice(0, 10));
+  });
+  assert.deepEqual(Object.keys(bookings.nights).sort(), nights.sort());
+  Object.values(bookings.nights).forEach(b => assert.ok(OK.includes(b.status)));
 });

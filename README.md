@@ -17,6 +17,7 @@ css/site.css        styles, light and dark themes
 js/main.js          loads the data, holds the selection state, wires up the sections
 js/plan.js          pure itinerary and budget logic (unit-tested)
 js/itinchart.js     day-by-day itinerary chart
+data/bookings.json  booking status per card and per night (none, booked, confirmed)
 js/cards.js         option cards and generated stay cards
 js/map.js           route map
 data/options.json   option cards: costs, nights, notes, groups, default selection

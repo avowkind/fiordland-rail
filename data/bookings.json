@@ -1,0 +1,66 @@
+{
+ "_note": "Booking status for each card. status: none (not booked), booked (booked, awaiting confirmation) or confirmed. Legs are keyed by card id; overnight stays by the date of the night (YYYY-MM-DD); the first Auckland night (29 Sep) is on the akl card. Optional fields: date (when booked or confirmed), note (what was booked). Keep personal details, booking references and payment details out of this file.",
+ "legs": {
+  "akl": {
+   "label": "Auckland night, The Hotel Britomart (29 Sep)",
+   "status": "none"
+  },
+  "kennel": {
+   "label": "Brookby Lodge, Poppy and Rua",
+   "status": "none"
+  },
+  "wfer": {
+   "label": "Finn or one-day rentals for the dogs",
+   "status": "none"
+  },
+  "ne": {
+   "label": "Northern Explorer (30 Sep, 10 Oct)",
+   "status": "none"
+  },
+  "isl": {
+   "label": "Interislander (1 Oct, 9 Oct)",
+   "status": "none"
+  },
+  "cp": {
+   "label": "Coastal Pacific (1 Oct, 9 Oct)",
+   "status": "none"
+  },
+  "self": {
+   "label": "Rental car, Christchurch (2–8 Oct)",
+   "status": "none"
+  },
+  "rnw": {
+   "label": "RealNZ Wanderer twin-share (5–7 Oct)",
+   "status": "none"
+  }
+ },
+ "nights": {
+  "2027-09-30": {
+   "status": "none"
+  },
+  "2027-10-01": {
+   "status": "none"
+  },
+  "2027-10-02": {
+   "status": "none"
+  },
+  "2027-10-03": {
+   "status": "none"
+  },
+  "2027-10-04": {
+   "status": "none"
+  },
+  "2027-10-07": {
+   "status": "none"
+  },
+  "2027-10-08": {
+   "status": "none"
+  },
+  "2027-10-09": {
+   "status": "none"
+  },
+  "2027-10-10": {
+   "status": "none"
+  }
+ }
+}

@@ -243,3 +243,10 @@ body.noprice .price{display:none!important}
 .ic-night.home{border-style:dashed;color:var(--muted)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ic-leg:not(.ic-rest){color:#111}}
 :root[data-theme="dark"] .ic-leg:not(.ic-rest){color:#111}
+
+/* Booking flag on each card */
+.bk{display:inline-block;margin-top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.bk-booked{border-color:var(--window);color:var(--window)}
+.bk-confirmed{background:var(--realnz);border-color:var(--realnz);color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bk-confirmed{color:#111}}
+:root[data-theme="dark"] .bk-confirmed{color:#111}

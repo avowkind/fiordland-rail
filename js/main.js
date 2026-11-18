@@ -8,8 +8,8 @@ const KEY = 'fiordland-rail-selection-v5';
 const SEASON = 'spring27'; // the trip is fixed: October 2027
 const MODE_LABEL = { rail: 'Train', ferry: 'Ferry', drive: 'Road', flight: 'Flight', cruise: 'Cruise', heli: 'Helicopter' };
 
-const [options, places, seasons] = await Promise.all(
-  ['data/options.json', 'data/places.json', 'data/seasons.json'].map(u => fetch(u).then(r => r.json()))
+const [options, places, seasons, bookings] = await Promise.all(
+  ['data/options.json', 'data/places.json', 'data/seasons.json', 'data/bookings.json'].map(u => fetch(u).then(r => r.json()))
 );
 options._places = places;
 
@@ -47,11 +47,20 @@ function renderPlan(itin, al) {
   }).join('') + `<li class="pstep pend"><div class="pday">Total</div><div class="pbody"><h4>${itin.days} days, ${itin.nights} nights door to door</h4>${al && al.added ? `<p class="pnote add">Lining up with ${esc(al.label)} timetables adds ${al.added} day${al.added > 1 ? 's' : ''}: ${al.days - 1} nights. The extra nights are not yet in the total or the kennel bill.</p>` : ''}</div></li>`;
 }
 
+// Booked and confirmed counts across the ticked legs and the nights of the trip.
+function bookedLine(r, al) {
+  const legs = options.cards.filter(c => state.sel[c.id]).map(c => bookings.legs[c.id]);
+  const nights = al && al.startDate ? Array.from({ length: al.days - 1 }, (_, i) => bookings.nights[new Date(al.startDate + i * 864e5).toISOString().slice(0, 10)]).filter(Boolean) : [];
+  const all = [...legs, ...nights].filter(Boolean);
+  const n = st => all.filter(b => b.status === st).length;
+  return `Booked ${n('booked') + n('confirmed')} of ${all.length}, confirmed ${n('confirmed')}.`;
+}
+
 function render(focusSel) {
   const r = totals(options, state, places);
   const al = alignSeason(r.itin, seasons, SEASON, fixedDates(options.cards, state));
   renderItinChart(document.getElementById('itinchart'), r.itin, al, places);
-  renderDiscovery(disc, options, state, r, al);
+  renderDiscovery(disc, options, state, r, al, bookings);
   renderPlan(r.itin, al);
   if (mapOk) {
     drawRoute(r.itin, places);
@@ -63,7 +72,7 @@ function render(focusSel) {
   document.getElementById('tdays').textContent = `${r.itin.days} days · ${r.itin.nights} nights`;
   const w = warnings(state, r.itin);
   document.getElementById('totalnote').textContent =
-    `${r.count} options and ${r.stayCount} overnight stays.` + (w.length ? ' ' + w.join(' ') : '');
+    `${r.count} options and ${r.stayCount} overnight stays. ${bookedLine(r, al)}` + (w.length ? ' ' + w.join(' ') : '');
   if (focusSel) { const el = document.querySelector(focusSel); if (el) el.focus(); }
 }
 
