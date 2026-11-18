@@ -188,12 +188,13 @@ test('off Waiheke without our car: Finn or one-day rentals, foot ferry both ways
   assert.ok(buildItinerary(PREF, { wfer: 1 }).segments.some(s => s.label.startsWith('Rental car')));
 });
 
-test('the cruise is fixed: Wanderer twin-share on Tue 5 Oct, rooms 11 or 15', () => {
+test('the cruise is booked: Wanderer twin-share Room 11 on Tue 5 Oct', () => {
   const rnw = data.cards.find(c => c.id === 'rnw');
   assert.equal(rnw.date, '2027-10-05');
   assert.ok(!rnw.opts);
-  assert.match(rnw.op, /room 11 or 15/);
-  assert.equal(rnw.v, 2198);
+  assert.match(rnw.op, /Room 11/);
+  assert.equal(rnw.v, 2278);
+  assert.equal(bookings.legs.rnw.status, 'confirmed');
 });
 
 test('bookings file: a status for every leg card and every night of the trip', () => {
