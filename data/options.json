@@ -24,6 +24,36 @@
  ],
  "cards": [
   {
+   "id": "handover",
+   "g": "home",
+   "c": "context",
+   "dir": "both",
+   "first": true,
+   "t": "Handover: the house to Penny and Charlie Brown",
+   "op": "Wed 29 Sep, before we leave · and the handback when we're home on Mon 11 Oct",
+   "sp": [
+    "Penny and Charlie house-sit from 29 September (confirmed): the reason the trip starts that day",
+    "The house, plants and hens in good hands while we're away"
+   ],
+   "sw": [
+    [
+     "p",
+     "Walk-through of the plants and hens: feeding, eggs, the Eglu, watering"
+    ],
+    [
+     "p",
+     "Keys, alarm, Wi-Fi, bins and rubbish day, and who to call for problems"
+    ],
+    [
+     "m",
+     "Still to agree: what time they arrive on the 29th, and when they leave after we're back"
+    ]
+   ],
+   "v": 0,
+   "st": "pub",
+   "b": "No cost."
+  },
+  {
    "id": "akl",
    "g": "home",
    "c": "window",
@@ -420,6 +450,7 @@
   }
  ],
  "defaultSelection": {
+  "handover": 1,
   "akl": 1,
   "kennel": 1,
   "wfer": 1,

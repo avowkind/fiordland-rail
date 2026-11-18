@@ -4,7 +4,7 @@ import { totals, toggle, warnings, alignSeason, fixedDates, DOW_LABEL } from './
 import { renderDiscovery, esc, nz } from './cards.js';
 import { initMap, drawRoute, setView, legendHTML, invalidate } from './map.js';
 
-const KEY = 'fiordland-rail-selection-v5';
+const KEY = 'fiordland-rail-selection-v6';
 const SEASON = 'spring27'; // the trip is fixed: October 2027
 const MODE_LABEL = { rail: 'Train', ferry: 'Ferry', drive: 'Road', flight: 'Flight', cruise: 'Cruise', heli: 'Helicopter' };
 

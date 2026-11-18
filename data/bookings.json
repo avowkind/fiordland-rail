@@ -1,6 +1,10 @@
 {
  "_note": "Booking status for each card. status: none (not booked), booked (booked, awaiting confirmation) or confirmed. Legs are keyed by card id; overnight stays by the date of the night (YYYY-MM-DD); the first Auckland night (29 Sep) is on the akl card. Optional fields: date (when booked or confirmed), note (what was booked). Keep personal details, booking references and payment details out of this file.",
  "legs": {
+  "handover": {
+   "label": "House handover to Penny and Charlie Brown (29 Sep)",
+   "status": "none"
+  },
   "akl": {
    "label": "Auckland night, The Hotel Britomart (29 Sep)",
    "status": "none"

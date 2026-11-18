@@ -87,7 +87,7 @@ export function buildItinerary(sel, opt = {}) {
     } else {
       seg('ferry', P.footFerry, 'Fullers to the city');
       if (w === 2) seg('drive', P.cityKennels, 'Rental car to Brookby and back');
-      step('akl', w === 1 ? 'Dogs to Brookby, then the ferry to Auckland' : 'Waiheke to Auckland, dogs to Brookby by rental car',
+      step('akl', 'Dogs to Brookby',
         w === 1 ? 'Finn takes Poppy and Rua to Brookby Lodge; we take the Fullers ferry to Downtown, a short walk to the hotel.'
           : 'Fullers ferry to Downtown with the dogs (crated or on a short lead), a one-day rental car to Brookby Lodge and back, return the car, evening in the city.',
         w === 1 ? ['ferry'] : ['ferry', 'drive'], { place: 'akl', kind: 'card' });
@@ -338,6 +338,8 @@ export function sequence(itin, cards, state) {
     const ids = [];
     [...(s.also || []), s.owner].forEach(id => { if (id && !shown.has(id) && visible.some(c => c.id === id)) { ids.push(id); shown.add(id); } });
     if (i === 0) extra.forEach(id => { if (!shown.has(id)) { ids.push(id); shown.add(id); } });
+    // Cards marked first (the house handover) lead Day 1, before the leg itself.
+    if (i === 0) ids.sort((a, b) => (visible.find(c => c.id === b).first ? 1 : 0) - (visible.find(c => c.id === a).first ? 1 : 0));
     return { step: i, cards: ids, stay: s.night && s.night.kind === 'stay' ? s.night.id : null, choice: s.choice || null };
   });
   const unused = visible.filter(c => !shown.has(c.id)).map(c => c.id);

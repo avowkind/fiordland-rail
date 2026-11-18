@@ -124,7 +124,7 @@ test('station and ferry nights list walking distance for every idea', () => {
 });
 
 test('locked-in plan: RealNZ Wanderer Tue 5 Oct 2027, Coastal Pacific, leave Wed 29 Sep', () => {
-  assert.deepEqual(Object.keys(PREF).sort(), ['akl', 'cp', 'isl', 'kennel', 'ne', 'rnw', 'self', 'wfer'].sort());
+  assert.deepEqual(Object.keys(PREF).sort(), ['akl', 'cp', 'handover', 'isl', 'kennel', 'ne', 'rnw', 'self', 'wfer'].sort());
   assert.equal(data.defaultSeason, 'spring27');
   const state = { sel: PREF, opt: {}, stayOff: {} };
   assert.deepEqual(fixedDates(data.cards, state), { rnw: '2027-10-05' });
@@ -145,7 +145,7 @@ test('discovery sequence: legs and stays in trip order, each card once', () => {
   const it = buildItinerary(PREF);
   const { groups, unused } = sequence(it, data.cards, { sel: PREF });
   assert.equal(groups.length, it.steps.length);
-  assert.deepEqual(groups.flatMap(g => g.cards), ['akl', 'kennel', 'wfer', 'ne', 'isl', 'cp', 'self', 'rnw']);
+  assert.deepEqual(groups.flatMap(g => g.cards), ['handover', 'akl', 'kennel', 'wfer', 'ne', 'isl', 'cp', 'self', 'rnw']);
   assert.deepEqual(unused, []);
   const stays = staysFrom(it, places).map(s => s.id);
   assert.deepEqual(groups.map(g => g.stay).filter(Boolean), stays);
