@@ -15,19 +15,22 @@
    "label": "September 2027",
    "window": "September 2027",
    "cp": [
+    "sun",
+    "mon",
+    "tue",
+    "wed",
     "thu",
     "fri",
-    "sat",
-    "sun"
+    "sat"
    ],
-   "cpNote": "Coastal Pacific start date unconfirmed: Great Journeys says 1 September; in 2024 it started on 19 September (then Thu–Sun). Confirm before booking.",
+   "cpNote": "Great Journeys now states the Coastal Pacific runs daily from 1 September to 30 April (not Christmas Day), checked 18 Nov 2026. 2027 dates not yet bookable or confirmed online.",
    "sandflies": {
     "level": "reduced",
     "note": "Sandflies: September is outside the October–April peak, but they are present all year."
    },
    "general": [
     "Early spring: cool, with snow still on the tops; the Milford Road can have avalanche closures.",
-    "Possible rail maintenance block 25–28 Sep 2027 (unconfirmed)."
+    "Rail closure 25–28 Sep 2027 is listed for the TranzAlpine only (Great Journeys, checked 18 Nov 2026)."
    ],
    "cruises": {
     "rnw": {
@@ -50,7 +53,8 @@
      "ok": true,
      "note": "Fixed sailings on 19 and 25 September 2027 (helicopter in: no other access)."
     }
-   }
+   },
+   "cpConfirmed": false
   },
   "winter27": {
    "label": "Winter 2027",
@@ -92,20 +96,23 @@
    "label": "Spring 2027",
    "window": "Late September to mid-November 2027",
    "cp": [
+    "sun",
+    "mon",
+    "tue",
+    "wed",
     "thu",
     "fri",
-    "sat",
-    "sun"
+    "sat"
    ],
-   "cpNote": "The Coastal Pacific has run Thu–Sun in spring (projected for 2027). Its 2027 start date is unconfirmed: 1 September or mid-September.",
+   "cpNote": "Great Journeys now states the Coastal Pacific runs daily from 1 September to 30 April (not Christmas Day), checked 18 Nov 2026. 2027 dates not yet bookable or confirmed online.",
    "general": [
     "Labour Weekend (23–25 Oct) is busy on the roads.",
-    "Possible rail maintenance block 25–28 Sep 2027 (unconfirmed)."
+    "Rail closure 25–28 Sep 2027 is listed for the TranzAlpine only; the trip starts 29 Sep."
    ],
    "cruises": {
     "rnw": {
      "ok": true,
-     "note": "Chosen: Wanderer sailing Tuesday 5 October 2027. In October 2027 it sails Tue, Thu and Sat (RealNZ booking calendar, checked 28 Oct 2026; 19 Oct not available)."
+     "note": "Chosen: Milford Wanderer 2-night sailing. October 2027 sails Tue, Thu and Sat (RealNZ FareHarbor calendar, checked 18 Nov 2026; 19 Oct shows no fare)."
     },
     "rnn": {
      "ok": false,
@@ -128,7 +135,8 @@
     "level": "peak",
     "accepted": true,
     "note": "Sandflies: October is inside the October–April peak, so this misses the agreed sandfly constraint. Accepted by Andrew on 28 Oct 2026 to choose the October Wanderer; check with Millie. Take repellent and cover up."
-   }
+   },
+   "cpConfirmed": false
   },
   "autumn28": {
    "label": "Autumn 2028",

@@ -553,19 +553,24 @@
     ],
     [
      "m",
-     "October is inside the sandfly peak: accepted by Andrew, check with Millie"
+     "Twin-share cabin NZD 1,099 each; the NZD 789 fare is the family-share bunk cabin with shared bathroom. Wanderer bathrooms are shared; bed layout in the twin-share still to confirm",
+     "price"
+    ],
+    [
+     "p",
+     "Alternative: the Navigator 1-night sails daily in October 2027 with ensuite twin cabins (two single beds), NZD 999 each. Its 2-night sailings are winter only"
     ],
     [
      "m",
-     "Two-person cabins with shared bathrooms, no ensuites (RealNZ). Bed layout not stated, so it could be bunks: ask RealNZ"
+     "October is inside the sandfly peak: accepted by Andrew, check with Millie"
     ],
     [
      "m",
      "Comfortable rather than luxury"
     ]
    ],
-   "st": "est",
-   "b": "From NZD 789 per person on the RealNZ booking calendar for October 2027 sailings (checked 28 Oct 2026), for two. Cabin type behind that fare not confirmed.",
+   "st": "pub",
+   "b": "RealNZ booking calendar for Tue 5 Oct 2027 (checked 18 Nov 2026), per person: twin-share cabin NZD 1,099; family-share bunk cabin with shared bathroom NZD 789; single occupancy NZD 1,999. Shown: twin-share for two.",
    "links": [
     {
      "l": "RealNZ: Doubtful Sound overnight cruises (cabin details)",
@@ -584,17 +589,17 @@
    "opts": [
     {
      "l": "Tue 5 Oct",
-     "v": 1578,
+     "v": 2198,
      "date": "2027-10-05"
     },
     {
      "l": "Tue 12 Oct",
-     "v": 1578,
+     "v": 2198,
      "date": "2027-10-12"
     },
     {
      "l": "Tue 26 Oct",
-     "v": 1578,
+     "v": 2198,
      "date": "2027-10-26"
     }
    ],

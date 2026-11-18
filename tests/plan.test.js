@@ -119,7 +119,7 @@ test('winter: Coastal Pacific and Wanderer are blockers; Navigator is not', () =
 test('September with the Heritage 6-night: no sandfly blocker, Coastal Pacific flagged to confirm', () => {
   const a = alignSeason(buildItinerary({ ...DEF, rnw: 0, he6: 1 }), seasons, 'sept27');
   assert.equal(a.blockers.length, 0);
-  assert.ok(a.notes.flat().some(n => n.text.includes('start date unconfirmed')));
+  assert.ok(a.notes.flat().some(n => n.level === 'check' && n.text.includes('2027 dates not yet bookable')));
 });
 
 test('card links are https and every rail and cruise card has one', () => {
@@ -131,11 +131,10 @@ test('every card has a direction', () => {
   data.cards.forEach(c => assert.ok(['out', 'ret', 'mid', 'both'].includes(c.dir), c.id));
 });
 
-test('season check: spring default needs no waiting day; two breaks each way does', () => {
+test('season check: with a daily Coastal Pacific, spring needs no waiting day for either stops option', () => {
   assert.equal(alignSeason(buildItinerary(DEF), seasons, 'spring27').added, 0);
-  const w = alignSeason(buildItinerary({ ...DEF, self: 1 }, { self: 2 }), seasons, 'spring27');
-  assert.ok(w.added >= 1);
-  assert.ok(w.notes.flat().some(n => n.level === 'add'));
+  assert.equal(alignSeason(buildItinerary({ ...DEF, self: 1 }, { self: 2 }), seasons, 'spring27').added, 0);
+  assert.ok(seasons.seasons.spring27.cp.length === 7);
 });
 
 test('hidden cards: only the cards in the chosen plan are visible', () => {

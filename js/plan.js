@@ -444,7 +444,7 @@ export function alignSeason(itin, seasons, key, fixedDates = {}) {
       const what = st.svc === 'cp' ? 'the Coastal Pacific' : st.svc.startsWith('cruise:') ? 'the fixed sailing' : 'the Northern Explorer';
       notes[i].push({ level: 'add', text: `Add ${w} day${w > 1 ? 's' : ''}: ${what} does not run on the day before; wait${where ? ' an extra night where we stayed' : ''} until ${DOW_LABEL[best.per[i].dow]}.` , where });
     }
-    if (st.svc === 'cp' && S.cp.length && S.cp.length < 7) notes[i].push({ level: 'check', text: S.cpNote });
+    if (st.svc === 'cp' && S.cp.length && (S.cp.length < 7 || S.cpConfirmed === false)) notes[i].push({ level: 'check', text: S.cpNote });
     if (st.svc && st.svc.startsWith('cruise:')) {
       if (S.sandflies) {
         const lv = S.sandflies.level === 'peak' ? (S.sandflies.accepted ? 'check' : 'block') : S.sandflies.level === 'lowest' ? 'ok' : 'check';
