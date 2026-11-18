@@ -395,7 +395,7 @@
    "c": "realnz",
    "n": 2,
    "t": "RealNZ Doubtful Sound, 2 nights · Milford Wanderer",
-   "op": "Chosen · Tue 5 – Thu 7 Oct 2027 · twin-share cabin, aiming for room 11 or 15 · from Manapouri · up to 36 guests",
+   "op": "Booked · Tue 5 – Thu 7 Oct 2027 · twin-share, Room 11 · from Manapouri · up to 36 guests",
    "sp": [
     "Doubtful Sound: far bigger and much quieter than Milford, with no day-trip crowds overnight",
     "Lake Manapouri crossing and the Wilmot Pass road in, with no aircraft at all",
@@ -408,10 +408,6 @@
      "No aircraft: road and lake crossing"
     ],
     [
-     "p",
-     "Twin-share cabin; goal is room 11 or 15. Ask RealNZ to confirm the beds are two singles, not bunks"
-    ],
-    [
      "m",
      "Shared bathrooms on the Wanderer, no ensuites"
     ],
@@ -421,15 +417,11 @@
     ],
     [
      "m",
-     "RealNZ's web page says two-night cruises are winter only, but its calendar sells this sailing: confirm by phone"
-    ],
-    [
-     "m",
      "Comfortable rather than luxury"
     ]
    ],
    "st": "pub",
-   "b": "RealNZ booking calendar for Tue 5 Oct 2027 (checked 18 Nov 2026): twin-share cabin NZD 1,099 per person, for two.",
+   "b": "Booked 19 Nov 2026: NZD 1,099 per person twin-share, plus NZD 80 for two picnic lunch boxes.",
    "links": [
     {
      "l": "RealNZ: Doubtful Sound overnight cruises (cabin details)",
@@ -446,7 +438,7 @@
    ],
    "dir": "mid",
    "date": "2027-10-05",
-   "v": 2198
+   "v": 2278
   }
  ],
  "defaultSelection": {

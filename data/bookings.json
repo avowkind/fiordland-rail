@@ -44,7 +44,16 @@
   },
   "rnw": {
    "label": "RealNZ Wanderer twin-share (5–7 Oct)",
-   "status": "none"
+   "status": "confirmed",
+   "date": "2026-11-19",
+   "ref": "392072934",
+   "with": "RealNZ, Milford Wanderer, from Pearl Harbour, Manapouri",
+   "room": "Twin-share, Room 11 (beds 11A and 11B), 2 adults; 2 picnic lunch boxes",
+   "rate": "Adults twin-share, NZD 1,099 each",
+   "price": "NZD 2,278.00 incl. GST, paid in full 19 Nov 2026",
+   "pay": "Paid in full at booking",
+   "cancel": "No refund within 14 days of travel (from 21 Sep 2027); date changes up to 5 days before",
+   "times": "Tue 5 Oct 12:00 to Thu 7 Oct 12:15; check in 30 min before at 64 Waiau Street. Free overnight parking on View Street, above the visitor centre"
   }
  },
  "nights": {
