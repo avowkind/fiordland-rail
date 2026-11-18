@@ -16,11 +16,10 @@ index.html          page structure
 css/site.css        styles, light and dark themes
 js/main.js          loads the data, holds the selection state, wires up the sections
 js/plan.js          pure itinerary and budget logic (unit-tested)
-js/timeline.js      zoomable SVG timeline
+js/itinchart.js     day-by-day itinerary chart
 js/cards.js         option cards and generated stay cards
 js/map.js           route map
 data/options.json   option cards: costs, nights, notes, groups, default selection
-data/timeline.json  availability rows and sources
 data/places.json    coordinates, map waypoints and placeholder stay prices
 tests/              node --test suite for js/plan.js
 ```

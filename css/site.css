@@ -224,3 +224,22 @@ body.noprice .price{display:none!important}
 .card.alt .chead{cursor:default}
 .choose{font:inherit;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--fg);background:var(--surface);color:var(--fg);cursor:pointer}
 .choose:hover{background:var(--fg);color:var(--surface)}
+
+/* Itinerary chart: one column per day, scrolls sideways on narrow screens. */
+.ic-wrap{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ic-grid{display:grid;grid-template-columns:64px repeat(var(--days),minmax(92px,1fr));grid-auto-rows:auto;gap:6px 4px;padding:12px;min-width:calc(64px + var(--days) * 96px)}
+.ic-lab{grid-column:1;align-self:center;font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.ic-day{display:grid;gap:1px;padding:4px 6px;border-bottom:1px solid var(--line)}
+.ic-day span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.ic-day b{font-family:var(--display);font-size:17px;font-weight:700}
+.ic-day small{font-size:11px;color:var(--muted)}
+.ic-leg{border-radius:6px;padding:8px;color:#fff;display:grid;gap:3px;align-content:start;min-height:76px;font-size:13px;line-height:1.25}
+.ic-leg b{font-weight:600}
+.ic-leg span{font-family:var(--mono);font-size:11px;opacity:.9}
+.ic-rail{background:var(--rail)}.ic-ferry{background:var(--ferry)}.ic-drive{background:var(--window)}.ic-cruise{background:var(--realnz)}
+.ic-rest{background:transparent;color:var(--fg);border:1px dashed var(--line)}
+.ic-night{border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:13px;background:var(--bg)}
+.ic-night.aboard{border-color:var(--realnz);font-weight:600}
+.ic-night.home{border-style:dashed;color:var(--muted)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ic-leg:not(.ic-rest){color:#111}}
+:root[data-theme="dark"] .ic-leg:not(.ic-rest){color:#111}

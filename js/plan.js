@@ -77,7 +77,7 @@ export function buildItinerary(sel, opt = {}) {
 
   // Leaving home
   if (sel.akl) {
-    const w = sel.wfer ? (opt.wfer ?? 0) : 0;
+    const w = sel.wfer ? (opt.wfer ?? 0) + 1 : 0; // 0 own car (dropped), 1 Finn, 2 one-day rentals
     if (w === 0) {
       seg('ferry', P.carFerry, 'SeaLink car ferry');
       seg('drive', P.toKennels, 'Drive to Brookby, then the city');
@@ -253,7 +253,7 @@ export function buildItinerary(sel, opt = {}) {
       step('isl', 'Return the car, Interislander to Wellington', 'Drop the rental at the Picton terminal; morning sailing, about 3.5 hours.', ['ferry'], { place: 'wlg', kind: 'stay' });
     }
   }
-  const w = sel.wfer ? (opt.wfer ?? 0) : 0;
+  const w = sel.wfer ? (opt.wfer ?? 0) + 1 : 0; // 0 own car (dropped), 1 Finn, 2 one-day rentals
   const homeLeg = () => {
     if (w === 0) {
       seg('drive', P.homeFromAkl, 'Collect the dogs');
@@ -310,8 +310,6 @@ export function hotelRate(hotel, state, key) {
 export function cardValue(card, state, nights, places) {
   if (card.hotel && places) return hotelRate(places[card.hotel].hotel, state, card.id).value;
   if (card.dyn === 'kennel') return KENNEL_RATE * DOGS * (nights + 1);
-  // Parking only applies when we take our own car off the island.
-  if (card.id === 'park' && state.sel.wfer && (state.opt.wfer ?? 0) !== 0) return 0;
   if (card.v !== undefined) return card.v;
   if (card.opts) return card.opts[state.opt[card.id] ?? card.def].v;
   return 0;

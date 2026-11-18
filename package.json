@@ -2,7 +2,7 @@
   "name": "fiordland-rail",
   "version": "0.1.0",
   "private": true,
-  "description": "Holiday 2027 planner: NZ rail and Fiordland cruise options, timeline, budget and route map.",
+  "description": "Holiday 2027 planner: Andrew and Millie's NZ rail and Fiordland trip, 29 Sep to 11 Oct 2027: itinerary, day-by-day legs, route map.",
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.js",

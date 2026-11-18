@@ -3,7 +3,7 @@
   {
    "id": "home",
    "t": "Leaving home",
-   "n": "Getting off Waiheke, kennels, car parking and the Auckland night."
+   "n": "Getting off Waiheke, kennels and the Auckland night."
   },
   {
    "id": "north",
@@ -112,22 +112,12 @@
    "g": "home",
    "c": "ferry",
    "dir": "both",
-   "t": "Off Waiheke and back, with the dogs",
-   "op": "Day 1 and the last day · how we and Poppy and Rua get across",
+   "t": "Off Waiheke and back, without our car",
+   "op": "Day 1 and the last day · foot ferry for us; Finn or a one-day rental for Poppy and Rua",
    "sp": [
-    "Own car: the dogs ride with us on SeaLink straight to Brookby, nothing to arrange",
-    "Without the car: the Fullers ferry lands Downtown, a short walk from the hotel and the Strand"
+    "No car to park for two weeks: the Fullers ferry lands Downtown, a short walk from the hotel and the Strand"
    ],
    "sw": [
-    [
-     "p",
-     "Own car: SeaLink Kennedy Point ⇄ Half Moon Bay, about 45–60 minutes; check in 30 minutes before"
-    ],
-    [
-     "m",
-     "Own car: SeaLink car and driver from NZD 154 each way, extra adult NZD 28 or senior NZD 22.50 (Gold AT HOP passengers free); plus 12 nights of parking (see the parking card)",
-     "price"
-    ],
     [
      "p",
      "Finn: takes the dogs to Brookby and back, so we travel light on the foot ferry. Details and price to confirm with Finn"
@@ -139,17 +129,9 @@
     [
      "m",
      "One-day rental: the dogs cross on Fullers with us. Fullers allows dogs on a short lead; in the cabin they must be in a crate"
-    ],
-    [
-     "m",
-     "Without the car, the parking card is not needed and costs nothing"
     ]
    ],
    "opts": [
-    {
-     "l": "Own car + SeaLink",
-     "v": 364
-    },
     {
      "l": "Foot ferry + Finn",
      "v": 300
@@ -161,121 +143,11 @@
    ],
    "def": 0,
    "st": "est",
-   "b": "Estimates. Own car: SeaLink car and driver NZD 154 each way plus one extra adult NZD 28 each way (less if a Gold AT HOP card applies), parking separate. Finn: placeholder until we ask. Rentals: two one-day hires plus fuel, and Fullers fares for two each way: placeholder.",
+   "b": "Estimates. Finn: placeholder until we ask. Rentals: two one-day hires plus fuel, and Fullers fares for two each way: placeholder.",
    "links": [
-    {
-     "l": "SeaLink: Waiheke timetables and fares",
-     "u": "https://www.sealink.co.nz/waiheke/timetables"
-    },
     {
      "l": "Fullers360: pets on board",
      "u": "https://fullers.co.nz/travel-information/pets-on-board"
-    }
-   ]
-  },
-  {
-   "id": "park",
-   "g": "home",
-   "c": "context",
-   "dir": "both",
-   "t": "Car parking for the trip",
-   "op": "12 nights, Wed 29 Sep to Mon 11 Oct · only if we take our own car off the island",
-   "sp": [
-    "One less thing to think about: the car is parked once and collected on the last morning"
-   ],
-   "sw": [
-    [
-     "p",
-     "AT Railway Station car park, Beach Road (entry off Te Taou Crescent): beside the Strand station, open 24 hours, 7 days"
-    ],
-    [
-     "p",
-     "AT car park rates: weekdays NZD 12 by day and NZD 17 overnight, weekends NZD 17 per 24 hours",
-     "price"
-    ],
-    [
-     "p",
-     "Park and ride: free, on the way in from Brookby. Panmure station has park and ride; Eastern Line train to Britomart station, beside the hotel. AT says park and rides can currently be used for free, for unlimited time, for any reason"
-    ],
-    [
-     "m",
-     "Park and ride: AT plans to start charging people who park and don't ride; confirm overnight stays are still allowed in 2027. Albany is the exception now: paid, pre-booked, at most 5 days per booking"
-    ],
-    [
-     "p",
-     "Free: unrestricted street parking further out near an Eastern Line station (Glen Innes or Meadowbank, say), on the way in from Brookby. Then the train to Britomart station, beside the hotel, or a taxi of about 10 km"
-    ],
-    [
-     "m",
-     "Free street parking: no AT time limit for a registered car, but it is unattended on a street for 12 nights; check the signs"
-    ],
-    [
-     "m",
-     "AT car park: no maximum stay published; confirm 12 nights is allowed"
-    ],
-    [
-     "p",
-     "Britomart Car Park, 88 Quay Street, near the hotel: 24/7, long-stay pre-booking at mycarpark.co.nz (rate not published)"
-    ],
-    [
-     "m",
-     "Hotel valet: NZD 70 a day, and may not keep the car while we're not guests",
-     "price"
-    ],
-    [
-     "m",
-     "Ngaoho Place car park beside the platform is now run by Kiwi Parking: rates not found"
-    ]
-   ],
-   "opts": [
-    {
-     "l": "AT station car park",
-     "v": 300
-    },
-    {
-     "l": "Park and ride (Panmure)",
-     "v": 20
-    },
-    {
-     "l": "Free street + train or taxi",
-     "v": 80
-    },
-    {
-     "l": "Britomart Car Park",
-     "v": 500
-    },
-    {
-     "l": "Hotel valet",
-     "v": 840
-    }
-   ],
-   "def": 0,
-   "st": "est",
-   "b": "Estimates for 12 nights. AT car park: about NZD 300 from its flat rates. Park and ride: free parking plus train fares, about NZD 20. Free street parking plus a taxi each way at about NZD 4 flagfall and NZD 3 a km (gobytaxi): about NZD 80; by train, a few dollars. Britomart Car Park: placeholder, long-stay rate not published. Hotel valet: NZD 70 a day (hotels.com).",
-   "links": [
-    {
-     "l": "AT: open-air car parks (Railway Station)",
-     "u": "https://at.govt.nz/driving-parking/find-parking/parking-in-central-auckland/open-air-car-parks/"
-    },
-    {
-     "l": "Britomart Car Park",
-     "u": "https://britomart.org/valet"
-    },
-    {
-     "l": "AT: when a car counts as abandoned",
-     "u": "https://at.govt.nz/driving-parking/abandoned-vehicles/"
-    },
-    {
-     "l": "AT parking strategy: park and ride info sheet",
-     "u": "https://AT.govt.nz/media/1991907/room-to-move-tāmaki-makaurau-aucklands-parking-strategy-park-and-ride-info-sheet.pdf"
-    },
-    {
-     "l": "AT: Albany pre-booked park and ride terms",
-     "u": "https://at.govt.nz/driving-and-parking/park-ride/albany-park-and-ride-pre-booked-parking-terms-and-conditions"
-    },
-    {
-     "l": "AT: park and ride",
-     "u": "https://at.govt.nz/driving-parking/park-ride"
     }
    ]
   },
@@ -434,44 +306,6 @@
    "excl": "picchc"
   },
   {
-   "id": "pdrive",
-   "g": "si",
-   "c": "window",
-   "dir": "both",
-   "excl": "picchc",
-   "t": "Drive Picton ⇄ Christchurch",
-   "op": "Rental collected and returned at Picton, kept for the whole South Island · about 4.5–5 h each way",
-   "sp": [
-    "The coast road past Kaikōura: seals on the rocks and mountains dropping to the sea",
-    "Marlborough vineyards around Blenheim",
-    "Works in any season, including when the Coastal Pacific is not running"
-   ],
-   "sw": [
-    [
-     "p",
-     "Use this when the southern rail is not available"
-    ],
-    [
-     "m",
-     "One of us drives instead of watching from the train"
-    ],
-    [
-     "m",
-     "On the way home, a night in Picton before the morning ferry"
-    ]
-   ],
-   "v": 400,
-   "st": "est",
-   "b": "Rough estimate: extra rental days for collecting at Picton instead of Christchurch, plus fuel.",
-   "links": [
-    {
-     "l": "Interislander",
-     "u": "https://www.interislander.co.nz/"
-    }
-   ],
-   "hidden": true
-  },
-  {
    "id": "self",
    "g": "si",
    "c": "window",
@@ -530,8 +364,8 @@
    "g": "cruise",
    "c": "realnz",
    "n": 2,
-   "t": "RealNZ Doubtful Sound, 2 nights · Wanderer",
-   "op": "Chosen · Tuesday sailing · 3 days, 2 nights from Manapouri · up to 36 guests · shared bathrooms",
+   "t": "RealNZ Doubtful Sound, 2 nights · Milford Wanderer",
+   "op": "Chosen · Tue 5 – Thu 7 Oct 2027 · twin-share cabin, aiming for room 11 or 15 · from Manapouri · up to 36 guests",
    "sp": [
     "Doubtful Sound: far bigger and much quieter than Milford, with no day-trip crowds overnight",
     "Lake Manapouri crossing and the Wilmot Pass road in, with no aircraft at all",
@@ -545,20 +379,11 @@
     ],
     [
      "p",
-     "Sails Tue, Thu and Sat in October 2027, so the trains line up with a Tuesday start"
+     "Twin-share cabin; goal is room 11 or 15. Ask RealNZ to confirm the beds are two singles, not bunks"
     ],
     [
      "m",
-     "Tue 19 Oct is not available. Sailing 26 Oct puts the trip south over Labour Weekend (23–25 Oct)"
-    ],
-    [
-     "m",
-     "Twin-share cabin NZD 1,099 each; the NZD 789 fare is the family-share bunk cabin with shared bathroom. Wanderer bathrooms are shared; bed layout in the twin-share still to confirm",
-     "price"
-    ],
-    [
-     "p",
-     "Alternative: the Navigator 1-night sails daily in October 2027 with ensuite twin cabins (two single beds), NZD 999 each. Its 2-night sailings are winter only"
+     "Shared bathrooms on the Wanderer, no ensuites"
     ],
     [
      "m",
@@ -566,11 +391,15 @@
     ],
     [
      "m",
+     "RealNZ's web page says two-night cruises are winter only, but its calendar sells this sailing: confirm by phone"
+    ],
+    [
+     "m",
      "Comfortable rather than luxury"
     ]
    ],
    "st": "pub",
-   "b": "RealNZ booking calendar for Tue 5 Oct 2027 (checked 18 Nov 2026), per person: twin-share cabin NZD 1,099; family-share bunk cabin with shared bathroom NZD 789; single occupancy NZD 1,999. Shown: twin-share for two.",
+   "b": "RealNZ booking calendar for Tue 5 Oct 2027 (checked 18 Nov 2026): twin-share cabin NZD 1,099 per person, for two.",
    "links": [
     {
      "l": "RealNZ: Doubtful Sound overnight cruises (cabin details)",
@@ -586,217 +415,14 @@
     }
    ],
    "dir": "mid",
-   "opts": [
-    {
-     "l": "Tue 5 Oct",
-     "v": 2198,
-     "date": "2027-10-05"
-    },
-    {
-     "l": "Tue 12 Oct",
-     "v": 2198,
-     "date": "2027-10-12"
-    },
-    {
-     "l": "Tue 26 Oct",
-     "v": 2198,
-     "date": "2027-10-26"
-    }
-   ],
-   "def": 0
-  },
-  {
-   "id": "rnn",
-   "g": "cruise",
-   "c": "realnz",
-   "n": 2,
-   "t": "RealNZ Doubtful Sound, 2 nights · Navigator",
-   "op": "From Manapouri · up to 52 guests · 26 private ensuite cabins, twin or double · May and Aug",
-   "sp": [
-    "Same route as the Wanderer on a larger boat",
-    "Private twin cabins with ensuites",
-    "Winter: snow on the tops, fewer sandflies (never none), few other visitors"
-   ],
-   "sw": [
-    [
-     "p",
-     "No aircraft, and ensuite twins"
-    ],
-    [
-     "p",
-     "Sails in May and August, when sandflies are fewer"
-    ],
-    [
-     "m",
-     "The Coastal Pacific does not run then"
-    ],
-    [
-     "m",
-     "Cold, short days"
-    ]
-   ],
-   "v": 2280,
-   "st": "pub",
-   "b": "About NZD 1,099 per person twin share (May–Aug 2027), plus an optional NZD 41 picnic lunch each.",
-   "links": [
-    {
-     "l": "RealNZ: Doubtful Sound overnight cruises (cabin details)",
-     "u": "https://realnz.com/en/experiences/cruises/doubtful-sound-overnight-cruises"
-    },
-    {
-     "l": "Doubtful Sound 2-night details",
-     "u": "https://www.newzealand.com.au/tours/doubtful-sound-overnight-cruise-2-nights-fiordland-navigator"
-    },
-    {
-     "l": "Manapouri departure and parking",
-     "u": "https://aasw.experienceoz.com.au/en/doubtful-sound/doubtful-sound-overnight-cruise-from-manapouri"
-    }
-   ],
-   "dir": "mid",
-   "hidden": true
-  },
-  {
-   "id": "fj1",
-   "g": "cruise",
-   "c": "jewel",
-   "n": 1,
-   "t": "Fiordland Jewel, Milford overnight",
-   "op": "Fiordland Discovery · 1 night · about 20 guests · late Oct–Apr",
-   "sp": [
-    "Milford Sound after the day boats have gone: sunset and sunrise under Mitre Peak",
-    "Top-deck hot tub after dinner, with stars if it clears",
-    "Three-course dinner with Mt Difficulty wines",
-    "Kayaks, tender trips and a seabed camera (ROV)"
-   ],
-   "sw": [
-    [
-     "p",
-     "The most luxurious feel, and the Endeavour cabin has twin king singles"
-    ],
-    [
-     "p",
-     "No aircraft needed: drive the Milford Road"
-    ],
-    [
-     "m",
-     "Only one night"
-    ],
-    [
-     "m",
-     "Milford is busy by day"
-    ],
-    [
-     "m",
-     "Runs late October to April: the sandfly peak"
-    ]
-   ],
-   "v": 4760,
-   "st": "pub",
-   "b": "From NZD 2,380 per person twin share (Oct–Dec 2026 and Apr 2027 rate). Van transfer extra.",
-   "links": [
-    {
-     "l": "Fiordland Discovery: Milford overnight",
-     "u": "https://www.fiordlanddiscovery.co.nz/fiordland-cruises/milford-sound-overnight-cruise/"
-    }
-   ],
-   "dir": "mid",
-   "hidden": true
-  },
-  {
-   "id": "he4",
-   "g": "cruise",
-   "c": "heritage",
-   "n": 4,
-   "t": "Heritage Explorer: Fiordland Explored",
-   "op": "9–13 Aug 2027 · 4 nights · 18 guests · Te Anau → Dusky Sound → Doubtful Sound → Te Anau",
-   "sp": [
-    "Expert naturalist guides on a true expedition yacht, 18 guests at most",
-    "Dusky Sound: Cook's 1773 Astronomer's Point and Anchor Island, then north through Breaksea Sound and Acheron Passage to Doubtful Sound",
-    "August: the lowest sandfly period, snow on the tops",
-    "House drinks, landing fees and transfers included; ensuite cabins"
-   ],
-   "sw": [
-    [
-     "p",
-     "Salvin's Twin cabin: two lower berths, fits our twin-beds rule"
-    ],
-    [
-     "p",
-     "20% off if booked before 30 October 2026",
-     "price"
-    ],
-    [
-     "m",
-     "Helicopter in from Te Anau: allowed only because there is no other way in"
-    ],
-    [
-     "m",
-     "Transfer details conflict on the page (helicopter in and coach out, or the reverse): confirm with Heritage"
-    ]
-   ],
-   "v": 9982,
-   "st": "pub",
-   "b": "Salvin's Twin USD 2,936 per person with the 20% offer (USD 3,670 without), for two, converted at 1 USD = 1.70 NZD. Offer: new bookings before 30 October 2026, July–September 2027 Fiordland departures; excludes landing fees and optional extras.",
-   "links": [
-    {
-     "l": "Heritage: Fiordland Explored, pricing",
-     "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/fiordland-explored-cruise/#pricing"
-    }
-   ],
-   "dir": "mid",
-   "date": "2027-08-09",
-   "preferred": true,
-   "hidden": true
-  },
-  {
-   "id": "he6",
-   "g": "cruise",
-   "c": "heritage",
-   "n": 6,
-   "t": "Heritage Explorer, 6 nights",
-   "op": "Southern Fiords Discovery · 18 guests · 19 Sep and 25 Sep 2027",
-   "sp": [
-    "The far south: Preservation and Chalky Inlets, gold-rush and whaling history, Puysegur Point lighthouse",
-    "Dusky, Breaksea and Doubtful Sounds in one voyage",
-    "Naturalist guides, house drinks"
-   ],
-   "sw": [
-    [
-     "p",
-     "The 19 Sep sailing falls outside the October–April sandfly peak"
-    ],
-    [
-     "p",
-     "20% off if booked before 30 Oct 2026",
-     "price"
-    ],
-    [
-     "m",
-     "Depends on the Coastal Pacific running by mid-September"
-    ],
-    [
-     "m",
-     "Helicopter leg: allowed only because there is no other way in"
-    ]
-   ],
-   "v": 17374,
-   "st": "pub",
-   "b": "Salvin's Twin USD 5,110 per person, converted at 1.70. About NZD 13,900 with the 20% offer.",
-   "links": [
-    {
-     "l": "Heritage: Southern Fiords Discovery",
-     "u": "https://www.heritage-expeditions.com/destinations/new-zealand-cruises/southern-fiords-discovery-cruise/"
-    }
-   ],
-   "dir": "mid",
-   "hidden": true
+   "date": "2027-10-05",
+   "v": 2198
   }
  ],
  "defaultSelection": {
   "akl": 1,
   "kennel": 1,
   "wfer": 1,
-  "park": 1,
   "ne": 1,
   "isl": 1,
   "cp": 1,
