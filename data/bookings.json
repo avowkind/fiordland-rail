@@ -1,5 +1,5 @@
 {
- "_note": "Booking status for each card. status: none (not booked), booked (booked, awaiting confirmation) or confirmed. Legs are keyed by card id; overnight stays by the date of the night (YYYY-MM-DD); the first Auckland night (29 Sep) is on the akl card. Optional fields: date (when booked or confirmed), note (what was booked). Keep personal details, booking references and payment details out of this file.",
+ "_note": "Booking status for each card. status: none (not booked), booked (booked, awaiting confirmation) or confirmed. Legs are keyed by card id; overnight stays by the date of the night (YYYY-MM-DD); the first Auckland night (29 Sep) is on the akl card. Optional fields: date (when booked), ref (confirmation reference), with (hotel or operator), room, rate, price, pay (payment terms), cancel (cancellation terms), times (check-in/out). Keep home address, phone numbers, email addresses and card details out of this file.",
  "legs": {
   "handover": {
    "label": "House handover to Penny and Charlie Brown (29 Sep)",
@@ -9,7 +9,14 @@
    "label": "Auckland night, The Hotel Britomart (29 Sep)",
    "status": "confirmed",
    "date": "2026-11-19",
-   "note": "City View Room Twin, Fully Flexible Rate, NZD 439 incl. tax; card held, not charged; 24-hour cancellation"
+   "ref": "1117179560",
+   "with": "The Hotel Britomart, 29 Galway Street",
+   "room": "City View Room Twin, 2 adults",
+   "rate": "Fully Flexible Rate",
+   "price": "NZD 439.00 incl. GST",
+   "pay": "Card holds the room, not charged at booking; pay on arrival",
+   "cancel": "24-hour cancellation policy",
+   "times": "Check-in 3pm, check-out 11am"
   },
   "kennel": {
    "label": "Brookby Lodge, Poppy and Rua",
@@ -68,7 +75,14 @@
   "2027-10-10": {
    "status": "confirmed",
    "date": "2026-11-19",
-   "note": "Hotel DeBrett, Classic Room (super king), Best Available Flexible, NZD 341; free cancellation until 2pm the day before"
+   "ref": "1117186242",
+   "with": "Hotel DeBrett, 2 High Street",
+   "room": "Classic Room (super king), 2 adults",
+   "rate": "Best Available: Flexible",
+   "price": "NZD 341.00 incl. GST",
+   "pay": "Pay at check-in; 2.5% surcharge on credit cards (not debit or EFTPOS)",
+   "cancel": "Free until 2pm the day before; changes and cancellations in writing",
+   "times": "Check-in from 3pm, check-out 11am; reception 24 hours"
   }
  }
 }

@@ -35,7 +35,9 @@ const BK = { none: 'Not booked', booked: 'Booked', confirmed: 'Confirmed' };
 function bookFlag(b) {
   const st = (b && BK[b.status]) ? b.status : 'none';
   const extra = b && (b.date || b.note) ? ` title="${esc([b.note, b.date].filter(Boolean).join(' · '))}"` : '';
-  return `<span class="bk bk-${st}"${extra}>${BK[st]}${b && b.date ? ` · ${esc(b.date)}` : ''}</span>`;
+  const rows = b ? [['Ref', b.ref], ['With', b.with], ['Room', b.room], ['Rate', b.rate], ['Price', b.price], ['Payment', b.pay], ['Cancellation', b.cancel], ['Times', b.times]].filter(r => r[1]) : [];
+  const details = rows.length ? `<dl class="bkd">${rows.map(([k, v]) => { const c = k === 'Price' || k === 'Payment' ? ' class="price"' : ''; return `<dt${c}>${k}</dt><dd${c}>${esc(v)}</dd>`; }).join('')}</dl>` : '';
+  return `<span class="bk bk-${st}"${extra}>${BK[st]}${b && b.date ? ` · ${esc(b.date)}` : ''}</span>${details}`;
 }
 
 // Price elements carry the 'price' class so the Show prices switch can hide them.
@@ -69,12 +71,13 @@ function stayHTML(st, data, state, b) {
   const on = !(state.stayOff || {})[st.id];
   const oi = state.opt[st.id] ?? st.def;
   const p = data._places[st.place];
+  const booked = !!(b && b.status && b.status !== 'none');
   return `<article class="card stay${on ? ' on' : ''}" style="--c:var(--muted)" data-id="${st.id}" data-stay="1">
     <label class="chead" for="cb-${st.id}"><input type="checkbox" id="cb-${st.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">Night in ${esc(st.name)}${p.hotel ? ' · ' + esc(p.hotel.name) : p.chosen ? ' · ' + esc(p.chosen) : ''}</h4><p class="cop">Overnight stay</p>${b !== undefined ? bookFlag(b) : ''}</div></label>
     <div class="cbody"><ul class="special"><li>${esc(p.staySpecial || '')}</li></ul>${p.ideas ? ideasList(p) : ''}</div>
-    <div class="cfoot">${p.hotel ? roomSelect(p.hotel, st.id, state) : ''}<div class="opts" role="group" aria-label="Room">${(p.hotel ? p.hotel.counts : ROOM).map((l, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(l)}</button>`).join('')}</div>
+    <div class="cfoot">${booked ? '' : `${p.hotel ? roomSelect(p.hotel, st.id, state) : ''}<div class="opts" role="group" aria-label="Room">${(p.hotel ? p.hotel.counts : ROOM).map((l, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(l)}</button>`).join('')}</div>`}
     ${p.hotel ? `<ul class="clinks"><li>${ext(p.hotel.url, p.hotel.name + ': guest rooms')}</li></ul>` : ''}
-    ${costRow(p.hotel ? hotelRate(p.hotel, state, st.id).value : st.rates[oi], 1, !!p.hotel)}</div></article>`;
+    ${costRow(p.hotel ? hotelRate(p.hotel, state, st.id).value : st.rates[oi], 1, !!p.hotel || booked)}</div></article>`;
 }
 
 // Alternative cards beside a night that is a choice (the second night down, the Wanaka/Hawea night back).
