@@ -34,7 +34,7 @@
   "lon": 174.776,
   "stop": true,
   "blurb": "Strand station, start of the Northern Explorer",
-  "staySpecial": "The Hotel Britomart: our choice for the Auckland nights. The City View Room Twin has two beds.",
+  "staySpecial": "The Hotel Britomart: the first night, Wed 29 Sep (booked). City View Room Twin, two beds.",
   "hotel": {
    "name": "The Hotel Britomart",
    "url": "https://thehotelbritomart.com/our-guest-rooms/",
@@ -182,6 +182,27 @@
     }
    ]
   }
+ },
+ "akd": {
+  "name": "Auckland",
+  "lat": -36.8466,
+  "lon": 174.7663,
+  "chosen": "Hotel DeBrett",
+  "stay": [
+   341,
+   682,
+   341
+  ],
+  "staySpecial": "Hotel DeBrett, 2 High Street: the last night, Sun 10 Oct (booked). Classic Room, one super king bed. A short taxi from the Strand station; a 5–10 minute walk to the Fullers ferry home.",
+  "transitNote": "Taxi from the Strand station on arrival (about 2 km); walk to Downtown for the Fullers ferry next morning.",
+  "ideas": [
+   {
+    "n": "Hotel DeBrett",
+    "u": "https://hoteldebrett.com/",
+    "d": "Booked. Boutique hotel in a restored Art Deco building, 25 rooms, Vivace restaurant in the atrium.",
+    "walk": "Walkable to the ferry, about 600 m"
+   }
+  ]
  },
  "pap": {
   "name": "Papakura",

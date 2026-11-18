@@ -25,7 +25,7 @@ test('default plan: two Hermitage nights down, Wanaka back, 12 nights', () => {
   const it = buildItinerary(DEF);
   assert.equal(it.nights, 12);
   const stays = staysFrom(it, places);
-  assert.deepEqual(stays.map(s => s.place), ['wlg', 'chc', 'mtc', 'mtc', 'tea', 'wan', 'chc', 'wlg', 'akl']);
+  assert.deepEqual(stays.map(s => s.place), ['wlg', 'chc', 'mtc', 'mtc', 'tea', 'wan', 'chc', 'wlg', 'akd']);
   assert.equal(new Set(stays.map(s => s.id)).size, stays.length);
 });
 

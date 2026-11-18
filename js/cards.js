@@ -70,7 +70,7 @@ function stayHTML(st, data, state, b) {
   const oi = state.opt[st.id] ?? st.def;
   const p = data._places[st.place];
   return `<article class="card stay${on ? ' on' : ''}" style="--c:var(--muted)" data-id="${st.id}" data-stay="1">
-    <label class="chead" for="cb-${st.id}"><input type="checkbox" id="cb-${st.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">Night in ${esc(st.name)}${p.hotel ? ' · ' + esc(p.hotel.name) : ''}</h4><p class="cop">Overnight stay</p>${b !== undefined ? bookFlag(b) : ''}</div></label>
+    <label class="chead" for="cb-${st.id}"><input type="checkbox" id="cb-${st.id}" ${on ? 'checked' : ''}><div><h4 class="ctitle">Night in ${esc(st.name)}${p.hotel ? ' · ' + esc(p.hotel.name) : p.chosen ? ' · ' + esc(p.chosen) : ''}</h4><p class="cop">Overnight stay</p>${b !== undefined ? bookFlag(b) : ''}</div></label>
     <div class="cbody"><ul class="special"><li>${esc(p.staySpecial || '')}</li></ul>${p.ideas ? ideasList(p) : ''}</div>
     <div class="cfoot">${p.hotel ? roomSelect(p.hotel, st.id, state) : ''}<div class="opts" role="group" aria-label="Room">${(p.hotel ? p.hotel.counts : ROOM).map((l, i) => `<button type="button" data-opt="${i}" aria-pressed="${i === oi}">${esc(l)}</button>`).join('')}</div>
     ${p.hotel ? `<ul class="clinks"><li>${ext(p.hotel.url, p.hotel.name + ': guest rooms')}</li></ul>` : ''}

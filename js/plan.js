@@ -268,7 +268,7 @@ export function buildItinerary(sel, opt = {}) {
     'One-day rental car to Brookby Lodge and back, return the car, then the Fullers ferry home with the dogs.'][w];
   if (sel.ne) {
     seg('rail', rev(P.neSouth), 'Northern Explorer north');
-    step('ne', 'Northern Explorer to Auckland', 'Depart Wellington 07:55 (Wed, Fri, Sun), arrive Auckland Strand about 18:50–19:00. The North Island again in reverse.', ['rail'], { place: 'akl', kind: 'stay' });
+    step('ne', 'Northern Explorer to Auckland', 'Depart Wellington 07:55 (Wed, Fri, Sun), arrive Auckland Strand about 18:50–19:00. The North Island again in reverse.', ['rail'], { place: 'akd', kind: 'stay' });
     tag('neN');
     homeLeg();
     step(null, 'Collect the dogs and home', homeText, w === 1 ? ['ferry'] : ['drive', 'ferry'], null);
