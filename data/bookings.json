@@ -20,12 +20,13 @@
   },
   "kennel": {
    "label": "Brookby Lodge, Poppy and Rua",
-   "status": "booked",
+   "status": "confirmed",
    "date": "2026-11-19",
    "with": "Brookby Lodge, 235 Brookby Road, Manurewa",
    "room": "Poppy and Rua, check-in 29 Sep, check-out 11 Oct 2027",
    "pay": "Pay at the lodge",
-   "times": "Open 7am–6pm weekdays, 7:30am–6pm weekends; bring vaccination booklets incl. kennel cough"
+   "times": "Open 7am–6pm weekdays, 7:30am–6pm weekends; bring vaccination booklets incl. kennel cough",
+   "ref": "Email from Cimon, 19 Nov 2026"
   },
   "wfer": {
    "label": "Finn or one-day rentals for the dogs",
