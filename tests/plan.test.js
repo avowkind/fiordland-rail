@@ -21,11 +21,11 @@ test('no flying: no flight cards and no flight segments in any plan', () => {
   }
 });
 
-test('default plan: two Hermitage nights down, Wanaka back, 12 nights', () => {
+test('default plan: Hermitage then Arrowtown down, Wanaka back, 12 nights', () => {
   const it = buildItinerary(DEF);
   assert.equal(it.nights, 12);
   const stays = staysFrom(it, places);
-  assert.deepEqual(stays.map(s => s.place), ['wlg', 'chc', 'mtc', 'mtc', 'tea', 'wan', 'chc', 'wlg', 'akd']);
+  assert.deepEqual(stays.map(s => s.place), ['wlg', 'chc', 'mtc', 'arr', 'tea', 'wan', 'chc', 'wlg', 'akd']);
   assert.equal(new Set(stays.map(s => s.id)).size, stays.length);
 });
 
@@ -151,20 +151,17 @@ test('discovery sequence: legs and stays in trip order, each card once', () => {
   assert.deepEqual(groups.map(g => g.stay).filter(Boolean), stays);
 });
 
-test('second night on the way down: Hermitage, Wanaka, Hawea or Arrowtown, same dates either way', () => {
-  const places2 = o => staysFrom(buildItinerary(PREF, { n2: o }), places).map(s => s.place).slice(0, 5);
+test('second night on the way down: Arrowtown Lodge (booked); other routes still build', () => {
+  const places2 = o => staysFrom(buildItinerary(PREF, o === undefined ? {} : { n2: o }), places).map(s => s.place).slice(0, 5);
+  assert.deepEqual(places2(), ['wlg', 'chc', 'mtc', 'arr', 'tea']);
   assert.deepEqual(places2(0), ['wlg', 'chc', 'mtc', 'mtc', 'tea']);
   assert.deepEqual(places2(1), ['wlg', 'chc', 'mtc', 'wan', 'tea']);
   assert.deepEqual(places2(2), ['wlg', 'chc', 'mtc', 'haw', 'tea']);
-  assert.deepEqual(places2(3), ['wlg', 'chc', 'mtc', 'arr', 'tea']);
-  for (const o of [0, 1, 2, 3]) {
-    const it = buildItinerary(PREF, { n2: o });
-    assert.equal(it.nights, 12);
-    const g = sequence(it, data.cards, { sel: PREF }).groups.find(x => x.choice);
-    assert.equal(g.choice.sel, o);
-    assert.equal(it.steps[g.step].night.place, ['mtc', 'wan', 'haw', 'arr'][o]);
-    assert.ok(places.arr && places[g.choice.options[o].place]);
-  }
+  for (const o of [undefined, 0, 1, 2, 3]) assert.equal(buildItinerary(PREF, o === undefined ? {} : { n2: o }).nights, 12);
+  const g = sequence(buildItinerary(PREF), data.cards, { sel: PREF }).groups;
+  assert.ok(!g.some(x => x.choice && x.choice.key === 'n2'));
+  assert.equal(places.arr.chosen, 'Arrowtown Lodge');
+  assert.equal(bookings.nights['2027-10-03'].status, 'confirmed');
 });
 
 test('night on the way back: Wanaka or Lake Hawea', () => {

@@ -73,7 +73,16 @@
    "status": "none"
   },
   "2027-10-03": {
-   "status": "none"
+   "status": "confirmed",
+   "date": "2026-11-20",
+   "ref": "8936",
+   "with": "Arrowtown Lodge, 7 Anglesea Street, Arrowtown",
+   "room": "Rosies Room, 2 adults",
+   "rate": "Nightly",
+   "price": "NZD 350.00",
+   "pay": "Card held to guarantee",
+   "cancel": "Free until 7 days (168 hours) before arrival; 100% charge after that",
+   "times": "ETA 4pm Sun 3 Oct; check-out Mon 4 Oct"
   },
   "2027-10-04": {
    "status": "none"

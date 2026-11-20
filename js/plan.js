@@ -134,7 +134,7 @@ export function buildItinerary(sel, opt = {}) {
     } else if (k === 1) {
       seg('drive', P.chcMtc, 'Drive Christchurch to Fiordland');
       step('self', 'Drive to Aoraki/Mt Cook: The Hermitage', 'About 4.5 hours via Tekapo and up Lake Pukaki to Aoraki/Mt Cook Village.', ['drive'], { place: 'mtc', kind: 'stay' });
-      const n2 = opt.n2 ?? 0;
+      const n2 = opt.n2 ?? 3; // Decided 20 Nov 2026: Arrowtown Lodge (booked)
       if (n2 === 1) {
         seg('drive', P.mtcWan, 'Drive Christchurch to Fiordland');
         step('self', 'Aoraki/Mt Cook to Wanaka', 'Morning at Aoraki/Mt Cook, then about 2.5–3 hours over the Lindis Pass to Lake Wanaka.', ['drive'], { place: 'wan', kind: 'stay' });
@@ -155,8 +155,6 @@ export function buildItinerary(sel, opt = {}) {
         seg('drive', P.mtcTea, 'Drive Christchurch to Fiordland');
         step('self', 'Aoraki/Mt Cook to Te Anau', 'About 5 hours: Lake Pukaki, the Lindis Pass, Central Otago, Lake Wakatipu.', ['drive'], { place: 'tea', kind: 'stay' });
       }
-      // The second night on the way down is a choice: shown as alternative cards beside it.
-      steps[steps.length - 2].choice = { key: 'n2', sel: n2, options: SECOND_NIGHT };
     } else {
       seg('drive', P.chcTek, 'Drive Christchurch to Fiordland');
       step('self', 'Drive to Lake Tekapo', 'About 3 hours across the Canterbury Plains; evening under the Dark Sky Reserve.', ['drive'], { place: 'tek', kind: 'stay' });

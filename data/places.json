@@ -498,7 +498,7 @@
    900,
    1100
   ],
-  "staySpecial": "The Hermitage: historic hotel under Aoraki/Mt Cook, two nights. Ask for a Premium or Superior room with a Mt Cook view, twin beds.",
+  "staySpecial": "The Hermitage: historic hotel under Aoraki/Mt Cook, one night, Sat 2 Oct. Ask for a Premium or Superior room with a Mt Cook view, twin beds.",
   "ideas": [
    {
     "n": "The Hermitage Hotel",
@@ -553,10 +553,15 @@
   "stay": [
    350,
    700,
-   1000
+   350
   ],
-  "staySpecial": "Historic gold-rush village: the Chinese settlement, the Arrow River walk, good small restaurants; 20 minutes from Queenstown.",
+  "staySpecial": "Arrowtown Lodge, 7 Anglesea Street: Sun 3 Oct (booked), Rosies Room. Stone cottages in gardens a few minutes' walk from the gold-rush village's main street; the Chinese settlement and the Arrow River walk; 20 minutes from Queenstown.",
   "ideas": [
+   {
+    "n": "Arrowtown Lodge",
+    "u": "https://www.arrowtownlodge.co.nz/",
+    "d": "Booked. Stone cottages in gardens a few minutes' walk from the main street; farm breakfast"
+   },
    {
     "n": "Millbrook Resort",
     "u": "https://www.queenstownnz.co.nz/stories/post/great-places-to-stay-in-arrowtown/",
@@ -566,17 +571,13 @@
     "n": "Arrowtown House Boutique Hotel",
     "u": "https://www.queenstownnz.co.nz/stories/post/great-places-to-stay-in-arrowtown/",
     "d": "Five suites in the village centre, some with private outdoor areas; breakfast included"
-   },
-   {
-    "n": "Arrowtown Lodge",
-    "u": "https://www.queenstownnz.co.nz/stories/post/great-places-to-stay-in-arrowtown/",
-    "d": "Stone cottages in gardens a few minutes' walk from the main street; farm breakfast"
    }
   ],
   "ideasSrc": {
    "l": "Destination Queenstown: great places to stay in Arrowtown",
    "u": "https://www.queenstownnz.co.nz/stories/post/great-places-to-stay-in-arrowtown/"
-  }
+  },
+  "chosen": "Arrowtown Lodge"
  },
  "zqn": {
   "name": "Queenstown",
