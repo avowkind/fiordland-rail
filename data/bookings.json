@@ -34,7 +34,16 @@
   },
   "ne": {
    "label": "Northern Explorer (30 Sep, 10 Oct)",
-   "status": "none"
+   "status": "confirmed",
+   "date": "2026-11-20",
+   "ref": "GJNZ136974",
+   "with": "Great Journeys of New Zealand (KiwiRail)",
+   "rate": "Scenic Plus (all inclusive), full adult fare; SuperGold not yet applied",
+   "pay": "Paid in full 20 Nov 2026 (one booking for all four legs, NZD 4,660)",
+   "cancel": "See the confirmation email (terms to check before claiming SuperGold or rebooking)",
+   "room": "2 adults. 30 Sep: P-13C/D (forward). 10 Oct: P-12A/B (forward). Seat change requested: Millie forward-facing window, Andrew window opposite.",
+   "price": "NZD 2,400 (1,170 + 1,230)",
+   "times": "Thu 30 Sep 07:40 Auckland Strand to 18:20 Wellington; Sun 10 Oct 07:55 Wellington to 19:00 Auckland Strand"
   },
   "isl": {
    "label": "Interislander (1 Oct, 9 Oct)",
@@ -42,7 +51,16 @@
   },
   "cp": {
    "label": "Coastal Pacific (1 Oct, 9 Oct)",
-   "status": "none"
+   "status": "confirmed",
+   "date": "2026-11-20",
+   "ref": "GJNZ136974",
+   "with": "Great Journeys of New Zealand (KiwiRail)",
+   "rate": "Scenic Plus (all inclusive), full adult fare; SuperGold not yet applied",
+   "pay": "Paid in full 20 Nov 2026 (one booking for all four legs, NZD 4,660)",
+   "cancel": "See the confirmation email (terms to check before claiming SuperGold or rebooking)",
+   "room": "2 adults. 1 Oct: P-14A/B (rear-facing: to change). 9 Oct: P-8A/B (forward). Seat change requested: Millie forward-facing window, Andrew window opposite.",
+   "price": "NZD 2,260 (1,130 + 1,130)",
+   "times": "Fri 1 Oct 13:40 Picton to 19:30 Christchurch; Sat 9 Oct 07:00 Christchurch to 12:40 Picton"
   },
   "self": {
    "label": "Rental car, Christchurch (2–8 Oct)",
