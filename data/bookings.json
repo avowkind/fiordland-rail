@@ -40,10 +40,10 @@
    "with": "Great Journeys of New Zealand (KiwiRail)",
    "rate": "Scenic Plus (all inclusive), full adult fare; SuperGold not yet applied",
    "pay": "Paid in full 20 Nov 2026 (one booking for all four legs, NZD 4,660)",
-   "cancel": "See the confirmation email (terms to check before claiming SuperGold or rebooking)",
-   "room": "2 adults. 30 Sep: P-13C/D (forward). 10 Oct: P-12A/B (forward). Seat change requested: Millie forward-facing window, Andrew window opposite.",
+   "cancel": "Scenic Plus: fully refundable and changeable more than 7 days before departure; $100 pp to cancel or $35 pp to change within 7 days; nothing inside 24 hours",
+   "room": "2 adults. Seats not on the confirmation; online allocation was 30 Sep P-13C/D, 10 Oct P-12A/B (both forward). Seat request emailed to bookings@greatjourneysnz.com.",
    "price": "NZD 2,400 (1,170 + 1,230)",
-   "times": "Thu 30 Sep 07:40 Auckland Strand to 18:20 Wellington; Sun 10 Oct 07:55 Wellington to 19:00 Auckland Strand"
+   "times": "Thu 30 Sep 07:40 Auckland Strand to 18:20 Wellington; Sun 10 Oct 07:55 Wellington to 19:00 Auckland Strand. Check in: Auckland Strand 06:45–07:30; Wellington 07:00–07:35. The PDF confirmation is the boarding pass. Bags: 2 × 23 kg each plus a 7 kg cabin bag."
   },
   "isl": {
    "label": "Interislander (1 Oct, 9 Oct)",
@@ -66,10 +66,10 @@
    "with": "Great Journeys of New Zealand (KiwiRail)",
    "rate": "Scenic Plus (all inclusive), full adult fare; SuperGold not yet applied",
    "pay": "Paid in full 20 Nov 2026 (one booking for all four legs, NZD 4,660)",
-   "cancel": "See the confirmation email (terms to check before claiming SuperGold or rebooking)",
-   "room": "2 adults. 1 Oct: P-14A/B (rear-facing: to change). 9 Oct: P-8A/B (forward). Seat change requested: Millie forward-facing window, Andrew window opposite.",
+   "cancel": "Scenic Plus: fully refundable and changeable more than 7 days before departure; $100 pp to cancel or $35 pp to change within 7 days; nothing inside 24 hours",
+   "room": "2 adults. Seats not on the confirmation; online allocation was 1 Oct P-14A/B (rear-facing), 9 Oct P-8A/B (forward). Seat request emailed to bookings@greatjourneysnz.com.",
    "price": "NZD 2,260 (1,130 + 1,130)",
-   "times": "Fri 1 Oct 13:40 Picton to 19:30 Christchurch; Sat 9 Oct 07:00 Christchurch to 12:40 Picton"
+   "times": "Fri 1 Oct 13:40 Picton to 19:30 Christchurch; Sat 9 Oct 07:00 Christchurch to 12:40 Picton. Check in: Picton 11:00–13:25; Christchurch 06:05–06:50. The PDF confirmation is the boarding pass. Bags: 2 × 23 kg each plus a 7 kg cabin bag."
   },
   "self": {
    "label": "Rental car, Christchurch (2–8 Oct)",
