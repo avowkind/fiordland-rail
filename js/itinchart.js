@@ -5,7 +5,7 @@ const MODE = { rail: 'Train', ferry: 'Ferry', drive: 'Road', cruise: 'Cruise', h
 // The main mode colours the block: the cruise wins, then rail, then ferry, then road.
 const main = modes => ['cruise', 'rail', 'ferry', 'drive'].find(m => modes.includes(m)) || 'rest';
 
-export function renderItinChart(root, itin, al, places) {
+export function renderItinChart(root, itin, al, places, status = []) {
   const days = al ? al.days : itin.days;
   const start = al && al.startDate;
   const date = d => start ? new Date(start + (d - 1) * 864e5) : null;
@@ -15,7 +15,11 @@ export function renderItinChart(root, itin, al, places) {
 
   let head = '', travel = '', night = '';
   for (let d = 1; d <= days; d++) {
-    head += `<div class="ic-day" style="grid-row:1;grid-column:${d + 1}"><span>${esc(wd(d))}</span><b>${esc(dm(d))}</b><small>Day ${d}</small></div>`;
+    const st = status[d - 1];
+    const todo = st ? st.need.filter(x => x.status !== 'confirmed').map(x => x.label) : [];
+    const tip = st && st.need.length ? (st.done ? 'All bookings for this day confirmed' : 'Still to confirm: ' + todo.join(', ')) : '';
+    const tick = st && st.done ? `<i class="ic-ok" role="img" aria-label="All bookings confirmed"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg></i>` : '';
+    head += `<div class="ic-day${st && st.done ? ' done' : ''}" style="grid-row:1;grid-column:${d + 1}"${tip ? ` title="${esc(tip)}"` : ''}><span>${esc(wd(d))}${tick}</span><b>${esc(dm(d))}</b><small>Day ${d}</small></div>`;
   }
   itin.steps.forEach((s, i) => {
     const d0 = al ? al.per[i].day : s.day;

@@ -135,7 +135,8 @@
      "u": "https://www.brookbylodge.com/pricing/"
     }
    ],
-   "dir": "both"
+   "dir": "both",
+   "ends": true
   },
   {
    "id": "wfer",
@@ -179,7 +180,8 @@
      "l": "Fullers360: pets on board",
      "u": "https://fullers.co.nz/travel-information/pets-on-board"
     }
-   ]
+   ],
+   "ends": true
   },
   {
    "id": "ne",

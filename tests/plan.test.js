@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { buildItinerary, totals, toggle, staysFrom, cardValue, cardNights, alignSeason, fixedDates, sequence, KENNEL_RATE, DOGS } from '../js/plan.js';
+import { buildItinerary, totals, toggle, staysFrom, cardValue, cardNights, alignSeason, fixedDates, sequence, dayBookings, KENNEL_RATE, DOGS } from '../js/plan.js';
 
 const data = JSON.parse(readFileSync(new URL('../data/options.json', import.meta.url)));
 const places = JSON.parse(readFileSync(new URL('../data/places.json', import.meta.url)));
@@ -206,4 +206,24 @@ test('bookings file: a status for every leg card and every night of the trip', (
   });
   assert.deepEqual(Object.keys(bookings.nights).sort(), nights.sort());
   Object.values(bookings.nights).forEach(b => assert.ok(OK.includes(b.status)));
+});
+
+test('day ticks: a day is done only when every booking it needs is confirmed', () => {
+  const seasons = JSON.parse(readFileSync(new URL('../data/seasons.json', import.meta.url)));
+  const state = { sel: PREF, opt: {}, stayOff: {} };
+  const it = buildItinerary(PREF);
+  const al = alignSeason(it, seasons, 'spring27', fixedDates(data.cards, state));
+  const { groups } = sequence(it, data.cards, state);
+  const days = dayBookings(it, al, groups, bookings, data.cards);
+  assert.equal(days.length, al.days);
+  for (const d of days) assert.equal(d.done, d.need.length > 0 && d.need.every(x => x.status === 'confirmed'));
+  // The cruise days are covered by the confirmed Wanderer booking alone.
+  const cruise = days.find(d => d.date === '2027-10-05');
+  assert.ok(cruise.done && cruise.need.every(x => !x.label.startsWith('Night')));
+  // The last day needs the kennels and the trip back to Waiheke.
+  const lastIds = days[days.length - 1].need.map(x => x.label);
+  assert.ok(lastIds.some(l => /Brookby/.test(l)) && lastIds.some(l => /Waiheke/.test(l)));
+  // A synthetic unconfirmed night stops the tick.
+  const b2 = structuredClone(bookings); b2.nights['2027-10-10'].status = 'booked';
+  assert.equal(dayBookings(it, al, groups, b2, data.cards).find(d => d.date === '2027-10-10').done, false);
 });

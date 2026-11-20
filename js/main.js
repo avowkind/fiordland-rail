@@ -1,6 +1,6 @@
 // Entry point: loads data, holds selection state, wires the sections together.
 import { renderItinChart } from './itinchart.js';
-import { totals, toggle, warnings, alignSeason, fixedDates, DOW_LABEL } from './plan.js';
+import { totals, toggle, warnings, alignSeason, fixedDates, DOW_LABEL, sequence, dayBookings } from './plan.js';
 import { renderDiscovery, esc, nz } from './cards.js';
 import { initMap, drawRoute, setView, legendHTML, invalidate } from './map.js';
 
@@ -59,7 +59,8 @@ function bookedLine(r, al) {
 function render(focusSel) {
   const r = totals(options, state, places);
   const al = alignSeason(r.itin, seasons, SEASON, fixedDates(options.cards, state));
-  renderItinChart(document.getElementById('itinchart'), r.itin, al, places);
+  const { groups } = sequence(r.itin, options.cards, state);
+  renderItinChart(document.getElementById('itinchart'), r.itin, al, places, dayBookings(r.itin, al, groups, bookings, options.cards));
   renderDiscovery(disc, options, state, r, al, bookings);
   renderPlan(r.itin, al);
   if (mapOk) {

@@ -257,3 +257,11 @@ body.noprice .price{display:none!important}
 .bkd dd{margin:0}
 
 .bookorder{margin:0 0 18px;padding-left:22px;display:grid;gap:6px;max-width:80ch}
+
+/* Itinerary chart: a tick on days whose bookings are all confirmed */
+.ic-day span{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.ic-ok{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--realnz);flex:none}
+.ic-ok svg{width:12px;height:12px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ic-day.done{border-bottom-color:var(--realnz)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ic-ok svg{stroke:#111}}
+:root[data-theme="dark"] .ic-ok svg{stroke:#111}

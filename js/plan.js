@@ -465,3 +465,33 @@ export function alignSeason(itin, seasons, key, fixedDates = {}) {
   }
   return { startDate, key, label: S.label, window: S.window, general: S.general, sandflies: S.sandflies, start: best.start, startLabel: DOW_LABEL[best.start], added: best.added, per: best.per, notes, blockers: [...new Set(blockers)], days: best.days };
 }
+
+// What each day of the trip needs booked, and whether all of it is confirmed.
+// A day needs the booking cards of every step that covers it, and the night's stay
+// (nights aboard are covered by the cruise booking). Returns one entry per day.
+export function dayBookings(itin, al, groups, bookings, cards) {
+  if (!al || !al.startDate) return [];
+  const label = id => (cards.find(c => c.id === id) || {}).t || id;
+  const iso = d => new Date(al.startDate + (d - 1) * 864e5).toISOString().slice(0, 10);
+  const days = Array.from({ length: al.days }, () => new Map());
+  itin.steps.forEach((s, i) => {
+    const d0 = al.per[i].day, span = Math.max(s.n, 1);
+    const ids = new Set([...(groups[i] ? groups[i].cards : []), s.owner, ...(s.also || [])].filter(id => id && bookings.legs[id]));
+    for (let d = d0; d < d0 + span && d <= al.days; d++) {
+      const m = days[d - 1];
+      ids.forEach(id => m.set('leg:' + id, { label: label(id), status: bookings.legs[id].status }));
+      if (s.night && s.night.kind === 'stay' && (s.n > 0) && d < al.days) {
+        const b = bookings.nights[iso(d)];
+        m.set('night:' + iso(d), { label: 'Night ' + iso(d), status: b ? b.status : 'none' });
+      }
+    }
+  });
+  // Cards that cover both ends of the trip (the kennels, getting off Waiheke) are needed on the last day too.
+  const last = days[al.days - 1];
+  cards.filter(c => c.ends && bookings.legs[c.id] && days.some(m => m.has('leg:' + c.id)))
+    .forEach(c => last.set('leg:' + c.id, { label: label(c.id), status: bookings.legs[c.id].status }));
+  return days.map((m, k) => {
+    const need = [...m.values()];
+    return { day: k + 1, date: iso(k + 1), need, done: need.length > 0 && need.every(x => x.status === 'confirmed') };
+  });
+}
