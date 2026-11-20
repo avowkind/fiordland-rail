@@ -1,5 +1,5 @@
 {
- "_note": "Service patterns per season, used to check that the chosen legs line up. Researched 27 Oct 2026; projected patterns are marked in the notes. Weekdays: sun mon tue wed thu fri sat.",
+ "_note": "Service patterns per season, used to check that the chosen legs line up. Weekdays: sun mon tue wed thu fri sat. Route notes appear only for things still to decide; booked services are confirmed on the cards.",
  "neSouth": [
   "mon",
   "thu",
@@ -23,15 +23,14 @@
     "fri",
     "sat"
    ],
-   "cpNote": "Great Journeys now states the Coastal Pacific runs daily from 1 September to 30 April (not Christmas Day), checked 18 Nov 2026. 2027 dates not yet bookable or confirmed online.",
+   "cpNote": "Coastal Pacific runs daily from 1 September; our 1 and 9 October trains are booked (GJNZ136974).",
    "general": [
-    "Labour Weekend (23–25 Oct) is busy on the roads.",
-    "Rail closure 25–28 Sep 2027 is listed for the TranzAlpine only; the trip starts 29 Sep."
+    "Labour Weekend (23–25 Oct) is busy on the roads."
    ],
    "cruises": {
     "rnw": {
      "ok": true,
-     "note": "Chosen: Milford Wanderer 2-night sailing. October 2027 sails Tue, Thu and Sat (RealNZ FareHarbor calendar, checked 18 Nov 2026; 19 Oct shows no fare)."
+     "note": "Booked: Milford Wanderer, Tue 5 to Thu 7 October 2027 (RealNZ 392072934)."
     }
    },
    "sandflies": {
@@ -39,7 +38,7 @@
     "accepted": true,
     "note": "Sandflies: October is inside the October–April peak, so this misses the agreed sandfly constraint. Accepted by Andrew on 28 Oct 2026 to choose the October Wanderer; check with Millie. Take repellent and cover up."
    },
-   "cpConfirmed": false
+   "cpConfirmed": true
   }
  }
 }

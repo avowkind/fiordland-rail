@@ -88,7 +88,7 @@ export function buildItinerary(sel, opt = {}) {
       seg('ferry', P.footFerry, 'Fullers to the city');
       if (w === 2) seg('drive', P.cityKennels, 'Rental car to Brookby and back');
       step('akl', 'Dogs to Brookby',
-        w === 1 ? 'Finn takes Poppy and Rua to Brookby Lodge; we take the Fullers ferry to Downtown, a short walk to the hotel.'
+        w === 1 ? 'Finn (or a one-day rental) takes Poppy and Rua to Brookby Lodge; we take the Fullers ferry to Downtown, a short walk to the hotel.'
           : 'Fullers ferry to Downtown with the dogs (crated or on a short lead), a one-day rental car to Brookby Lodge and back, return the car, evening in the city.',
         w === 1 ? ['ferry'] : ['ferry', 'drive'], { place: 'akl', kind: 'card' });
     }
@@ -103,7 +103,7 @@ export function buildItinerary(sel, opt = {}) {
     seg('rail', P.neSouth, 'Northern Explorer');
     step('ne', 'Northern Explorer to Wellington',
       (sel.akl ? 'Walk to Strand station. ' : 'Early start from Waiheke and a dawn kennel drop-off. ') +
-      'Departs 07:45 (Mon, Thu, Sat); volcanic plateau and the Raurimu Spiral; arrives Wellington about 18:25.',
+      '07:40 over the volcanic plateau and the Raurimu Spiral; arrives Wellington 18:20.',
       ['rail'], { place: 'wlg', kind: 'stay' });
     tag('neS');
   }
@@ -113,7 +113,7 @@ export function buildItinerary(sel, opt = {}) {
   if (sel.cp) {
     seg('rail', P.cpSouth, 'Coastal Pacific');
     step('cp', sel.isl ? 'Interislander and Coastal Pacific to Christchurch' : 'Coastal Pacific to Christchurch',
-      (sel.isl ? '08:30 Kaitaki through Tory Channel, Premium Lounge, arriving Picton 12:00. ' : '') + '13:40 train along the Kaikōura coast; arrives 19:30.',
+      (sel.isl ? '08:30 Kaitaki through the Sounds and Tory Channel, arriving Picton 12:00. ' : '') + '13:40 train along the Kaikōura coast; arrives 19:30.',
       [sel.isl && 'ferry', 'rail'].filter(Boolean), { place: 'chc', kind: 'stay' });
     tag('cp');
     if (sel.isl) steps[steps.length - 1].also = ['isl'];
@@ -239,7 +239,7 @@ export function buildItinerary(sel, opt = {}) {
     seg('rail', rev(P.cpSouth), 'Coastal Pacific north');
     if (sel.isl) seg('ferry', rev(P.strait), 'Interislander');
     step('cp', sel.isl ? 'Coastal Pacific and ferry to Wellington' : 'Coastal Pacific to Picton',
-      'Coastal Pacific departs Christchurch 07:00, arrives Picton 12:40' + (sel.isl ? '; 14:00 Kaitaki (check in by 13:00), Premium Lounge, arrives Wellington 17:30.' : '.'),
+      '07:00 Coastal Pacific up the Kaikōura coast to Picton 12:40' + (sel.isl ? ', then the 14:00 Kaitaki to Wellington, arriving 17:30.' : '.'),
       ['rail', sel.isl && 'ferry'].filter(Boolean), sel.isl ? { place: 'wlg', kind: 'stay' } : null);
     tag('cp');
     if (sel.isl) steps[steps.length - 1].also = ['isl'];
@@ -262,11 +262,11 @@ export function buildItinerary(sel, opt = {}) {
     }
   };
   const homeText = ['Collect the car, then Brookby Lodge for the dogs and the SeaLink back to Waiheke.',
-    'Finn brings Poppy and Rua home from Brookby; we take the Fullers ferry from Downtown.',
+    'Finn (or a one-day rental) brings Poppy and Rua home from Brookby; we take the Fullers ferry from Downtown.',
     'One-day rental car to Brookby Lodge and back, return the car, then the Fullers ferry home with the dogs.'][w];
   if (sel.ne) {
     seg('rail', rev(P.neSouth), 'Northern Explorer north');
-    step('ne', 'Northern Explorer to Auckland', 'Depart Wellington 07:55 (Wed, Fri, Sun), arrive Auckland Strand about 18:50–19:00. The North Island again in reverse.', ['rail'], { place: 'akd', kind: 'stay' });
+    step('ne', 'Northern Explorer to Auckland', '07:55 from Wellington, the North Island again in reverse; arrives Auckland Strand 19:00.', ['rail'], { place: 'akd', kind: 'stay' });
     tag('neN');
     homeLeg();
     step(null, 'Collect the dogs and home', homeText, w === 1 ? ['ferry'] : ['drive', 'ferry'], null);
@@ -383,7 +383,7 @@ export function toggle(data, state, id, on) {
 export function warnings(state, itin) {
   const s = state.sel, w = [];
   if (itin.days > 15) w.push('Longer than the agreed two weeks.');
-  if (!s.akl && s.ne) w.push('Without the Auckland night, the 07:45 train means a very early kennel drop-off.');
+  if (!s.akl && s.ne) w.push('Without the Auckland night, the 07:40 train means a very early kennel drop-off.');
   if (!s.cp && !s.pdrive) w.push('Choose the Coastal Pacific or the Picton–Christchurch drive.');
   if (cruiseOf(s) && !s.self) w.push('Tick Drive Christchurch to Fiordland for the road there and back.');
   if (!cruiseOf(s)) w.push('No cruise chosen.');
@@ -442,16 +442,17 @@ export function alignSeason(itin, seasons, key, fixedDates = {}) {
       const what = st.svc === 'cp' ? 'the Coastal Pacific' : st.svc.startsWith('cruise:') ? 'the fixed sailing' : 'the Northern Explorer';
       notes[i].push({ level: 'add', text: `Add ${w} day${w > 1 ? 's' : ''}: ${what} does not run on the day before; wait${where ? ' an extra night where we stayed' : ''} until ${DOW_LABEL[best.per[i].dow]}.` , where });
     }
-    if (st.svc === 'cp' && S.cp.length && (S.cp.length < 7 || S.cpConfirmed === false)) notes[i].push({ level: 'check', text: S.cpNote });
+    if (st.svc === 'cp' && S.cp.length && (S.cp.length < 7 || S.cpConfirmed === false) && S.cpNote) notes[i].push({ level: 'check', text: S.cpNote });
     if (st.svc && st.svc.startsWith('cruise:')) {
       if (S.sandflies) {
-        const lv = S.sandflies.level === 'peak' ? (S.sandflies.accepted ? 'check' : 'block') : S.sandflies.level === 'lowest' ? 'ok' : 'check';
-        notes[i].push({ level: lv, text: S.sandflies.note });
+        // An accepted trade-off is recorded under Things to think about, not repeated on the route.
+        const lv = S.sandflies.level === 'peak' ? (S.sandflies.accepted ? null : 'block') : S.sandflies.level === 'lowest' ? 'ok' : 'check';
+        if (lv && S.sandflies.note) notes[i].push({ level: lv, text: S.sandflies.note });
         if (lv === 'block') blockers.push(S.sandflies.note);
       }
       const c = S.cruises[st.svc.slice(7)];
       if (c) {
-        notes[i].push({ level: c.ok ? 'check' : 'block', text: c.note });
+        if (!c.ok || c.check) notes[i].push({ level: c.ok ? 'check' : 'block', text: c.note });
         if (!c.ok) blockers.push(c.note);
       }
     }
