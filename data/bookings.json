@@ -47,7 +47,16 @@
   },
   "isl": {
    "label": "Interislander (1 Oct, 9 Oct)",
-   "status": "none"
+   "status": "confirmed",
+   "date": "2026-11-20",
+   "ref": "71011026",
+   "with": "Interislander (KiwiRail), Kaitaki",
+   "room": "2 Seniors, Premium Lounge both ways (food and drinks included)",
+   "rate": "Refundable Senior",
+   "price": "NZD 704.00 (352 each way)",
+   "pay": "Paid in full 20 Nov 2026",
+   "cancel": "Change or cancel up to 1 hour before sailing; full refund less card fees",
+   "times": "Fri 1 Oct Wellington 08:30 to Picton 12:00 (check in 07:30; shuttle from Platform 10 at 07:20). Sat 9 Oct Picton 14:00 to Wellington 17:30 (check in 13:00: train arrives 12:40). Photo ID showing date of birth for the senior fare."
   },
   "cp": {
    "label": "Coastal Pacific (1 Oct, 9 Oct)",

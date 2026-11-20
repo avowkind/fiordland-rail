@@ -113,17 +113,17 @@ export function buildItinerary(sel, opt = {}) {
   if (sel.cp) {
     seg('rail', P.cpSouth, 'Coastal Pacific');
     step('cp', sel.isl ? 'Interislander and Coastal Pacific to Christchurch' : 'Coastal Pacific to Christchurch',
-      (sel.isl ? '08:45 sailing through Tory Channel; bags checked through. ' : '') + '13:40 train along the Kaikōura coast; arrives 19:30.',
+      (sel.isl ? '08:30 Kaitaki through Tory Channel, Premium Lounge, arriving Picton 12:00. ' : '') + '13:40 train along the Kaikōura coast; arrives 19:30.',
       [sel.isl && 'ferry', 'rail'].filter(Boolean), { place: 'chc', kind: 'stay' });
     tag('cp');
     if (sel.isl) steps[steps.length - 1].also = ['isl'];
   } else if (sel.pdrive) {
     seg('drive', P.cpSouth, 'Drive Picton to Christchurch');
     step('pdrive', sel.isl ? 'Interislander, then drive Picton to Christchurch' : 'Drive Picton to Christchurch',
-      (sel.isl ? '08:45 sailing, arriving Picton 12:15. ' : '') + 'Collect the rental at Picton and drive about 4.5–5 hours via Blenheim and the Kaikōura coast.',
+      (sel.isl ? '08:30 sailing, arriving Picton 12:00. ' : '') + 'Collect the rental at Picton and drive about 4.5–5 hours via Blenheim and the Kaikōura coast.',
       [sel.isl && 'ferry', 'drive'].filter(Boolean), { place: 'chc', kind: 'stay' });
   } else if (sel.isl) {
-    step('isl', 'Interislander to Picton', '08:45 sailing through Tory Channel.', ['ferry'], null);
+    step('isl', 'Interislander to Picton', '08:30 Kaitaki through Tory Channel, arriving Picton 12:00.', ['ferry'], null);
   }
 
   // Christchurch to Fiordland, by road
@@ -239,7 +239,7 @@ export function buildItinerary(sel, opt = {}) {
     seg('rail', rev(P.cpSouth), 'Coastal Pacific north');
     if (sel.isl) seg('ferry', rev(P.strait), 'Interislander');
     step('cp', sel.isl ? 'Coastal Pacific and ferry to Wellington' : 'Coastal Pacific to Picton',
-      'Coastal Pacific departs Christchurch 07:00, arrives Picton 12:40' + (sel.isl ? '; 14:15 Interislander arrives Wellington 17:45.' : '.'),
+      'Coastal Pacific departs Christchurch 07:00, arrives Picton 12:40' + (sel.isl ? '; 14:00 Kaitaki (check in by 13:00), Premium Lounge, arrives Wellington 17:30.' : '.'),
       ['rail', sel.isl && 'ferry'].filter(Boolean), sel.isl ? { place: 'wlg', kind: 'stay' } : null);
     tag('cp');
     if (sel.isl) steps[steps.length - 1].also = ['isl'];
