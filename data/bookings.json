@@ -70,7 +70,16 @@
    "status": "none"
   },
   "2027-10-02": {
-   "status": "none"
+   "status": "confirmed",
+   "date": "2026-11-20",
+   "ref": "R25E62",
+   "with": "The Hermitage, Aoraki/Mount Cook Village",
+   "room": "Standard King (No View)/Twin, requested as two singles; Mt Cook view requested if available. 2 adults",
+   "rate": "Alpine Dinner, Bed & Breakfast package",
+   "price": "NZD 642.00",
+   "pay": "Paid in full at booking",
+   "cancel": "Full refund if cancelled more than 48 hours before check-in; full charge within 48 hours",
+   "times": "Check-in from 3pm, check-out 10am; book the Alpine Restaurant dinner time on the Hermitage website"
   },
   "2027-10-03": {
    "status": "confirmed",

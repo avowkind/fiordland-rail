@@ -494,21 +494,21 @@
   "stop": true,
   "blurb": "The Hermitage",
   "stay": [
-   450,
-   900,
-   1100
+   642,
+   642,
+   642
   ],
-  "staySpecial": "The Hermitage: historic hotel under Aoraki/Mt Cook, one night, Sat 2 Oct. Ask for a Premium or Superior room with a Mt Cook view, twin beds.",
+  "staySpecial": "The Hermitage: Sat 2 Oct (booked, R25E62). Standard King/Twin, two singles requested; Alpine Dinner, Bed & Breakfast package. Book the dinner time on the Hermitage website.",
   "ideas": [
    {
     "n": "The Hermitage Hotel",
     "u": "https://www.hermitage.co.nz/",
-    "d": "Chosen. Standard, Superior (Mt Cook view), Premium (Aoraki wing, Mt Cook view) and Premium Plus (10th floor) rooms. Twin beds not confirmed: ask."
+    "d": "Booked. Chosen. Standard, Superior (Mt Cook view), Premium (Aoraki wing, Mt Cook view) and Premium Plus (10th floor) rooms. Twin beds not confirmed: ask."
    },
    {
     "n": "Kuoni: The Hermitage room types",
     "u": "https://www.kuoni.co.uk/new-zealand/south-island/west-coast-glaciers-and-southern-alps/hotels/the-hermitage-hotel-aoraki-mount-cook",
-    "d": "Room types, restaurants and the Alpine Centre"
+    "d": "Booked. Room types, restaurants and the Alpine Centre"
    }
   ],
   "chosen": "The Hermitage"
@@ -552,7 +552,7 @@
   "blurb": "Gold-rush village",
   "stay": [
    350,
-   700,
+   350,
    350
   ],
   "staySpecial": "Arrowtown Lodge, 7 Anglesea Street: Sun 3 Oct (booked), Rosies Room. Stone cottages in gardens a few minutes' walk from the gold-rush village's main street; the Chinese settlement and the Arrow River walk; 20 minutes from Queenstown.",
