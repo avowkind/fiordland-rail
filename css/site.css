@@ -258,10 +258,15 @@ body.noprice .price{display:none!important}
 
 .bookorder{margin:0 0 18px;padding-left:22px;display:grid;gap:6px;max-width:80ch}
 
-/* Itinerary chart: a tick on days whose bookings are all confirmed */
-.ic-day span{display:flex;align-items:center;justify-content:space-between;gap:4px}
-.ic-ok{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--realnz);flex:none}
-.ic-ok svg{width:12px;height:12px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.ic-day.done{border-bottom-color:var(--realnz)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ic-ok svg{stroke:#111}}
-:root[data-theme="dark"] .ic-ok svg{stroke:#111}
+/* Itinerary chart: one marker per bookable item (tick when confirmed) */
+.ic-items{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:3px}
+.ic-items li{display:flex;align-items:center;gap:5px;font-size:12px;line-height:1.2}
+.ic-bk{display:inline-grid;place-items:center;flex:none;width:15px;height:15px;border-radius:50%;box-sizing:border-box;border:1.5px solid currentColor;opacity:.75}
+.ic-bk svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.ic-bk-booked{border-style:dashed;opacity:1}
+.ic-bk-confirmed{opacity:1;background:#fff;border-color:#fff;color:var(--realnz)}
+.ic-night .ic-bk{vertical-align:-3px;margin-right:5px;color:var(--muted)}
+.ic-night .ic-bk-confirmed{background:var(--realnz);border-color:var(--realnz);color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ic-bk-confirmed{background:#111;border-color:#111}:root:not([data-theme="light"]) .ic-night .ic-bk-confirmed{background:var(--realnz);border-color:var(--realnz);color:#111}}
+:root[data-theme="dark"] .ic-bk-confirmed{background:#111;border-color:#111}
+:root[data-theme="dark"] .ic-night .ic-bk-confirmed{background:var(--realnz);border-color:var(--realnz);color:#111}

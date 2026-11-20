@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { buildItinerary, totals, toggle, staysFrom, cardValue, cardNights, alignSeason, fixedDates, sequence, dayBookings, KENNEL_RATE, DOGS } from '../js/plan.js';
+import { buildItinerary, totals, toggle, staysFrom, cardValue, cardNights, alignSeason, fixedDates, sequence, stepBookings, KENNEL_RATE, DOGS } from '../js/plan.js';
 
 const data = JSON.parse(readFileSync(new URL('../data/options.json', import.meta.url)));
 const places = JSON.parse(readFileSync(new URL('../data/places.json', import.meta.url)));
@@ -208,22 +208,26 @@ test('bookings file: a status for every leg card and every night of the trip', (
   Object.values(bookings.nights).forEach(b => assert.ok(OK.includes(b.status)));
 });
 
-test('day ticks: a day is done only when every booking it needs is confirmed', () => {
-  const seasons = JSON.parse(readFileSync(new URL('../data/seasons.json', import.meta.url)));
+test('booking markers: one per bookable item, on the travel step or its night', () => {
   const state = { sel: PREF, opt: {}, stayOff: {} };
   const it = buildItinerary(PREF);
   const al = alignSeason(it, seasons, 'spring27', fixedDates(data.cards, state));
   const { groups } = sequence(it, data.cards, state);
-  const days = dayBookings(it, al, groups, bookings, data.cards);
-  assert.equal(days.length, al.days);
-  for (const d of days) assert.equal(d.done, d.need.length > 0 && d.need.every(x => x.status === 'confirmed'));
-  // The cruise days are covered by the confirmed Wanderer booking alone.
-  const cruise = days.find(d => d.date === '2027-10-05');
-  assert.ok(cruise.done && cruise.need.every(x => !x.label.startsWith('Night')));
-  // The last day needs the kennels and the trip back to Waiheke.
-  const lastIds = days[days.length - 1].need.map(x => x.label);
-  assert.ok(lastIds.some(l => /Brookby/.test(l)) && lastIds.some(l => /Waiheke/.test(l)));
-  // A synthetic unconfirmed night stops the tick.
-  const b2 = structuredClone(bookings); b2.nights['2027-10-10'].status = 'booked';
-  assert.equal(dayBookings(it, al, groups, b2, data.cards).find(d => d.date === '2027-10-10').done, false);
+  const steps = stepBookings(it, al, groups, bookings, data.cards);
+  assert.equal(steps.length, it.steps.length);
+  const ids = i => steps[i].items.map(x => x.id);
+  // Day 1: handover, kennels and transport on the travel block; the Auckland hotel is the night.
+  assert.deepEqual(ids(0).sort(), ['handover', 'kennel', 'wfer']);
+  assert.equal(steps[0].night.status, bookings.legs.akl.status);
+  // Ferry and train share a step; statuses come from the bookings file.
+  const fer = steps.findIndex(s => s.items.some(x => x.id === 'isl'));
+  assert.deepEqual(ids(fer).sort(), ['cp', 'isl']);
+  assert.ok(steps[fer].items.every(x => x.status === bookings.legs[x.id].status));
+  // Stays take the night's own booking; the last step brings the dogs home.
+  const ni = it.steps.findIndex(s => s.night && s.night.kind === 'stay');
+  assert.ok(steps[ni].night && ['none', 'booked', 'confirmed'].includes(steps[ni].night.status));
+  assert.deepEqual(ids(steps.length - 1).sort(), ['kennel', 'wfer']);
+  // Every bookable card in the plan gets at least one marker.
+  const marked = new Set(steps.flatMap((s, i) => [...s.items.map(x => x.id), ...(s.night && it.steps[i].owner && !it.steps[i].night.kind.startsWith('stay') ? [it.steps[i].owner] : [])]));
+  for (const id of Object.keys(bookings.legs)) assert.ok(marked.has(id), id + ' has a marker');
 });

@@ -51,7 +51,8 @@
    ],
    "v": 0,
    "st": "pub",
-   "b": "No cost."
+   "b": "No cost.",
+   "short": "Handover"
   },
   {
    "id": "akl",
@@ -98,7 +99,8 @@
      "l": "Hotel booking site",
      "u": "https://bookings.thehotelbritomart.com/book/accommodations?datein=09%2F01%2F2027&dateout=09%2F02%2F2027&adults=2&children=0&discount=&identifier="
     }
-   ]
+   ],
+   "short": "Hotel Britomart"
   },
   {
    "id": "kennel",
@@ -136,7 +138,8 @@
     }
    ],
    "dir": "both",
-   "ends": true
+   "ends": true,
+   "short": "Brookby Lodge"
   },
   {
    "id": "wfer",
@@ -181,7 +184,8 @@
      "u": "https://fullers.co.nz/travel-information/pets-on-board"
     }
    ],
-   "ends": true
+   "ends": true,
+   "short": "Finn or rental"
   },
   {
    "id": "ne",
@@ -237,7 +241,8 @@
      "u": "https://www.seat61.com/auckland-to-wellington-by-train.htm"
     }
    ],
-   "dir": "both"
+   "dir": "both",
+   "short": "Northern Explorer"
   },
   {
    "id": "isl",
@@ -283,7 +288,8 @@
      "u": "https://www.seat61.com/NewZealand.htm"
     }
    ],
-   "dir": "both"
+   "dir": "both",
+   "short": "Interislander"
   },
   {
    "id": "cp",
@@ -335,7 +341,8 @@
     }
    ],
    "dir": "both",
-   "excl": "picchc"
+   "excl": "picchc",
+   "short": "Coastal Pacific"
   },
   {
    "id": "self",
@@ -389,7 +396,8 @@
      "u": "https://www.apexrentals.co.nz/rental-car-locations/christchurch-city-branch"
     }
    ],
-   "dir": "both"
+   "dir": "both",
+   "short": "Rental car"
   },
   {
    "id": "rnw",
@@ -440,7 +448,8 @@
    ],
    "dir": "mid",
    "date": "2027-10-05",
-   "v": 2278
+   "v": 2278,
+   "short": "Wanderer"
   }
  ],
  "defaultSelection": {
