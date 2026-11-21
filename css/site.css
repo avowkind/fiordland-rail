@@ -270,3 +270,14 @@ body.noprice .price{display:none!important}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ic-bk-confirmed{background:#111;border-color:#111}:root:not([data-theme="light"]) .ic-night .ic-bk-confirmed{background:var(--realnz);border-color:var(--realnz);color:#111}}
 :root[data-theme="dark"] .ic-bk-confirmed{background:#111;border-color:#111}
 :root[data-theme="dark"] .ic-night .ic-bk-confirmed{background:var(--realnz);border-color:var(--realnz);color:#111}
+
+/* Before we go: key dates */
+.kd{list-style:none;margin:0;padding:0;display:grid;max-width:90ch;border-top:1px solid var(--line)}
+.kd li{display:grid;grid-template-columns:minmax(110px,170px) 1fr;gap:4px 14px;padding:7px 8px;border-bottom:1px solid var(--line)}
+.kd time{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:2px}
+.kd li.key time{color:var(--fg);font-weight:600}
+.kd li.past{opacity:.5}
+.kd li.past span{text-decoration:line-through;text-decoration-thickness:1px}
+.kd li.next{background:var(--bg);border-left:3px solid var(--realnz)}
+.kd li.next time{color:var(--fg)}
+@media (max-width:520px){.kd li{grid-template-columns:1fr}}

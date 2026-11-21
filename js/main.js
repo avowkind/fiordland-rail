@@ -115,3 +115,13 @@ document.querySelectorAll('[data-mview]').forEach(b => b.addEventListener('click
 window.addEventListener('resize', invalidate);
 
 render();
+
+// Before we go: dim dates that have passed and highlight the next one (local date).
+(() => {
+  const now = new Date(); const today = new Date(now.getTime() - now.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+  let marked = false;
+  document.querySelectorAll('.kd li[data-date]').forEach(li => {
+    if (li.dataset.date < today) li.classList.add('past');
+    else if (!marked) { li.classList.add('next'); marked = true; }
+  });
+})();
